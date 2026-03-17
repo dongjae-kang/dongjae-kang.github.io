@@ -92,11 +92,12 @@ const MobileMapLegend = styled.div`
 
 const MobileMapChip = styled.span`
   padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(245, 240, 232, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(196, 149, 106, 0.22);
   background: rgba(10, 24, 18, 0.38);
-  font-size: 0.76rem;
-  letter-spacing: 0.03em;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: rgba(245, 240, 232, 0.82);
 `;
 
@@ -146,11 +147,11 @@ const Story = styled.div`
   padding: 88px 0 120px;
   background: ${({ theme }) => theme.colors.subpage.background};
   color: ${({ theme }) => theme.colors.subpage.text};
-  border-radius: 40px 40px 0 0;
+  border-radius: 12px 12px 0 0;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 72px 0 88px;
-    border-radius: 28px 28px 0 0;
+    border-radius: 12px 12px 0 0;
   }
 `;
 
@@ -210,7 +211,7 @@ const SectionTitle = styled.h2`
   margin-top: 4px;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.08;
   color: ${({ theme }) => theme.colors.subpage.text};
 `;
@@ -233,16 +234,16 @@ const FeatureLink = styled(Link)`
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
-  border-radius: 18px;
+  border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  background: #fdfcfa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-1px);
     border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -253,10 +254,8 @@ const FeatureLink = styled(Link)`
 const FeatureThumb = styled.div`
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 14px;
-  background:
-    linear-gradient(135deg, rgba(196, 149, 106, 0.18), rgba(225, 219, 210, 0.82)),
-    rgba(248, 246, 241, 0.88);
+  border-radius: 3px;
+  background: #f0ede8;
   border: 1px solid rgba(196, 149, 106, 0.16);
 `;
 
@@ -295,10 +294,10 @@ const EvidencePanel = styled.div`
   display: grid;
   gap: 18px;
   padding: 24px;
-  border-radius: 20px;
+  border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  background: #fdfcfa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 `;
 
 const EvidenceLabel = styled.span`
@@ -322,7 +321,7 @@ const MetricCard = styled.div`
   display: grid;
   gap: 4px;
   padding: 14px;
-  border-radius: 16px;
+  border-radius: 4px;
   background: rgba(245, 240, 232, 0.72);
   border: 1px solid rgba(196, 149, 106, 0.18);
 `;
@@ -383,27 +382,25 @@ const ActivityCard = styled(Link)`
   display: grid;
   gap: 12px;
   padding: 18px;
-  border-radius: 18px;
+  border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  background: #fdfcfa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-1px);
     border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const ActivityVisual = styled.div`
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 3px;
   border: 1px solid rgba(196, 149, 106, 0.14);
-  background:
-    linear-gradient(145deg, rgba(196, 149, 106, 0.18), rgba(245, 240, 232, 0.9)),
-    rgba(250, 248, 244, 0.9);
+  background: #f0ede8;
   display: flex;
   align-items: flex-end;
   padding: 16px;
@@ -485,9 +482,9 @@ function Home() {
           <HeroInner>
             <Graph />
             <MobileMapLegend aria-hidden="true">
-              <MobileMapChip>Public Discourse</MobileMapChip>
-              <MobileMapChip>Governance</MobileMapChip>
-              <MobileMapChip>AI &amp; Equity</MobileMapChip>
+              <MobileMapChip>Research</MobileMapChip>
+              <MobileMapChip>Themes</MobileMapChip>
+              <MobileMapChip>Engagement</MobileMapChip>
             </MobileMapLegend>
             <Name>Dongjae (Jack) Kang</Name>
             <Tagline>

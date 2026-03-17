@@ -15,7 +15,7 @@ const HeaderInner = styled.div`
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin-top: 16px;
   padding: 16px 20px;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;

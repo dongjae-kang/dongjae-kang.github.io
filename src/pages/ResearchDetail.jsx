@@ -23,9 +23,8 @@ const Back = styled(Link)`
 
 const Thumbnail = styled.div`
   aspect-ratio: 16 / 9;
-  border-radius: 18px;
-  background:
-    linear-gradient(135deg, rgba(61, 90, 62, 0.16), rgba(225, 219, 210, 0.8));
+  border-radius: 4px;
+  background: #f0ede8;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -39,14 +38,19 @@ const ThumbnailImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 3px;
 `;
 
-const MediaLabel = styled.span`
+const SectionLabel = styled.span`
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.1rem;
+  padding-left: 12px;
+  border-left: 3px solid ${({ theme }) => theme.colors.subpage.copper};
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.copper};
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const MediaNote = styled.span`
@@ -88,17 +92,9 @@ const MetaBlock = styled.div`
   display: grid;
   gap: 10px;
   padding: 18px;
-  border-radius: 18px;
+  border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: rgba(255, 255, 255, 0.34);
-`;
-
-const MetaTitle = styled.h2`
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-weight: 500;
+  background: #fdfcfa;
 `;
 
 const MetaText = styled.p`
@@ -122,6 +118,11 @@ const Links = styled.div`
   }
 `;
 
+const DetailSection = styled.section`
+  display: grid;
+  gap: 14px;
+`;
+
 const Gallery = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -136,7 +137,7 @@ const GalleryImage = styled.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
 `;
 
@@ -168,7 +169,7 @@ function ResearchDetail() {
               <ThumbnailImage src={item.thumbnail} alt={`${item.title} visual`} />
             ) : (
               <>
-                <MediaLabel>Research Visual</MediaLabel>
+                <SectionLabel>Research Visual</SectionLabel>
                 <MediaNote>Project image, paper figure, or product screenshot to be added.</MediaNote>
               </>
             )}
@@ -183,11 +184,11 @@ function ResearchDetail() {
 
           <MetaGrid>
             <MetaBlock>
-              <MetaTitle>Collaborators</MetaTitle>
+              <SectionLabel>Collaborators</SectionLabel>
               <MetaText>{item.collaborators.join(' · ')}</MetaText>
             </MetaBlock>
             <MetaBlock>
-              <MetaTitle>Tags</MetaTitle>
+              <SectionLabel>Tags</SectionLabel>
               <TagList>
                 {item.tags.map((tag) => (
                   <Tag key={tag}>{tag}</Tag>
@@ -197,21 +198,27 @@ function ResearchDetail() {
           </MetaGrid>
 
           {item.gallery?.length > 1 && (
-            <Gallery>
-              {item.gallery.slice(1).map((image, index) => (
-                <GalleryImage key={image} src={image} alt={`${item.title} archive ${index + 2}`} />
-              ))}
-            </Gallery>
+            <DetailSection>
+              <SectionLabel>Gallery</SectionLabel>
+              <Gallery>
+                {item.gallery.slice(1).map((image, index) => (
+                  <GalleryImage key={image} src={image} alt={`${item.title} archive ${index + 2}`} />
+                ))}
+              </Gallery>
+            </DetailSection>
           )}
 
           {item.links.length > 0 && (
-            <Links>
-              {item.links.map((link) => (
-                <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.label}
-                </a>
-              ))}
-            </Links>
+            <DetailSection>
+              <SectionLabel>Links</SectionLabel>
+              <Links>
+                {item.links.map((link) => (
+                  <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                  </a>
+                ))}
+              </Links>
+            </DetailSection>
           )}
         </Container>
       </Page>

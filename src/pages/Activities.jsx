@@ -39,8 +39,10 @@ const Title = styled.h1`
 const Intro = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
   color: ${({ theme }) => theme.colors.subpage.muted};
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   font-size: 1.04rem;
+  padding-bottom: 24px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
 const Grid = styled.div`
@@ -62,26 +64,27 @@ const Card = styled(Link)`
   gap: 16px;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  background: #fdfcfa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    transform: translateY(-3px);
+    transform: translateY(-1px);
     border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
   overflow: hidden;
-  border-radius: 14px;
-  background: linear-gradient(145deg, rgba(196, 149, 106, 0.18), rgba(225, 219, 210, 0.82));
+  border-radius: 3px;
+  background: #f0ede8;
   border: 1px solid rgba(196, 149, 106, 0.14);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   padding: 16px;
 `;
 
@@ -93,7 +96,9 @@ const PhotoImage = styled.img`
 
 const Placeholder = styled.div`
   display: grid;
-  gap: 6px;
+  gap: 4px;
+  text-align: center;
+  justify-items: center;
 `;
 
 const PhotoKicker = styled.span`
@@ -104,23 +109,24 @@ const PhotoKicker = styled.span`
 `;
 
 const PhotoTitle = styled.span`
-  max-width: 13ch;
-  color: ${({ theme }) => theme.colors.subpage.text};
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-  line-height: 1.05;
+  max-width: 14ch;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 `;
 
 const PhotoText = styled.span`
   max-width: 24ch;
   color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.74rem;
 `;
 
 const CardTitle = styled.h2`
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1.08;
 `;
 
 const DateText = styled.p`
@@ -129,28 +135,6 @@ const DateText = styled.p`
 
 const Summary = styled.p`
   color: ${({ theme }) => theme.colors.subpage.text};
-`;
-
-const Preview = styled.div`
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease;
-
-  ${Card}:hover & {
-    max-height: 60px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    max-height: 60px;
-  }
-`;
-
-const PreviewText = styled.p`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
 `;
 
 const TagList = styled.div`
@@ -201,11 +185,6 @@ function Activities() {
                 </div>
 
                 <Summary>{item.summary}</Summary>
-
-                <Preview>
-                  <PreviewText>{item.description}</PreviewText>
-                </Preview>
-
                 <TagList>
                   {item.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>

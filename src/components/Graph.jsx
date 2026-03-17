@@ -21,13 +21,14 @@ const GraphWrap = styled.div`
   height: min(50vh, 540px);
   min-height: 380px;
   padding: 20px;
-  border-radius: 32px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(245, 240, 232, 0.12);
   background:
-    radial-gradient(circle at 16% 18%, rgba(154, 184, 158, 0.2), transparent 30%),
-    radial-gradient(circle at 84% 20%, rgba(92, 61, 46, 0.18), transparent 32%),
-    radial-gradient(circle at 54% 78%, rgba(74, 93, 58, 0.18), transparent 34%),
+    radial-gradient(circle at 18% 26%, rgba(154, 184, 158, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 50%, rgba(196, 149, 106, 0.1), transparent 32%),
+    radial-gradient(circle at 84% 20%, rgba(92, 61, 46, 0.22), transparent 34%),
+    radial-gradient(circle at 30% 80%, rgba(92, 61, 46, 0.16), transparent 32%),
     linear-gradient(180deg, rgba(13, 26, 20, 0.14), rgba(13, 26, 20, 0.02));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
@@ -49,7 +50,6 @@ const StyledSvg = styled.svg`
     animation: ${drift} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
     transform-box: fill-box;
     transform-origin: center;
-    will-change: transform;
   }
 `;
 
@@ -61,7 +61,7 @@ const Tooltip = styled.div`
   pointer-events: none;
   z-index: 3;
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: 4px;
   background: rgba(13, 26, 20, 0.92);
   border: 1px solid rgba(245, 240, 232, 0.12);
   color: ${({ theme }) => theme.colors.home.text};
@@ -71,135 +71,98 @@ const Tooltip = styled.div`
   transition: opacity 0.15s ease;
 `;
 
-const semanticClusters = {
-  discourse: {
-    label: 'Public Discourse',
-    lines: ['Public', 'Discourse'],
-    desktop: { x: 0.29, y: 0.34, glowRadius: 212, titleDx: 12, titleDy: 12 },
-    mobile: { x: 0.28, y: 0.27, glowRadius: 126 },
-    glowId: 'cluster-discourse',
-    textFill: 'rgba(245, 240, 232, 0.26)',
+const poleConfig = {
+  research: {
+    label: 'Research',
+    textFill: 'rgba(245, 240, 232, 0.22)',
+    desktop: { x: 0.25, y: 0.42, glowRadius: 208 },
+    mobile: { x: 0.24, y: 0.39, glowRadius: 122 },
   },
-  governance: {
-    label: 'Governance & Service',
-    lines: ['Governance', '& Service'],
-    desktop: { x: 0.77, y: 0.3, glowRadius: 186, titleDx: -8, titleDy: 6 },
-    mobile: { x: 0.72, y: 0.31, glowRadius: 118 },
-    glowId: 'cluster-governance',
-    textFill: 'rgba(196, 149, 106, 0.28)',
+  engagement: {
+    label: 'Engagement',
+    textFill: 'rgba(196, 149, 106, 0.2)',
+    desktop: { x: 0.75, y: 0.42, glowRadius: 208 },
+    mobile: { x: 0.76, y: 0.39, glowRadius: 122 },
   },
-  equity: {
-    label: 'AI, Equity & Opportunity',
-    lines: ['AI, Equity', '& Opportunity'],
-    desktop: { x: 0.5, y: 0.72, glowRadius: 202, titleDx: 0, titleDy: 16 },
-    mobile: { x: 0.48, y: 0.68, glowRadius: 130 },
-    glowId: 'cluster-equity',
-    textFill: 'rgba(245, 240, 232, 0.23)',
-  },
-};
-
-const clusterByNodeId = {
-  crisisnews: 'discourse',
-  prism: 'discourse',
-  'beyond-removal': 'discourse',
-  'multi-agent-sim': 'discourse',
-  'chi-2025': 'discourse',
-  misinformation: 'discourse',
-  'platform-governance': 'discourse',
-  'content-moderation': 'discourse',
-  'student-council': 'governance',
-  'un-ga-hlw': 'governance',
-  'participatory-governance': 'governance',
-  'ai-policy': 'equity',
-  kaist: 'equity',
-  'columbia-sipa': 'equity',
-  valedictorian: 'equity',
-};
-
-const layoutOffsets = {
-  discourse: {
-    desktop: {
-      misinformation: { x: -12, y: 6 },
-      'platform-governance': { x: 100, y: 32 },
-      'content-moderation': { x: -104, y: 56 },
-      crisisnews: { x: -136, y: -74 },
-      prism: { x: -56, y: -124 },
-      'beyond-removal': { x: 42, y: -122 },
-      'multi-agent-sim': { x: 152, y: -76 },
-      'chi-2025': { x: -92, y: -12 },
-    },
-    mobile: {
-      misinformation: { x: -4, y: 12 },
-      'platform-governance': { x: 52, y: 18 },
-      'content-moderation': { x: -54, y: 42 },
-      crisisnews: { x: -66, y: -44 },
-      prism: { x: -18, y: -72 },
-      'beyond-removal': { x: 38, y: -74 },
-      'multi-agent-sim': { x: 82, y: -42 },
-      'chi-2025': { x: -30, y: -8 },
-    },
-  },
-  governance: {
-    desktop: {
-      'participatory-governance': { x: 0, y: -4 },
-      'student-council': { x: 10, y: 98 },
-      'un-ga-hlw': { x: 100, y: 44 },
-    },
-    mobile: {
-      'participatory-governance': { x: 0, y: -8 },
-      'student-council': { x: 2, y: 56 },
-      'un-ga-hlw': { x: 56, y: 26 },
-    },
-  },
-  equity: {
-    desktop: {
-      'ai-policy': { x: -40, y: -2 },
-      kaist: { x: -54, y: 88 },
-      'columbia-sipa': { x: 74, y: 82 },
-      valedictorian: { x: -2, y: 124 },
-    },
-    mobile: {
-      'ai-policy': { x: -28, y: -2 },
-      kaist: { x: -34, y: 52 },
-      'columbia-sipa': { x: 40, y: 50 },
-      valedictorian: { x: 2, y: 78 },
-    },
+  themes: {
+    label: 'Themes',
+    textFill: 'rgba(245, 240, 232, 0.14)',
+    desktop: { x: 0.5, y: 0.5, glowRadius: 176 },
+    mobile: { x: 0.5, y: 0.48, glowRadius: 118 },
   },
 };
 
 const nodeStyle = {
   theme: {
-    radius: 15,
-    fill: '#C4956A',
-    stroke: 'rgba(245, 240, 232, 0.14)',
-    labelSize: 14,
-    labelWeight: 520,
-    labelOpacity: 0.98,
+    radius: 14,
+    fill: 'rgba(196, 149, 106, 0.6)',
+    stroke: 'rgba(245, 240, 232, 0.08)',
+    labelSize: 13,
+    labelWeight: 600,
+    labelOpacity: 0.95,
   },
   research: {
     radius: 8.5,
     fill: '#F5F0E8',
-    stroke: 'rgba(245, 240, 232, 0.12)',
+    stroke: 'rgba(245, 240, 232, 0.1)',
     labelSize: 12,
     labelWeight: 400,
-    labelOpacity: 0.92,
+    labelOpacity: 0.9,
   },
   activity: {
     radius: 7.5,
-    fill: 'rgba(245, 240, 232, 0.74)',
+    fill: 'rgba(245, 240, 232, 0.72)',
     stroke: 'rgba(245, 240, 232, 0.08)',
     labelSize: 11,
     labelWeight: 400,
-    labelOpacity: 0.86,
+    labelOpacity: 0.85,
   },
   institution: {
     radius: 5,
-    fill: 'rgba(130, 138, 129, 0.86)',
-    stroke: 'rgba(245, 240, 232, 0.06)',
+    fill: '#6B746A',
+    stroke: 'rgba(245, 240, 232, 0.04)',
     labelSize: 10,
     labelWeight: 400,
-    labelOpacity: 0.68,
+    labelOpacity: 0.7,
   },
+};
+
+const desktopPositions = {
+  crisisnews: { x: 0.18, y: 0.26, pole: 'research' },
+  prism: { x: 0.24, y: 0.14, pole: 'research' },
+  'beyond-removal': { x: 0.33, y: 0.14, pole: 'research' },
+  'multi-agent-sim': { x: 0.39, y: 0.26, pole: 'research' },
+  misinformation: { x: 0.48, y: 0.18, pole: 'themes' },
+  'platform-governance': { x: 0.52, y: 0.34, pole: 'themes' },
+  'content-moderation': { x: 0.47, y: 0.5, pole: 'themes' },
+  'ai-policy': { x: 0.53, y: 0.66, pole: 'themes' },
+  'participatory-governance': { x: 0.5, y: 0.82, pole: 'themes' },
+  'chi-2025': { x: 0.63, y: 0.24, pole: 'engagement' },
+  'un-ga-hlw': { x: 0.82, y: 0.34, pole: 'engagement' },
+  'student-council': { x: 0.74, y: 0.56, pole: 'engagement' },
+  valedictorian: { x: 0.69, y: 0.74, pole: 'engagement' },
+  'participatory-budget': { x: 0.83, y: 0.74, pole: 'engagement' },
+  kaist: { x: 0.28, y: 0.9, pole: 'research' },
+  'columbia-sipa': { x: 0.72, y: 0.9, pole: 'engagement' },
+};
+
+const mobilePositions = {
+  crisisnews: { x: 0.12, y: 0.21, pole: 'research' },
+  prism: { x: 0.26, y: 0.12, pole: 'research' },
+  'beyond-removal': { x: 0.41, y: 0.12, pole: 'research' },
+  'multi-agent-sim': { x: 0.47, y: 0.26, pole: 'research' },
+  misinformation: { x: 0.44, y: 0.24, pole: 'themes' },
+  'platform-governance': { x: 0.5, y: 0.4, pole: 'themes' },
+  'content-moderation': { x: 0.16, y: 0.5, pole: 'themes' },
+  'ai-policy': { x: 0.46, y: 0.68, pole: 'themes' },
+  'participatory-governance': { x: 0.74, y: 0.2, pole: 'themes' },
+  'chi-2025': { x: 0.25, y: 0.33, pole: 'engagement' },
+  'un-ga-hlw': { x: 0.91, y: 0.48, pole: 'engagement' },
+  'student-council': { x: 0.7, y: 0.57, pole: 'engagement' },
+  valedictorian: { x: 0.56, y: 0.9, pole: 'engagement' },
+  'participatory-budget': { x: 0.76, y: 0.36, pole: 'engagement' },
+  kaist: { x: 0.43, y: 0.95, pole: 'research' },
+  'columbia-sipa': { x: 0.69, y: 0.95, pole: 'engagement' },
 };
 
 function hashCode(value) {
@@ -210,15 +173,21 @@ function driftConfig(id) {
   const hash = Math.abs(hashCode(id));
   const driftX = ((hash % 5) - 2) || 1;
   const driftY = (((Math.floor(hash / 5) % 5) - 2) || -1);
-  const duration = 8 + (hash % 5);
-  const delay = -(hash % 7);
-
   return {
     x: `${driftX}px`,
     y: `${driftY}px`,
-    duration: `${duration}s`,
-    delay: `${delay}s`,
+    duration: `${8 + (hash % 5)}s`,
+    delay: `${-(hash % 7)}s`,
   };
+}
+
+function buildAdjacency(nodes, edges) {
+  const adjacency = new Map(nodes.map((node) => [node.id, []]));
+  edges.forEach((edge) => {
+    adjacency.get(edge.source.id)?.push(edge.target.id);
+    adjacency.get(edge.target.id)?.push(edge.source.id);
+  });
+  return adjacency;
 }
 
 function wrapLabel(label, maxChars) {
@@ -233,7 +202,6 @@ function wrapLabel(label, maxChars) {
       current = word;
       return;
     }
-
     current = next;
   });
 
@@ -241,96 +209,55 @@ function wrapLabel(label, maxChars) {
   return lines.slice(0, 2);
 }
 
-function getClusterPosition(clusterId, width, height, isMobile) {
-  const config = semanticClusters[clusterId][isMobile ? 'mobile' : 'desktop'];
+function buildLayout(baseNodes, baseEdges, width, height, isMobile) {
+  const lookup = isMobile ? mobilePositions : desktopPositions;
+  const nodes = baseNodes
+    .filter((node) => lookup[node.id])
+    .map((node) => {
+      const placement = lookup[node.id];
+      return {
+        ...node,
+        pole: placement.pole,
+        x: width * placement.x,
+        y: height * placement.y,
+        drift: driftConfig(node.id),
+      };
+    });
+
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const edges = baseEdges
+    .filter((edge) => nodesById.has(edge.source) && nodesById.has(edge.target))
+    .map((edge) => ({
+      source: nodesById.get(edge.source),
+      target: nodesById.get(edge.target),
+    }));
+
+  return { nodes, edges, adjacency: buildAdjacency(nodes, edges) };
+}
+
+function edgePath(edge) {
+  const dx = edge.target.x - edge.source.x;
+  const dy = edge.target.y - edge.source.y;
+  const length = Math.hypot(dx, dy) || 1;
+  const midX = (edge.source.x + edge.target.x) / 2;
+  const midY = (edge.source.y + edge.target.y) / 2;
+  const normalX = -dy / length;
+  const normalY = dx / length;
+  const hash = Math.abs(hashCode(`${edge.source.id}-${edge.target.id}`));
+  const direction = hash % 2 === 0 ? 1 : -1;
+  const curvature = Math.min(42, length * 0.16) * direction;
+  const cx = midX + normalX * curvature;
+  const cy = midY + normalY * curvature;
+  return `M${edge.source.x},${edge.source.y} Q${cx},${cy} ${edge.target.x},${edge.target.y}`;
+}
+
+function poleCenter(key, width, height, isMobile) {
+  const config = poleConfig[key][isMobile ? 'mobile' : 'desktop'];
   return {
     x: width * config.x,
     y: height * config.y,
     glowRadius: config.glowRadius,
-    titleDx: config.titleDx ?? 0,
-    titleDy: config.titleDy ?? 0,
   };
-}
-
-function buildLayout(baseNodes, baseEdges, width, height, isMobile) {
-  const nodes = baseNodes
-    .map((node) => ({ ...node, cluster: clusterByNodeId[node.id] }))
-    .filter((node) => node.cluster);
-
-  const nodeIds = new Set(nodes.map((node) => node.id));
-  const edges = baseEdges
-    .filter((edge) => nodeIds.has(edge.source) && nodeIds.has(edge.target))
-    .map((edge) => ({ ...edge }));
-
-  const clusterCenters = Object.keys(semanticClusters).reduce((acc, clusterId) => {
-    acc[clusterId] = getClusterPosition(clusterId, width, height, isMobile);
-    return acc;
-  }, {});
-
-  nodes.forEach((node) => {
-    const center = clusterCenters[node.cluster];
-    const offsetMap = layoutOffsets[node.cluster][isMobile ? 'mobile' : 'desktop'];
-    const offset = offsetMap[node.id] ?? { x: 0, y: 0 };
-
-    node.clusterCenterX = center.x;
-    node.clusterCenterY = center.y;
-    node.x = center.x + offset.x;
-    node.y = center.y + offset.y;
-    node.anchorX = node.x;
-    node.anchorY = node.y;
-    node.drift = driftConfig(node.id);
-  });
-
-  const nodesById = new Map(nodes.map((node) => [node.id, node]));
-  const adjacency = new Map(nodes.map((node) => [node.id, []]));
-
-  edges.forEach((edge) => {
-    edge.source = nodesById.get(edge.source);
-    edge.target = nodesById.get(edge.target);
-    adjacency.get(edge.source.id)?.push(edge.target.id);
-    adjacency.get(edge.target.id)?.push(edge.source.id);
-  });
-
-  return { nodes, edges, nodesById, adjacency, clusterCenters };
-}
-
-function labelConfig(node, isMobile) {
-  const style = nodeStyle[node.type];
-  const maxChars = isMobile
-    ? node.type === 'theme'
-      ? 14
-      : node.type === 'institution'
-        ? 12
-        : 11
-    : node.type === 'theme'
-      ? 19
-      : node.type === 'research'
-        ? 16
-        : 13;
-
-  const lines = wrapLabel(node.label, maxChars);
-  const fontSize = isMobile ? Math.max(style.labelSize - 2, 8.4) : style.labelSize;
-  const labelY = style.radius + (node.type === 'theme' ? 17 : 15);
-
-  return { lines, fontSize, labelY };
-}
-
-function edgePath(edge) {
-  const source = edge.source;
-  const target = edge.target;
-  const dx = target.x - source.x;
-  const dy = target.y - source.y;
-  const length = Math.hypot(dx, dy) || 1;
-  const midX = (source.x + target.x) / 2;
-  const midY = (source.y + target.y) / 2;
-  const normalX = -dy / length;
-  const normalY = dx / length;
-  const hash = Math.abs(hashCode(`${source.id}-${target.id}`));
-  const direction = hash % 2 === 0 ? 1 : -1;
-  const curve = Math.min(46, length * 0.16) * direction;
-  const controlX = midX + normalX * curve;
-  const controlY = midY + normalY * curve;
-  return `M${source.x},${source.y} Q${controlX},${controlY} ${target.x},${target.y}`;
 }
 
 function Graph() {
@@ -367,14 +294,7 @@ function Graph() {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
-    const { nodes, edges, clusterCenters } = buildLayout(
-      data.nodes,
-      data.edges,
-      size.width,
-      size.height,
-      isMobile
-    );
-
+    const { nodes, edges } = buildLayout(data.nodes, data.edges, size.width, size.height, isMobile);
     const linkedById = new Set();
     edges.forEach((edge) => {
       linkedById.add(`${edge.source.id}-${edge.target.id}`);
@@ -384,95 +304,69 @@ function Graph() {
     const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
 
     const root = svg.append('g').attr('transform', 'translate(20, 20)');
-
     const defs = root.append('defs');
-    defs
-      .append('radialGradient')
-      .attr('id', 'cluster-discourse')
-      .selectAll('stop')
-      .data([
-        { offset: '0%', color: 'rgba(127, 171, 145, 0.24)' },
-        { offset: '100%', color: 'rgba(127, 171, 145, 0)' },
-      ])
-      .join('stop')
-      .attr('offset', (stop) => stop.offset)
-      .attr('stop-color', (stop) => stop.color);
 
-    defs
-      .append('radialGradient')
-      .attr('id', 'cluster-governance')
-      .selectAll('stop')
-      .data([
-        { offset: '0%', color: 'rgba(196, 149, 106, 0.22)' },
-        { offset: '100%', color: 'rgba(196, 149, 106, 0)' },
-      ])
-      .join('stop')
-      .attr('offset', (stop) => stop.offset)
-      .attr('stop-color', (stop) => stop.color);
-
-    defs
-      .append('radialGradient')
-      .attr('id', 'cluster-equity')
-      .selectAll('stop')
-      .data([
-        { offset: '0%', color: 'rgba(168, 181, 138, 0.2)' },
-        { offset: '100%', color: 'rgba(168, 181, 138, 0)' },
-      ])
-      .join('stop')
-      .attr('offset', (stop) => stop.offset)
-      .attr('stop-color', (stop) => stop.color);
+    [
+      { id: 'pole-research', stops: [{ o: '0%', c: 'rgba(129, 170, 144, 0.16)' }, { o: '100%', c: 'rgba(129, 170, 144, 0)' }] },
+      { id: 'pole-themes', stops: [{ o: '0%', c: 'rgba(196, 149, 106, 0.13)' }, { o: '100%', c: 'rgba(196, 149, 106, 0)' }] },
+      { id: 'pole-engagement', stops: [{ o: '0%', c: 'rgba(92, 61, 46, 0.18)' }, { o: '100%', c: 'rgba(92, 61, 46, 0)' }] },
+    ].forEach((gradient) => {
+      defs
+        .append('radialGradient')
+        .attr('id', gradient.id)
+        .selectAll('stop')
+        .data(gradient.stops)
+        .join('stop')
+        .attr('offset', (stop) => stop.o)
+        .attr('stop-color', (stop) => stop.c);
+    });
 
     const regionLayer = root.append('g');
     const titleLayer = root.append('g');
     const linkLayer = root.append('g');
-    const nodeGlowLayer = root.append('g');
     const nodeLayer = root.append('g');
 
-    const regionData = Object.entries(clusterCenters).map(([id, center]) => ({ id, ...center }));
+    const poleData = [
+      { key: 'research', ...poleCenter('research', size.width, size.height, isMobile) },
+      { key: 'themes', ...poleCenter('themes', size.width, size.height, isMobile) },
+      { key: 'engagement', ...poleCenter('engagement', size.width, size.height, isMobile) },
+    ];
 
     regionLayer
       .selectAll('circle')
-      .data(regionData)
+      .data(poleData)
       .join('circle')
       .attr('cx', (entry) => entry.x)
       .attr('cy', (entry) => entry.y)
       .attr('r', (entry) => entry.glowRadius)
-      .attr('fill', (entry) => `url(#${semanticClusters[entry.id].glowId})`)
-      .attr('opacity', isMobile ? 0.94 : 1);
+      .attr('fill', (entry) => `url(#pole-${entry.key})`);
 
     if (!isMobile) {
-      const titleGroups = titleLayer
-        .selectAll('g')
-        .data(regionData)
-        .join('g')
-        .attr(
-          'transform',
-          (entry) => `translate(${entry.x + entry.titleDx},${entry.y + entry.titleDy})`
-        );
-
-      titleGroups
-        .selectAll('text')
-        .data((entry) => [entry])
+      titleLayer
+        .selectAll('text.pole-label')
+        .data(poleData.filter((entry) => entry.key !== 'themes'))
         .join('text')
+        .attr('class', 'pole-label')
+        .attr('x', (entry) => entry.x)
+        .attr('y', (entry) => entry.y + 8)
         .attr('text-anchor', 'middle')
-        .attr('fill', (entry) => semanticClusters[entry.id].textFill)
+        .attr('fill', (entry) => poleConfig[entry.key].textFill)
         .attr('font-family', 'Cormorant Garamond, serif')
-        .attr('font-size', (entry) => (entry.id === 'equity' ? 50 : 52))
+        .attr('font-size', 50)
         .attr('font-weight', 500)
-        .attr('letter-spacing', '0.01em')
-        .each(function renderTitle(entry) {
-          const text = d3.select(this);
-          text.selectAll('*').remove();
+        .text((entry) => poleConfig[entry.key].label);
 
-          semanticClusters[entry.id].lines.forEach((line, index) => {
-            text
-              .append('tspan')
-              .text(line)
-              .attr('x', 0)
-              .attr('y', index === 0 ? 0 : null)
-              .attr('dy', index === 0 ? 0 : 38);
-          });
-        });
+      titleLayer
+        .append('text')
+        .attr('x', size.width * 0.5)
+        .attr('y', size.height * 0.085)
+        .attr('text-anchor', 'middle')
+        .attr('fill', 'rgba(245, 240, 232, 0.56)')
+        .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
+        .attr('font-size', 11)
+        .attr('letter-spacing', '0.14em')
+        .attr('text-transform', 'uppercase')
+        .text('Themes');
     }
 
     const link = linkLayer
@@ -481,15 +375,9 @@ function Graph() {
       .join('path')
       .attr('fill', 'none')
       .attr('stroke', 'rgba(245, 240, 232, 0.18)')
-      .attr('stroke-width', 1.1)
+      .attr('stroke-width', 1.05)
       .attr('stroke-linecap', 'round')
-      .attr('stroke-opacity', 0.18);
-
-    const nodeGlow = nodeGlowLayer
-      .selectAll('circle')
-      .data(nodes.filter((node) => node.type === 'theme'))
-      .join('circle')
-      .attr('fill', 'rgba(196, 149, 106, 0.12)');
+      .attr('stroke-opacity', 0.15);
 
     const nodeShell = nodeLayer
       .selectAll('g.node-shell')
@@ -508,10 +396,10 @@ function Graph() {
 
     const circles = driftLayer
       .append('circle')
-      .attr('r', (node) => nodeStyle[node.type].radius)
+      .attr('r', (node) => (isMobile ? nodeStyle[node.type].radius - (node.type === 'theme' ? 1 : 0.7) : nodeStyle[node.type].radius))
       .attr('fill', (node) => nodeStyle[node.type].fill)
       .attr('stroke', (node) => nodeStyle[node.type].stroke)
-      .attr('stroke-width', (node) => (node.type === 'theme' ? 1.2 : 1));
+      .attr('stroke-width', 1);
 
     const labels = driftLayer
       .append('text')
@@ -521,57 +409,38 @@ function Graph() {
       .attr('stroke-width', 0.42)
       .attr('paint-order', 'stroke')
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
+      .attr('font-size', (node) => (isMobile ? Math.max(nodeStyle[node.type].labelSize - 1.4, 9.5) : nodeStyle[node.type].labelSize))
       .attr('font-weight', (node) => nodeStyle[node.type].labelWeight)
       .attr('opacity', (node) => nodeStyle[node.type].labelOpacity)
       .attr('pointer-events', 'none');
 
-    labels.each(function createLabel(node) {
+    labels.each(function renderLabel(node) {
       const text = d3.select(this);
-      const { lines, fontSize, labelY } = labelConfig(node, isMobile);
-      text.attr('font-size', fontSize);
+      const lines = wrapLabel(node.label, isMobile ? 13 : 16);
+      const baseY = (isMobile ? nodeStyle[node.type].radius - (node.type === 'theme' ? 1 : 0.7) : nodeStyle[node.type].radius) + (node.type === 'theme' ? 17 : 15);
 
       lines.forEach((line, index) => {
         text
           .append('tspan')
           .text(line)
           .attr('x', 0)
-          .attr('y', index === 0 ? labelY : null)
-          .attr('dy', index === 0 ? 0 : fontSize + 1.5);
+          .attr('y', index === 0 ? baseY : null)
+          .attr('dy', index === 0 ? 0 : 12);
       });
     });
 
     const render = () => {
-      regionLayer
-        .selectAll('circle')
-        .attr('cx', (entry) => entry.x)
-        .attr('cy', (entry) => entry.y);
-
-      if (!isMobile) {
-        titleLayer
-          .selectAll('g')
-          .attr(
-            'transform',
-            (entry) => `translate(${entry.x + entry.titleDx},${entry.y + entry.titleDy})`
-          );
-      }
-
-      nodeGlow
-        .attr('cx', (node) => node.x)
-        .attr('cy', (node) => node.y)
-        .attr('r', (node) => nodeStyle[node.type].radius * 3.6);
-
       link.attr('d', edgePath);
       nodeShell.attr('transform', (node) => `translate(${node.x},${node.y})`);
     };
 
     const clearActiveState = () => {
       circles
-        .attr('opacity', (node) => (node.type === 'institution' ? 0.82 : 1))
-        .attr('r', (node) => nodeStyle[node.type].radius);
+        .attr('opacity', (node) => (node.type === 'institution' ? 0.86 : 1))
+        .attr('r', (node) => (isMobile ? nodeStyle[node.type].radius - (node.type === 'theme' ? 1 : 0.7) : nodeStyle[node.type].radius));
       labels.attr('opacity', (node) => nodeStyle[node.type].labelOpacity);
-      nodeGlow.attr('opacity', 1);
-      link.attr('stroke-opacity', 0.18).attr('stroke-width', 1.1);
       nodeShell.attr('opacity', 1);
+      link.attr('stroke-opacity', 0.15).attr('stroke-width', 1.05);
       setTooltip((prev) => ({ ...prev, visible: false }));
       render();
     };
@@ -580,24 +449,25 @@ function Graph() {
       nodeShell.filter((node) => node.id === activeNode.id).raise();
 
       circles
-        .attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.2))
-        .attr('r', (node) =>
-          node.id === activeNode.id ? nodeStyle[node.type].radius * 1.14 : nodeStyle[node.type].radius
-        );
+        .attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.18))
+        .attr('r', (node) => {
+          const base = isMobile ? nodeStyle[node.type].radius - (node.type === 'theme' ? 1 : 0.7) : nodeStyle[node.type].radius;
+          return node.id === activeNode.id ? base * 1.12 : base;
+        });
 
       labels.attr('opacity', (node) => {
         if (node.id === activeNode.id || isConnected(activeNode, node)) return 1;
-        return node.type === 'institution' ? 0.12 : 0.08;
+        return 0.08;
       });
 
-      nodeGlow.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.1));
       link
         .attr('stroke-opacity', (edge) =>
-          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.48 : 0.06
+          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.45 : 0.05
         )
         .attr('stroke-width', (edge) =>
-          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1.4 : 0.9
+          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1.35 : 0.9
         );
+
       nodeShell.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.2));
     };
 
@@ -642,8 +512,8 @@ function Graph() {
           render();
         })
         .on('end', (event, node) => {
-          node.anchorX = node.x;
-          node.anchorY = node.y;
+          node.x = event.x;
+          node.y = event.y;
         })
     );
 

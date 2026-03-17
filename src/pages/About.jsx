@@ -42,7 +42,7 @@ const PhotoColumn = styled.div`
 const Photo = styled.div`
   width: 220px;
   height: 220px;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 4px;
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   overflow: hidden;
@@ -57,7 +57,7 @@ const Photo = styled.div`
 const SecondaryPhoto = styled.div`
   width: 220px;
   aspect-ratio: 4 / 5;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 4px;
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   overflow: hidden;

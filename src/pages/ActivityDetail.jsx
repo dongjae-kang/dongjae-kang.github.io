@@ -23,9 +23,8 @@ const Back = styled(Link)`
 
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
-  border-radius: 18px;
-  background:
-    linear-gradient(145deg, rgba(61, 90, 62, 0.14), rgba(225, 219, 210, 0.82));
+  border-radius: 4px;
+  background: #f0ede8;
   border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({ theme }) => theme.colors.subpage.muted};
   display: flex;
@@ -39,7 +38,7 @@ const PhotoImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 3px;
 `;
 
 const TitleBlock = styled.div`
@@ -62,11 +61,16 @@ const Description = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
 `;
 
-const MediaLabel = styled.span`
+const SectionLabel = styled.span`
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.1rem;
+  padding-left: 12px;
+  border-left: 3px solid ${({ theme }) => theme.colors.subpage.copper};
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.copper};
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const MediaNote = styled.span`
@@ -100,6 +104,11 @@ const Links = styled.div`
   }
 `;
 
+const DetailSection = styled.section`
+  display: grid;
+  gap: 14px;
+`;
+
 const VideoWrap = styled.div`
   display: grid;
   gap: 12px;
@@ -108,7 +117,7 @@ const VideoWrap = styled.div`
     width: 100%;
     aspect-ratio: 16 / 9;
     border: 0;
-    border-radius: 18px;
+    border-radius: 4px;
   }
 `;
 
@@ -131,7 +140,7 @@ const GalleryImage = styled.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
 `;
 
@@ -166,7 +175,7 @@ function ActivityDetail() {
               />
             ) : (
               <>
-                <MediaLabel>{item.date}</MediaLabel>
+                <SectionLabel>{item.date}</SectionLabel>
                 <PlaceholderTitle>{item.title}</PlaceholderTitle>
                 <MediaNote>Photos coming soon.</MediaNote>
               </>
@@ -187,45 +196,54 @@ function ActivityDetail() {
           </TagList>
 
           {item.links?.length > 0 && (
-            <Links>
-              {item.links.map((link) => {
-                const isExternal = /^https?:\/\//.test(link.url);
+            <DetailSection>
+              <SectionLabel>Links</SectionLabel>
+              <Links>
+                {item.links.map((link) => {
+                  const isExternal = /^https?:\/\//.test(link.url);
 
-                if (isExternal) {
+                  if (isExternal) {
+                    return (
+                      <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                    );
+                  }
+
                   return (
-                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                    <Link key={link.url} to={link.url}>
                       {link.label}
-                    </a>
+                    </Link>
                   );
-                }
-
-                return (
-                  <Link key={link.url} to={link.url}>
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </Links>
+                })}
+              </Links>
+            </DetailSection>
           )}
 
           {item.id === 'valedictorian' && (
-            <VideoWrap>
-              <iframe
-                src="https://www.youtube.com/embed/U7m4LpyHffk?start=4502"
-                title="KAIST Valedictorian speech"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-              <p>Speech starts at 1:15:02</p>
-            </VideoWrap>
+            <DetailSection>
+              <SectionLabel>Video</SectionLabel>
+              <VideoWrap>
+                <iframe
+                  src="https://www.youtube.com/embed/U7m4LpyHffk?start=4502"
+                  title="KAIST Valedictorian speech"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <p>Speech starts at 1:15:02</p>
+              </VideoWrap>
+            </DetailSection>
           )}
 
           {item.media?.photos?.length > 1 && (
-            <Gallery>
-              {item.media.photos.slice(1).map((photo, index) => (
-                <GalleryImage key={photo} src={photo} alt={`${item.title} archive ${index + 2}`} />
-              ))}
-            </Gallery>
+            <DetailSection>
+              <SectionLabel>Gallery</SectionLabel>
+              <Gallery>
+                {item.media.photos.slice(1).map((photo, index) => (
+                  <GalleryImage key={photo} src={photo} alt={`${item.title} archive ${index + 2}`} />
+                ))}
+              </Gallery>
+            </DetailSection>
           )}
 
           {!item.media?.photos?.length && item.id !== 'valedictorian' && (
