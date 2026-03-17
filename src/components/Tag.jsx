@@ -22,7 +22,7 @@ const Tag = styled.span`
   border-radius: ${({ theme }) => theme.layout.pillRadius};
   font-size: 0.82rem;
   font-family: ${({ theme }) => theme.fonts.body};
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.01em;
   transition: ${({ theme }) => theme.transitions.hover};
   ${({ $variant = 'light' }) => variants[$variant]};

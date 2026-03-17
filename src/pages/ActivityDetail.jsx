@@ -49,7 +49,7 @@ const Description = styled.p`
 `;
 
 const MediaLabel = styled.span`
-  font-family: ${({ theme }) => theme.fonts.heading};
+  font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.74rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;

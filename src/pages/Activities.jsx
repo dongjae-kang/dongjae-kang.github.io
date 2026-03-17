@@ -74,7 +74,7 @@ const Photo = styled.div`
 `;
 
 const PhotoKicker = styled.span`
-  font-family: ${({ theme }) => theme.fonts.heading};
+  font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;

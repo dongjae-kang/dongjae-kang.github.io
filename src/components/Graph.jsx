@@ -54,6 +54,68 @@ const Tooltip = styled.div`
   transition: opacity 0.15s ease;
 `;
 
+const ClusterCards = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+`;
+
+const ClusterCard = styled.div`
+  position: absolute;
+  width: ${({ $width }) => $width};
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(216, 234, 223, 0.08);
+  background: rgba(8, 23, 17, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  text-align: ${({ $align }) => $align};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 12px 14px 14px;
+    border-radius: 16px;
+  }
+`;
+
+const ClusterLine = styled.span`
+  width: 68px;
+  height: 1px;
+  background: rgba(216, 234, 223, 0.34);
+  margin: ${({ $align }) =>
+    $align === 'center' ? '0 auto' : $align === 'right' ? '0 0 0 auto' : '0'};
+`;
+
+const ClusterEyebrow = styled.span`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 247, 240, 0.66);
+`;
+
+const ClusterCardTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+  color: ${({ theme }) => theme.colors.home.text};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: 1.35rem;
+  }
+`;
+
+const ClusterCardBody = styled.p`
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(243, 247, 240, 0.74);
+`;
+
 const nodeStyle = {
   research: { fill: '#9AC7AF', stroke: 'none', radius: 8 },
   activity: { fill: '#F3F7F0', stroke: 'none', radius: 7 },
@@ -154,62 +216,64 @@ function pickBestCluster(scoreMap, fallback) {
 function getClusterCenter(clusterId, width, height, isMobile) {
   if (isMobile) {
     const mobilePositions = {
-      discourse: { x: width * 0.5, y: height * 0.18 },
-      governance: { x: width * 0.5, y: height * 0.49 },
-      equity: { x: width * 0.5, y: height * 0.82 },
+      discourse: { x: width * 0.5, y: height * 0.22 },
+      governance: { x: width * 0.5, y: height * 0.52 },
+      equity: { x: width * 0.5, y: height * 0.77 },
     };
     return mobilePositions[clusterId];
   }
 
   const desktopPositions = {
-    discourse: { x: width * 0.16, y: height * 0.32 },
-    governance: { x: width * 0.84, y: height * 0.32 },
-    equity: { x: width * 0.5, y: height * 0.78 },
+    discourse: { x: width * 0.19, y: height * 0.37 },
+    governance: { x: width * 0.81, y: height * 0.37 },
+    equity: { x: width * 0.5, y: height * 0.71 },
   };
 
   return desktopPositions[clusterId];
 }
 
-function getClusterTitleLayout(clusterId, width, height, isMobile) {
-  const center = getClusterCenter(clusterId, width, height, isMobile);
-
+function getClusterCardLayout(clusterId, isMobile) {
   if (isMobile) {
-    return {
-      x: center.x,
-      y: center.y - 116,
-      anchor: 'middle',
-      lineStart: -34,
-      lineEnd: 34,
-      titleDy: 22,
-      subtitleDy: 62,
-      subtitleChars: 28,
-      panelX: -118,
-      panelY: -22,
-      panelWidth: 236,
-      panelHeight: 92,
+    const mobileLayouts = {
+      discourse: {
+        style: { top: '18px', left: '18px' },
+        width: 'min(220px, calc(100% - 36px))',
+        align: 'left',
+      },
+      governance: {
+        style: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
+        width: 'min(220px, calc(100% - 36px))',
+        align: 'center',
+      },
+      equity: {
+        style: { left: '50%', bottom: '18px', transform: 'translateX(-50%)' },
+        width: 'min(248px, calc(100% - 36px))',
+        align: 'center',
+      },
     };
+
+    return mobileLayouts[clusterId];
   }
 
-  const desktopOffsets = {
-    discourse: { x: -176, y: -186 },
-    governance: { x: -124, y: -186 },
-    equity: { x: -194, y: -188 },
+  const desktopLayouts = {
+    discourse: {
+      style: { top: '34px', left: '34px' },
+      width: '276px',
+      align: 'left',
+    },
+    governance: {
+      style: { top: '34px', right: '34px' },
+      width: '276px',
+      align: 'left',
+    },
+    equity: {
+      style: { right: '34px', bottom: '30px' },
+      width: '320px',
+      align: 'right',
+    },
   };
 
-  return {
-    x: center.x + desktopOffsets[clusterId].x,
-    y: center.y + desktopOffsets[clusterId].y,
-    anchor: 'start',
-    lineStart: 0,
-    lineEnd: 68,
-    titleDy: 24,
-    subtitleDy: 66,
-    subtitleChars: 40,
-    panelX: -18,
-    panelY: -22,
-    panelWidth: 248,
-    panelHeight: 96,
-  };
+  return desktopLayouts[clusterId];
 }
 
 function scoreClusterFromGraph(startId, nodesById, adjacency, maxDepth = 4) {
@@ -551,7 +615,6 @@ function Graph() {
     const regionLayer = root.append('g');
     const linkLayer = root.append('g');
     const nodeLayer = root.append('g');
-    const titleLayer = root.append('g').attr('pointer-events', 'none');
 
     const link = linkLayer
       .selectAll('line')
@@ -611,91 +674,6 @@ function Graph() {
           .attr('x', 0)
           .attr('y', index === 0 ? baseY : null)
           .attr('dy', index === 0 ? 0 : 12);
-      });
-    });
-
-    const titleData = Object.entries(semanticClusters).map(([id, meta]) => {
-      const layout = getClusterTitleLayout(id, size.width, size.height, isMobile);
-      return { id, ...meta, ...layout };
-    });
-
-    const titles = titleLayer
-      .selectAll('g')
-      .data(titleData)
-      .join('g')
-      .attr('transform', (entry) => `translate(${entry.x},${entry.y})`);
-
-    titles
-      .append('rect')
-      .attr('x', (entry) => entry.panelX)
-      .attr('y', (entry) => entry.panelY)
-      .attr('width', (entry) => entry.panelWidth)
-      .attr('height', (entry) => entry.panelHeight)
-      .attr('rx', 18)
-      .attr('fill', 'rgba(8, 23, 17, 0.14)')
-      .attr('stroke', 'rgba(216, 234, 223, 0.06)')
-      .attr('stroke-width', 1);
-
-    titles
-      .append('line')
-      .attr('x1', (entry) => entry.lineStart)
-      .attr('x2', (entry) => entry.lineEnd)
-      .attr('y1', 0)
-      .attr('y2', 0)
-      .attr('stroke', 'rgba(216, 234, 223, 0.34)')
-      .attr('stroke-width', 1.1);
-
-    titles
-      .append('text')
-      .attr('text-anchor', (entry) => entry.anchor)
-      .attr('x', (entry) => (entry.anchor === 'middle' ? 0 : entry.lineStart))
-      .attr('y', -10)
-      .attr('fill', 'rgba(243, 247, 240, 0.66)')
-      .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
-      .attr('font-size', isMobile ? 9.25 : 9.8)
-      .attr('font-weight', 600)
-      .attr('letter-spacing', '0.16em')
-      .text('THEMATIC CLUSTER');
-
-    const titleHeadings = titles
-      .append('text')
-      .attr('text-anchor', (entry) => entry.anchor)
-      .attr('x', (entry) => (entry.anchor === 'middle' ? 0 : entry.lineStart))
-      .attr('y', (entry) => entry.titleDy)
-      .attr('fill', (entry) => entry.text)
-      .attr('font-family', 'Baskervville, serif')
-      .attr('font-size', isMobile ? 18 : 24)
-      .attr('font-weight', 400)
-      .attr('letter-spacing', '0.01em');
-
-    titleHeadings.each(function setTitle(entry) {
-      const text = d3.select(this);
-      entry.title.forEach((line, index) => {
-        text
-          .append('tspan')
-          .attr('x', entry.anchor === 'middle' ? 0 : entry.lineStart)
-          .attr('dy', index === 0 ? 0 : isMobile ? 18 : 20)
-          .text(line);
-      });
-    });
-
-    const titleSubtitles = titles
-      .append('text')
-      .attr('text-anchor', (entry) => entry.anchor)
-      .attr('fill', 'rgba(243, 247, 240, 0.72)')
-      .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
-      .attr('font-size', isMobile ? 10 : 10.8)
-      .attr('font-weight', 450)
-      .attr('y', (entry) => entry.subtitleDy);
-
-    titleSubtitles.each(function setSubtitle(entry) {
-      const text = d3.select(this);
-      wrapLabel(entry.subtitle, entry.subtitleChars).forEach((line, index) => {
-        text
-          .append('tspan')
-          .attr('x', entry.anchor === 'middle' ? 0 : entry.lineStart)
-          .attr('dy', index === 0 ? 0 : 12)
-          .text(line);
       });
     });
 
@@ -859,6 +837,25 @@ function Graph() {
   return (
     <GraphWrap ref={wrapRef}>
       <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge graph" />
+      <ClusterCards>
+        {Object.entries(semanticClusters).map(([clusterId, cluster]) => {
+          const layout = getClusterCardLayout(clusterId, isMobile);
+
+          return (
+            <ClusterCard
+              key={clusterId}
+              style={layout.style}
+              $width={layout.width}
+              $align={layout.align}
+            >
+              <ClusterEyebrow>Thematic Cluster</ClusterEyebrow>
+              <ClusterLine $align={layout.align} />
+              <ClusterCardTitle>{cluster.title.join(' ')}</ClusterCardTitle>
+              <ClusterCardBody>{cluster.subtitle}</ClusterCardBody>
+            </ClusterCard>
+          );
+        })}
+      </ClusterCards>
       <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
         {tooltip.label}
       </Tooltip>

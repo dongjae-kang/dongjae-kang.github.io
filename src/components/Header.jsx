@@ -51,8 +51,8 @@ const HeaderInner = styled.div`
 const Brand = styled(NavLink)`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({ $home, theme }) => ($home ? theme.colors.home.text : theme.colors.subpage.text)};
 `;
@@ -66,8 +66,8 @@ const Nav = styled.nav`
 
 const NavItem = styled(NavLink)`
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ $home, theme }) => ($home ? theme.colors.home.text : theme.colors.subpage.text)};

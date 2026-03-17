@@ -21,7 +21,7 @@ export const theme = {
     },
   },
   fonts: {
-    heading: "'Baskervville', serif",
+    heading: "'Playfair Display', serif",
     body: "'PP Neue Montreal', 'Inter', sans-serif",
   },
   fontSizes: {

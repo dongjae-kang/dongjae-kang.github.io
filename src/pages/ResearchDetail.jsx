@@ -36,7 +36,7 @@ const Thumbnail = styled.div`
 `;
 
 const MediaLabel = styled.span`
-  font-family: ${({ theme }) => theme.fonts.heading};
+  font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.74rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -76,8 +76,8 @@ const Links = styled.div`
 
   a {
     color: ${({ theme }) => theme.colors.subpage.accent};
-    font-family: ${({ theme }) => theme.fonts.heading};
-    font-weight: 600;
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-weight: 500;
   }
 `;
 
