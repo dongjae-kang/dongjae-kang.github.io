@@ -78,6 +78,28 @@ const HeroInner = styled.div`
   text-align: center;
 `;
 
+const MobileMapLegend = styled.div`
+  display: none;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: -4px;
+  }
+`;
+
+const MobileMapChip = styled.span`
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 240, 232, 0.1);
+  background: rgba(10, 24, 18, 0.38);
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  color: rgba(245, 240, 232, 0.82);
+`;
+
 const Name = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(3rem, 5vw, 5rem);
@@ -426,6 +448,11 @@ function Home() {
         <Hero>
           <HeroInner>
             <Graph />
+            <MobileMapLegend aria-hidden="true">
+              <MobileMapChip>Public Discourse</MobileMapChip>
+              <MobileMapChip>Governance</MobileMapChip>
+              <MobileMapChip>AI &amp; Equity</MobileMapChip>
+            </MobileMapLegend>
             <Name>Dongjae (Jack) Kang</Name>
             <Tagline>
               Researching how technology shapes public discourse and how governance can make it
