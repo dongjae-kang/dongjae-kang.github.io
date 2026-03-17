@@ -3,13 +3,14 @@ import styled, { css } from 'styled-components';
 const variants = {
   dark: css`
     color: ${({ theme }) => theme.colors.home.text};
-    border: 1px solid rgba(245, 240, 232, 0.4);
-    background: rgba(245, 240, 232, 0.06);
+    border: 1px solid rgba(154, 199, 175, 0.42);
+    background: linear-gradient(180deg, rgba(154, 199, 175, 0.16), rgba(8, 23, 17, 0.22));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   `,
   light: css`
-    color: ${({ theme }) => theme.colors.subpage.text};
-    border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-    background: rgba(212, 207, 199, 0.18);
+    color: ${({ theme }) => theme.colors.subpage.accent};
+    border: 1px solid rgba(30, 91, 67, 0.22);
+    background: linear-gradient(180deg, rgba(154, 199, 175, 0.18), rgba(255, 255, 255, 0.5));
   `,
 };
 
@@ -20,7 +21,9 @@ const Tag = styled.span`
   padding: 10px 16px;
   border-radius: ${({ theme }) => theme.layout.pillRadius};
   font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: 600;
+  letter-spacing: 0.03em;
   transition: ${({ theme }) => theme.transitions.hover};
   ${({ $variant = 'light' }) => variants[$variant]};
 `;

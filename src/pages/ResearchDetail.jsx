@@ -27,13 +27,14 @@ const Thumbnail = styled.div`
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   display: grid;
   place-items: center;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme }) => theme.fontSizes.h1};
+  font-weight: 800;
 `;
 
 const Year = styled.p`
@@ -57,6 +58,8 @@ const Links = styled.div`
 
   a {
     color: ${({ theme }) => theme.colors.subpage.accent};
+    font-family: ${({ theme }) => theme.fonts.heading};
+    font-weight: 600;
   }
 `;
 

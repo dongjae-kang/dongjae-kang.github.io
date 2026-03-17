@@ -41,11 +41,11 @@ const Tooltip = styled.div`
 `;
 
 const nodeStyle = {
-  research: { fill: '#8BA888', stroke: 'none', radius: 8 },
-  activity: { fill: '#F5F0E8', stroke: 'none', radius: 7 },
-  leadership: { fill: '#A0856E', stroke: 'none', radius: 7 },
-  theme: { fill: 'transparent', stroke: '#F5F0E8', radius: 9 },
-  institution: { fill: '#666666', stroke: 'none', radius: 6 },
+  research: { fill: '#9AC7AF', stroke: 'none', radius: 8 },
+  activity: { fill: '#F3F7F0', stroke: 'none', radius: 7 },
+  leadership: { fill: '#6FA486', stroke: 'none', radius: 7 },
+  theme: { fill: 'transparent', stroke: '#D8EADF', radius: 9 },
+  institution: { fill: '#5E7569', stroke: 'none', radius: 6 },
 };
 
 function Graph() {
@@ -109,7 +109,7 @@ function Graph() {
 
     const link = root
       .append('g')
-      .attr('stroke', '#F5F0E8')
+      .attr('stroke', '#D8EADF')
       .attr('stroke-opacity', 0.15)
       .selectAll('line')
       .data(data.edges)
@@ -135,7 +135,7 @@ function Graph() {
       .text((d) => d.label)
       .attr('text-anchor', 'middle')
       .attr('dy', (d) => radiusFor(d) + 14)
-      .attr('fill', '#F5F0E8')
+      .attr('fill', '#E9F3ED')
       .attr('font-family', 'Inter, sans-serif')
       .attr('font-size', isMobile ? 10 : 11)
       .attr('opacity', isMobile ? 0 : 0.6);

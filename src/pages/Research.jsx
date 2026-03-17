@@ -38,9 +38,10 @@ const Grid = styled.div`
 
 const Card = styled.article`
   padding: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: rgba(255, 255, 255, 0.28);
+  background:
+    linear-gradient(180deg, rgba(154, 199, 175, 0.14), rgba(255, 255, 255, 0.7));
   display: grid;
   gap: 18px;
   transition: ${({ theme }) => theme.transitions.hover};
@@ -48,6 +49,7 @@ const Card = styled.article`
 
   &:hover {
     transform: translateY(-4px);
+    border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({ theme }) => theme.colors.subpage.cardShadow};
   }
 `;
@@ -59,12 +61,13 @@ const Thumbnail = styled.div`
   display: grid;
   place-items: center;
   color: ${({ theme }) => theme.colors.subpage.muted};
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
 `;
 
 const CardTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.2rem;
+  font-weight: 700;
 `;
 
 const Year = styled.p`

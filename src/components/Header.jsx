@@ -25,15 +25,19 @@ const HeaderInner = styled.div`
   background: ${({ $home, $scrolled }) =>
     $home
       ? $scrolled
-        ? 'rgba(26, 26, 26, 0.6)'
-        : 'rgba(26, 26, 26, 0.18)'
+        ? 'rgba(8, 23, 17, 0.72)'
+        : 'rgba(8, 23, 17, 0.28)'
       : $scrolled
-        ? 'rgba(245, 240, 232, 0.82)'
-        : 'rgba(245, 240, 232, 0.62)'};
+        ? 'rgba(242, 245, 239, 0.88)'
+        : 'rgba(242, 245, 239, 0.7)'};
   border: 1px solid
-    ${({ $home, theme }) =>
-      $home ? 'rgba(245, 240, 232, 0.14)' : theme.colors.subpage.border};
-  box-shadow: ${({ $scrolled }) => ($scrolled ? '0 12px 30px rgba(0, 0, 0, 0.08)' : 'none')};
+    ${({ $home }) => ($home ? 'rgba(154, 199, 175, 0.16)' : 'rgba(30, 91, 67, 0.12)')};
+  box-shadow: ${({ $scrolled, $home }) =>
+    $scrolled
+      ? $home
+        ? '0 14px 40px rgba(0, 0, 0, 0.2)'
+        : '0 12px 30px rgba(21, 54, 41, 0.08)'
+      : 'none'};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: calc(100% - 24px);
@@ -46,9 +50,9 @@ const HeaderInner = styled.div`
 
 const Brand = styled(NavLink)`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({ $home, theme }) => ($home ? theme.colors.home.text : theme.colors.subpage.text)};
 `;
@@ -62,8 +66,8 @@ const Nav = styled.nav`
 
 const NavItem = styled(NavLink)`
   font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({ $home, theme }) => ($home ? theme.colors.home.text : theme.colors.subpage.text)};
   opacity: 0.62;

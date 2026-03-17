@@ -1,27 +1,27 @@
 export const theme = {
   colors: {
     home: {
-      forest: '#1B3D2F',
-      leather: '#5C3D2E',
-      olive: '#4A5D3A',
-      base: '#1A1A1A',
-      text: '#F5F0E8',
-      hover: '#8BA888',
-      leadership: '#A0856E',
-      institution: '#666666',
+      forest: '#0F3D2E',
+      leather: '#1B5A43',
+      olive: '#3C7A5E',
+      base: '#081711',
+      text: '#F3F7F0',
+      hover: '#9AC7AF',
+      leadership: '#6FA486',
+      institution: '#5E7569',
     },
     subpage: {
-      background: '#F5F0E8',
-      text: '#2B2A2A',
-      accent: '#2D5A3D',
-      border: '#D4CFC7',
-      muted: '#6E685F',
-      placeholder: '#DED8D0',
-      cardShadow: 'rgba(43, 42, 42, 0.08)',
+      background: '#F2F5EF',
+      text: '#1E2923',
+      accent: '#1E5B43',
+      border: '#C8D6CD',
+      muted: '#5D6D63',
+      placeholder: '#DDE8E0',
+      cardShadow: 'rgba(21, 54, 41, 0.14)',
     },
   },
   fonts: {
-    heading: "'JetBrains Mono', monospace",
+    heading: "'Azeret Mono', monospace",
     body: "'Inter', sans-serif",
   },
   fontSizes: {
@@ -59,7 +59,7 @@ export const theme = {
     tablet: '1024px',
   },
   transitions: {
-    hover: 'opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+    hover: 'opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease',
     page: { duration: 0.6, ease: 'easeOut' },
   },
 };

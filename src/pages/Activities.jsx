@@ -42,9 +42,10 @@ const Grid = styled.div`
 
 const Card = styled.article`
   padding: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: rgba(255, 255, 255, 0.3);
+  background:
+    linear-gradient(180deg, rgba(154, 199, 175, 0.12), rgba(255, 255, 255, 0.72));
   display: grid;
   gap: 18px;
   transition: ${({ theme }) => theme.transitions.hover};
@@ -52,6 +53,7 @@ const Card = styled.article`
 
   &:hover {
     transform: translateY(-4px);
+    border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({ theme }) => theme.colors.subpage.cardShadow};
   }
 `;
@@ -60,7 +62,7 @@ const Photo = styled.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({ theme }) => theme.layout.radius};
   background: ${({ theme }) => theme.colors.subpage.placeholder};
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({ theme }) => theme.colors.subpage.muted};
   display: grid;
   place-items: center;
@@ -69,6 +71,7 @@ const Photo = styled.div`
 const CardTitle = styled.h2`
   font-size: 1.08rem;
   font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: 700;
 `;
 
 const DateText = styled.p`
