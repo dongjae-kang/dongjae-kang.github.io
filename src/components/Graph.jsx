@@ -8,25 +8,25 @@ const GraphWrap = styled.div`
   position: relative;
   width: 100%;
   max-width: ${({ theme }) => theme.layout.graphMax};
-  height: min(76vh, 860px);
-  min-height: 560px;
-  padding: 24px;
-  border-radius: 28px;
+  height: min(84vh, 980px);
+  min-height: 680px;
+  padding: 20px;
+  border-radius: 32px;
   overflow: hidden;
   border: 1px solid rgba(216, 234, 223, 0.12);
   background:
-    radial-gradient(circle at 18% 18%, rgba(154, 199, 175, 0.14), transparent 28%),
-    radial-gradient(circle at 82% 22%, rgba(111, 164, 134, 0.1), transparent 26%),
-    radial-gradient(circle at 52% 78%, rgba(243, 247, 240, 0.05), transparent 24%),
-    linear-gradient(180deg, rgba(8, 23, 17, 0.14), rgba(8, 23, 17, 0.04));
+    radial-gradient(circle at 16% 18%, rgba(154, 199, 175, 0.16), transparent 28%),
+    radial-gradient(circle at 84% 20%, rgba(111, 164, 134, 0.14), transparent 28%),
+    radial-gradient(circle at 50% 82%, rgba(154, 199, 175, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(8, 23, 17, 0.16), rgba(8, 23, 17, 0.05));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 24px 60px rgba(0, 0, 0, 0.12);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 58vh;
-    min-height: 420px;
-    padding: 18px;
+    height: 68vh;
+    min-height: 520px;
+    padding: 16px;
   }
 `;
 
@@ -34,82 +34,6 @@ const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
   overflow: visible;
-`;
-
-const GuideCard = styled.div`
-  position: absolute;
-  top: 22px;
-  left: 22px;
-  z-index: 2;
-  max-width: 320px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(216, 234, 223, 0.12);
-  background: rgba(8, 23, 17, 0.38);
-  backdrop-filter: blur(14px);
-  color: ${({ theme }) => theme.colors.home.text};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    max-width: calc(100% - 36px);
-    padding: 14px 16px;
-  }
-`;
-
-const GuideTitle = styled.p`
-  margin-bottom: 8px;
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.86;
-`;
-
-const GuideText = styled.p`
-  font-size: 0.98rem;
-  line-height: 1.55;
-  color: rgba(243, 247, 240, 0.86);
-`;
-
-const LegendRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 12px;
-  margin-top: 14px;
-`;
-
-const LegendItem = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: rgba(243, 247, 240, 0.76);
-`;
-
-const LegendDot = styled.span`
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: ${({ $color, $outlined }) => ($outlined ? 'transparent' : $color)};
-  border: 1px solid ${({ $color }) => $color};
-`;
-
-const Hint = styled.div`
-  position: absolute;
-  right: 22px;
-  bottom: 22px;
-  z-index: 2;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(8, 23, 17, 0.28);
-  border: 1px solid rgba(216, 234, 223, 0.1);
-  color: rgba(243, 247, 240, 0.72);
-  font-size: 0.8rem;
-  backdrop-filter: blur(10px);
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
-  }
 `;
 
 const Tooltip = styled.div`
@@ -138,194 +62,309 @@ const nodeStyle = {
   institution: { fill: '#5E7569', stroke: 'none', radius: 6 },
 };
 
-const regionMeta = {
-  research: {
-    label: 'Research',
+const semanticClusters = {
+  discourse: {
+    label: 'Platforms & Public Discourse',
+    title: ['Platforms', '& Public Discourse'],
+    subtitle: 'researching how technology shapes public conversation',
     fill: 'rgba(111, 164, 134, 0.08)',
-    stroke: 'rgba(154, 199, 175, 0.18)',
+    stroke: 'rgba(154, 199, 175, 0.22)',
     text: '#DDEEE4',
   },
-  activity: {
-    label: 'Activities',
+  governance: {
+    label: 'Leadership & Governance',
+    title: ['Leadership', '& Governance'],
+    subtitle: 'turning ideas into coalitions, institutions, and public action',
     fill: 'rgba(243, 247, 240, 0.05)',
-    stroke: 'rgba(243, 247, 240, 0.15)',
+    stroke: 'rgba(243, 247, 240, 0.16)',
     text: '#F3F7F0',
   },
-  leadership: {
-    label: 'Leadership',
+  equity: {
+    label: 'Equity, Innovation & Opportunity',
+    title: ['Equity, Innovation', '& Opportunity'],
+    subtitle: 'using technology and policy to widen access and opportunity',
     fill: 'rgba(84, 129, 103, 0.08)',
     stroke: 'rgba(111, 164, 134, 0.18)',
     text: '#D8EADF',
   },
-  hubs: {
-    label: 'Themes + Institutions',
-    fill: 'rgba(216, 234, 223, 0.035)',
-    stroke: 'rgba(216, 234, 223, 0.1)',
-    text: '#E9F3ED',
-  },
 };
 
-const badgeOffsets = {
-  research: { x: -90, y: -92 },
-  activity: { x: -96, y: -92 },
-  leadership: { x: -96, y: -74 },
-  hubs: { x: -110, y: -84 },
+const semanticHubCluster = {
+  misinformation: 'discourse',
+  'platform-governance': 'discourse',
+  'content-moderation': 'discourse',
+  'participatory-governance': 'governance',
+  un: 'governance',
+  'national-assembly': 'governance',
+  'ai-policy': 'equity',
+  'equitable-development': 'equity',
+  'st-policy': 'equity',
+  kaist: 'equity',
+  'columbia-sipa': 'equity',
 };
 
-function getRegionSpec(type, width, height, count, isMobile) {
-  const mobileFactor = isMobile ? 0.82 : 1;
-  const growth = Math.sqrt(Math.max(count, 1));
+const nodeClusterOverrides = {
+  valedictorian: 'equity',
+  ces: 'equity',
+  stanford: 'equity',
+  'hyc-mixer': 'governance',
+  'upenn-mixer': 'governance',
+  'kgsa-career': 'governance',
+};
 
-  if (type === 'research') {
-    return {
-      x: width * 0.27,
-      y: height * 0.4,
-      spreadX: Math.min(width * 0.18, 170 + growth * 16) * mobileFactor,
-      spreadY: Math.min(height * 0.22, 132 + growth * 10) * mobileFactor,
-      strength: isMobile ? 0.14 : 0.17,
-    };
-  }
+function wrapLabel(label, maxChars) {
+  const words = label.split(' ');
+  const lines = [];
+  let current = '';
 
-  if (type === 'activity') {
-    return {
-      x: width * 0.73,
-      y: height * 0.4,
-      spreadX: Math.min(width * 0.18, 174 + growth * 16) * mobileFactor,
-      spreadY: Math.min(height * 0.22, 136 + growth * 10) * mobileFactor,
-      strength: isMobile ? 0.14 : 0.17,
-    };
-  }
-
-  if (type === 'leadership') {
-    return {
-      x: width * 0.5,
-      y: height * 0.77,
-      spreadX: Math.min(width * 0.22, 220 + growth * 12) * mobileFactor,
-      spreadY: Math.min(height * 0.12, 82 + growth * 8) * mobileFactor,
-      strength: isMobile ? 0.17 : 0.21,
-    };
-  }
-
-  return {
-    x: width * 0.5,
-    y: height * 0.5,
-    spreadX: Math.min(width * 0.12, 130 + growth * 8) * mobileFactor,
-    spreadY: Math.min(height * 0.14, 100 + growth * 8) * mobileFactor,
-    strength: isMobile ? 0.2 : 0.26,
-  };
-}
-
-function distributeCenters(region, count) {
-  if (count <= 1) return [{ x: region.x, y: region.y }];
-
-  const cols = Math.min(3, Math.ceil(Math.sqrt(count)));
-  const rows = Math.ceil(count / cols);
-  const gapX = cols === 1 ? 0 : (region.spreadX * 1.2) / Math.max(cols - 1, 1);
-  const gapY = rows === 1 ? 0 : (region.spreadY * 1.1) / Math.max(rows - 1, 1);
-
-  return Array.from({ length: count }, (_, index) => {
-    const col = index % cols;
-    const row = Math.floor(index / cols);
-    const offsetX = cols === 1 ? 0 : -((cols - 1) * gapX) / 2 + col * gapX;
-    const offsetY = rows === 1 ? 0 : -((rows - 1) * gapY) / 2 + row * gapY;
-    return {
-      x: region.x + offsetX,
-      y: region.y + offsetY,
-    };
+  words.forEach((word) => {
+    const next = current ? `${current} ${word}` : word;
+    if (next.length > maxChars && current) {
+      lines.push(current);
+      current = word;
+      return;
+    }
+    current = next;
   });
+
+  if (current) lines.push(current);
+  return lines.slice(0, 3);
 }
 
-function assignHubAnchors(nodes, width, height, isMobile) {
-  const themes = nodes.filter((node) => node.type === 'theme');
-  const institutions = nodes.filter((node) => node.type === 'institution');
+function buildAdjacency(nodes, edges) {
+  const adjacency = new Map(nodes.map((node) => [node.id, []]));
+  edges.forEach((edge) => {
+    adjacency.get(edge.source)?.push(edge.target);
+    adjacency.get(edge.target)?.push(edge.source);
+  });
+  return adjacency;
+}
 
-  const themeRegion = getRegionSpec('hubs', width, height, themes.length, isMobile);
-  const institutionRegion = getRegionSpec('hubs', width, height, institutions.length, isMobile);
+function fallbackClusterFor(nodeType) {
+  if (nodeType === 'leadership') return 'governance';
+  if (nodeType === 'research') return 'discourse';
+  return 'equity';
+}
+
+function pickBestCluster(scoreMap, fallback) {
+  const entries = [...scoreMap.entries()].sort((a, b) => b[1] - a[1]);
+  return entries[0]?.[0] ?? fallback;
+}
+
+function getClusterCenter(clusterId, width, height, isMobile) {
+  if (isMobile) {
+    const mobilePositions = {
+      discourse: { x: width * 0.5, y: height * 0.18 },
+      governance: { x: width * 0.5, y: height * 0.49 },
+      equity: { x: width * 0.5, y: height * 0.82 },
+    };
+    return mobilePositions[clusterId];
+  }
+
+  const desktopPositions = {
+    discourse: { x: width * 0.16, y: height * 0.32 },
+    governance: { x: width * 0.84, y: height * 0.32 },
+    equity: { x: width * 0.5, y: height * 0.78 },
+  };
+
+  return desktopPositions[clusterId];
+}
+
+function scoreClusterFromGraph(startId, nodesById, adjacency, maxDepth = 4) {
+  const scores = new Map();
+  const visited = new Set([startId]);
+  const queue = [{ id: startId, depth: 0 }];
+
+  while (queue.length > 0) {
+    const { id, depth } = queue.shift();
+    if (depth >= maxDepth) continue;
+
+    (adjacency.get(id) ?? []).forEach((neighborId) => {
+      if (visited.has(neighborId)) return;
+      visited.add(neighborId);
+
+      const neighbor = nodesById.get(neighborId);
+      const nextDepth = depth + 1;
+
+      if (neighbor?.cluster) {
+        const baseWeight =
+          neighbor.type === 'theme' ? 5 : neighbor.type === 'institution' ? 3.5 : 1.4;
+        const distanceWeight = Math.pow(0.66, nextDepth - 1);
+        scores.set(
+          neighbor.cluster,
+          (scores.get(neighbor.cluster) ?? 0) + baseWeight * distanceWeight
+        );
+      }
+
+      queue.push({ id: neighborId, depth: nextDepth });
+    });
+  }
+
+  return scores;
+}
+
+function assignSemanticClusters(nodes, edges) {
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const adjacency = buildAdjacency(nodes, edges);
+
+  nodes.forEach((node) => {
+    if (nodeClusterOverrides[node.id]) {
+      node.cluster = nodeClusterOverrides[node.id];
+      return;
+    }
+
+    if (node.type === 'theme' || node.type === 'institution') {
+      node.cluster = semanticHubCluster[node.id] ?? 'equity';
+    }
+  });
+
+  nodes
+    .filter((node) => !node.cluster)
+    .forEach((node) => {
+      const scores = scoreClusterFromGraph(node.id, nodesById, adjacency);
+      node.cluster = pickBestCluster(scores, fallbackClusterFor(node.type));
+    });
+
+  return { nodesById, adjacency };
+}
+
+function placeHubNodes(clusterNodes, center, isMobile) {
+  const themes = [...clusterNodes]
+    .filter((node) => node.type === 'theme')
+    .sort((a, b) => a.label.localeCompare(b.label));
+  const institutions = [...clusterNodes]
+    .filter((node) => node.type === 'institution')
+    .sort((a, b) => a.label.localeCompare(b.label));
+
+  const themeRadiusX = isMobile ? 76 : 132;
+  const themeRadiusY = isMobile ? 54 : 92;
+  const institutionRadiusX = isMobile ? 84 : 154;
+  const institutionRadiusY = isMobile ? 40 : 66;
 
   themes.forEach((node, index) => {
-    const angle = (-Math.PI / 2) + (index / Math.max(themes.length, 1)) * Math.PI * 2;
-    node.anchorX = themeRegion.x + Math.cos(angle) * themeRegion.spreadX * 0.78;
-    node.anchorY = themeRegion.y + Math.sin(angle) * themeRegion.spreadY * 0.58 - 18;
+    const angleStart = -Math.PI * 0.94;
+    const angleEnd = Math.PI * 0.1;
+    const angle =
+      themes.length === 1
+        ? -Math.PI / 2
+        : angleStart + (index / Math.max(themes.length - 1, 1)) * (angleEnd - angleStart);
+
+    node.anchorX = center.x + Math.cos(angle) * themeRadiusX;
+    node.anchorY = center.y + Math.sin(angle) * themeRadiusY;
     node.x = node.anchorX;
     node.y = node.anchorY;
-    node.regionType = 'hubs';
   });
 
   institutions.forEach((node, index) => {
-    const angle = Math.PI + (index / Math.max(institutions.length, 1)) * Math.PI;
-    node.anchorX = institutionRegion.x + Math.cos(angle) * institutionRegion.spreadX * 0.72;
-    node.anchorY = institutionRegion.y + Math.sin(angle) * institutionRegion.spreadY * 0.38 + 66;
+    const angleStart = Math.PI * 0.08;
+    const angleEnd = Math.PI * 0.92;
+    const angle =
+      institutions.length === 1
+        ? Math.PI / 2
+        : angleStart + (index / Math.max(institutions.length - 1, 1)) * (angleEnd - angleStart);
+
+    node.anchorX = center.x + Math.cos(angle) * institutionRadiusX;
+    node.anchorY = center.y + Math.sin(angle) * institutionRadiusY + (isMobile ? 16 : 24);
     node.x = node.anchorX;
     node.y = node.anchorY;
-    node.regionType = 'hubs';
   });
 }
 
-function assignContentAnchors(nodes, adjacency, nodesById, width, height, isMobile) {
-  ['research', 'activity', 'leadership'].forEach((type) => {
-    const typedNodes = nodes.filter((node) => node.type === type);
-    const region = getRegionSpec(type, width, height, typedNodes.length, isMobile);
+function choosePrimaryHub(node, adjacency, nodesById) {
+  const visited = new Set([node.id]);
+  const queue = [{ id: node.id, depth: 0 }];
 
-    const grouped = d3.groups(typedNodes, (node) => {
-      const related = [...(adjacency.get(node.id) ?? [])]
-        .map((id) => nodesById.get(id))
-        .filter(Boolean);
+  while (queue.length > 0) {
+    const { id, depth } = queue.shift();
+    if (depth >= 4) continue;
 
-      const theme = related.find((entry) => entry.type === 'theme');
-      const institution = related.find((entry) => entry.type === 'institution');
+    for (const neighborId of adjacency.get(id) ?? []) {
+      if (visited.has(neighborId)) continue;
+      visited.add(neighborId);
 
-      return theme?.id ?? institution?.id ?? `${type}-default`;
-    });
+      const neighbor = nodesById.get(neighborId);
+      if (!neighbor) continue;
 
-    const subgroupCenters = distributeCenters(region, grouped.length);
+      if (
+        neighbor.cluster === node.cluster &&
+        (neighbor.type === 'theme' || neighbor.type === 'institution')
+      ) {
+        return neighbor;
+      }
 
-    grouped.forEach(([, subgroup], subgroupIndex) => {
-      const subgroupCenter = subgroupCenters[subgroupIndex];
+      queue.push({ id: neighborId, depth: depth + 1 });
+    }
+  }
 
-      subgroup.forEach((node, index) => {
-        const ring = Math.floor(index / 4);
-        const ringCount = Math.min(4, subgroup.length - ring * 4) || 1;
-        const angle = (index % 4) / ringCount * Math.PI * 2 - Math.PI / 2;
-        const offsetX = Math.cos(angle) * (22 + ring * 24);
-        const offsetY = Math.sin(angle) * (18 + ring * 18);
+  return (
+    (adjacency.get(node.id) ?? [])
+      .map((neighborId) => nodesById.get(neighborId))
+      .find((neighbor) => neighbor?.cluster === node.cluster) ?? null
+  );
+}
 
-        node.anchorX = subgroupCenter.x;
-        node.anchorY = subgroupCenter.y;
-        node.x = subgroupCenter.x + offsetX;
-        node.y = subgroupCenter.y + offsetY;
-        node.regionType = type;
-      });
+function placeContentNodes(clusterNodes, adjacency, nodesById, center, isMobile) {
+  const contentNodes = [...clusterNodes]
+    .filter((node) => node.type !== 'theme' && node.type !== 'institution')
+    .sort((a, b) => a.label.localeCompare(b.label));
+
+  const grouped = d3.group(
+    contentNodes,
+    (node) => choosePrimaryHub(node, adjacency, nodesById)?.id ?? node.cluster
+  );
+
+  [...grouped.entries()].forEach(([hubId, nodesForHub]) => {
+    const hub = nodesById.get(hubId);
+    const anchorX = hub?.x ?? center.x;
+    const anchorY = hub?.y ?? center.y;
+
+    nodesForHub.forEach((node, index) => {
+      const orbitSize = isMobile ? 5 : 7;
+      const orbitIndex = index % orbitSize;
+      const ring = Math.floor(index / orbitSize);
+      const ringCount = Math.min(orbitSize, nodesForHub.length - ring * orbitSize) || 1;
+      const angleJitter = hub ? (hub.id.length % 7) * 0.12 : 0;
+      const angle = -Math.PI / 2 + angleJitter + (orbitIndex / ringCount) * Math.PI * 2;
+      const radiusBase = isMobile ? 52 : 86;
+      const radiusStep = isMobile ? 20 : 30;
+      const radius = radiusBase + ring * radiusStep + (node.type === 'leadership' ? 12 : 0);
+
+      node.anchorX = anchorX;
+      node.anchorY = anchorY;
+      node.x = anchorX + Math.cos(angle) * radius;
+      node.y = anchorY + Math.sin(angle) * radius;
     });
   });
 }
 
-function buildNodeLayout(baseNodes, baseEdges, width, height, isMobile) {
+function buildLayout(baseNodes, baseEdges, width, height, isMobile) {
   const nodes = baseNodes.map((node) => ({ ...node }));
   const edges = baseEdges.map((edge) => ({ ...edge }));
-  const nodesById = new Map(nodes.map((node) => [node.id, node]));
-  const adjacency = new Map(nodes.map((node) => [node.id, new Set()]));
+  const { nodesById, adjacency } = assignSemanticClusters(nodes, edges);
 
-  edges.forEach((edge) => {
-    adjacency.get(edge.source)?.add(edge.target);
-    adjacency.get(edge.target)?.add(edge.source);
+  Object.keys(semanticClusters).forEach((clusterId) => {
+    const center = getClusterCenter(clusterId, width, height, isMobile);
+    const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
+
+    placeHubNodes(clusterNodes, center, isMobile);
+    placeContentNodes(clusterNodes, adjacency, nodesById, center, isMobile);
+
+    clusterNodes.forEach((node) => {
+      node.clusterCenterX = center.x;
+      node.clusterCenterY = center.y;
+    });
   });
 
-  assignHubAnchors(nodes, width, height, isMobile);
-  assignContentAnchors(nodes, adjacency, nodesById, width, height, isMobile);
-
-  return { nodes, edges, adjacency };
+  return { nodes, edges, nodesById, adjacency };
 }
 
-function createHullPath(points) {
+function createHull(points) {
   if (points.length < 3) return null;
+
   const hull = d3.polygonHull(points);
   if (!hull) return null;
 
-  const line = d3.line().curve(d3.curveCatmullRomClosed.alpha(0.55));
-  return {
-    path: line(hull),
-    centroid: d3.polygonCentroid(hull),
-  };
+  return d3.line().curve(d3.curveCatmullRomClosed.alpha(0.55))(hull);
 }
 
 function scaleLayoutToFrame(nodes, width, height) {
@@ -342,21 +381,20 @@ function scaleLayoutToFrame(nodes, width, height) {
   }
 
   const contentWidth = xExtent[1] - xExtent[0] + 140;
-  const contentHeight = yExtent[1] - yExtent[0] + 140;
-  const targetWidth = width * 0.9;
-  const targetHeight = height * 0.82;
-  const scale = Math.min(targetWidth / contentWidth, targetHeight / contentHeight, 1.75);
-
-  const contentCenterX = (xExtent[0] + xExtent[1]) / 2;
-  const contentCenterY = (yExtent[0] + yExtent[1]) / 2;
-  const frameCenterX = width / 2;
-  const frameCenterY = height / 2 + 12;
+  const contentHeight = yExtent[1] - yExtent[0] + 150;
+  const scale = Math.min((width * 0.97) / contentWidth, (height * 0.92) / contentHeight, 1.9);
+  const sourceCenterX = (xExtent[0] + xExtent[1]) / 2;
+  const sourceCenterY = (yExtent[0] + yExtent[1]) / 2;
+  const targetCenterX = width / 2;
+  const targetCenterY = height / 2 + 8;
 
   nodes.forEach((node) => {
-    node.x = frameCenterX + (node.x - contentCenterX) * scale;
-    node.y = frameCenterY + (node.y - contentCenterY) * scale;
-    node.anchorX = frameCenterX + (node.anchorX - contentCenterX) * scale;
-    node.anchorY = frameCenterY + (node.anchorY - contentCenterY) * scale;
+    node.x = targetCenterX + (node.x - sourceCenterX) * scale;
+    node.y = targetCenterY + (node.y - sourceCenterY) * scale;
+    node.anchorX = targetCenterX + (node.anchorX - sourceCenterX) * scale;
+    node.anchorY = targetCenterY + (node.anchorY - sourceCenterY) * scale;
+    node.clusterCenterX = targetCenterX + (node.clusterCenterX - sourceCenterX) * scale;
+    node.clusterCenterY = targetCenterY + (node.clusterCenterY - sourceCenterY) * scale;
   });
 }
 
@@ -376,39 +414,12 @@ function Graph() {
     []
   );
 
-  const overview = useMemo(() => {
-    const counts = d3.rollup(graphData.nodes, (values) => values.length, (node) => node.type);
-    return [
-      {
-        label: `Research ${counts.get('research') ?? 0}`,
-        color: nodeStyle.research.fill,
-      },
-      {
-        label: `Activities ${counts.get('activity') ?? 0}`,
-        color: nodeStyle.activity.fill,
-      },
-      {
-        label: `Leadership ${counts.get('leadership') ?? 0}`,
-        color: nodeStyle.leadership.fill,
-      },
-      {
-        label: `Themes ${counts.get('theme') ?? 0}`,
-        color: nodeStyle.theme.stroke,
-        outlined: true,
-      },
-      {
-        label: `Institutions ${counts.get('institution') ?? 0}`,
-        color: nodeStyle.institution.fill,
-      },
-    ];
-  }, []);
-
   useEffect(() => {
     if (!wrapRef.current) return undefined;
 
     const observer = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      setSize({ width: width - 48, height: height - 48 });
+      setSize({ width: width - 40, height: height - 40 });
     });
 
     observer.observe(wrapRef.current);
@@ -421,7 +432,8 @@ function Graph() {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
-    const { nodes, edges } = buildNodeLayout(data.nodes, data.edges, size.width, size.height, isMobile);
+    const { nodes, edges } = buildLayout(data.nodes, data.edges, size.width, size.height, isMobile);
+    scaleLayoutToFrame(nodes, size.width, size.height);
 
     const linkedById = new Set();
     edges.forEach((edge) => {
@@ -435,7 +447,7 @@ function Graph() {
     };
 
     const clampNode = (node) => {
-      const padding = isMobile ? 24 : 36;
+      const padding = isMobile ? 28 : 40;
       node.x = Math.max(padding, Math.min(size.width - padding, node.x));
       node.y = Math.max(padding, Math.min(size.height - padding, node.y));
     };
@@ -446,76 +458,74 @@ function Graph() {
         'link',
         d3
           .forceLink(edges)
-          .id((d) => d.id)
+          .id((node) => node.id)
           .distance((edge) => {
-            const typePair = [edge.source.type, edge.target.type].sort().join(':');
-
-            if (typePair.includes('theme')) return isMobile ? 54 : 70;
-            if (typePair.includes('institution')) return isMobile ? 62 : 82;
-            if (edge.source.type === edge.target.type) return isMobile ? 72 : 92;
-
-            return isMobile ? 74 : 96;
+            if (edge.source.cluster === edge.target.cluster) {
+              if (edge.source.type === 'theme' || edge.target.type === 'theme') {
+                return isMobile ? 58 : 82;
+              }
+              return isMobile ? 72 : 102;
+            }
+            return isMobile ? 104 : 150;
           })
-          .strength((edge) => {
-            if (edge.source.type === 'theme' || edge.target.type === 'theme') return 0.92;
-            if (edge.source.type === 'institution' || edge.target.type === 'institution') return 0.72;
-            return 0.54;
-          })
+          .strength((edge) => (edge.source.cluster === edge.target.cluster ? 0.62 : 0.16))
       )
       .force(
         'charge',
         d3.forceManyBody().strength((node) => {
-          if (node.type === 'theme') return isMobile ? -100 : -170;
-          if (node.type === 'institution') return isMobile ? -80 : -120;
-          return isMobile ? -70 : -110;
+          if (node.type === 'theme') return isMobile ? -100 : -160;
+          if (node.type === 'institution') return isMobile ? -82 : -126;
+          return isMobile ? -76 : -108;
         })
       )
-      .force('x', d3.forceX((node) => node.anchorX).strength((node) => {
-        if (node.type === 'theme') return isMobile ? 0.22 : 0.28;
-        if (node.type === 'institution') return isMobile ? 0.2 : 0.24;
-        return isMobile ? 0.12 : 0.16;
-      }))
-      .force('y', d3.forceY((node) => node.anchorY).strength((node) => {
-        if (node.type === 'theme') return isMobile ? 0.22 : 0.3;
-        if (node.type === 'institution') return isMobile ? 0.2 : 0.24;
-        return isMobile ? 0.12 : 0.16;
-      }))
-      .force('center', d3.forceCenter(size.width / 2, size.height / 2))
-      .force('collide', d3.forceCollide().radius((node) => radiusFor(node) + (isMobile ? 14 : 22)))
-      .alpha(1)
+      .force(
+        'x',
+        d3
+          .forceX((node) => node.anchorX)
+          .strength((node) => (node.type === 'theme' ? 0.36 : 0.24))
+      )
+      .force(
+        'y',
+        d3
+          .forceY((node) => node.anchorY)
+          .strength((node) => (node.type === 'theme' ? 0.36 : 0.24))
+      )
+      .force(
+        'collide',
+        d3.forceCollide().radius((node) => radiusFor(node) + (isMobile ? 18 : 24))
+      )
+      .alpha(0.4)
       .alphaDecay(0.055)
-      .velocityDecay(0.34)
+      .velocityDecay(0.42)
       .stop();
 
-    for (let index = 0; index < 280; index += 1) {
+    for (let i = 0; i < 220; i += 1) {
       simulation.tick();
     }
 
-    scaleLayoutToFrame(nodes, size.width, size.height);
     nodes.forEach(clampNode);
 
-    const root = svg
-      .append('g')
-      .attr('transform', `translate(24, 24)`);
-
+    const root = svg.append('g').attr('transform', 'translate(20, 20)');
     const regionLayer = root.append('g');
     const linkLayer = root.append('g');
-    const nodeLayer = root.append('g');
     const badgeLayer = root.append('g');
+    const nodeLayer = root.append('g');
 
     const link = linkLayer
       .selectAll('line')
       .data(edges)
       .join('line')
       .attr('stroke', '#D8EADF')
-      .attr('stroke-opacity', 0.13)
-      .attr('stroke-width', 0.85);
+      .attr('stroke-opacity', 0.14)
+      .attr('stroke-width', 0.9);
 
     const nodeShell = nodeLayer
       .selectAll('g')
       .data(nodes)
       .join('g')
-      .style('cursor', (node) => (node.url ? 'pointer' : 'grab'));
+      .style('cursor', (node) =>
+        node.url && node.type !== 'theme' && node.type !== 'institution' ? 'pointer' : 'grab'
+      );
 
     const circles = nodeShell
       .append('circle')
@@ -526,99 +536,120 @@ function Graph() {
 
     const labels = nodeShell
       .append('text')
-      .text((node) => node.label)
       .attr('text-anchor', 'middle')
-      .attr('dy', (node) => radiusFor(node) + 16)
       .attr('fill', '#F7FBF8')
-      .attr('stroke', 'rgba(8, 23, 17, 0.46)')
-      .attr('stroke-width', 0.45)
+      .attr('stroke', 'rgba(8, 23, 17, 0.5)')
+      .attr('stroke-width', 0.5)
       .attr('paint-order', 'stroke')
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
       .attr('font-size', (node) => {
-        if (node.type === 'theme') return isMobile ? 10 : 13;
-        if (node.type === 'institution') return isMobile ? 9 : 11;
-        return isMobile ? 0 : 10.5;
+        if (node.type === 'theme') return isMobile ? 10.5 : 13;
+        if (node.type === 'institution') return isMobile ? 9 : 10.75;
+        return isMobile ? 0 : 10.2;
       })
       .attr('font-weight', (node) => (node.type === 'theme' ? 600 : 500))
       .attr('letter-spacing', '0.01em')
       .attr('opacity', (node) => {
-        if (isMobile) return 0;
+        if (isMobile) return node.type === 'theme' || node.type === 'institution' ? 0.94 : 0;
         if (node.type === 'theme') return 0.98;
-        if (node.type === 'institution') return 0.86;
-        return 0;
+        if (node.type === 'institution') return 0.88;
+        return 0.9;
       })
       .attr('pointer-events', 'none');
 
-    const badgeData = [
-      {
-        id: 'research',
-        label: regionMeta.research.label,
-        position: getRegionSpec('research', size.width, size.height, nodes.filter((node) => node.type === 'research').length, isMobile),
-      },
-      {
-        id: 'activity',
-        label: regionMeta.activity.label,
-        position: getRegionSpec('activity', size.width, size.height, nodes.filter((node) => node.type === 'activity').length, isMobile),
-      },
-      {
-        id: 'leadership',
-        label: regionMeta.leadership.label,
-        position: getRegionSpec('leadership', size.width, size.height, nodes.filter((node) => node.type === 'leadership').length, isMobile),
-      },
-      {
-        id: 'hubs',
-        label: regionMeta.hubs.label,
-        position: getRegionSpec('hubs', size.width, size.height, nodes.filter((node) => node.regionType === 'hubs').length, isMobile),
-      },
-    ];
+    labels.each(function createLabel(node) {
+      const text = d3.select(this);
+      const lines = wrapLabel(node.label, node.type === 'theme' ? 20 : 16);
+      const baseY = radiusFor(node) + 16 - (lines.length - 1) * 6;
+
+      lines.forEach((line, index) => {
+        text
+          .append('tspan')
+          .text(line)
+          .attr('x', 0)
+          .attr('y', index === 0 ? baseY : null)
+          .attr('dy', index === 0 ? 0 : 12);
+      });
+    });
+
+    const badgeData = Object.entries(semanticClusters).map(([id, meta]) => {
+      const center = getClusterCenter(id, size.width, size.height, isMobile);
+      return { id, ...meta, x: center.x, y: center.y };
+    });
 
     const badges = badgeLayer
       .selectAll('g')
       .data(isMobile ? [] : badgeData)
-      .join('g');
+      .join('g')
+      .attr('transform', (entry) => `translate(${entry.x},${entry.y})`);
 
     badges
-      .append('rect')
-      .attr('rx', 999)
-      .attr('fill', 'rgba(8, 23, 17, 0.46)')
-      .attr('stroke', 'rgba(216, 234, 223, 0.1)')
-      .attr('height', 28);
+      .append('circle')
+      .attr('r', 62)
+      .attr('fill', (entry) => entry.fill)
+      .attr('stroke', (entry) => entry.stroke)
+      .attr('stroke-width', 1.1);
 
     badges
+      .append('circle')
+      .attr('r', 42)
+      .attr('fill', 'rgba(8, 23, 17, 0.14)')
+      .attr('stroke', 'rgba(216, 234, 223, 0.08)')
+      .attr('stroke-width', 1);
+
+    const badgeTitles = badges
       .append('text')
-      .text((entry) => entry.label)
-      .attr('fill', (entry) => regionMeta[entry.id].text)
+      .attr('text-anchor', 'middle')
+      .attr('y', -5)
+      .attr('fill', (entry) => entry.text)
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
-      .attr('font-size', 12)
+      .attr('font-size', 11.25)
       .attr('font-weight', 600)
-      .attr('letter-spacing', '0.08em')
-      .attr('text-transform', 'uppercase');
+      .attr('letter-spacing', '0.08em');
+
+    badgeTitles.each(function setBadgeTitle(entry) {
+      const text = d3.select(this);
+      entry.title.forEach((line, index) => {
+        text
+          .append('tspan')
+          .attr('x', 0)
+          .attr('dy', index === 0 ? 0 : 14)
+          .text(line);
+      });
+    });
+
+    const badgeSubtitles = badges
+      .append('text')
+      .attr('text-anchor', 'middle')
+      .attr('fill', 'rgba(243, 247, 240, 0.68)')
+      .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
+      .attr('font-size', 10.25)
+      .attr('y', 86);
+
+    badgeSubtitles.each(function setBadgeSubtitle(entry) {
+      const text = d3.select(this);
+      wrapLabel(entry.subtitle, 34).forEach((line, index) => {
+        text
+          .append('tspan')
+          .attr('x', 0)
+          .attr('dy', index === 0 ? 0 : 12)
+          .text(line);
+      });
+    });
 
     const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
 
-    const updateTooltip = (event, node) => {
-      const bounds = wrapRef.current?.getBoundingClientRect();
-      if (!bounds) return;
-      setTooltip({
-        visible: true,
-        x: event.clientX - bounds.left,
-        y: event.clientY - bounds.top,
-        label: node.label,
-      });
-    };
-
     const renderRegions = () => {
-      const regionEntries = [
-        { id: 'research', nodes: nodes.filter((node) => node.type === 'research') },
-        { id: 'activity', nodes: nodes.filter((node) => node.type === 'activity') },
-        { id: 'leadership', nodes: nodes.filter((node) => node.type === 'leadership') },
-        {
-          id: 'hubs',
-          nodes: nodes.filter((node) => node.type === 'theme' || node.type === 'institution'),
-        },
-      ].map((entry) => {
-        const points = entry.nodes.flatMap((node) => {
-          const radius = radiusFor(node) + (entry.id === 'hubs' ? 34 : 42);
+      const regionData = Object.keys(semanticClusters).map((clusterId) => {
+        const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
+        const center = getClusterCenter(clusterId, size.width, size.height, isMobile);
+        const coreRadius = isMobile ? 42 : 76;
+        const centerPoints = d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
+          center.x + Math.cos(angle) * coreRadius,
+          center.y + Math.sin(angle) * coreRadius,
+        ]);
+        const nodePoints = clusterNodes.flatMap((node) => {
+          const radius = radiusFor(node) + (node.type === 'theme' ? 70 : 56);
           return d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
             node.x + Math.cos(angle) * radius,
             node.y + Math.sin(angle) * radius,
@@ -626,37 +657,19 @@ function Graph() {
         });
 
         return {
-          ...entry,
-          hull: createHullPath(points),
+          id: clusterId,
+          path: createHull([...centerPoints, ...nodePoints]),
         };
       });
 
       regionLayer
         .selectAll('path')
-        .data(regionEntries.filter((entry) => entry.hull?.path))
+        .data(regionData.filter((entry) => entry.path))
         .join('path')
-        .attr('d', (entry) => entry.hull.path)
-        .attr('fill', (entry) => regionMeta[entry.id].fill)
-        .attr('stroke', (entry) => regionMeta[entry.id].stroke)
-        .attr('stroke-width', 1.1);
-
-      badges
-        .attr('transform', (entry) => {
-          const offset = badgeOffsets[entry.id];
-          return `translate(${entry.position.x + offset.x},${entry.position.y + offset.y})`;
-        });
-
-      badges.select('text').attr('x', 14).attr('y', 18);
-
-      badges.each(function setBadgeBox() {
-        const group = d3.select(this);
-        const text = group.select('text').node();
-        if (!text) return;
-        const box = text.getBBox();
-        group
-          .select('rect')
-          .attr('width', box.width + 28);
-      });
+        .attr('d', (entry) => entry.path)
+        .attr('fill', (entry) => semanticClusters[entry.id].fill)
+        .attr('stroke', (entry) => semanticClusters[entry.id].stroke)
+        .attr('stroke-width', 1.05);
     };
 
     const render = () => {
@@ -676,6 +689,19 @@ function Graph() {
 
     render();
 
+    const clearActiveState = () => {
+      circles.attr('opacity', 1).attr('r', (node) => radiusFor(node));
+      labels.attr('opacity', (node) => {
+        if (isMobile) return node.type === 'theme' || node.type === 'institution' ? 0.94 : 0;
+        if (node.type === 'theme') return 0.98;
+        if (node.type === 'institution') return 0.88;
+        return 0.9;
+      });
+      link.attr('stroke-opacity', 0.14).attr('stroke-width', 0.9);
+      nodeShell.attr('opacity', 1);
+      setTooltip((prev) => ({ ...prev, visible: false }));
+    };
+
     const setActiveState = (activeNode) => {
       nodeShell.filter((node) => node.id === activeNode.id).raise();
 
@@ -685,17 +711,14 @@ function Graph() {
 
       labels.attr('opacity', (node) => {
         if (node.id === activeNode.id) return 1;
-        if (isConnected(activeNode, node)) {
-          if (node.type === 'theme' || node.type === 'institution') return 1;
-          return isMobile ? 1 : 0.95;
-        }
+        if (isConnected(activeNode, node)) return 1;
         if (node.type === 'theme' || node.type === 'institution') return 0.14;
-        return 0;
+        return 0.08;
       });
 
       link
         .attr('stroke-opacity', (edge) =>
-          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.78 : 0.05
+          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.78 : 0.06
         )
         .attr('stroke-width', (edge) =>
           edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1.65 : 0.45
@@ -704,17 +727,16 @@ function Graph() {
       nodeShell.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.18));
     };
 
-    const clearActiveState = () => {
-      circles.attr('opacity', 1).attr('r', (node) => radiusFor(node));
-      labels.attr('opacity', (node) => {
-        if (isMobile) return 0;
-        if (node.type === 'theme') return 0.98;
-        if (node.type === 'institution') return 0.86;
-        return 0;
+    const updateTooltip = (event, node) => {
+      const bounds = wrapRef.current?.getBoundingClientRect();
+      if (!bounds) return;
+
+      setTooltip({
+        visible: true,
+        x: event.clientX - bounds.left,
+        y: event.clientY - bounds.top,
+        label: node.label,
       });
-      link.attr('stroke-opacity', 0.13).attr('stroke-width', 0.85);
-      nodeShell.attr('opacity', 1);
-      setTooltip((prev) => ({ ...prev, visible: false }));
     };
 
     nodeShell
@@ -739,11 +761,20 @@ function Graph() {
         }
       });
 
+    simulation.on('tick', () => {
+      nodes.forEach(clampNode);
+      render();
+
+      if (simulation.alpha() < 0.024) {
+        simulation.stop();
+      }
+    });
+
     nodeShell.call(
       d3
         .drag()
         .on('start', (event, node) => {
-          if (!event.active) simulation.alpha(0.24).restart();
+          if (!event.active) simulation.alpha(0.16).restart();
           node.fx = node.x;
           node.fy = node.y;
         })
@@ -768,22 +799,6 @@ function Graph() {
 
   return (
     <GraphWrap ref={wrapRef}>
-      <GuideCard>
-        <GuideTitle>Knowledge Map</GuideTitle>
-        <GuideText>
-          Research, activities, and leadership cluster around the themes and institutions that tie
-          them together.
-        </GuideText>
-        <LegendRow>
-          {overview.map((item) => (
-            <LegendItem key={item.label}>
-              <LegendDot $color={item.color} $outlined={item.outlined} />
-              <span>{item.label}</span>
-            </LegendItem>
-          ))}
-        </LegendRow>
-      </GuideCard>
-      <Hint>Hover to trace one thread through the graph</Hint>
       <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge graph" />
       <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
         {tooltip.label}
