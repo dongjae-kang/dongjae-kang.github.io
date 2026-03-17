@@ -8,8 +8,8 @@ const GraphWrap = styled.div`
   position: relative;
   width: 100%;
   max-width: ${({ theme }) => theme.layout.graphMax};
-  height: min(65vh, 700px);
-  min-height: 520px;
+  height: min(50vh, 540px);
+  min-height: 380px;
   padding: 20px;
   border-radius: 32px;
   overflow: hidden;
@@ -24,8 +24,8 @@ const GraphWrap = styled.div`
     0 24px 60px rgba(0, 0, 0, 0.16);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 50vh;
-    min-height: 400px;
+    height: 42vh;
+    min-height: 320px;
     padding: 16px;
   }
 `;
@@ -52,66 +52,6 @@ const Tooltip = styled.div`
   white-space: nowrap;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   transition: opacity 0.15s ease;
-`;
-
-const ClusterCards = styled.div`
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
-  }
-`;
-
-const ClusterCard = styled.div`
-  position: absolute;
-  width: ${({ $width }) => $width};
-  display: grid;
-  gap: 7px;
-  padding: 12px 14px 14px;
-  border-radius: 18px;
-  border: 1px solid rgba(245, 240, 232, 0.08);
-  background: rgba(13, 26, 20, 0.24);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
-  text-align: ${({ $align }) => $align};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 12px 14px 14px;
-    border-radius: 16px;
-  }
-`;
-
-const ClusterLine = styled.span`
-  width: 68px;
-  height: 1px;
-  background: rgba(245, 240, 232, 0.22);
-  margin: ${({ $align }) =>
-    $align === 'center' ? '0 auto' : $align === 'right' ? '0 0 0 auto' : '0'};
-`;
-
-const ClusterEyebrow = styled.span`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.58);
-`;
-
-const ClusterCardTitle = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(1.45rem, 1.9vw, 1.85rem);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 0.95;
-  color: ${({ theme }) => theme.colors.home.text};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: 1.35rem;
-  }
 `;
 
 const nodeStyle = {
@@ -214,9 +154,9 @@ function pickBestCluster(scoreMap, fallback) {
 function getClusterCenter(clusterId, width, height, isMobile) {
   if (isMobile) {
     const mobilePositions = {
-      discourse: { x: width * 0.5, y: height * 0.22 },
-      governance: { x: width * 0.5, y: height * 0.52 },
-      equity: { x: width * 0.5, y: height * 0.77 },
+      discourse: { x: width * 0.34, y: height * 0.18 },
+      governance: { x: width * 0.68, y: height * 0.46 },
+      equity: { x: width * 0.38, y: height * 0.78 },
     };
     return mobilePositions[clusterId];
   }
@@ -228,50 +168,6 @@ function getClusterCenter(clusterId, width, height, isMobile) {
   };
 
   return desktopPositions[clusterId];
-}
-
-function getClusterCardLayout(clusterId, isMobile) {
-  if (isMobile) {
-    const mobileLayouts = {
-      discourse: {
-        style: { top: '18px', left: '18px' },
-        width: 'min(220px, calc(100% - 36px))',
-        align: 'left',
-      },
-      governance: {
-        style: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
-        width: 'min(220px, calc(100% - 36px))',
-        align: 'center',
-      },
-      equity: {
-        style: { left: '50%', bottom: '18px', transform: 'translateX(-50%)' },
-        width: 'min(248px, calc(100% - 36px))',
-        align: 'center',
-      },
-    };
-
-    return mobileLayouts[clusterId];
-  }
-
-  const desktopLayouts = {
-    discourse: {
-      style: { top: '20px', left: '20px' },
-      width: '220px',
-      align: 'left',
-    },
-    governance: {
-      style: { top: '20px', right: '20px' },
-      width: '220px',
-      align: 'right',
-    },
-    equity: {
-      style: { left: '50%', bottom: '18px', transform: 'translateX(-50%)' },
-      width: '250px',
-      align: 'center',
-    },
-  };
-
-  return desktopLayouts[clusterId];
 }
 
 function scoreClusterFromGraph(startId, nodesById, adjacency, maxDepth = 4) {
@@ -471,7 +367,7 @@ function createHull(points) {
   return d3.line().curve(d3.curveCatmullRomClosed.alpha(0.55))(hull);
 }
 
-function scaleLayoutToFrame(nodes, width, height) {
+function scaleLayoutToFrame(nodes, width, height, isMobile) {
   const xExtent = d3.extent(nodes, (node) => node.x);
   const yExtent = d3.extent(nodes, (node) => node.y);
 
@@ -484,13 +380,17 @@ function scaleLayoutToFrame(nodes, width, height) {
     return;
   }
 
-  const contentWidth = xExtent[1] - xExtent[0] + 180;
-  const contentHeight = yExtent[1] - yExtent[0] + 180;
-  const scale = Math.min((width * 0.94) / contentWidth, (height * 0.86) / contentHeight, 1.75);
+  const contentWidth = xExtent[1] - xExtent[0] + (isMobile ? 220 : 180);
+  const contentHeight = yExtent[1] - yExtent[0] + (isMobile ? 220 : 180);
+  const scale = Math.min(
+    (width * (isMobile ? 0.9 : 0.94)) / contentWidth,
+    (height * (isMobile ? 0.8 : 0.86)) / contentHeight,
+    isMobile ? 1.08 : 1.75
+  );
   const sourceCenterX = (xExtent[0] + xExtent[1]) / 2;
   const sourceCenterY = (yExtent[0] + yExtent[1]) / 2;
   const targetCenterX = width / 2;
-  const targetCenterY = height / 2 - 20;
+  const targetCenterY = isMobile ? height / 2 + 4 : height / 2 - 20;
 
   nodes.forEach((node) => {
     node.x = targetCenterX + (node.x - sourceCenterX) * scale;
@@ -536,8 +436,14 @@ function Graph() {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
-    const { nodes, edges } = buildLayout(data.nodes, data.edges, size.width, size.height, isMobile);
-    scaleLayoutToFrame(nodes, size.width, size.height);
+    const { nodes, edges, adjacency } = buildLayout(
+      data.nodes,
+      data.edges,
+      size.width,
+      size.height,
+      isMobile
+    );
+    scaleLayoutToFrame(nodes, size.width, size.height, isMobile);
 
     const linkedById = new Set();
     edges.forEach((edge) => {
@@ -545,13 +451,15 @@ function Graph() {
       linkedById.add(`${edge.target}-${edge.source}`);
     });
 
+    const isImportantMobileNode = (node) => (adjacency.get(node.id)?.length ?? 0) >= 3;
+
     const radiusFor = (node) => {
       const base = nodeStyle[node.type]?.radius ?? 7;
       return isMobile ? Math.max(base - 1.5, 4.5) : base;
     };
 
     const clampNode = (node) => {
-      const padding = isMobile ? 28 : 40;
+      const padding = isMobile ? 24 : 40;
       node.x = Math.max(padding, Math.min(size.width - padding, node.x));
       node.y = Math.max(padding, Math.min(size.height - padding, node.y));
     };
@@ -566,19 +474,20 @@ function Graph() {
           .distance((edge) => {
             if (edge.source.cluster === edge.target.cluster) {
               if (edge.source.type === 'theme' || edge.target.type === 'theme') {
-                return isMobile ? 58 : 82;
+                return isMobile ? 66 : 82;
               }
-              return isMobile ? 72 : 102;
+              return isMobile ? 82 : 102;
             }
-            return isMobile ? 104 : 150;
+            return isMobile ? 116 : 150;
           })
           .strength((edge) => (edge.source.cluster === edge.target.cluster ? 0.62 : 0.16))
       )
       .force(
         'charge',
         d3.forceManyBody().strength((node) => {
-          if (node.type === 'theme') return isMobile ? -100 : -160;
-          if (node.type === 'institution') return isMobile ? -82 : -126;
+          if (node.type === 'theme') return isMobile ? -116 : -160;
+          if (node.type === 'institution') return isMobile ? -92 : -126;
+          if (isMobile && isImportantMobileNode(node)) return -102;
           return isMobile ? -76 : -108;
         })
       )
@@ -596,7 +505,10 @@ function Graph() {
       )
       .force(
         'collide',
-        d3.forceCollide().radius((node) => radiusFor(node) + (isMobile ? 18 : 24))
+        d3.forceCollide().radius((node) => {
+          if (!isMobile) return radiusFor(node) + 24;
+          return radiusFor(node) + (isImportantMobileNode(node) ? 34 : 22);
+        })
       )
       .alpha(0.4)
       .alphaDecay(0.055)
@@ -646,14 +558,15 @@ function Graph() {
       .attr('paint-order', 'stroke')
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
       .attr('font-size', (node) => {
-        if (node.type === 'theme') return isMobile ? 10.5 : 13;
-        if (node.type === 'institution') return isMobile ? 9 : 10.75;
-        return isMobile ? 0 : 11;
+        if (node.type === 'theme') return isMobile ? (isImportantMobileNode(node) ? 9.4 : 0) : 13;
+        if (node.type === 'institution')
+          return isMobile ? (isImportantMobileNode(node) ? 8.2 : 0) : 10.75;
+        return isMobile ? (isImportantMobileNode(node) ? 8.4 : 0) : 11;
       })
       .attr('font-weight', (node) => (node.type === 'theme' ? 600 : 500))
       .attr('letter-spacing', '0.01em')
       .attr('opacity', (node) => {
-        if (isMobile) return node.type === 'theme' || node.type === 'institution' ? 0.94 : 0;
+        if (isMobile) return isImportantMobileNode(node) ? 0.92 : 0;
         if (node.type === 'theme') return 0.98;
         if (node.type === 'institution') return 0.88;
         return 0.9;
@@ -662,8 +575,17 @@ function Graph() {
 
     labels.each(function createLabel(node) {
       const text = d3.select(this);
-      const lines = wrapLabel(node.label, node.type === 'theme' ? 20 : 16);
-      const baseY = radiusFor(node) + 16 - (lines.length - 1) * 6;
+      const maxChars = isMobile
+        ? node.type === 'theme'
+          ? 15
+          : node.type === 'institution'
+            ? 11
+            : 11
+        : node.type === 'theme'
+          ? 20
+          : 16;
+      const lines = wrapLabel(node.label, maxChars);
+      const baseY = radiusFor(node) + (isMobile ? 14 : 16) - (lines.length - 1) * 6;
 
       lines.forEach((line, index) => {
         text
@@ -681,13 +603,13 @@ function Graph() {
       const regionData = Object.keys(semanticClusters).map((clusterId) => {
         const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
         const center = getClusterCenter(clusterId, size.width, size.height, isMobile);
-        const coreRadius = isMobile ? 42 : 76;
+        const coreRadius = isMobile ? 28 : 76;
         const centerPoints = d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
           center.x + Math.cos(angle) * coreRadius,
           center.y + Math.sin(angle) * coreRadius,
         ]);
         const nodePoints = clusterNodes.flatMap((node) => {
-          const radius = radiusFor(node) + (node.type === 'theme' ? 70 : 56);
+          const radius = radiusFor(node) + (node.type === 'theme' ? (isMobile ? 42 : 70) : isMobile ? 32 : 56);
           return d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
             node.x + Math.cos(angle) * radius,
             node.y + Math.sin(angle) * radius,
@@ -707,7 +629,9 @@ function Graph() {
         .attr('d', (entry) => entry.path)
         .attr('fill', (entry) => semanticClusters[entry.id].fill)
         .attr('stroke', (entry) => semanticClusters[entry.id].stroke)
-        .attr('stroke-width', 1.05);
+        .attr('stroke-width', isMobile ? 0.8 : 1.05)
+        .attr('fill-opacity', isMobile ? 0.58 : 1)
+        .attr('stroke-opacity', isMobile ? 0.68 : 1);
     };
 
     const render = () => {
@@ -727,7 +651,7 @@ function Graph() {
     const clearActiveState = () => {
       circles.attr('opacity', 1).attr('r', (node) => radiusFor(node));
       labels.attr('opacity', (node) => {
-        if (isMobile) return node.type === 'theme' || node.type === 'institution' ? 0.94 : 0;
+        if (isMobile) return isImportantMobileNode(node) ? 0.92 : 0;
         if (node.type === 'theme') return 0.98;
         if (node.type === 'institution') return 0.88;
         return 0.9;
@@ -835,24 +759,6 @@ function Graph() {
   return (
     <GraphWrap ref={wrapRef}>
       <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge graph" />
-      <ClusterCards>
-        {Object.entries(semanticClusters).map(([clusterId, cluster]) => {
-          const layout = getClusterCardLayout(clusterId, isMobile);
-
-          return (
-            <ClusterCard
-              key={clusterId}
-              style={layout.style}
-              $width={layout.width}
-              $align={layout.align}
-            >
-              <ClusterEyebrow>Thematic Cluster</ClusterEyebrow>
-              <ClusterLine $align={layout.align} />
-              <ClusterCardTitle>{cluster.title.join(' ')}</ClusterCardTitle>
-            </ClusterCard>
-          );
-        })}
-      </ClusterCards>
       <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
         {tooltip.label}
       </Tooltip>

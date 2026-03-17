@@ -1,8 +1,12 @@
+import cesFoundry from '../assets/images/activities/ces-foundry.jpeg';
+import hycMixerPresenting from '../assets/images/activities/hyc-mixer-presenting.jpeg';
 import kgsaCareerPoster from '../assets/images/activities/kgsa-career-poster.jpg';
 import kgsaCareerRoom from '../assets/images/activities/kgsa-career-room.jpg';
+import kaistPodium from '../assets/images/activities/kaist-podium.jpeg';
 import upennMixerGroup from '../assets/images/activities/upenn-mixer-group.jpeg';
 import upennMixerOpening from '../assets/images/activities/upenn-mixer-opening.jpeg';
 import upennMixerStage from '../assets/images/activities/upenn-mixer-stage.jpeg';
+import valedictorianGown from '../assets/images/activities/valedictorian-gown.jpeg';
 
 export const activities = [
   {
@@ -16,20 +20,20 @@ export const activities = [
     tags: ['Leadership', 'KAIST'],
     links: [{ label: 'Video', url: 'https://www.youtube.com/watch?v=U7m4LpyHffk' }],
     media: {
+      cover: valedictorianGown,
       youtube: 'https://www.youtube.com/watch?v=U7m4LpyHffk',
       youtubeNote: 'Speech starts at 1:15:02',
-      // PHOTO: Owner will provide
-      photos: [],
+      photos: [valedictorianGown],
     },
   },
   {
     id: 'un-youth-forum',
-    title: 'UN ECOSOC Youth Forum - SDG 9 Speaker',
+    title: 'UN ECOSOC Youth Forum - SDG 9 Application',
     date: 'Apr 2026',
     summary:
-      'Scheduled to speak at the SDG 9 session of the UN ECOSOC Youth Forum as a representative of Columbia University.',
+      'Applied to speak at the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.',
     description:
-      'In April 2026, Kang is scheduled to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. He will represent Columbia University at United Nations Headquarters in New York. The invitation reflects the overlap between his work on technology governance and broader questions of public infrastructure and access.',
+      'Applied to speak at the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University. Selection results are pending as of March 2026.',
     tags: ['UN', 'Platform Governance', 'Speaking'],
     links: [],
     media: {
@@ -55,24 +59,24 @@ export const activities = [
   {
     id: 'ces',
     title: 'CES Visit',
-    date: 'Date to be added',
-    summary: 'Visited CES to track current technology products, narratives, and industry direction.',
+    date: 'Jan 2026',
+    summary:
+      'Visited the Consumer Electronics Show, exploring developments in AI hardware, autonomous systems, and consumer technology.',
     description:
-      'Kang attended the Consumer Electronics Show to see how emerging technologies are framed in industry settings. The visit was less about product consumption than about understanding what companies choose to surface, who they imagine their users to be, and how innovation is translated into public expectation.',
+      'Visited the Consumer Electronics Show, exploring developments in AI hardware, autonomous systems, and consumer technology.',
     tags: ['Technology', 'Industry'],
     links: [],
     media: {
-      // PHOTO: Owner will provide
-      photos: [],
+      cover: cesFoundry,
+      photos: [cesFoundry],
     },
   },
   {
     id: 'stanford',
     title: 'Stanford Visit',
-    date: 'Date to be added',
-    summary: 'Visited Stanford as part of ongoing academic and technology exploration.',
-    description:
-      'Kang visited Stanford University as part of a broader interest in how technical institutions shape research agendas and public discourse. The visit belongs to the same strand of work that links academic inquiry, policy training, and institutional observation.',
+    date: '2025',
+    summary: 'Visited Stanford University.',
+    description: 'Visited Stanford University.',
     tags: ['Academia'],
     links: [],
     media: {
@@ -83,7 +87,7 @@ export const activities = [
   {
     id: 'hyc-mixer',
     title: 'Harvard-Yale-Columbia Korean Student Mixer - MC',
-    date: 'Date to be added',
+    date: 'Jan 2026',
     summary:
       'Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.',
     description:
@@ -91,8 +95,8 @@ export const activities = [
     tags: ['Leadership', 'Community'],
     links: [],
     media: {
-      // PHOTO: Owner will provide
-      photos: [],
+      cover: hycMixerPresenting,
+      photos: [hycMixerPresenting],
     },
   },
   {
@@ -124,8 +128,8 @@ export const activities = [
       { label: 'KAIST Herald', url: 'https://herald.kaist.ac.kr/news/articleView.html?idxno=20910' },
     ],
     media: {
-      // PHOTO: Owner will provide
-      photos: [],
+      cover: kaistPodium,
+      photos: [kaistPodium],
     },
   },
   {
@@ -137,7 +141,7 @@ export const activities = [
     description:
       'Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.',
     tags: ['Research', 'Speaking', 'HCI'],
-    links: [{ label: 'Related Research', url: '/#/research/crisisnews' }],
+    links: [{ label: 'Related Research', url: '/research/crisisnews' }],
     media: {
       // PHOTO: Owner will provide
       photos: [],
@@ -146,7 +150,7 @@ export const activities = [
   {
     id: 'kgsa-career',
     title: 'KGSA Career Event - Organizer & MC',
-    date: 'Mar 2026',
+    date: 'Mar 28, 2026',
     summary:
       'Organized and MC\'d a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.',
     description:

@@ -53,6 +53,8 @@
     { "source": "un-youth-forum", "target": "un" },
     { "source": "un-youth-forum", "target": "platform-governance" },
     { "source": "un-ga-hlw", "target": "un" },
+    { "source": "ces", "target": "ai-policy" },
+    { "source": "stanford", "target": "ai-policy" },
     { "source": "columbia-ai-club", "target": "columbia-sipa" },
     { "source": "columbia-ai-club", "target": "ai-policy" },
     { "source": "columbia-ai-club", "target": "platform-governance" },
@@ -60,10 +62,13 @@
     { "source": "youth-policy", "target": "participatory-governance" },
     { "source": "ai-in-smes", "target": "equitable-development" },
     { "source": "ai-in-smes", "target": "ai-policy" },
+    { "source": "ai-in-smes", "target": "st-policy" },
     { "source": "ai-in-smes", "target": "kaist" },
     { "source": "kgsa-career", "target": "columbia-sipa" },
     { "source": "upenn-mixer", "target": "columbia-sipa" },
     { "source": "hyc-mixer", "target": "columbia-sipa" },
-    { "source": "chi-2025", "target": "kaist" }
+    { "source": "chi-2025", "target": "kaist" },
+    { "source": "chi-2025", "target": "misinformation" },
+    { "source": "chi-2025", "target": "platform-governance" }
   ]
 }

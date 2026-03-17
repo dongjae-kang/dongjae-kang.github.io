@@ -30,7 +30,7 @@ const Thumbnail = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 8px;
-  padding: 20px;
+  padding: ${({ $hasImage }) => ($hasImage ? '0' : '20px')};
   border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
@@ -63,7 +63,7 @@ const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 1.05;
 `;
 
 const Year = styled.p`
@@ -163,7 +163,7 @@ function ResearchDetail() {
         <Container>
           <Back to="/research">Back to Research</Back>
 
-          <Thumbnail>
+          <Thumbnail $hasImage={!!item.thumbnail}>
             {item.thumbnail ? (
               <ThumbnailImage src={item.thumbnail} alt={`${item.title} visual`} />
             ) : (

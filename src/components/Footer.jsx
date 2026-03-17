@@ -32,6 +32,11 @@ const ContactRow = styled.div`
 
 const FooterLink = styled.a`
   opacity: 0.82;
+
+  &:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
 `;
 
 function Footer() {

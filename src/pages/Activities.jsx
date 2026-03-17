@@ -109,7 +109,7 @@ const PhotoTitle = styled.span`
   color: ${({ theme }) => theme.colors.subpage.text};
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-  line-height: 0.92;
+  line-height: 1.05;
 `;
 
 const PhotoText = styled.span`
@@ -121,7 +121,7 @@ const CardTitle = styled.h2`
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 1.05;
 `;
 
 const DateText = styled.p`

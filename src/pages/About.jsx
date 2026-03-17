@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import PageTransition from '../components/PageTransition';
 import profileSquare from '../assets/images/profile-square.jpg';
+import profileFull from '../assets/images/profile-full.jpg';
 
 const Page = styled.main`
   min-height: 100vh;
@@ -24,7 +25,7 @@ const Title = styled.h1`
 
 const Intro = styled.section`
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
   gap: 32px;
   align-items: start;
 
@@ -33,9 +34,14 @@ const Intro = styled.section`
   }
 `;
 
+const PhotoColumn = styled.div`
+  display: grid;
+  gap: 14px;
+`;
+
 const Photo = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   border-radius: ${({ theme }) => theme.layout.radius};
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
@@ -43,8 +49,22 @@ const Photo = styled.div`
   box-shadow: 0 18px 40px rgba(21, 54, 41, 0.14);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
+  }
+`;
+
+const SecondaryPhoto = styled.div`
+  width: 220px;
+  aspect-ratio: 4 / 5;
+  border-radius: ${({ theme }) => theme.layout.radius};
+  background: ${({ theme }) => theme.colors.subpage.placeholder};
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(21, 54, 41, 0.1);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
   }
 `;
 
@@ -65,6 +85,9 @@ const Bio = styled.div`
 
   a {
     color: ${({ theme }) => theme.colors.subpage.accent};
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.16em;
   }
 `;
 
@@ -94,9 +117,14 @@ function About() {
         <Container>
           <Title>About</Title>
           <Intro>
-            <Photo aria-label="Dongjae Kang profile photo">
-              <PhotoImage src={profileSquare} alt="Dongjae (Jack) Kang" />
-            </Photo>
+            <PhotoColumn>
+              <Photo aria-label="Dongjae Kang profile photo">
+                <PhotoImage src={profileSquare} alt="Dongjae (Jack) Kang" />
+              </Photo>
+              <SecondaryPhoto aria-label="Dongjae Kang full portrait">
+                <PhotoImage src={profileFull} alt="Dongjae (Jack) Kang portrait" />
+              </SecondaryPhoto>
+            </PhotoColumn>
             <Bio>
               <p>
                 Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in

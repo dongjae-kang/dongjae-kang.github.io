@@ -27,10 +27,6 @@ export const GlobalStyles = createGlobalStyle`
     transition: ${({ theme }) => theme.transitions.hover};
   }
 
-  a:hover {
-    opacity: 0.7;
-  }
-
   button,
   input,
   textarea,

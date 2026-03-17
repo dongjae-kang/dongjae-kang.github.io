@@ -97,7 +97,7 @@ const CardHeader = styled.div`
 const CardTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
-  line-height: 0.92;
+  line-height: 1.05;
   font-weight: 600;
 `;
 
@@ -143,10 +143,7 @@ function Research() {
       <Page>
         <Container>
           <Title>Research</Title>
-          <Intro>
-            Projects in misinformation, platform governance, interface design, and technology
-            policy.
-          </Intro>
+          <Intro>Research in misinformation, platform governance, and technology policy.</Intro>
 
           <Grid>
             {research.map((item) => (

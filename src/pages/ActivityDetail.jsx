@@ -32,7 +32,7 @@ const Photo = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 8px;
-  padding: 20px;
+  padding: ${({ $hasImage }) => ($hasImage ? '0' : '20px')};
 `;
 
 const PhotoImage = styled.img`
@@ -50,7 +50,7 @@ const TitleBlock = styled.div`
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
-  line-height: 0.92;
+  line-height: 1.05;
   font-weight: 600;
 `;
 
@@ -77,7 +77,7 @@ const MediaNote = styled.span`
 const PlaceholderTitle = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 0.92;
+  line-height: 1.05;
   max-width: 14ch;
   color: ${({ theme }) => theme.colors.subpage.text};
 `;
@@ -93,7 +93,8 @@ const Links = styled.div`
   flex-wrap: wrap;
   gap: 16px;
 
-  a {
+  a,
+  span {
     color: ${({ theme }) => theme.colors.subpage.accent};
     font-weight: 500;
   }
@@ -157,7 +158,7 @@ function ActivityDetail() {
         <Container>
           <Back to="/activities">Back to Activities</Back>
 
-          <Photo>
+          <Photo $hasImage={!!(item.media?.cover || item.media?.photos?.[0])}>
             {item.media?.cover || item.media?.photos?.[0] ? (
               <PhotoImage
                 src={item.media?.cover || item.media?.photos?.[0]}
@@ -167,7 +168,7 @@ function ActivityDetail() {
               <>
                 <MediaLabel>{item.date}</MediaLabel>
                 <PlaceholderTitle>{item.title}</PlaceholderTitle>
-                <MediaNote>Photo archive forthcoming.</MediaNote>
+                <MediaNote>Photos coming soon.</MediaNote>
               </>
             )}
           </Photo>
@@ -190,15 +191,18 @@ function ActivityDetail() {
               {item.links.map((link) => {
                 const isExternal = /^https?:\/\//.test(link.url);
 
+                if (isExternal) {
+                  return (
+                    <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  );
+                }
+
                 return (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    target={isExternal ? '_blank' : undefined}
-                    rel={isExternal ? 'noopener noreferrer' : undefined}
-                  >
+                  <Link key={link.url} to={link.url}>
                     {link.label}
-                  </a>
+                  </Link>
                 );
               })}
             </Links>
@@ -225,10 +229,7 @@ function ActivityDetail() {
           )}
 
           {!item.media?.photos?.length && item.id !== 'valedictorian' && (
-            <ArchiveNote>
-              This entry is already part of the site, but its visual archive has not been uploaded
-              yet.
-            </ArchiveNote>
+            <ArchiveNote>Photos coming soon.</ArchiveNote>
           )}
         </Container>
       </Page>

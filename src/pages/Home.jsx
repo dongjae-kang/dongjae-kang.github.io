@@ -60,12 +60,12 @@ const Page = styled.main`
 
 const Hero = styled.section`
   min-height: 100vh;
-  padding: 120px 0 72px;
+  padding: 100px 0 40px;
   display: flex;
   align-items: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 108px 0 48px;
+    padding: 96px 0 36px;
   }
 `;
 
@@ -74,12 +74,8 @@ const HeroInner = styled.div`
   margin: 0 auto;
   display: grid;
   justify-items: center;
-  gap: 24px;
+  gap: 16px;
   text-align: center;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: 18px;
-  }
 `;
 
 const Name = styled.h1`
@@ -92,9 +88,13 @@ const Name = styled.h1`
 `;
 
 const Tagline = styled.p`
-  max-width: 680px;
+  max-width: 820px;
   font-size: clamp(1.08rem, 1.8vw, 1.28rem);
   color: rgba(245, 240, 232, 0.86);
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-width: 480px;
+  }
 `;
 
 const ScrollCue = styled.button`
@@ -109,7 +109,7 @@ const ScrollCue = styled.button`
 
   svg {
     font-size: 1.15rem;
-    animation: ${bounce} 2.5s ease-in-out infinite;
+    animation: ${({ $stopped }) => ($stopped ? 'none' : css`${bounce} 2.5s ease-in-out infinite`)};
   }
 `;
 
@@ -117,7 +117,7 @@ const Story = styled.div`
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
-  gap: 120px;
+  gap: 88px;
   padding: 16px 0 120px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -141,7 +141,7 @@ const NarrativeSection = styled.section`
 const NarrativeGrid = styled.div`
   display: grid;
   grid-template-columns: ${({ $layout = 'media' }) =>
-    $layout === 'media' ? '1.05fr 0.95fr' : '0.95fr 1.05fr'};
+    $layout === 'media' ? '1.15fr 0.85fr' : '0.85fr 1.15fr'};
   gap: 40px;
   align-items: center;
 
@@ -174,7 +174,7 @@ const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 1.05;
 `;
 
 const SectionBody = styled.p`
@@ -237,7 +237,7 @@ const FeatureTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 1;
 `;
 
 const FeatureText = styled.p`
@@ -373,7 +373,7 @@ const ActivityKicker = styled.span`
 const ActivityTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.8rem;
-  line-height: 0.92;
+  line-height: 1.05;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.home.text};
 `;
@@ -393,8 +393,16 @@ const ActivityDate = styled.span`
   font-size: 0.82rem;
 `;
 
+const SectionLink = styled(Link)`
+  width: fit-content;
+  font-size: 0.88rem;
+  color: rgba(154, 184, 158, 0.96);
+  letter-spacing: 0.02em;
+`;
+
 function Home() {
   const storyRef = useRef(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const [setResearchNode, isResearchVisible] = useFadeIn(0.2);
   const [setLeadershipNode, isLeadershipVisible] = useFadeIn(0.2);
   const [setActivitiesNode, isActivitiesVisible] = useFadeIn(0.2);
@@ -402,6 +410,15 @@ function Home() {
   const featuredActivities = activities.filter((item) =>
     ['chi-2025', 'un-ga-hlw', 'upenn-mixer'].includes(item.id)
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) setHasScrolled(true);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <PageTransition>
@@ -414,7 +431,10 @@ function Home() {
               Researching how technology shapes public discourse and how governance can make it
               more equitable.
             </Tagline>
-            <ScrollCue onClick={() => storyRef.current?.scrollIntoView({ behavior: 'smooth' })}>
+            <ScrollCue
+              $stopped={hasScrolled}
+              onClick={() => storyRef.current?.scrollIntoView({ behavior: 'smooth' })}
+            >
               <span>Scroll to explore</span>
               <FiArrowDown />
             </ScrollCue>
@@ -451,6 +471,7 @@ function Home() {
                   outlet. The work is empirical, but the question is public: what kinds of
                   platforms make collective judgment harder, and what kinds make it more possible.
                 </SectionBody>
+                <SectionLink to="/research">View all research →</SectionLink>
               </SectionCopy>
             </NarrativeGrid>
           </NarrativeSection>
@@ -557,6 +578,7 @@ function Home() {
                 institution. Together they describe the same pattern: studying systems, then
                 working inside them.
               </SectionBody>
+              <SectionLink to="/activities">View all activities →</SectionLink>
             </ActivitySection>
           </NarrativeSection>
         </Story>
