@@ -35,10 +35,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   gap: 16px;
   pointer-events: auto;
   backdrop-filter: blur(18px);
-  background: ${({$home:e,$scrolled:t})=>e?t?`rgba(26, 26, 26, 0.6)`:`rgba(26, 26, 26, 0.18)`:t?`rgba(245, 240, 232, 0.82)`:`rgba(245, 240, 232, 0.62)`};
+  background: ${({$home:e,$scrolled:t})=>e?t?`rgba(8, 23, 17, 0.72)`:`rgba(8, 23, 17, 0.28)`:t?`rgba(242, 245, 239, 0.88)`:`rgba(242, 245, 239, 0.7)`};
   border: 1px solid
-    ${({$home:e,theme:t})=>e?`rgba(245, 240, 232, 0.14)`:t.colors.subpage.border};
-  box-shadow: ${({$scrolled:e})=>e?`0 12px 30px rgba(0, 0, 0, 0.08)`:`none`};
+    ${({$home:e})=>e?`rgba(154, 199, 175, 0.16)`:`rgba(30, 91, 67, 0.12)`};
+  box-shadow: ${({$scrolled:e,$home:t})=>e?t?`0 14px 40px rgba(0, 0, 0, 0.2)`:`0 12px 30px rgba(21, 54, 41, 0.08)`:`none`};
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     width: calc(100% - 24px);
@@ -49,9 +49,9 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,Sc=U(ca)`
   font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({$home:e,theme:t})=>e?t.colors.home.text:t.colors.subpage.text};
 `,Cc=U.nav`
@@ -61,8 +61,8 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   flex-wrap: wrap;
 `,wc=U(ca)`
   font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({$home:e,theme:t})=>e?t.colors.home.text:t.colors.subpage.text};
   opacity: 0.62;
@@ -121,14 +121,15 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   white-space: nowrap;
   opacity: ${({$visible:e})=>e?1:0};
   transition: opacity 0.15s ease;
-`,Am={research:{fill:`#8BA888`,stroke:`none`,radius:8},activity:{fill:`#F5F0E8`,stroke:`none`,radius:7},leadership:{fill:`#A0856E`,stroke:`none`,radius:7},theme:{fill:`transparent`,stroke:`#F5F0E8`,radius:9},institution:{fill:`#666666`,stroke:`none`,radius:6}};function jm(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=qr(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:Em.nodes.map(e=>({...e})),edges:Em.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let i=Eu(e.current);i.selectAll(`*`).remove();let a=new Set;c.edges.forEach(e=>{a.add(`${e.source}-${e.target}`),a.add(`${e.target}-${e.source}`)});let l=e=>{let t=Am[e.type]?.radius??7;return s?Math.max(t-2,4):t},u=xm(c.nodes).force(`link`,fm(c.edges).id(e=>e.id).distance(s?68:94).strength(.55)).force(`charge`,Sm().strength(s?-100:-200)).force(`center`,Ip(r.width/2,r.height/2)).force(`collide`,lm().radius(e=>l(e)+(s?12:20))),d=i.append(`g`),f=d.append(`g`).attr(`stroke`,`#F5F0E8`).attr(`stroke-opacity`,.15).selectAll(`line`).data(c.edges).join(`line`).attr(`stroke-width`,.8),p=d.append(`g`).selectAll(`g`).data(c.nodes).join(`g`).style(`cursor`,e=>e.url?`pointer`:`grab`),m=p.append(`circle`).attr(`r`,e=>l(e)).attr(`fill`,e=>Am[e.type]?.fill??`#F5F0E8`).attr(`stroke`,e=>Am[e.type]?.stroke??`none`).attr(`stroke-width`,e=>e.type===`theme`?1.2:0),h=p.append(`text`).text(e=>e.label).attr(`text-anchor`,`middle`).attr(`dy`,e=>l(e)+14).attr(`fill`,`#F5F0E8`).attr(`font-family`,`Inter, sans-serif`).attr(`font-size`,s?10:11).attr(`opacity`,s?0:.6),g=(e,t)=>e.id===t.id||a.has(`${e.id}-${t.id}`),_=(e,n)=>{let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})},v=e=>{m.attr(`opacity`,t=>g(e,t)?1:.15),h.attr(`opacity`,t=>s?g(e,t)?1:0:g(e,t)?1:.15),f.attr(`stroke-opacity`,t=>t.source.id===e.id||t.target.id===e.id?.6:.1).attr(`stroke-width`,t=>t.source.id===e.id||t.target.id===e.id?1.5:.5),p.attr(`opacity`,t=>g(e,t)?1:.2)},y=()=>{m.attr(`opacity`,1),h.attr(`opacity`,s?0:.6),f.attr(`stroke-opacity`,.15).attr(`stroke-width`,.8),p.attr(`opacity`,1),o(e=>({...e,visible:!1}))};return p.on(`mouseenter`,function(e,t){Eu(this).raise().transition().duration(150).attr(`transform`,`scale(1.3)`),v(t),_(e,t)}).on(`mousemove`,function(e,t){_(e,t)}).on(`mouseleave`,function(){Eu(this).transition().duration(150).attr(`transform`,`scale(1)`),y()}).on(`click`,function(e,t){s&&(v(t),_(e,t)),t.url&&t.type!==`theme`&&t.type!==`institution`&&n(t.url)}),p.call(Vu().on(`start`,(e,t)=>{e.active||u.alphaTarget(.3).restart(),t.fx=t.x,t.fy=t.y}).on(`drag`,(e,t)=>{t.fx=e.x,t.fy=e.y}).on(`end`,(e,t)=>{e.active||u.alphaTarget(0),t.fx=null,t.fy=null})),u.on(`tick`,()=>{f.attr(`x1`,e=>e.source.x).attr(`y1`,e=>e.source.y).attr(`x2`,e=>e.target.x).attr(`y2`,e=>e.target.y),p.attr(`transform`,e=>`translate(${e.x},${e.y})`),u.alpha()<.01&&u.stop()}),()=>{u.stop()}},[c,s,n,r.height,r.width]),(0,k.jsxs)(Dm,{ref:t,children:[(0,k.jsx)(Om,{ref:e,role:`img`,"aria-label":`Interactive knowledge graph`}),(0,k.jsx)(km,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var Mm={dark:hc`
+`,Am={research:{fill:`#9AC7AF`,stroke:`none`,radius:8},activity:{fill:`#F3F7F0`,stroke:`none`,radius:7},leadership:{fill:`#6FA486`,stroke:`none`,radius:7},theme:{fill:`transparent`,stroke:`#D8EADF`,radius:9},institution:{fill:`#5E7569`,stroke:`none`,radius:6}};function jm(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=qr(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:Em.nodes.map(e=>({...e})),edges:Em.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let i=Eu(e.current);i.selectAll(`*`).remove();let a=new Set;c.edges.forEach(e=>{a.add(`${e.source}-${e.target}`),a.add(`${e.target}-${e.source}`)});let l=e=>{let t=Am[e.type]?.radius??7;return s?Math.max(t-2,4):t},u=xm(c.nodes).force(`link`,fm(c.edges).id(e=>e.id).distance(s?68:94).strength(.55)).force(`charge`,Sm().strength(s?-100:-200)).force(`center`,Ip(r.width/2,r.height/2)).force(`collide`,lm().radius(e=>l(e)+(s?12:20))),d=i.append(`g`),f=d.append(`g`).attr(`stroke`,`#D8EADF`).attr(`stroke-opacity`,.15).selectAll(`line`).data(c.edges).join(`line`).attr(`stroke-width`,.8),p=d.append(`g`).selectAll(`g`).data(c.nodes).join(`g`).style(`cursor`,e=>e.url?`pointer`:`grab`),m=p.append(`circle`).attr(`r`,e=>l(e)).attr(`fill`,e=>Am[e.type]?.fill??`#F5F0E8`).attr(`stroke`,e=>Am[e.type]?.stroke??`none`).attr(`stroke-width`,e=>e.type===`theme`?1.2:0),h=p.append(`text`).text(e=>e.label).attr(`text-anchor`,`middle`).attr(`dy`,e=>l(e)+14).attr(`fill`,`#E9F3ED`).attr(`font-family`,`Inter, sans-serif`).attr(`font-size`,s?10:11).attr(`opacity`,s?0:.6),g=(e,t)=>e.id===t.id||a.has(`${e.id}-${t.id}`),_=(e,n)=>{let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})},v=e=>{m.attr(`opacity`,t=>g(e,t)?1:.15),h.attr(`opacity`,t=>s?g(e,t)?1:0:g(e,t)?1:.15),f.attr(`stroke-opacity`,t=>t.source.id===e.id||t.target.id===e.id?.6:.1).attr(`stroke-width`,t=>t.source.id===e.id||t.target.id===e.id?1.5:.5),p.attr(`opacity`,t=>g(e,t)?1:.2)},y=()=>{m.attr(`opacity`,1),h.attr(`opacity`,s?0:.6),f.attr(`stroke-opacity`,.15).attr(`stroke-width`,.8),p.attr(`opacity`,1),o(e=>({...e,visible:!1}))};return p.on(`mouseenter`,function(e,t){Eu(this).raise().transition().duration(150).attr(`transform`,`scale(1.3)`),v(t),_(e,t)}).on(`mousemove`,function(e,t){_(e,t)}).on(`mouseleave`,function(){Eu(this).transition().duration(150).attr(`transform`,`scale(1)`),y()}).on(`click`,function(e,t){s&&(v(t),_(e,t)),t.url&&t.type!==`theme`&&t.type!==`institution`&&n(t.url)}),p.call(Vu().on(`start`,(e,t)=>{e.active||u.alphaTarget(.3).restart(),t.fx=t.x,t.fy=t.y}).on(`drag`,(e,t)=>{t.fx=e.x,t.fy=e.y}).on(`end`,(e,t)=>{e.active||u.alphaTarget(0),t.fx=null,t.fy=null})),u.on(`tick`,()=>{f.attr(`x1`,e=>e.source.x).attr(`y1`,e=>e.source.y).attr(`x2`,e=>e.target.x).attr(`y2`,e=>e.target.y),p.attr(`transform`,e=>`translate(${e.x},${e.y})`),u.alpha()<.01&&u.stop()}),()=>{u.stop()}},[c,s,n,r.height,r.width]),(0,k.jsxs)(Dm,{ref:t,children:[(0,k.jsx)(Om,{ref:e,role:`img`,"aria-label":`Interactive knowledge graph`}),(0,k.jsx)(km,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var Mm={dark:hc`
     color: ${({theme:e})=>e.colors.home.text};
-    border: 1px solid rgba(245, 240, 232, 0.4);
-    background: rgba(245, 240, 232, 0.06);
+    border: 1px solid rgba(154, 199, 175, 0.42);
+    background: linear-gradient(180deg, rgba(154, 199, 175, 0.16), rgba(8, 23, 17, 0.22));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   `,light:hc`
-    color: ${({theme:e})=>e.colors.subpage.text};
-    border: 1px solid ${({theme:e})=>e.colors.subpage.border};
-    background: rgba(212, 207, 199, 0.18);
+    color: ${({theme:e})=>e.colors.subpage.accent};
+    border: 1px solid rgba(30, 91, 67, 0.22);
+    background: linear-gradient(180deg, rgba(154, 199, 175, 0.18), rgba(255, 255, 255, 0.5));
   `},Nm=U.span`
   display: inline-flex;
   align-items: center;
@@ -136,39 +137,48 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding: 10px 16px;
   border-radius: ${({theme:e})=>e.layout.pillRadius};
   font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-weight: 600;
+  letter-spacing: 0.03em;
   transition: ${({theme:e})=>e.transitions.hover};
   ${({$variant:e=`light`})=>Mm[e]};
 `,Pm=kn.div,Fm={initial:{opacity:0,y:18},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-18,transition:{duration:.45,ease:`easeOut`}}};function Im({children:e}){return(0,k.jsx)(Pm,{variants:Fm,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var Lm=U.main`
   min-height: 100vh;
   padding-top: 120px;
   color: ${({theme:e})=>e.colors.home.text};
-  background: #1a1a1a;
+  background:
+    radial-gradient(circle at top, rgba(154, 199, 175, 0.08), transparent 36%),
+    #081711;
   background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(27, 61, 47, 0.92) 0%, transparent 52%),
-    radial-gradient(ellipse at 80% 20%, rgba(92, 61, 46, 0.88) 0%, transparent 42%),
-    radial-gradient(ellipse at 60% 80%, rgba(74, 93, 58, 0.78) 0%, transparent 46%),
-    radial-gradient(ellipse at 42% 32%, rgba(27, 61, 47, 0.52) 0%, transparent 38%);
+    radial-gradient(ellipse at 14% 16%, rgba(60, 122, 94, 0.6) 0%, transparent 42%),
+    radial-gradient(ellipse at 80% 18%, rgba(27, 90, 67, 0.54) 0%, transparent 40%),
+    radial-gradient(ellipse at 72% 72%, rgba(83, 148, 117, 0.38) 0%, transparent 42%),
+    radial-gradient(ellipse at 28% 70%, rgba(15, 61, 46, 0.92) 0%, transparent 52%),
+    radial-gradient(ellipse at 46% 38%, rgba(130, 191, 161, 0.16) 0%, transparent 34%);
 `,Rm=U.div`
   width: min(1200px, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
-  gap: 32px;
+  gap: 24px;
   align-items: center;
 `,zm=U.section`
   display: grid;
   gap: 16px;
-  padding-bottom: 24px;
+  padding: 8px 0 40px;
 `,Bm=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: clamp(2.4rem, 5vw, 4.2rem);
-  letter-spacing: 0.02em;
-  line-height: 1.08;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  max-width: 12ch;
+  text-wrap: balance;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 `,Vm=U.p`
   max-width: 680px;
   font-size: 1.15rem;
-  font-weight: 300;
-  color: rgba(245, 240, 232, 0.88);
+  font-weight: 400;
+  color: rgba(243, 247, 240, 0.84);
 `,Hm=U.div`
   display: flex;
   flex-wrap: wrap;
@@ -259,9 +269,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,Ch=U.article`
   padding: 24px;
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: rgba(255, 255, 255, 0.28);
+  background:
+    linear-gradient(180deg, rgba(154, 199, 175, 0.14), rgba(255, 255, 255, 0.7));
   display: grid;
   gap: 18px;
   transition: ${({theme:e})=>e.transitions.hover};
@@ -269,6 +280,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   &:hover {
     transform: translateY(-4px);
+    border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({theme:e})=>e.colors.subpage.cardShadow};
   }
 `,wh=U.div`
@@ -278,10 +290,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   display: grid;
   place-items: center;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
 `,Th=U.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.2rem;
+  font-weight: 700;
 `,Eh=U.p`
   font-size: 0.85rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
@@ -308,11 +321,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background: ${({theme:e})=>e.colors.subpage.placeholder};
   display: grid;
   place-items: center;
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({theme:e})=>e.colors.subpage.muted};
 `,Ph=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
+  font-weight: 800;
 `,Fh=U.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
 `,Ih=U.p`
@@ -328,6 +342,8 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   a {
     color: ${({theme:e})=>e.colors.subpage.accent};
+    font-family: ${({theme:e})=>e.fonts.heading};
+    font-weight: 600;
   }
 `;function zh(){let{id:e}=Yr(),t=_h.find(t=>t.id===e);return t?(0,k.jsx)(Im,{children:(0,k.jsx)(Ah,{children:(0,k.jsxs)(jh,{children:[(0,k.jsx)(Mh,{to:`/research`,children:`Back to Research`}),(0,k.jsxs)(Nh,{children:[t.title,` thumbnail`]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(Ph,{children:t.title}),(0,k.jsx)(Fh,{children:t.year})]}),(0,k.jsx)(Ih,{children:t.fullDesc}),(0,k.jsx)(Lh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))}),t.links.length>0&&(0,k.jsx)(Rh,{children:t.links.map(e=>(0,k.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})})}):(0,k.jsx)(Im,{children:(0,k.jsx)(Ah,{children:(0,k.jsxs)(jh,{children:[(0,k.jsx)(Mh,{to:`/research`,children:`Back to Research`}),(0,k.jsx)(Ph,{children:`Project not found`})]})})})}var Bh=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,shortDesc:`Commencement address representing all graduates, attended by the President of Korea.`,fullDesc:`Delivered the commencement address at KAIST as Valedictorian, representing all graduating students. The ceremony was attended by the President of the Republic of Korea.`,tags:[`Leadership`,`KAIST`],media:{youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Speaker`,date:`Apr 2026`,shortDesc:`Speaking at the SDG 9 session as a representative of Columbia University at UN HQ.`,fullDesc:`Selected to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. Representing Columbia University at the United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,shortDesc:`Event Assistant at the Permanent Mission of Korea to the United Nations.`,fullDesc:`Served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations during the General Assembly High-Level Week. Supported Presidential Secretariat operations.`,tags:[`UN`,`Diplomacy`],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:``,shortDesc:`Consumer Electronics Show visit.`,fullDesc:`Attended the Consumer Electronics Show (CES), exploring the latest innovations in technology and industry trends.`,tags:[`Technology`,`Industry`],media:{photos:[]}},{id:`stanford`,title:`Stanford Visit`,date:``,shortDesc:`Visit to Stanford University.`,fullDesc:`Academic visit to Stanford University.`,tags:[`Academia`],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from three universities.`,fullDesc:`Served as the main MC for a mixer event bringing together approximately 200 Korean students from Harvard, Yale, and Columbia. Led sessions and facilitated interactions among attendees.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from five universities.`,fullDesc:`Served as the main MC for a five-school mixer event at the University of Pennsylvania, bringing together approximately 200 Korean students. Led sessions and coordinated the event.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,shortDesc:`Rebuilt the student council after three years of inactivity; led an 11-university policy coalition.`,fullDesc:`As President of the KAIST Undergraduate Student Council, rebuilt the organization after three years of inactivity. Coordinated dialogue among 11 universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy.`,tags:[`Leadership`,`Policy`,`KAIST`],media:{photos:[]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,shortDesc:`Sole presenter for CrisisNews research at ACM CHI 2025.`,fullDesc:`Presented the CrisisNews research as the sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan. Shared findings on two decades of social media crisis patterns with the HCI research community.`,tags:[`Research`,`Speaking`,`HCI`],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 2026`,shortDesc:`Organized and MC'd a career event with speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,fullDesc:`As Career Chair of the Korean Graduate Student Association at Columbia, organized and served as MC for a career event featuring five speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the United Nations.`,tags:[`Leadership`,`Community`],media:{photos:[]}}],Vh=U.main`
   min-height: 100vh;
@@ -357,9 +373,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,Kh=U.article`
   padding: 20px;
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: rgba(255, 255, 255, 0.3);
+  background:
+    linear-gradient(180deg, rgba(154, 199, 175, 0.12), rgba(255, 255, 255, 0.72));
   display: grid;
   gap: 18px;
   transition: ${({theme:e})=>e.transitions.hover};
@@ -367,19 +384,21 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   &:hover {
     transform: translateY(-4px);
+    border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({theme:e})=>e.colors.subpage.cardShadow};
   }
 `,qh=U.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({theme:e})=>e.layout.radius};
   background: ${({theme:e})=>e.colors.subpage.placeholder};
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({theme:e})=>e.colors.subpage.muted};
   display: grid;
   place-items: center;
 `,Jh=U.h2`
   font-size: 1.08rem;
   font-family: ${({theme:e})=>e.fonts.heading};
+  font-weight: 700;
 `,Yh=U.p`
   font-size: 0.85rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
@@ -480,4 +499,4 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   ::selection {
     background: rgba(139, 168, 136, 0.22);
   }
-`,lg={colors:{home:{forest:`#1B3D2F`,leather:`#5C3D2E`,olive:`#4A5D3A`,base:`#1A1A1A`,text:`#F5F0E8`,hover:`#8BA888`,leadership:`#A0856E`,institution:`#666666`},subpage:{background:`#F5F0E8`,text:`#2B2A2A`,accent:`#2D5A3D`,border:`#D4CFC7`,muted:`#6E685F`,placeholder:`#DED8D0`,cardShadow:`rgba(43, 42, 42, 0.08)`}},fonts:{heading:`'JetBrains Mono', monospace`,body:`'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.85rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,graphMax:`1200px`,radius:`8px`,pillRadius:`999px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function ug(){let e=Wr();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,k.jsxs)(k.Fragment,{children:[(0,k.jsx)(Tc,{}),(0,k.jsx)(Nt,{mode:`wait`,children:(0,k.jsxs)(xi,{location:e,children:[(0,k.jsx)(yi,{path:`/`,element:(0,k.jsx)(Um,{})}),(0,k.jsx)(yi,{path:`/about`,element:(0,k.jsx)(gh,{})}),(0,k.jsx)(yi,{path:`/research`,element:(0,k.jsx)(kh,{})}),(0,k.jsx)(yi,{path:`/research/:id`,element:(0,k.jsx)(zh,{})}),(0,k.jsx)(yi,{path:`/activities`,element:(0,k.jsx)(Zh,{})}),(0,k.jsx)(yi,{path:`/activities/:id`,element:(0,k.jsx)(sg,{})})]},e.pathname)}),(0,k.jsx)(Oc,{})]})}function dg(){return(0,k.jsxs)(uc,{theme:lg,children:[(0,k.jsx)(cg,{}),(0,k.jsx)(aa,{children:(0,k.jsx)(ug,{})})]})}(0,Ta.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(S.StrictMode,{children:(0,k.jsx)(dg,{})}));
+`,lg={colors:{home:{forest:`#0F3D2E`,leather:`#1B5A43`,olive:`#3C7A5E`,base:`#081711`,text:`#F3F7F0`,hover:`#9AC7AF`,leadership:`#6FA486`,institution:`#5E7569`},subpage:{background:`#F2F5EF`,text:`#1E2923`,accent:`#1E5B43`,border:`#C8D6CD`,muted:`#5D6D63`,placeholder:`#DDE8E0`,cardShadow:`rgba(21, 54, 41, 0.14)`}},fonts:{heading:`'Azeret Mono', monospace`,body:`'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.85rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,graphMax:`1200px`,radius:`8px`,pillRadius:`999px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function ug(){let e=Wr();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,k.jsxs)(k.Fragment,{children:[(0,k.jsx)(Tc,{}),(0,k.jsx)(Nt,{mode:`wait`,children:(0,k.jsxs)(xi,{location:e,children:[(0,k.jsx)(yi,{path:`/`,element:(0,k.jsx)(Um,{})}),(0,k.jsx)(yi,{path:`/about`,element:(0,k.jsx)(gh,{})}),(0,k.jsx)(yi,{path:`/research`,element:(0,k.jsx)(kh,{})}),(0,k.jsx)(yi,{path:`/research/:id`,element:(0,k.jsx)(zh,{})}),(0,k.jsx)(yi,{path:`/activities`,element:(0,k.jsx)(Zh,{})}),(0,k.jsx)(yi,{path:`/activities/:id`,element:(0,k.jsx)(sg,{})})]},e.pathname)}),(0,k.jsx)(Oc,{})]})}function dg(){return(0,k.jsxs)(uc,{theme:lg,children:[(0,k.jsx)(cg,{}),(0,k.jsx)(aa,{children:(0,k.jsx)(ug,{})})]})}(0,Ta.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(S.StrictMode,{children:(0,k.jsx)(dg,{})}));
