@@ -31,8 +31,8 @@ const Tooltip = styled.div`
   pointer-events: none;
   padding: 8px 10px;
   border-radius: 10px;
-  background: rgba(26, 26, 26, 0.88);
-  border: 1px solid rgba(245, 240, 232, 0.16);
+  background: rgba(8, 23, 17, 0.9);
+  border: 1px solid rgba(216, 234, 223, 0.14);
   color: ${({ theme }) => theme.colors.home.text};
   font-size: 0.78rem;
   white-space: nowrap;
@@ -47,6 +47,31 @@ const nodeStyle = {
   theme: { fill: 'transparent', stroke: '#D8EADF', radius: 9 },
   institution: { fill: '#5E7569', stroke: 'none', radius: 6 },
 };
+
+const typeConfig = {
+  theme: { x: 0.5, y: 0.42, spreadX: 88, spreadY: 72, strength: 0.24 },
+  institution: { x: 0.53, y: 0.56, spreadX: 112, spreadY: 76, strength: 0.2 },
+  research: { x: 0.34, y: 0.36, spreadX: 122, spreadY: 112, strength: 0.12 },
+  activity: { x: 0.66, y: 0.38, spreadX: 124, spreadY: 114, strength: 0.11 },
+  leadership: { x: 0.5, y: 0.78, spreadX: 154, spreadY: 52, strength: 0.14 },
+};
+
+function buildInitialPositions(nodes, width, height) {
+  const nodesByType = d3.group(nodes, (node) => node.type);
+
+  Object.entries(typeConfig).forEach(([type, config]) => {
+    const typedNodes = nodesByType.get(type) ?? [];
+    typedNodes.forEach((node, index) => {
+      const count = typedNodes.length || 1;
+      const angle = (index / count) * Math.PI * 2 - Math.PI / 2;
+      const wave = type === 'leadership' ? Math.sin(index * 1.5) : Math.cos(index * 1.3);
+      const baseX = width * config.x;
+      const baseY = height * config.y;
+      node.x = baseX + Math.cos(angle) * config.spreadX + wave * 16;
+      node.y = baseY + Math.sin(angle) * config.spreadY + wave * 10;
+    });
+  });
+}
 
 function Graph() {
   const svgRef = useRef(null);
@@ -66,10 +91,12 @@ function Graph() {
 
   useEffect(() => {
     if (!wrapRef.current) return undefined;
+
     const observer = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
       setSize({ width, height });
     });
+
     observer.observe(wrapRef.current);
     return () => observer.disconnect();
   }, []);
@@ -80,8 +107,13 @@ function Graph() {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
+    const nodes = data.nodes.map((node) => ({ ...node }));
+    const edges = data.edges.map((edge) => ({ ...edge }));
+
+    buildInitialPositions(nodes, size.width, size.height);
+
     const linkedById = new Set();
-    data.edges.forEach((edge) => {
+    edges.forEach((edge) => {
       linkedById.add(`${edge.source}-${edge.target}`);
       linkedById.add(`${edge.target}-${edge.source}`);
     });
@@ -91,95 +123,162 @@ function Graph() {
       return isMobile ? Math.max(base - 2, 4) : base;
     };
 
+    const anchorFor = (node) => {
+      const config = typeConfig[node.type] ?? typeConfig.theme;
+      return {
+        x: size.width * config.x,
+        y: size.height * config.y,
+        strength: isMobile ? config.strength * 0.75 : config.strength,
+      };
+    };
+
     const simulation = d3
-      .forceSimulation(data.nodes)
+      .forceSimulation(nodes)
       .force(
         'link',
         d3
-          .forceLink(data.edges)
+          .forceLink(edges)
           .id((d) => d.id)
-          .distance(isMobile ? 68 : 94)
-          .strength(0.55)
+          .distance((edge) =>
+            edge.source.type === 'theme' || edge.target.type === 'theme'
+              ? isMobile
+                ? 54
+                : 76
+              : isMobile
+                ? 72
+                : 102
+          )
+          .strength((edge) =>
+            edge.source.type === 'theme' || edge.target.type === 'theme' ? 0.9 : 0.55
+          )
       )
-      .force('charge', d3.forceManyBody().strength(isMobile ? -100 : -200))
+      .force('charge', d3.forceManyBody().strength(isMobile ? -85 : -180))
+      .force('x', d3.forceX((d) => anchorFor(d).x).strength((d) => anchorFor(d).strength))
+      .force('y', d3.forceY((d) => anchorFor(d).y).strength((d) => anchorFor(d).strength))
       .force('center', d3.forceCenter(size.width / 2, size.height / 2))
-      .force('collide', d3.forceCollide().radius((d) => radiusFor(d) + (isMobile ? 12 : 20)));
+      .force('collide', d3.forceCollide().radius((d) => radiusFor(d) + (isMobile ? 12 : 22)))
+      .alpha(0.7)
+      .alphaDecay(0.05)
+      .velocityDecay(0.35)
+      .stop();
+
+    for (let i = 0; i < 240; i += 1) {
+      simulation.tick();
+    }
 
     const root = svg.append('g');
 
     const link = root
       .append('g')
       .attr('stroke', '#D8EADF')
-      .attr('stroke-opacity', 0.15)
+      .attr('stroke-opacity', 0.16)
       .selectAll('line')
-      .data(data.edges)
+      .data(edges)
       .join('line')
       .attr('stroke-width', 0.8);
 
-    const nodeGroup = root
-      .append('g')
+    const nodeLayer = root.append('g');
+
+    const nodeShell = nodeLayer
       .selectAll('g')
-      .data(data.nodes)
+      .data(nodes)
       .join('g')
       .style('cursor', (d) => (d.url ? 'pointer' : 'grab'));
 
-    const circles = nodeGroup
+    const circles = nodeShell
       .append('circle')
       .attr('r', (d) => radiusFor(d))
-      .attr('fill', (d) => nodeStyle[d.type]?.fill ?? '#F5F0E8')
+      .attr('fill', (d) => nodeStyle[d.type]?.fill ?? '#F3F7F0')
       .attr('stroke', (d) => nodeStyle[d.type]?.stroke ?? 'none')
       .attr('stroke-width', (d) => (d.type === 'theme' ? 1.2 : 0));
 
-    const labels = nodeGroup
+    const labels = nodeShell
       .append('text')
       .text((d) => d.label)
       .attr('text-anchor', 'middle')
       .attr('dy', (d) => radiusFor(d) + 14)
-      .attr('fill', '#E9F3ED')
-      .attr('font-family', 'Inter, sans-serif')
-      .attr('font-size', isMobile ? 10 : 11)
-      .attr('opacity', isMobile ? 0 : 0.6);
+      .attr('fill', '#F7FBF8')
+      .attr('stroke', 'rgba(8, 23, 17, 0.45)')
+      .attr('stroke-width', 0.4)
+      .attr('paint-order', 'stroke')
+      .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
+      .attr('font-size', isMobile ? 10 : 12)
+      .attr('font-weight', 500)
+      .attr('letter-spacing', '0.01em')
+      .attr('opacity', isMobile ? 0 : 0.82)
+      .attr('pointer-events', 'none');
 
     const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
 
-    const updateTooltip = (event, d) => {
+    const clampNode = (node) => {
+      const padding = isMobile ? 26 : 36;
+      node.x = Math.max(padding, Math.min(size.width - padding, node.x));
+      node.y = Math.max(padding, Math.min(size.height - padding, node.y));
+    };
+
+    nodes.forEach(clampNode);
+
+    const render = () => {
+      link
+        .attr('x1', (d) => d.source.x)
+        .attr('y1', (d) => d.source.y)
+        .attr('x2', (d) => d.target.x)
+        .attr('y2', (d) => d.target.y);
+
+      nodeShell.attr('transform', (d) => {
+        clampNode(d);
+        return `translate(${d.x},${d.y})`;
+      });
+    };
+
+    render();
+
+    const updateTooltip = (event, node) => {
       const bounds = wrapRef.current?.getBoundingClientRect();
       if (!bounds) return;
+
       setTooltip({
         visible: true,
         x: event.clientX - bounds.left,
         y: event.clientY - bounds.top,
-        label: d.label,
+        label: node.label,
       });
     };
 
     const setActiveState = (activeNode) => {
-      circles.attr('opacity', (d) => (isConnected(activeNode, d) ? 1 : 0.15));
+      nodeShell.filter((d) => d.id === activeNode.id).raise();
+
+      circles
+        .attr('opacity', (d) => (isConnected(activeNode, d) ? 1 : 0.16))
+        .attr('r', (d) => (d.id === activeNode.id ? radiusFor(d) * 1.28 : radiusFor(d)));
+
       labels.attr('opacity', (d) => {
-        if (isMobile) return isConnected(activeNode, d) ? 1 : 0;
-        return isConnected(activeNode, d) ? 1 : 0.15;
+        if (d.id === activeNode.id) return 1;
+        if (isMobile) return isConnected(activeNode, d) ? 0.9 : 0;
+        return isConnected(activeNode, d) ? 1 : 0.05;
       });
+
       link
         .attr('stroke-opacity', (d) =>
-          d.source.id === activeNode.id || d.target.id === activeNode.id ? 0.6 : 0.1
+          d.source.id === activeNode.id || d.target.id === activeNode.id ? 0.72 : 0.08
         )
         .attr('stroke-width', (d) =>
-          d.source.id === activeNode.id || d.target.id === activeNode.id ? 1.5 : 0.5
+          d.source.id === activeNode.id || d.target.id === activeNode.id ? 1.6 : 0.5
         );
-      nodeGroup.attr('opacity', (d) => (isConnected(activeNode, d) ? 1 : 0.2));
+
+      nodeShell.attr('opacity', (d) => (isConnected(activeNode, d) ? 1 : 0.2));
     };
 
     const clearActiveState = () => {
-      circles.attr('opacity', 1);
-      labels.attr('opacity', isMobile ? 0 : 0.6);
-      link.attr('stroke-opacity', 0.15).attr('stroke-width', 0.8);
-      nodeGroup.attr('opacity', 1);
+      circles.attr('opacity', 1).attr('r', (d) => radiusFor(d));
+      labels.attr('opacity', isMobile ? 0 : 0.82);
+      link.attr('stroke-opacity', 0.16).attr('stroke-width', 0.8);
+      nodeShell.attr('opacity', 1);
       setTooltip((prev) => ({ ...prev, visible: false }));
     };
 
-    nodeGroup
+    nodeShell
       .on('mouseenter', function handleEnter(event, d) {
-        d3.select(this).raise().transition().duration(150).attr('transform', 'scale(1.3)');
         setActiveState(d);
         updateTooltip(event, d);
       })
@@ -187,7 +286,6 @@ function Graph() {
         updateTooltip(event, d);
       })
       .on('mouseleave', function handleLeave() {
-        d3.select(this).transition().duration(150).attr('transform', 'scale(1)');
         clearActiveState();
       })
       .on('click', function handleClick(event, d) {
@@ -195,43 +293,31 @@ function Graph() {
           setActiveState(d);
           updateTooltip(event, d);
         }
+
         if (d.url && d.type !== 'theme' && d.type !== 'institution') {
           navigate(d.url);
         }
       });
 
-    nodeGroup.call(
+    nodeShell.call(
       d3
         .drag()
         .on('start', (event, d) => {
-          if (!event.active) simulation.alphaTarget(0.3).restart();
+          if (!event.active) simulation.alpha(0.18).restart();
           d.fx = d.x;
           d.fy = d.y;
         })
         .on('drag', (event, d) => {
-          d.fx = event.x;
-          d.fy = event.y;
+          d.fx = Math.max(24, Math.min(size.width - 24, event.x));
+          d.fy = Math.max(24, Math.min(size.height - 24, event.y));
+          render();
         })
         .on('end', (event, d) => {
-          if (!event.active) simulation.alphaTarget(0);
+          if (!event.active) simulation.alpha(0).stop();
           d.fx = null;
           d.fy = null;
         })
     );
-
-    simulation.on('tick', () => {
-      link
-        .attr('x1', (d) => d.source.x)
-        .attr('y1', (d) => d.source.y)
-        .attr('x2', (d) => d.target.x)
-        .attr('y2', (d) => d.target.y);
-
-      nodeGroup.attr('transform', (d) => `translate(${d.x},${d.y})`);
-
-      if (simulation.alpha() < 0.01) {
-        simulation.stop();
-      }
-    });
 
     return () => {
       simulation.stop();
