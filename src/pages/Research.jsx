@@ -24,6 +24,7 @@ const Intro = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
   color: ${({ theme }) => theme.colors.subpage.muted};
   margin-bottom: 40px;
+  font-size: 1.04rem;
 `;
 
 const Grid = styled.div`
@@ -40,17 +41,16 @@ const Card = styled(Link)`
   display: grid;
   gap: 18px;
   padding: 24px;
-  border: 1px solid rgba(61, 90, 62, 0.12);
-  border-radius: 18px;
-  background:
-    linear-gradient(180deg, rgba(154, 184, 158, 0.12), rgba(255, 255, 255, 0.72)),
-    ${({ theme }) => theme.colors.subpage.background};
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(61, 90, 62, 0.28);
-    box-shadow: 0 18px 36px ${({ theme }) => theme.colors.subpage.cardShadow};
+    transform: translateY(-3px);
+    border-color: ${({ theme }) => theme.colors.subpage.copper};
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 `;
 
@@ -58,9 +58,8 @@ const Thumbnail = styled.div`
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 14px;
-  background:
-    linear-gradient(135deg, rgba(61, 90, 62, 0.16), rgba(225, 219, 210, 0.8));
-  border: 1px solid rgba(61, 90, 62, 0.12);
+  background: linear-gradient(135deg, rgba(196, 149, 106, 0.18), rgba(225, 219, 210, 0.8));
+  border: 1px solid rgba(196, 149, 106, 0.14);
   display: flex;
   align-items: flex-end;
   padding: 16px;
@@ -81,7 +80,7 @@ const Kicker = styled.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.accent};
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const PlaceholderText = styled.span`
@@ -98,7 +97,7 @@ const CardTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
   line-height: 1.05;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const Year = styled.p`
@@ -154,7 +153,7 @@ function Research() {
                   ) : (
                     <Placeholder>
                       <Kicker>Research Archive</Kicker>
-                      <PlaceholderText>{item.title} visual will be added here.</PlaceholderText>
+                      <PlaceholderText>Project image coming soon.</PlaceholderText>
                     </Placeholder>
                   )}
                 </Thumbnail>

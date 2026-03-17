@@ -18,7 +18,7 @@ const Container = styled.div`
 
 const Back = styled(Link)`
   width: fit-content;
-  color: ${({ theme }) => theme.colors.subpage.accent};
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const Photo = styled.div`
@@ -51,7 +51,7 @@ const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   line-height: 1.05;
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const DateText = styled.p`
@@ -66,7 +66,7 @@ const MediaLabel = styled.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.accent};
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const MediaNote = styled.span`
@@ -95,8 +95,8 @@ const Links = styled.div`
 
   a,
   span {
-    color: ${({ theme }) => theme.colors.subpage.accent};
-    font-weight: 500;
+    color: ${({ theme }) => theme.colors.subpage.copper};
+    font-weight: 400;
   }
 `;
 

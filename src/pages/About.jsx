@@ -80,11 +80,12 @@ const Bio = styled.div`
   max-width: ${({ theme }) => theme.layout.textMax};
 
   p {
-    font-size: 1rem;
+    font-size: 1.04rem;
+    line-height: 1.78;
   }
 
   a {
-    color: ${({ theme }) => theme.colors.subpage.accent};
+    color: ${({ theme }) => theme.colors.subpage.copper};
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.16em;
@@ -107,7 +108,7 @@ const ContactLink = styled.a`
   align-items: center;
   gap: 10px;
   width: fit-content;
-  color: ${({ theme }) => theme.colors.subpage.accent};
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 function About() {

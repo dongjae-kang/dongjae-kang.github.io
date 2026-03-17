@@ -25,9 +25,9 @@ export const research = [
     title: 'PRISM',
     year: '2025',
     summary:
-      'A multi-perspective news platform that reconstructs how a story moves across sources instead of reducing it to one trusted outlet.',
+      'A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.',
     description:
-      'PRISM began as Columbia SIPA coursework and became a functional prototype built by Kang. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can see what any single source leaves out. Rather than deciding credibility for the user, it surfaces perspective, provenance, and sequence. The project sits between interface design and platform governance, with misinformation as the motivating use case.',
+      'PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.',
     collaborators: ['Columbia SIPA project team', 'Prototype implemented independently'],
     tags: ['Misinformation', 'Platform Design', 'HCI'],
     links: [{ label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' }],
@@ -69,7 +69,7 @@ export const research = [
     summary:
       'An undergraduate thesis on how Korea can expand AI adoption among small and medium enterprises more equitably.',
     description:
-      'AI in SMEs was Kang\'s undergraduate thesis at KAIST. It examined why Korean small and medium enterprises face uneven access to AI adoption, including capital constraints, organizational readiness, and limited technical capacity. The thesis proposed policy responses around financing, shared infrastructure, and public support for adoption. It connected industrial engineering training with a science and technology policy question about who benefits from technical change.',
+      'AI in SMEs was Kang\'s undergraduate thesis at KAIST. It examined why Korean small and medium enterprises face uneven access to AI adoption, including capital constraints, organizational readiness, and limited technical capacity. The thesis proposed policy responses around financing, shared infrastructure, and public support for adoption. It asked how technical change can spread more evenly rather than concentrating only in large firms.',
     collaborators: ['KAIST undergraduate thesis'],
     tags: ['AI Policy', 'Equitable Development'],
     links: [],

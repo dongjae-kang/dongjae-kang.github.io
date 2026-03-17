@@ -51,9 +51,9 @@ const Page = styled.main`
   color: ${({ theme }) => theme.colors.home.text};
   background:
     radial-gradient(ellipse at 18% 25%, rgba(15, 61, 46, 0.7) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 15%, rgba(92, 61, 46, 0.15) 0%, transparent 45%),
+    radial-gradient(ellipse at 75% 15%, rgba(92, 61, 46, 0.3) 0%, transparent 45%),
     radial-gradient(ellipse at 55% 65%, rgba(74, 93, 58, 0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 80%, rgba(92, 61, 46, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 80%, rgba(92, 61, 46, 0.2) 0%, transparent 40%),
     radial-gradient(ellipse at 85% 75%, rgba(13, 26, 20, 0.9) 0%, transparent 60%),
     linear-gradient(160deg, #0d1a14 0%, #081711 100%);
 `;
@@ -107,15 +107,20 @@ const Name = styled.h1`
   line-height: 0.92;
   letter-spacing: -0.02em;
   text-wrap: balance;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    font-size: clamp(2.7rem, 14vw, 4.2rem);
+  }
 `;
 
 const Tagline = styled.p`
-  max-width: 820px;
-  font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+  max-width: 980px;
+  font-size: clamp(1rem, 1.55vw, 1.18rem);
   color: rgba(245, 240, 232, 0.86);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     max-width: 480px;
+    font-size: 1.02rem;
   }
 `;
 
@@ -136,20 +141,28 @@ const ScrollCue = styled.button`
 `;
 
 const Story = styled.div`
+  position: relative;
+  margin-top: -20px;
+  padding: 88px 0 120px;
+  background: ${({ theme }) => theme.colors.subpage.background};
+  color: ${({ theme }) => theme.colors.subpage.text};
+  border-radius: 40px 40px 0 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    padding: 72px 0 88px;
+    border-radius: 28px 28px 0 0;
+  }
+`;
+
+const StoryInner = styled.div`
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   gap: 88px;
-  padding: 16px 0 120px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    gap: 88px;
-    padding-bottom: 88px;
-  }
 `;
 
 const NarrativeSection = styled.section`
-  min-height: 56vh;
+  min-height: 54vh;
   display: grid;
   align-items: center;
   gap: 28px;
@@ -174,35 +187,40 @@ const NarrativeGrid = styled.div`
 
 const SectionCopy = styled.div`
   display: grid;
-  gap: 18px;
+  gap: 12px;
   align-content: start;
 `;
 
 const SectionNumber = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  line-height: 0.8;
-  color: rgba(154, 184, 158, 0.3);
+  font-size: clamp(3.1rem, 7vw, 5.8rem);
+  line-height: 0.82;
+  color: rgba(196, 149, 106, 0.35);
+  margin-bottom: -4px;
 `;
 
 const SectionEyebrow = styled.span`
   font-size: 0.82rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.62);
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const SectionTitle = styled.h2`
+  margin-top: 4px;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 600;
-  line-height: 1.05;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.08;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const SectionBody = styled.p`
-  max-width: 38rem;
-  color: rgba(245, 240, 232, 0.82);
-  font-size: 1.02rem;
+  margin-top: 8px;
+  max-width: 42rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
+  font-size: 1.12rem;
+  line-height: 1.75;
 `;
 
 const ResearchStack = styled.div`
@@ -215,11 +233,17 @@ const FeatureLink = styled(Link)`
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 18px;
   padding: 18px;
-  border-radius: 24px;
-  border: 1px solid rgba(245, 240, 232, 0.1);
-  background: rgba(13, 26, 20, 0.34);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: ${({ theme }) => theme.colors.subpage.copper};
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     grid-template-columns: 1fr;
@@ -229,11 +253,11 @@ const FeatureLink = styled(Link)`
 const FeatureThumb = styled.div`
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: 14px;
   background:
-    linear-gradient(135deg, rgba(154, 184, 158, 0.18), rgba(13, 26, 20, 0.28)),
-    rgba(13, 26, 20, 0.28);
-  border: 1px solid rgba(245, 240, 232, 0.08);
+    linear-gradient(135deg, rgba(196, 149, 106, 0.18), rgba(225, 219, 210, 0.82)),
+    rgba(248, 246, 241, 0.88);
+  border: 1px solid rgba(196, 149, 106, 0.16);
 `;
 
 const FeatureImage = styled.img`
@@ -252,37 +276,36 @@ const FeatureMeta = styled.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.6);
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const FeatureTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const FeatureText = styled.p`
-  color: rgba(245, 240, 232, 0.78);
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const EvidencePanel = styled.div`
   display: grid;
   gap: 18px;
   padding: 24px;
-  border-radius: 28px;
-  border: 1px solid rgba(245, 240, 232, 0.1);
-  background:
-    linear-gradient(180deg, rgba(245, 240, 232, 0.06), rgba(13, 26, 20, 0.28)),
-    rgba(13, 26, 20, 0.28);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 `;
 
 const EvidenceLabel = styled.span`
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.58);
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const MetricGrid = styled.div`
@@ -300,23 +323,24 @@ const MetricCard = styled.div`
   gap: 4px;
   padding: 14px;
   border-radius: 16px;
-  background: rgba(245, 240, 232, 0.05);
-  border: 1px solid rgba(245, 240, 232, 0.08);
+  background: rgba(245, 240, 232, 0.72);
+  border: 1px solid rgba(196, 149, 106, 0.18);
 `;
 
 const MetricValue = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
-  line-height: 0.9;
+  line-height: 0.95;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const MetricLabel = styled.span`
   font-size: 0.82rem;
-  color: rgba(245, 240, 232, 0.68);
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const EvidenceBody = styled.p`
-  color: rgba(245, 240, 232, 0.78);
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const EvidenceList = styled.div`
@@ -326,8 +350,8 @@ const EvidenceList = styled.div`
 
 const EvidenceItem = styled.div`
   padding-top: 10px;
-  border-top: 1px solid rgba(245, 240, 232, 0.08);
-  color: rgba(245, 240, 232, 0.78);
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const EvidenceLinks = styled.div`
@@ -336,14 +360,13 @@ const EvidenceLinks = styled.div`
   gap: 12px;
 
   a {
-    color: ${({ theme }) => theme.colors.home.text};
-    opacity: 0.8;
+    color: ${({ theme }) => theme.colors.subpage.copper};
   }
 `;
 
 const ActivitySection = styled.div`
   display: grid;
-  gap: 24px;
+  gap: 26px;
 `;
 
 const ActivityRow = styled.div`
@@ -359,16 +382,28 @@ const ActivityRow = styled.div`
 const ActivityCard = styled(Link)`
   display: grid;
   gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: ${({ theme }) => theme.colors.subpage.copper};
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
 `;
 
 const ActivityVisual = styled.div`
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border-radius: 20px;
-  border: 1px solid rgba(245, 240, 232, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(196, 149, 106, 0.14);
   background:
-    linear-gradient(145deg, rgba(74, 93, 58, 0.36), rgba(13, 26, 20, 0.42)),
-    rgba(13, 26, 20, 0.32);
+    linear-gradient(145deg, rgba(196, 149, 106, 0.18), rgba(245, 240, 232, 0.9)),
+    rgba(250, 248, 244, 0.9);
   display: flex;
   align-items: flex-end;
   padding: 16px;
@@ -389,15 +424,15 @@ const ActivityKicker = styled.span`
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.62);
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const ActivityTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.8rem;
   line-height: 1.05;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.home.text};
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const ActivityMeta = styled.div`
@@ -406,19 +441,20 @@ const ActivityMeta = styled.div`
 `;
 
 const ActivityName = styled.h4`
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.02rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const ActivityDate = styled.span`
-  color: rgba(245, 240, 232, 0.62);
+  color: ${({ theme }) => theme.colors.subpage.muted};
   font-size: 0.82rem;
 `;
 
 const SectionLink = styled(Link)`
   width: fit-content;
   font-size: 0.88rem;
-  color: rgba(154, 184, 158, 0.96);
+  color: ${({ theme }) => theme.colors.subpage.copper};
   letter-spacing: 0.02em;
 `;
 
@@ -455,8 +491,8 @@ function Home() {
             </MobileMapLegend>
             <Name>Dongjae (Jack) Kang</Name>
             <Tagline>
-              Researching how technology shapes public discourse and how governance can make it
-              more equitable.
+              Studying misinformation, platform governance, and the systems that shape what people
+              believe.
             </Tagline>
             <ScrollCue
               $stopped={hasScrolled}
@@ -469,145 +505,145 @@ function Home() {
         </Hero>
 
         <Story ref={storyRef}>
-          <NarrativeSection ref={setResearchNode} $visible={isResearchVisible}>
-            <NarrativeGrid $layout="media">
-              <ResearchStack>
-                {featuredResearch.map((item) => (
-                  <FeatureLink key={item.id} to={`/research/${item.id}`}>
-                    <FeatureThumb>
-                      {item.thumbnail ? <FeatureImage src={item.thumbnail} alt={item.title} /> : null}
-                    </FeatureThumb>
-                    <FeatureContent>
-                      <FeatureMeta>Research · {item.year}</FeatureMeta>
-                      <FeatureTitle>{item.title}</FeatureTitle>
-                      <FeatureText>{item.summary}</FeatureText>
-                    </FeatureContent>
-                  </FeatureLink>
-                ))}
-              </ResearchStack>
+          <StoryInner>
+            <NarrativeSection ref={setResearchNode} $visible={isResearchVisible}>
+              <NarrativeGrid $layout="media">
+                <ResearchStack>
+                  {featuredResearch.map((item) => (
+                    <FeatureLink key={item.id} to={`/research/${item.id}`}>
+                      <FeatureThumb>
+                        {item.thumbnail ? <FeatureImage src={item.thumbnail} alt={item.title} /> : null}
+                      </FeatureThumb>
+                      <FeatureContent>
+                        <FeatureMeta>Research · {item.year}</FeatureMeta>
+                        <FeatureTitle>{item.title}</FeatureTitle>
+                        <FeatureText>{item.summary}</FeatureText>
+                      </FeatureContent>
+                    </FeatureLink>
+                  ))}
+                </ResearchStack>
 
-              <SectionCopy>
-                <SectionNumber>01</SectionNumber>
-                <SectionEyebrow>Research</SectionEyebrow>
-                <SectionTitle>How public discourse is shaped, and how it can be governed.</SectionTitle>
-                <SectionBody>
-                  He studies misinformation, platform governance, and the design of information
-                  systems. That work includes CrisisNews, a study of 93,250 news articles across
-                  two decades of social media crises, and PRISM, a prototype that visualizes how a
-                  story spreads across different sources rather than asking users to trust a single
-                  outlet. The work is empirical, but the question is public: what kinds of
-                  platforms make collective judgment harder, and what kinds make it more possible.
-                </SectionBody>
-                <SectionLink to="/research">View all research →</SectionLink>
-              </SectionCopy>
-            </NarrativeGrid>
-          </NarrativeSection>
+                <SectionCopy>
+                  <SectionNumber>01</SectionNumber>
+                  <SectionEyebrow>Research</SectionEyebrow>
+                  <SectionTitle>How platforms shape what people believe.</SectionTitle>
+                  <SectionBody>
+                    He studies misinformation, platform governance, and the design of information
+                    systems. That work includes CrisisNews, a study of 93,250 news articles across
+                    two decades of social media crises, and PRISM, a platform that reconstructs
+                    how a story moves across outlets instead of reducing it to one source. The
+                    question behind both is simple: what kinds of platforms make collective
+                    judgment harder, and what kinds make it more possible.
+                  </SectionBody>
+                  <SectionLink to="/research">View all research →</SectionLink>
+                </SectionCopy>
+              </NarrativeGrid>
+            </NarrativeSection>
 
-          <NarrativeSection ref={setLeadershipNode} $visible={isLeadershipVisible}>
-            <NarrativeGrid $layout="copy">
-              <SectionCopy>
-                <SectionNumber>02</SectionNumber>
-                <SectionEyebrow>Leadership</SectionEyebrow>
-                <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
-                <SectionBody>
-                  As President of KAIST&apos;s Undergraduate Student Council, he rebuilt an
-                  organization that had been inactive for three years. When Korea announced a 16%
-                  cut to the national R&amp;D budget, he coordinated dialogue across universities,
-                  National Assembly members, and government ministries. The method was not
-                  confrontation for its own sake. It was dialogue, patience, and enough credibility
-                  to keep people at the table.
-                </SectionBody>
-              </SectionCopy>
+            <NarrativeSection ref={setLeadershipNode} $visible={isLeadershipVisible}>
+              <NarrativeGrid $layout="copy">
+                <SectionCopy>
+                  <SectionNumber>02</SectionNumber>
+                  <SectionEyebrow>Leadership</SectionEyebrow>
+                  <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
+                  <SectionBody>
+                    As President of KAIST&apos;s Undergraduate Student Council, he rebuilt an
+                    organization that had been inactive for three years. When Korea announced a
+                    16% cut to the national R&amp;D budget, he coordinated dialogue across
+                    universities, National Assembly members, and government ministries. The method
+                    was not confrontation for its own sake. It was dialogue, patience, and enough
+                    credibility to keep people at the table.
+                  </SectionBody>
+                </SectionCopy>
 
-              <EvidencePanel>
-                <EvidenceLabel>Council Record</EvidenceLabel>
-                <MetricGrid>
-                  <MetricCard>
-                    <MetricValue>52.06%</MetricValue>
-                    <MetricLabel>Election turnout</MetricLabel>
-                  </MetricCard>
-                  <MetricCard>
-                    <MetricValue>88.93%</MetricValue>
-                    <MetricLabel>Approval in election</MetricLabel>
-                  </MetricCard>
-                  <MetricCard>
-                    <MetricValue>3.87 / 4.3</MetricValue>
-                    <MetricLabel>Highest satisfaction score on record</MetricLabel>
-                  </MetricCard>
-                </MetricGrid>
-                <EvidenceBody>
-                  The council became a site of institution-building rather than simple protest. It
-                  also connected to earlier and later committee work in Seoul, Daejeon, and
-                  Columbia.
-                </EvidenceBody>
-                <EvidenceList>
-                  <EvidenceItem>Participatory Budget Committee, Seoul Jungnang-gu (2017-2018)</EvidenceItem>
-                  <EvidenceItem>Youth Policy Coordination Committee, Daejeon (2023-2025)</EvidenceItem>
-                  <EvidenceItem>Founding board member, Columbia AI Club at SIPA</EvidenceItem>
-                </EvidenceList>
-                <EvidenceLinks>
-                  <a
-                    href="https://www.joongang.co.kr/article/25215586"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    JoongAng Ilbo column
-                  </a>
-                  <a
-                    href="https://herald.kaist.ac.kr/news/articleView.html?idxno=20910"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    KAIST Herald article
-                  </a>
-                </EvidenceLinks>
-              </EvidencePanel>
-            </NarrativeGrid>
-          </NarrativeSection>
+                <EvidencePanel>
+                  <EvidenceLabel>Council Record</EvidenceLabel>
+                  <MetricGrid>
+                    <MetricCard>
+                      <MetricValue>52.06%</MetricValue>
+                      <MetricLabel>Election turnout</MetricLabel>
+                    </MetricCard>
+                    <MetricCard>
+                      <MetricValue>88.93%</MetricValue>
+                      <MetricLabel>Approval in election</MetricLabel>
+                    </MetricCard>
+                    <MetricCard>
+                      <MetricValue>3.87 / 4.3</MetricValue>
+                      <MetricLabel>Highest satisfaction score on record</MetricLabel>
+                    </MetricCard>
+                  </MetricGrid>
+                  <EvidenceBody>
+                    The council became a site of institution-building rather than simple protest.
+                    It also connected to committee work in Seoul, Daejeon, and later at Columbia.
+                  </EvidenceBody>
+                  <EvidenceList>
+                    <EvidenceItem>Participatory Budget Committee, Seoul Jungnang-gu (2017-2018)</EvidenceItem>
+                    <EvidenceItem>Youth Policy Coordination Committee, Daejeon (2023-2025)</EvidenceItem>
+                    <EvidenceItem>Founding board member, Columbia AI Club at SIPA</EvidenceItem>
+                  </EvidenceList>
+                  <EvidenceLinks>
+                    <a
+                      href="https://www.joongang.co.kr/article/25215586"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      JoongAng Ilbo column
+                    </a>
+                    <a
+                      href="https://herald.kaist.ac.kr/news/articleView.html?idxno=20910"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      KAIST Herald article
+                    </a>
+                  </EvidenceLinks>
+                </EvidencePanel>
+              </NarrativeGrid>
+            </NarrativeSection>
 
-          <NarrativeSection ref={setActivitiesNode} $visible={isActivitiesVisible}>
-            <ActivitySection>
-              <SectionCopy>
-                <SectionNumber>03</SectionNumber>
-                <SectionEyebrow>From Yokohama to New York</SectionEyebrow>
-                <SectionTitle>Research, diplomacy, and community work in motion.</SectionTitle>
-              </SectionCopy>
+            <NarrativeSection ref={setActivitiesNode} $visible={isActivitiesVisible}>
+              <ActivitySection>
+                <SectionCopy>
+                  <SectionNumber>03</SectionNumber>
+                  <SectionEyebrow>Activities</SectionEyebrow>
+                  <SectionTitle>From Yokohama to the General Assembly.</SectionTitle>
+                  <SectionBody>
+                    He presented misinformation research at ACM CHI in Yokohama, supported
+                    diplomatic operations during the UN General Assembly High-Level Week, and
+                    organized networking events for 200+ students across Ivy League campuses. The
+                    settings differ. The pattern is the same: studying how systems work, then
+                    working inside them.
+                  </SectionBody>
+                </SectionCopy>
 
-              <ActivityRow>
-                {featuredActivities.map((item) => (
-                  <ActivityCard key={item.id} to={`/activities/${item.id}`}>
-                    <ActivityVisual>
-                      {item.media?.cover || item.media?.photos?.[0] ? (
-                        <ActivityImage
-                          src={item.media?.cover || item.media?.photos?.[0]}
-                          alt={item.title}
-                        />
-                      ) : (
-                        <ActivityPlaceholder>
-                          <ActivityKicker>{item.date}</ActivityKicker>
-                          <ActivityTitle>{item.title}</ActivityTitle>
-                        </ActivityPlaceholder>
-                      )}
-                    </ActivityVisual>
-                    <ActivityMeta>
-                      <ActivityName>{item.title}</ActivityName>
-                      <ActivityDate>{item.date}</ActivityDate>
-                    </ActivityMeta>
-                  </ActivityCard>
-                ))}
-              </ActivityRow>
+                <ActivityRow>
+                  {featuredActivities.map((item) => (
+                    <ActivityCard key={item.id} to={`/activities/${item.id}`}>
+                      <ActivityVisual>
+                        {item.media?.cover || item.media?.photos?.[0] ? (
+                          <ActivityImage
+                            src={item.media?.cover || item.media?.photos?.[0]}
+                            alt={item.title}
+                          />
+                        ) : (
+                          <ActivityPlaceholder>
+                            <ActivityKicker>{item.date}</ActivityKicker>
+                            <ActivityTitle>{item.title}</ActivityTitle>
+                          </ActivityPlaceholder>
+                        )}
+                      </ActivityVisual>
+                      <ActivityMeta>
+                        <ActivityName>{item.title}</ActivityName>
+                        <ActivityDate>{item.date}</ActivityDate>
+                      </ActivityMeta>
+                    </ActivityCard>
+                  ))}
+                </ActivityRow>
 
-              <SectionBody>
-                From presenting CrisisNews at ACM CHI in Yokohama to supporting diplomatic
-                operations during the UN General Assembly High-Level Week in New York, his work
-                moves across research, policy, and community settings. Some moments are formal,
-                others are logistical, and some are simply about helping people orient inside an
-                institution. Together they describe the same pattern: studying systems, then
-                working inside them.
-              </SectionBody>
-              <SectionLink to="/activities">View all activities →</SectionLink>
-            </ActivitySection>
-          </NarrativeSection>
+                <SectionLink to="/activities">View all activities →</SectionLink>
+              </ActivitySection>
+            </NarrativeSection>
+          </StoryInner>
         </Story>
       </Page>
     </PageTransition>

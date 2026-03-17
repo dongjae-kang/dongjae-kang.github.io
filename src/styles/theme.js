@@ -1,5 +1,6 @@
 export const theme = {
   colors: {
+    copper: '#C4956A',
     home: {
       base: '#0D1A14',
       text: '#F5F0E8',
@@ -9,11 +10,13 @@ export const theme = {
       hover: '#9AB89E',
       leadership: '#8AA27B',
       institution: '#6B746A',
+      copper: '#C4956A',
     },
     light: {
       background: '#F5F0E8',
       text: '#2B2A2A',
       accent: '#3D5A3E',
+      copper: '#C4956A',
       border: '#D4CFC7',
       muted: '#67615C',
       placeholder: '#E1DBD2',
@@ -23,6 +26,7 @@ export const theme = {
       background: '#F5F0E8',
       text: '#2B2A2A',
       accent: '#3D5A3E',
+      copper: '#C4956A',
       border: '#D4CFC7',
       muted: '#67615C',
       placeholder: '#E1DBD2',

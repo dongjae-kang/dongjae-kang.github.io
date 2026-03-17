@@ -48,7 +48,7 @@ export const activities = [
     summary:
       'Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.',
     description:
-      'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar. It added a practical diplomatic layer to work otherwise centered on research and domestic public policy.',
+      'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar.',
     tags: ['UN', 'Diplomacy'],
     links: [],
     media: {
@@ -91,7 +91,7 @@ export const activities = [
     summary:
       'Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.',
     description:
-      'Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. The role involved leading the program in front of a large room while also shaping the event\'s tone as a social bridge rather than a formal obligation.',
+      'Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. He led the program for a room of roughly 200 attendees.',
     tags: ['Leadership', 'Community'],
     links: [],
     media: {
@@ -106,7 +106,7 @@ export const activities = [
     summary:
       'Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.',
     description:
-      'At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees and helped turn a large gathering into something structured and usable for the people in it. The event sits in the same category as his other work: building institutions that help people meet, orient, and move.',
+      'At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees.',
     tags: ['Leadership', 'Community'],
     links: [],
     media: {
@@ -154,7 +154,7 @@ export const activities = [
     summary:
       'Organized and MC\'d a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.',
     description:
-      'As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event was designed as a practical bridge between student questions and career paths already being navigated by alumni and practitioners.',
+      'As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event featured speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.',
     tags: ['Leadership', 'Community'],
     links: [],
     media: {
@@ -169,7 +169,7 @@ export const activities = [
     summary:
       'Served as the sole youth representative on the Jungnang-gu participatory budget committee at age seventeen.',
     description:
-      'Kang served as the only youth representative among forty committee members on Seoul Jungnang-gu\'s participatory budget committee. The committee allocated roughly one million dollars each year across more than thirty local projects. It was an early experience in distributing public resources through deliberation rather than abstract theory.',
+      'Kang served as the only youth representative among forty committee members on Seoul Jungnang-gu\'s participatory budget committee. The committee allocated roughly one million dollars each year across more than thirty local projects.',
     tags: ['Public Service', 'Participatory Governance'],
     links: [],
     media: {
@@ -184,7 +184,7 @@ export const activities = [
     summary:
       'Served on Daejeon\'s Youth Policy Coordination Committee, reviewing projects across multiple municipal departments.',
     description:
-      'Kang served as one of thirty members of Daejeon\'s Youth Policy Coordination Committee from 2023 to 2025. The committee reviewed more than seventy projects spanning nine municipal departments. The work involved administrative detail, interdepartmental coordination, and the slower end of public governance that rarely makes it into speeches.',
+      'Kang served as one of thirty members of Daejeon\'s Youth Policy Coordination Committee from 2023 to 2025. The committee reviewed more than seventy projects spanning nine municipal departments.',
     tags: ['Public Service', 'Youth Policy'],
     links: [],
     media: {
@@ -199,7 +199,7 @@ export const activities = [
     summary:
       'Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.',
     description:
-      'Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role extends his research interests into a student institution, building a place where policy students can work on AI questions with more structure and continuity.',
+      'Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role includes helping build the club\'s research programming and institutional structure.',
     tags: ['Leadership', 'AI', 'Columbia SIPA'],
     links: [],
     media: {

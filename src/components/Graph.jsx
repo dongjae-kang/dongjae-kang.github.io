@@ -1,8 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import * as d3 from 'd3';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import graphData from '../data/graphData.json';
+
+const drift = keyframes`
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+
+  50% {
+    transform: translate(var(--drift-x), var(--drift-y));
+  }
+`;
 
 const GraphWrap = styled.div`
   position: relative;
@@ -15,10 +25,10 @@ const GraphWrap = styled.div`
   overflow: hidden;
   border: 1px solid rgba(245, 240, 232, 0.12);
   background:
-    radial-gradient(circle at 16% 18%, rgba(154, 184, 158, 0.18), transparent 28%),
-    radial-gradient(circle at 84% 20%, rgba(92, 61, 46, 0.08), transparent 28%),
-    radial-gradient(circle at 50% 82%, rgba(74, 93, 58, 0.14), transparent 32%),
-    linear-gradient(180deg, rgba(13, 26, 20, 0.2), rgba(13, 26, 20, 0.08));
+    radial-gradient(circle at 16% 18%, rgba(154, 184, 158, 0.2), transparent 30%),
+    radial-gradient(circle at 84% 20%, rgba(92, 61, 46, 0.18), transparent 32%),
+    radial-gradient(circle at 54% 78%, rgba(74, 93, 58, 0.18), transparent 34%),
+    linear-gradient(180deg, rgba(13, 26, 20, 0.14), rgba(13, 26, 20, 0.02));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 24px 60px rgba(0, 0, 0, 0.16);
@@ -34,62 +44,12 @@ const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
   overflow: visible;
-`;
 
-const TitleOverlay = styled.div`
-  position: absolute;
-  inset: 20px;
-  pointer-events: none;
-  z-index: 2;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
-  }
-`;
-
-const ClusterTitleCard = styled.div`
-  position: absolute;
-  left: ${({ $x }) => `${$x}px`};
-  top: ${({ $y }) => `${$y}px`};
-  transform: ${({ $align }) => ($align === 'end' ? 'translateX(-100%)' : 'none')};
-  min-width: 188px;
-  max-width: 224px;
-  padding: 18px 22px 16px;
-  border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(19, 33, 25, 0.88), rgba(8, 18, 14, 0.78)),
-    rgba(8, 18, 14, 0.72);
-  border: 1px solid ${({ $stroke }) => $stroke};
-  box-shadow:
-    0 20px 36px rgba(0, 0, 0, 0.24),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(14px);
-  text-align: ${({ $align }) => ($align === 'end' ? 'right' : 'left')};
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 14px;
-    ${({ $align }) => ($align === 'end' ? 'right: 18px;' : 'left: 18px;')}
-    width: 38px;
-    height: 1px;
-    background: ${({ $stroke }) => $stroke};
-    opacity: 0.95;
-  }
-`;
-
-const ClusterTitleLine = styled.span`
-  display: block;
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2rem, 2.1vw, 2.6rem);
-  line-height: 0.88;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: ${({ theme }) => theme.colors.home.text};
-  text-shadow: 0 1px 0 rgba(13, 26, 20, 0.4);
-
-  &:first-child {
-    margin-top: 10px;
+  .node-drift {
+    animation: ${drift} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: transform;
   }
 `;
 
@@ -111,125 +71,155 @@ const Tooltip = styled.div`
   transition: opacity 0.15s ease;
 `;
 
-const nodeStyle = {
-  research: { fill: '#9AB89E', stroke: 'none', radius: 8 },
-  activity: { fill: '#F5F0E8', stroke: 'none', radius: 7 },
-  leadership: { fill: '#8AA27B', stroke: 'none', radius: 7 },
-  theme: { fill: 'transparent', stroke: '#F5F0E8', radius: 10 },
-  institution: { fill: '#6B746A', stroke: 'none', radius: 6 },
-};
-
 const semanticClusters = {
   discourse: {
     label: 'Public Discourse',
-    shortLabel: 'Public Discourse',
-    titleLines: ['Public', 'Discourse'],
-    fill: 'rgba(111, 164, 134, 0.08)',
-    stroke: 'rgba(154, 199, 175, 0.22)',
+    lines: ['Public', 'Discourse'],
+    desktop: { x: 0.29, y: 0.34, glowRadius: 212, titleDx: 12, titleDy: 12 },
+    mobile: { x: 0.28, y: 0.27, glowRadius: 126 },
+    glowId: 'cluster-discourse',
+    textFill: 'rgba(245, 240, 232, 0.26)',
   },
   governance: {
     label: 'Governance & Service',
-    shortLabel: 'Governance',
-    titleLines: ['Governance', '& Service'],
-    fill: 'rgba(243, 247, 240, 0.05)',
-    stroke: 'rgba(243, 247, 240, 0.16)',
+    lines: ['Governance', '& Service'],
+    desktop: { x: 0.77, y: 0.3, glowRadius: 186, titleDx: -8, titleDy: 6 },
+    mobile: { x: 0.72, y: 0.31, glowRadius: 118 },
+    glowId: 'cluster-governance',
+    textFill: 'rgba(196, 149, 106, 0.28)',
   },
   equity: {
     label: 'AI, Equity & Opportunity',
-    shortLabel: 'AI & Equity',
-    titleLines: ['AI, Equity', '& Opportunity'],
-    fill: 'rgba(84, 129, 103, 0.08)',
-    stroke: 'rgba(111, 164, 134, 0.18)',
+    lines: ['AI, Equity', '& Opportunity'],
+    desktop: { x: 0.5, y: 0.72, glowRadius: 202, titleDx: 0, titleDy: 16 },
+    mobile: { x: 0.48, y: 0.68, glowRadius: 130 },
+    glowId: 'cluster-equity',
+    textFill: 'rgba(245, 240, 232, 0.23)',
   },
 };
 
-const semanticHubCluster = {
+const clusterByNodeId = {
+  crisisnews: 'discourse',
+  prism: 'discourse',
+  'beyond-removal': 'discourse',
+  'multi-agent-sim': 'discourse',
+  'chi-2025': 'discourse',
   misinformation: 'discourse',
   'platform-governance': 'discourse',
   'content-moderation': 'discourse',
+  'student-council': 'governance',
+  'un-ga-hlw': 'governance',
   'participatory-governance': 'governance',
-  un: 'governance',
-  'national-assembly': 'governance',
   'ai-policy': 'equity',
-  'equitable-development': 'equity',
-  'st-policy': 'equity',
   kaist: 'equity',
   'columbia-sipa': 'equity',
-};
-
-const nodeClusterOverrides = {
   valedictorian: 'equity',
-  ces: 'equity',
-  stanford: 'equity',
-  'chi-2025': 'discourse',
-  'un-ga-hlw': 'governance',
-  'hyc-mixer': 'governance',
-  'upenn-mixer': 'governance',
-  'kgsa-career': 'governance',
-  'columbia-ai-club': 'governance',
 };
 
-const nodeImportance = {
-  crisisnews: 4,
-  prism: 4,
-  misinformation: 4,
-  'platform-governance': 4,
-  'ai-policy': 4,
-  'participatory-governance': 4,
-  'student-council': 3,
-  'ai-in-smes': 3,
-  'columbia-ai-club': 3,
-  'content-moderation': 3,
-  'beyond-removal': 3,
-  'multi-agent-sim': 3,
-  'chi-2025': 3,
-  'un-ga-hlw': 3,
-  valedictorian: 3,
-  'participatory-budget': 2,
-  'youth-policy': 2,
-  kaist: 2,
-  'columbia-sipa': 2,
-  un: 2,
-  'equitable-development': 2,
-  'st-policy': 2,
-};
-
-const clusterOrbitConfig = {
+const layoutOffsets = {
   discourse: {
-    featureAngles: [-2.6, -2.05, -1.48, -0.95],
-    supportAngles: [-2.95, -2.28, -1.72, -1.18, -0.62, -0.18],
-    featureRadius: 138,
-    supportRadius: 188,
-    mobileFeatureRadius: 88,
-    mobileSupportRadius: 122,
+    desktop: {
+      misinformation: { x: -12, y: 6 },
+      'platform-governance': { x: 100, y: 32 },
+      'content-moderation': { x: -104, y: 56 },
+      crisisnews: { x: -136, y: -74 },
+      prism: { x: -56, y: -124 },
+      'beyond-removal': { x: 42, y: -122 },
+      'multi-agent-sim': { x: 152, y: -76 },
+      'chi-2025': { x: -92, y: -12 },
+    },
+    mobile: {
+      misinformation: { x: -4, y: 12 },
+      'platform-governance': { x: 52, y: 18 },
+      'content-moderation': { x: -54, y: 42 },
+      crisisnews: { x: -66, y: -44 },
+      prism: { x: -18, y: -72 },
+      'beyond-removal': { x: 38, y: -74 },
+      'multi-agent-sim': { x: 82, y: -42 },
+      'chi-2025': { x: -30, y: -8 },
+    },
   },
   governance: {
-    featureAngles: [-0.34, 0.2, 0.82, 1.32],
-    supportAngles: [-0.76, -0.08, 0.46, 0.98, 1.52, 2.04],
-    featureRadius: 138,
-    supportRadius: 188,
-    mobileFeatureRadius: 88,
-    mobileSupportRadius: 122,
+    desktop: {
+      'participatory-governance': { x: 0, y: -4 },
+      'student-council': { x: 10, y: 98 },
+      'un-ga-hlw': { x: 100, y: 44 },
+    },
+    mobile: {
+      'participatory-governance': { x: 0, y: -8 },
+      'student-council': { x: 2, y: 56 },
+      'un-ga-hlw': { x: 56, y: 26 },
+    },
   },
   equity: {
-    featureAngles: [0.98, 1.6, 2.24, 2.82],
-    supportAngles: [0.52, 1.2, 1.86, 2.48, 3.06, 3.58],
-    featureRadius: 142,
-    supportRadius: 196,
-    mobileFeatureRadius: 92,
-    mobileSupportRadius: 128,
+    desktop: {
+      'ai-policy': { x: -40, y: -2 },
+      kaist: { x: -54, y: 88 },
+      'columbia-sipa': { x: 74, y: 82 },
+      valedictorian: { x: -2, y: 124 },
+    },
+    mobile: {
+      'ai-policy': { x: -28, y: -2 },
+      kaist: { x: -34, y: 52 },
+      'columbia-sipa': { x: 40, y: 50 },
+      valedictorian: { x: 2, y: 78 },
+    },
   },
 };
 
-const mobileVisibleLabelIds = new Set([
-  'crisisnews',
-  'prism',
-  'misinformation',
-  'platform-governance',
-  'content-moderation',
-  'ai-policy',
-  'participatory-governance',
-]);
+const nodeStyle = {
+  theme: {
+    radius: 15,
+    fill: '#C4956A',
+    stroke: 'rgba(245, 240, 232, 0.14)',
+    labelSize: 14,
+    labelWeight: 520,
+    labelOpacity: 0.98,
+  },
+  research: {
+    radius: 8.5,
+    fill: '#F5F0E8',
+    stroke: 'rgba(245, 240, 232, 0.12)',
+    labelSize: 12,
+    labelWeight: 400,
+    labelOpacity: 0.92,
+  },
+  activity: {
+    radius: 7.5,
+    fill: 'rgba(245, 240, 232, 0.74)',
+    stroke: 'rgba(245, 240, 232, 0.08)',
+    labelSize: 11,
+    labelWeight: 400,
+    labelOpacity: 0.86,
+  },
+  institution: {
+    radius: 5,
+    fill: 'rgba(130, 138, 129, 0.86)',
+    stroke: 'rgba(245, 240, 232, 0.06)',
+    labelSize: 10,
+    labelWeight: 400,
+    labelOpacity: 0.68,
+  },
+};
+
+function hashCode(value) {
+  return [...value].reduce((acc, char) => (acc * 31 + char.charCodeAt(0)) | 0, 0);
+}
+
+function driftConfig(id) {
+  const hash = Math.abs(hashCode(id));
+  const driftX = ((hash % 5) - 2) || 1;
+  const driftY = (((Math.floor(hash / 5) % 5) - 2) || -1);
+  const duration = 8 + (hash % 5);
+  const delay = -(hash % 7);
+
+  return {
+    x: `${driftX}px`,
+    y: `${driftY}px`,
+    duration: `${duration}s`,
+    delay: `${delay}s`,
+  };
+}
 
 function wrapLabel(label, maxChars) {
   const words = label.split(' ');
@@ -243,335 +233,104 @@ function wrapLabel(label, maxChars) {
       current = word;
       return;
     }
+
     current = next;
   });
 
   if (current) lines.push(current);
-  return lines.slice(0, 3);
+  return lines.slice(0, 2);
 }
 
-function buildAdjacency(nodes, edges) {
-  const adjacency = new Map(nodes.map((node) => [node.id, []]));
-  edges.forEach((edge) => {
-    adjacency.get(edge.source)?.push(edge.target);
-    adjacency.get(edge.target)?.push(edge.source);
-  });
-  return adjacency;
-}
-
-function fallbackClusterFor(nodeType) {
-  if (nodeType === 'leadership') return 'governance';
-  if (nodeType === 'research') return 'discourse';
-  return 'equity';
-}
-
-function pickBestCluster(scoreMap, fallback) {
-  const entries = [...scoreMap.entries()].sort((a, b) => b[1] - a[1]);
-  return entries[0]?.[0] ?? fallback;
-}
-
-function getClusterCenter(clusterId, width, height, isMobile) {
-  if (isMobile) {
-    const mobilePositions = {
-      discourse: { x: width * 0.24, y: height * 0.27 },
-      governance: { x: width * 0.77, y: height * 0.38 },
-      equity: { x: width * 0.48, y: height * 0.77 },
-    };
-    return mobilePositions[clusterId];
-  }
-
-  const desktopPositions = {
-    discourse: { x: width * 0.16, y: height * 0.42 },
-    governance: { x: width * 0.84, y: height * 0.35 },
-    equity: { x: width * 0.48, y: height * 0.8 },
+function getClusterPosition(clusterId, width, height, isMobile) {
+  const config = semanticClusters[clusterId][isMobile ? 'mobile' : 'desktop'];
+  return {
+    x: width * config.x,
+    y: height * config.y,
+    glowRadius: config.glowRadius,
+    titleDx: config.titleDx ?? 0,
+    titleDy: config.titleDy ?? 0,
   };
-
-  return desktopPositions[clusterId];
-}
-
-function scoreClusterFromGraph(startId, nodesById, adjacency, maxDepth = 4) {
-  const scores = new Map();
-  const visited = new Set([startId]);
-  const queue = [{ id: startId, depth: 0 }];
-
-  while (queue.length > 0) {
-    const { id, depth } = queue.shift();
-    if (depth >= maxDepth) continue;
-
-    (adjacency.get(id) ?? []).forEach((neighborId) => {
-      if (visited.has(neighborId)) return;
-      visited.add(neighborId);
-
-      const neighbor = nodesById.get(neighborId);
-      const nextDepth = depth + 1;
-
-      if (neighbor?.cluster) {
-        const baseWeight =
-          neighbor.type === 'theme' ? 5 : neighbor.type === 'institution' ? 3.5 : 1.4;
-        const distanceWeight = Math.pow(0.66, nextDepth - 1);
-        scores.set(
-          neighbor.cluster,
-          (scores.get(neighbor.cluster) ?? 0) + baseWeight * distanceWeight
-        );
-      }
-
-      queue.push({ id: neighborId, depth: nextDepth });
-    });
-  }
-
-  return scores;
-}
-
-function assignSemanticClusters(nodes, edges) {
-  const nodesById = new Map(nodes.map((node) => [node.id, node]));
-  const adjacency = buildAdjacency(nodes, edges);
-
-  nodes.forEach((node) => {
-    if (nodeClusterOverrides[node.id]) {
-      node.cluster = nodeClusterOverrides[node.id];
-      return;
-    }
-
-    if (node.type === 'theme' || node.type === 'institution') {
-      node.cluster = semanticHubCluster[node.id] ?? 'equity';
-    }
-  });
-
-  nodes
-    .filter((node) => !node.cluster)
-    .forEach((node) => {
-      const scores = scoreClusterFromGraph(node.id, nodesById, adjacency);
-      node.cluster = pickBestCluster(scores, fallbackClusterFor(node.type));
-    });
-
-  return { nodesById, adjacency };
-}
-
-function placeHubNodes(clusterNodes, center, isMobile) {
-  const themes = [...clusterNodes]
-    .filter((node) => node.type === 'theme')
-    .sort((a, b) => a.label.localeCompare(b.label));
-  const institutions = [...clusterNodes]
-    .filter((node) => node.type === 'institution')
-    .sort((a, b) => a.label.localeCompare(b.label));
-
-  const themeRadiusX = isMobile ? 54 : 86;
-  const themeRadiusY = isMobile ? 38 : 62;
-  const institutionRadiusX = isMobile ? 70 : 108;
-  const institutionRadiusY = isMobile ? 30 : 48;
-
-  themes.forEach((node, index) => {
-    const angleStart = -Math.PI * 0.88;
-    const angleEnd = -Math.PI * 0.06;
-    const angle =
-      themes.length === 1
-        ? -Math.PI / 2
-        : angleStart + (index / Math.max(themes.length - 1, 1)) * (angleEnd - angleStart);
-
-    node.anchorX = center.x + Math.cos(angle) * themeRadiusX;
-    node.anchorY = center.y + Math.sin(angle) * themeRadiusY;
-    node.x = node.anchorX;
-    node.y = node.anchorY;
-  });
-
-  institutions.forEach((node, index) => {
-    const angleStart = Math.PI * 0.14;
-    const angleEnd = Math.PI * 0.86;
-    const angle =
-      institutions.length === 1
-        ? Math.PI / 2
-        : angleStart + (index / Math.max(institutions.length - 1, 1)) * (angleEnd - angleStart);
-
-    node.anchorX = center.x + Math.cos(angle) * institutionRadiusX;
-    node.anchorY = center.y + Math.sin(angle) * institutionRadiusY + (isMobile ? 10 : 18);
-    node.x = node.anchorX;
-    node.y = node.anchorY;
-  });
-}
-
-function nodeTier(node) {
-  if (node.type === 'theme') return 5;
-  return nodeImportance[node.id] ?? 1;
-}
-
-function placeNodesOnAngles(nodes, center, angles, radius, variance = 0) {
-  nodes.forEach((node, index) => {
-    const angle = angles[index % angles.length];
-    const lane = Math.floor(index / angles.length);
-    const laneOffset = lane * variance;
-    const radialShift = lane % 2 === 0 ? laneOffset : -laneOffset * 0.35;
-
-    node.anchorX = center.x + Math.cos(angle) * (radius + radialShift);
-    node.anchorY = center.y + Math.sin(angle) * (radius + radialShift);
-    node.x = node.anchorX;
-    node.y = node.anchorY;
-  });
-}
-
-function placeContentNodes(clusterId, clusterNodes, center, isMobile) {
-  const contentNodes = [...clusterNodes]
-    .filter((node) => node.type !== 'theme' && node.type !== 'institution')
-    .sort((a, b) => {
-      const tierDiff = nodeTier(b) - nodeTier(a);
-      if (tierDiff !== 0) return tierDiff;
-
-      const typeRank = { research: 0, leadership: 1, activity: 2 };
-      const typeDiff = (typeRank[a.type] ?? 9) - (typeRank[b.type] ?? 9);
-      if (typeDiff !== 0) return typeDiff;
-
-      return a.label.localeCompare(b.label);
-    });
-
-  const config = clusterOrbitConfig[clusterId];
-  const featureNodes = contentNodes.filter((node) => nodeTier(node) >= 3);
-  const supportNodes = contentNodes.filter((node) => nodeTier(node) < 3);
-
-  placeNodesOnAngles(
-    featureNodes,
-    center,
-    config.featureAngles,
-    isMobile ? config.mobileFeatureRadius : config.featureRadius,
-    isMobile ? 18 : 26
-  );
-
-  placeNodesOnAngles(
-    supportNodes,
-    center,
-    config.supportAngles,
-    isMobile ? config.mobileSupportRadius : config.supportRadius,
-    isMobile ? 14 : 22
-  );
 }
 
 function buildLayout(baseNodes, baseEdges, width, height, isMobile) {
-  const nodes = baseNodes.map((node) => ({ ...node }));
-  const edges = baseEdges.map((edge) => ({ ...edge }));
-  const { adjacency } = assignSemanticClusters(nodes, edges);
+  const nodes = baseNodes
+    .map((node) => ({ ...node, cluster: clusterByNodeId[node.id] }))
+    .filter((node) => node.cluster);
 
-  Object.keys(semanticClusters).forEach((clusterId) => {
-    const center = getClusterCenter(clusterId, width, height, isMobile);
-    const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
+  const nodeIds = new Set(nodes.map((node) => node.id));
+  const edges = baseEdges
+    .filter((edge) => nodeIds.has(edge.source) && nodeIds.has(edge.target))
+    .map((edge) => ({ ...edge }));
 
-    placeHubNodes(clusterNodes, center, isMobile);
-    placeContentNodes(clusterId, clusterNodes, center, isMobile);
-
-    clusterNodes.forEach((node) => {
-      node.clusterCenterX = center.x;
-      node.clusterCenterY = center.y;
-    });
-  });
-
-  return { nodes, edges, adjacency };
-}
-
-function isPrimaryNode(node, adjacency, isMobile) {
-  if (node.type === 'theme') return isMobile ? nodeTier(node) >= 4 : true;
-  if (isMobile) return nodeTier(node) >= 4;
-  return nodeTier(node) >= 3;
-}
-
-function defaultLabelOpacity(node, adjacency, isMobile) {
-  const primary = isPrimaryNode(node, adjacency, isMobile);
-
-  if (isMobile) {
-    if (!mobileVisibleLabelIds.has(node.id)) return 0;
-    if (node.type === 'theme') return 0.98;
-    if (node.type === 'research') return 0.92;
-    return 0.8;
-  }
-
-  if (node.type === 'theme') return 0.98;
-  if (node.type === 'research') return 0.92;
-  if (node.type === 'institution') return nodeTier(node) >= 2 ? 0.72 : 0;
-  return primary ? 0.84 : 0;
-}
-
-function defaultNodeOpacity(node, adjacency, isMobile) {
-  if (node.type === 'theme') return 1;
-  if (node.type === 'institution') return nodeTier(node) >= 2 ? 0.86 : 0.68;
-  return isPrimaryNode(node, adjacency, isMobile) ? 1 : 0.62;
-}
-
-function createHull(points) {
-  if (points.length < 3) return null;
-
-  const hull = d3.polygonHull(points);
-  if (!hull) return null;
-
-  return d3.line().curve(d3.curveCatmullRomClosed.alpha(0.55))(hull);
-}
-
-function scaleLayoutToFrame(nodes, width, height, isMobile) {
-  const xExtent = d3.extent(nodes, (node) => node.x);
-  const yExtent = d3.extent(nodes, (node) => node.y);
-
-  if (
-    xExtent[0] == null ||
-    xExtent[1] == null ||
-    yExtent[0] == null ||
-    yExtent[1] == null
-  ) {
-    return;
-  }
-
-  const contentWidth = xExtent[1] - xExtent[0] + (isMobile ? 180 : 160);
-  const contentHeight = yExtent[1] - yExtent[0] + (isMobile ? 170 : 150);
-  const scale = Math.min(
-    (width * (isMobile ? 0.92 : 0.98)) / contentWidth,
-    (height * (isMobile ? 0.86 : 0.94)) / contentHeight,
-    isMobile ? 1.02 : 1.18
-  );
-  const sourceCenterX = (xExtent[0] + xExtent[1]) / 2;
-  const sourceCenterY = (yExtent[0] + yExtent[1]) / 2;
-  const targetCenterX = width / 2;
-  const targetCenterY = isMobile ? height / 2 + 6 : height / 2 - 6;
+  const clusterCenters = Object.keys(semanticClusters).reduce((acc, clusterId) => {
+    acc[clusterId] = getClusterPosition(clusterId, width, height, isMobile);
+    return acc;
+  }, {});
 
   nodes.forEach((node) => {
-    node.x = targetCenterX + (node.x - sourceCenterX) * scale;
-    node.y = targetCenterY + (node.y - sourceCenterY) * scale;
-    node.anchorX = targetCenterX + (node.anchorX - sourceCenterX) * scale;
-    node.anchorY = targetCenterY + (node.anchorY - sourceCenterY) * scale;
-    node.clusterCenterX = targetCenterX + (node.clusterCenterX - sourceCenterX) * scale;
-    node.clusterCenterY = targetCenterY + (node.clusterCenterY - sourceCenterY) * scale;
+    const center = clusterCenters[node.cluster];
+    const offsetMap = layoutOffsets[node.cluster][isMobile ? 'mobile' : 'desktop'];
+    const offset = offsetMap[node.id] ?? { x: 0, y: 0 };
+
+    node.clusterCenterX = center.x;
+    node.clusterCenterY = center.y;
+    node.x = center.x + offset.x;
+    node.y = center.y + offset.y;
+    node.anchorX = node.x;
+    node.anchorY = node.y;
+    node.drift = driftConfig(node.id);
   });
+
+  const nodesById = new Map(nodes.map((node) => [node.id, node]));
+  const adjacency = new Map(nodes.map((node) => [node.id, []]));
+
+  edges.forEach((edge) => {
+    edge.source = nodesById.get(edge.source);
+    edge.target = nodesById.get(edge.target);
+    adjacency.get(edge.source.id)?.push(edge.target.id);
+    adjacency.get(edge.target.id)?.push(edge.source.id);
+  });
+
+  return { nodes, edges, nodesById, adjacency, clusterCenters };
 }
 
-function relaxOverlaps(nodes, width, height, radiusFor, isMobile) {
-  const padding = isMobile ? 24 : 36;
+function labelConfig(node, isMobile) {
+  const style = nodeStyle[node.type];
+  const maxChars = isMobile
+    ? node.type === 'theme'
+      ? 14
+      : node.type === 'institution'
+        ? 12
+        : 11
+    : node.type === 'theme'
+      ? 19
+      : node.type === 'research'
+        ? 16
+        : 13;
 
-  for (let iteration = 0; iteration < 180; iteration += 1) {
-    for (let i = 0; i < nodes.length; i += 1) {
-      for (let j = i + 1; j < nodes.length; j += 1) {
-        const a = nodes[i];
-        const b = nodes[j];
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        const distance = Math.hypot(dx, dy) || 0.001;
-        const minDistance =
-          radiusFor(a) +
-          radiusFor(b) +
-          (a.type === 'theme' || b.type === 'theme' ? (isMobile ? 34 : 50) : isMobile ? 18 : 24);
+  const lines = wrapLabel(node.label, maxChars);
+  const fontSize = isMobile ? Math.max(style.labelSize - 2, 8.4) : style.labelSize;
+  const labelY = style.radius + (node.type === 'theme' ? 17 : 15);
 
-        if (distance >= minDistance) continue;
+  return { lines, fontSize, labelY };
+}
 
-        const push = ((minDistance - distance) / distance) * 0.5;
-        const offsetX = dx * push;
-        const offsetY = dy * push;
-
-        a.x -= offsetX;
-        a.y -= offsetY;
-        b.x += offsetX;
-        b.y += offsetY;
-      }
-    }
-
-    nodes.forEach((node) => {
-      node.x += (node.anchorX - node.x) * (isMobile ? 0.025 : 0.018);
-      node.y += (node.anchorY - node.y) * (isMobile ? 0.025 : 0.018);
-      node.x = Math.max(padding, Math.min(width - padding, node.x));
-      node.y = Math.max(padding, Math.min(height - padding, node.y));
-    });
-  }
+function edgePath(edge) {
+  const source = edge.source;
+  const target = edge.target;
+  const dx = target.x - source.x;
+  const dy = target.y - source.y;
+  const length = Math.hypot(dx, dy) || 1;
+  const midX = (source.x + target.x) / 2;
+  const midY = (source.y + target.y) / 2;
+  const normalX = -dy / length;
+  const normalY = dx / length;
+  const hash = Math.abs(hashCode(`${source.id}-${target.id}`));
+  const direction = hash % 2 === 0 ? 1 : -1;
+  const curve = Math.min(46, length * 0.16) * direction;
+  const controlX = midX + normalX * curve;
+  const controlY = midY + normalY * curve;
+  return `M${source.x},${source.y} Q${controlX},${controlY} ${target.x},${target.y}`;
 }
 
 function Graph() {
@@ -581,35 +340,6 @@ function Graph() {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, label: '' });
   const isMobile = size.width > 0 && size.width < 768;
-  const titleCards = useMemo(() => {
-    if (!size.width || !size.height || isMobile) return [];
-
-    const compactDesktop = size.width < 960;
-    const cards = {
-      discourse: {
-        x: size.width * 0.06,
-        y: size.height * 0.06,
-        align: 'start',
-      },
-      governance: {
-        x: size.width * 0.94,
-        y: size.height * 0.04,
-        align: 'end',
-      },
-      equity: {
-        x: size.width * (compactDesktop ? 0.22 : 0.31),
-        y: size.height * (compactDesktop ? 0.77 : 0.8),
-        align: 'start',
-      },
-    };
-
-    return Object.entries(semanticClusters).map(([id, cluster]) => ({
-      id,
-      lines: cluster.titleLines,
-      stroke: cluster.stroke,
-      ...cards[id],
-    }));
-  }, [isMobile, size.height, size.width]);
 
   const data = useMemo(
     () => ({
@@ -637,226 +367,210 @@ function Graph() {
     const svg = d3.select(svgRef.current);
     svg.selectAll('*').remove();
 
-    const { nodes, edges, adjacency } = buildLayout(
+    const { nodes, edges, clusterCenters } = buildLayout(
       data.nodes,
       data.edges,
       size.width,
       size.height,
       isMobile
     );
-    scaleLayoutToFrame(nodes, size.width, size.height, isMobile);
 
     const linkedById = new Set();
     edges.forEach((edge) => {
-      linkedById.add(`${edge.source}-${edge.target}`);
-      linkedById.add(`${edge.target}-${edge.source}`);
+      linkedById.add(`${edge.source.id}-${edge.target.id}`);
+      linkedById.add(`${edge.target.id}-${edge.source.id}`);
     });
 
-    const radiusFor = (node) => {
-      const base = nodeStyle[node.type]?.radius ?? 7;
-      const priorityBoost = isPrimaryNode(node, adjacency, isMobile)
-        ? node.type === 'theme'
-          ? 1.5
-          : 0.85
-        : -0.7;
-
-      if (isMobile) {
-        const mobileBase = Math.max(base - 1.6, 4.35);
-        return Math.max(mobileBase + priorityBoost * 0.45, 4.4);
-      }
-
-      return Math.max(base + priorityBoost, 4.8);
-    };
-
-    const clampNode = (node) => {
-      const padding = isMobile ? 26 : 42;
-      node.x = Math.max(padding, Math.min(size.width - padding, node.x));
-      node.y = Math.max(padding, Math.min(size.height - padding, node.y));
-    };
-    relaxOverlaps(nodes, size.width, size.height, radiusFor, isMobile);
-    nodes.forEach(clampNode);
+    const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
 
     const root = svg.append('g').attr('transform', 'translate(20, 20)');
-    const regionGlowLayer = root.append('g');
+
+    const defs = root.append('defs');
+    defs
+      .append('radialGradient')
+      .attr('id', 'cluster-discourse')
+      .selectAll('stop')
+      .data([
+        { offset: '0%', color: 'rgba(127, 171, 145, 0.24)' },
+        { offset: '100%', color: 'rgba(127, 171, 145, 0)' },
+      ])
+      .join('stop')
+      .attr('offset', (stop) => stop.offset)
+      .attr('stop-color', (stop) => stop.color);
+
+    defs
+      .append('radialGradient')
+      .attr('id', 'cluster-governance')
+      .selectAll('stop')
+      .data([
+        { offset: '0%', color: 'rgba(196, 149, 106, 0.22)' },
+        { offset: '100%', color: 'rgba(196, 149, 106, 0)' },
+      ])
+      .join('stop')
+      .attr('offset', (stop) => stop.offset)
+      .attr('stop-color', (stop) => stop.color);
+
+    defs
+      .append('radialGradient')
+      .attr('id', 'cluster-equity')
+      .selectAll('stop')
+      .data([
+        { offset: '0%', color: 'rgba(168, 181, 138, 0.2)' },
+        { offset: '100%', color: 'rgba(168, 181, 138, 0)' },
+      ])
+      .join('stop')
+      .attr('offset', (stop) => stop.offset)
+      .attr('stop-color', (stop) => stop.color);
+
     const regionLayer = root.append('g');
+    const titleLayer = root.append('g');
     const linkLayer = root.append('g');
     const nodeGlowLayer = root.append('g');
     const nodeLayer = root.append('g');
 
-    const link = linkLayer
-      .selectAll('line')
-      .data(edges)
-      .join('line')
-      .attr('stroke', '#F5F0E8')
-      .attr('stroke-opacity', 0.08)
-      .attr('stroke-width', 0.8);
+    const regionData = Object.entries(clusterCenters).map(([id, center]) => ({ id, ...center }));
 
-    const nodeShell = nodeLayer
-      .selectAll('g')
-      .data(nodes)
-      .join('g')
-      .style('cursor', (node) =>
-        node.url && node.type !== 'theme' && node.type !== 'institution' ? 'pointer' : 'grab'
-      );
+    regionLayer
+      .selectAll('circle')
+      .data(regionData)
+      .join('circle')
+      .attr('cx', (entry) => entry.x)
+      .attr('cy', (entry) => entry.y)
+      .attr('r', (entry) => entry.glowRadius)
+      .attr('fill', (entry) => `url(#${semanticClusters[entry.id].glowId})`)
+      .attr('opacity', isMobile ? 0.94 : 1);
+
+    if (!isMobile) {
+      const titleGroups = titleLayer
+        .selectAll('g')
+        .data(regionData)
+        .join('g')
+        .attr(
+          'transform',
+          (entry) => `translate(${entry.x + entry.titleDx},${entry.y + entry.titleDy})`
+        );
+
+      titleGroups
+        .selectAll('text')
+        .data((entry) => [entry])
+        .join('text')
+        .attr('text-anchor', 'middle')
+        .attr('fill', (entry) => semanticClusters[entry.id].textFill)
+        .attr('font-family', 'Cormorant Garamond, serif')
+        .attr('font-size', (entry) => (entry.id === 'equity' ? 50 : 52))
+        .attr('font-weight', 500)
+        .attr('letter-spacing', '0.01em')
+        .each(function renderTitle(entry) {
+          const text = d3.select(this);
+          text.selectAll('*').remove();
+
+          semanticClusters[entry.id].lines.forEach((line, index) => {
+            text
+              .append('tspan')
+              .text(line)
+              .attr('x', 0)
+              .attr('y', index === 0 ? 0 : null)
+              .attr('dy', index === 0 ? 0 : 38);
+          });
+        });
+    }
+
+    const link = linkLayer
+      .selectAll('path')
+      .data(edges)
+      .join('path')
+      .attr('fill', 'none')
+      .attr('stroke', 'rgba(245, 240, 232, 0.18)')
+      .attr('stroke-width', 1.1)
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-opacity', 0.18);
 
     const nodeGlow = nodeGlowLayer
       .selectAll('circle')
-      .data(nodes.filter((node) => isPrimaryNode(node, adjacency, isMobile)))
+      .data(nodes.filter((node) => node.type === 'theme'))
       .join('circle')
-      .attr('fill', (node) => {
-        if (node.type === 'research') return 'rgba(154, 184, 158, 0.12)';
-        if (node.type === 'theme') return 'rgba(245, 240, 232, 0.08)';
-        if (node.type === 'leadership') return 'rgba(138, 162, 123, 0.1)';
-        return 'rgba(245, 240, 232, 0.06)';
-      })
-      .attr('opacity', 1);
+      .attr('fill', 'rgba(196, 149, 106, 0.12)');
 
-    const circles = nodeShell
+    const nodeShell = nodeLayer
+      .selectAll('g.node-shell')
+      .data(nodes)
+      .join('g')
+      .attr('class', 'node-shell')
+      .style('cursor', (node) => (node.url ? 'pointer' : 'grab'));
+
+    const driftLayer = nodeShell
+      .append('g')
+      .attr('class', 'node-drift')
+      .style('--drift-x', (node) => node.drift.x)
+      .style('--drift-y', (node) => node.drift.y)
+      .style('--drift-duration', (node) => node.drift.duration)
+      .style('--drift-delay', (node) => node.drift.delay);
+
+    const circles = driftLayer
       .append('circle')
-      .attr('r', (node) => radiusFor(node))
-      .attr('fill', (node) => nodeStyle[node.type]?.fill ?? '#F3F7F0')
-      .attr('stroke', (node) => nodeStyle[node.type]?.stroke ?? 'none')
-      .attr('stroke-width', (node) => (node.type === 'theme' ? 1.2 : 0));
+      .attr('r', (node) => nodeStyle[node.type].radius)
+      .attr('fill', (node) => nodeStyle[node.type].fill)
+      .attr('stroke', (node) => nodeStyle[node.type].stroke)
+      .attr('stroke-width', (node) => (node.type === 'theme' ? 1.2 : 1));
 
-    const labels = nodeShell
+    const labels = driftLayer
       .append('text')
       .attr('text-anchor', 'middle')
       .attr('fill', '#F5F0E8')
-      .attr('stroke', 'rgba(13, 26, 20, 0.62)')
-      .attr('stroke-width', 0.5)
+      .attr('stroke', 'rgba(13, 26, 20, 0.58)')
+      .attr('stroke-width', 0.42)
       .attr('paint-order', 'stroke')
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
-      .attr('font-size', (node) => {
-        if (node.type === 'theme')
-          return isMobile ? (mobileVisibleLabelIds.has(node.id) ? 9.4 : 0) : 13.5;
-        if (node.type === 'institution')
-          return isMobile ? 0 : 9.6;
-        if (node.type === 'research')
-          return isMobile ? (mobileVisibleLabelIds.has(node.id) ? 8.7 : 0) : 11.4;
-        return isMobile ? (mobileVisibleLabelIds.has(node.id) ? 8.2 : 0) : 10;
-      })
-      .attr('font-weight', (node) => (node.type === 'theme' ? 600 : 500))
-      .attr('letter-spacing', '0.01em')
-      .attr('opacity', (node) => defaultLabelOpacity(node, adjacency, isMobile))
+      .attr('font-weight', (node) => nodeStyle[node.type].labelWeight)
+      .attr('opacity', (node) => nodeStyle[node.type].labelOpacity)
       .attr('pointer-events', 'none');
 
     labels.each(function createLabel(node) {
       const text = d3.select(this);
-      const maxChars = isMobile
-        ? node.type === 'theme'
-          ? 15
-          : node.type === 'institution'
-            ? 11
-            : 11
-        : node.type === 'theme'
-          ? 19
-          : node.type === 'research'
-            ? 15
-            : 13;
-      const lines = wrapLabel(node.label, maxChars);
-      const baseY = radiusFor(node) + (isMobile ? 14 : 16) - (lines.length - 1) * 6;
+      const { lines, fontSize, labelY } = labelConfig(node, isMobile);
+      text.attr('font-size', fontSize);
 
       lines.forEach((line, index) => {
         text
           .append('tspan')
           .text(line)
           .attr('x', 0)
-          .attr('y', index === 0 ? baseY : null)
-          .attr('dy', index === 0 ? 0 : 12);
+          .attr('y', index === 0 ? labelY : null)
+          .attr('dy', index === 0 ? 0 : fontSize + 1.5);
       });
     });
 
-    const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
-
-    const renderRegions = () => {
-      const regionData = Object.keys(semanticClusters).map((clusterId) => {
-        const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
-        const sample = clusterNodes[0];
-        const center = sample
-          ? { x: sample.clusterCenterX, y: sample.clusterCenterY }
-          : getClusterCenter(clusterId, size.width, size.height, isMobile);
-        const coreRadius = isMobile ? 18 : 62;
-        const centerPoints = d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
-          center.x + Math.cos(angle) * coreRadius,
-          center.y + Math.sin(angle) * coreRadius,
-        ]);
-        const nodePoints = clusterNodes.flatMap((node) => {
-          const radius =
-            radiusFor(node) +
-            (node.type === 'theme' ? (isMobile ? 34 : 54) : isMobile ? 24 : 40);
-          return d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
-            node.x + Math.cos(angle) * radius,
-            node.y + Math.sin(angle) * radius,
-          ]);
-        });
-
-        return {
-          id: clusterId,
-          center,
-          path: createHull([...centerPoints, ...nodePoints]),
-        };
-      });
-
-      regionGlowLayer
-        .selectAll('circle')
-        .data(regionData)
-        .join('circle')
-        .attr('cx', (entry) => entry.center.x)
-        .attr('cy', (entry) => entry.center.y)
-        .attr('r', isMobile ? 82 : 132)
-        .attr('fill', (entry) => semanticClusters[entry.id].fill)
-        .attr('opacity', isMobile ? 0.34 : 0.46);
-
-      regionLayer
-        .selectAll('path')
-        .data(regionData.filter((entry) => entry.path))
-        .join('path')
-        .attr('d', (entry) => entry.path)
-        .attr('fill', (entry) => semanticClusters[entry.id].fill)
-        .attr('stroke', (entry) => semanticClusters[entry.id].stroke)
-        .attr('stroke-width', isMobile ? 0.8 : 1.05)
-        .attr('fill-opacity', isMobile ? 0.52 : 0.92)
-        .attr('stroke-opacity', isMobile ? 0.56 : 0.84);
-
-    };
-
     const render = () => {
+      regionLayer
+        .selectAll('circle')
+        .attr('cx', (entry) => entry.x)
+        .attr('cy', (entry) => entry.y);
+
+      if (!isMobile) {
+        titleLayer
+          .selectAll('g')
+          .attr(
+            'transform',
+            (entry) => `translate(${entry.x + entry.titleDx},${entry.y + entry.titleDy})`
+          );
+      }
+
       nodeGlow
         .attr('cx', (node) => node.x)
         .attr('cy', (node) => node.y)
-        .attr('r', (node) => radiusFor(node) * (node.type === 'theme' ? 3.8 : 3.1));
+        .attr('r', (node) => nodeStyle[node.type].radius * 3.6);
 
-      link
-        .attr('x1', (edge) => edge.source.x)
-        .attr('y1', (edge) => edge.source.y)
-        .attr('x2', (edge) => edge.target.x)
-        .attr('y2', (edge) => edge.target.y)
-        .attr('stroke-opacity', (edge) => {
-          const sourcePrimary = isPrimaryNode(edge.source, adjacency, isMobile);
-          const targetPrimary = isPrimaryNode(edge.target, adjacency, isMobile);
-          if (sourcePrimary && targetPrimary) return 0.16;
-          if (sourcePrimary || targetPrimary) return 0.08;
-          return 0.035;
-        })
-        .attr('stroke-width', (edge) => {
-          const sourcePrimary = isPrimaryNode(edge.source, adjacency, isMobile);
-          const targetPrimary = isPrimaryNode(edge.target, adjacency, isMobile);
-          return sourcePrimary && targetPrimary ? 1 : 0.7;
-        });
-
+      link.attr('d', edgePath);
       nodeShell.attr('transform', (node) => `translate(${node.x},${node.y})`);
-
-      renderRegions();
     };
-
-    render();
 
     const clearActiveState = () => {
       circles
-        .attr('opacity', (node) => defaultNodeOpacity(node, adjacency, isMobile))
-        .attr('r', (node) => radiusFor(node));
-      nodeGlow.attr('opacity', (node) => (isPrimaryNode(node, adjacency, isMobile) ? 1 : 0));
-      labels.attr('opacity', (node) => defaultLabelOpacity(node, adjacency, isMobile));
+        .attr('opacity', (node) => (node.type === 'institution' ? 0.82 : 1))
+        .attr('r', (node) => nodeStyle[node.type].radius);
+      labels.attr('opacity', (node) => nodeStyle[node.type].labelOpacity);
+      nodeGlow.attr('opacity', 1);
+      link.attr('stroke-opacity', 0.18).attr('stroke-width', 1.1);
       nodeShell.attr('opacity', 1);
       setTooltip((prev) => ({ ...prev, visible: false }));
       render();
@@ -866,27 +580,25 @@ function Graph() {
       nodeShell.filter((node) => node.id === activeNode.id).raise();
 
       circles
-        .attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.14))
-        .attr('r', (node) => (node.id === activeNode.id ? radiusFor(node) * 1.28 : radiusFor(node)));
-
-      nodeGlow.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.1));
-
-      labels.attr('opacity', (node) => {
-        if (node.id === activeNode.id) return 1;
-        if (isConnected(activeNode, node)) return 1;
-        if (node.type === 'theme' || node.type === 'institution') return 0.1;
-        return 0.04;
-      });
-
-      link
-        .attr('stroke-opacity', (edge) =>
-          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.78 : 0.06
-        )
-        .attr('stroke-width', (edge) =>
-          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1.65 : 0.45
+        .attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.2))
+        .attr('r', (node) =>
+          node.id === activeNode.id ? nodeStyle[node.type].radius * 1.14 : nodeStyle[node.type].radius
         );
 
-      nodeShell.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.18));
+      labels.attr('opacity', (node) => {
+        if (node.id === activeNode.id || isConnected(activeNode, node)) return 1;
+        return node.type === 'institution' ? 0.12 : 0.08;
+      });
+
+      nodeGlow.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.1));
+      link
+        .attr('stroke-opacity', (edge) =>
+          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.48 : 0.06
+        )
+        .attr('stroke-width', (edge) =>
+          edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1.4 : 0.9
+        );
+      nodeShell.attr('opacity', (node) => (isConnected(activeNode, node) ? 1 : 0.2));
     };
 
     const updateTooltip = (event, node) => {
@@ -918,9 +630,7 @@ function Graph() {
           updateTooltip(event, node);
         }
 
-        if (node.url && node.type !== 'theme' && node.type !== 'institution') {
-          navigate(node.url);
-        }
+        if (node.url) navigate(node.url);
       });
 
     nodeShell.call(
@@ -937,6 +647,7 @@ function Graph() {
         })
     );
 
+    render();
     clearActiveState();
 
     return () => {
@@ -946,22 +657,7 @@ function Graph() {
 
   return (
     <GraphWrap ref={wrapRef}>
-      <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge graph" />
-      <TitleOverlay aria-hidden="true">
-        {titleCards.map((card) => (
-          <ClusterTitleCard
-            key={card.id}
-            $x={card.x}
-            $y={card.y}
-            $align={card.align}
-            $stroke={card.stroke}
-          >
-            {card.lines.map((line) => (
-              <ClusterTitleLine key={`${card.id}-${line}`}>{line}</ClusterTitleLine>
-            ))}
-          </ClusterTitleCard>
-        ))}
-      </TitleOverlay>
+      <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge map" />
       <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
         {tooltip.label}
       </Tooltip>

@@ -8,9 +8,9 @@ const variants = {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   `,
   light: css`
-    color: ${({ theme }) => theme.colors.subpage.accent};
-    border: 1px solid rgba(61, 90, 62, 0.2);
-    background: linear-gradient(180deg, rgba(154, 184, 158, 0.12), rgba(255, 255, 255, 0.52));
+    color: ${({ theme }) => theme.colors.subpage.text};
+    border: 1px solid rgba(196, 149, 106, 0.22);
+    background: linear-gradient(180deg, rgba(196, 149, 106, 0.08), rgba(255, 255, 255, 0.62));
   `,
 };
 
