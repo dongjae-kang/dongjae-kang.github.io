@@ -49,7 +49,7 @@ export const theme = {
   layout: {
     textMax: '680px',
     pageMax: '900px',
-    graphMax: '1200px',
+    graphMax: '1320px',
     radius: '8px',
     pillRadius: '999px',
     headerHeight: '88px',
