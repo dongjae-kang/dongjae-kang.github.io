@@ -61,11 +61,30 @@ const Card = styled.article`
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: ${({ theme }) => theme.colors.subpage.placeholder};
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
   border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({ theme }) => theme.colors.subpage.muted};
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px;
+`;
+
+const PhotoKicker = styled.span`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+`;
+
+const PhotoText = styled.span`
+  max-width: 24ch;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const CardTitle = styled.h2`
@@ -100,7 +119,10 @@ function Activities() {
           <Grid>
             {activities.map((item) => (
               <Card key={item.id} onClick={() => navigate(`/activities/${item.id}`)}>
-                <Photo>{item.title} photo</Photo>
+                <Photo>
+                  <PhotoKicker>Activity Archive</PhotoKicker>
+                  <PhotoText>{item.media?.photos?.length ? `${item.media.photos.length} photos available` : 'Photos will be added to this archive.'}</PhotoText>
+                </Photo>
                 <div>
                   <CardTitle>{item.title}</CardTitle>
                   <DateText>{item.date || 'Date to be added'}</DateText>

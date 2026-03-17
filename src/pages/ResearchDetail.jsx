@@ -24,11 +24,29 @@ const Back = styled(Link)`
 const Thumbnail = styled.div`
   aspect-ratio: 16 / 9;
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: ${({ theme }) => theme.colors.subpage.placeholder};
-  display: grid;
-  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.16), rgba(221, 232, 224, 0.8));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
   border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({ theme }) => theme.colors.subpage.muted};
+`;
+
+const MediaLabel = styled.span`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+`;
+
+const MediaNote = styled.span`
+  max-width: 30ch;
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const Title = styled.h1`
@@ -85,7 +103,12 @@ function ResearchDetail() {
       <Page>
         <Container>
           <Back to="/research">Back to Research</Back>
-          <Thumbnail>{item.title} thumbnail</Thumbnail>
+          <Thumbnail>
+            <MediaLabel>Research Visual</MediaLabel>
+            <MediaNote>
+              {item.thumbnail ? `${item.title} thumbnail` : 'Project image, paper figure, or product screenshot to be added.'}
+            </MediaNote>
+          </Thumbnail>
           <div>
             <Title>{item.title}</Title>
             <Year>{item.year}</Year>

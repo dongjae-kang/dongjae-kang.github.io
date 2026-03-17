@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import PageTransition from '../components/PageTransition';
+import profileSquare from '../assets/images/profile-square.png';
 
 const Page = styled.main`
   min-height: 100vh;
@@ -38,16 +39,19 @@ const Photo = styled.div`
   border-radius: ${({ theme }) => theme.layout.radius};
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  display: grid;
-  place-items: center;
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2.2rem;
-  color: ${({ theme }) => theme.colors.subpage.muted};
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(21, 54, 41, 0.14);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 150px;
     height: 150px;
   }
+`;
+
+const PhotoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Bio = styled.div`
@@ -90,7 +94,9 @@ function About() {
         <Container>
           <Title>About</Title>
           <Intro>
-            <Photo aria-label="Profile photo placeholder">DK</Photo>
+            <Photo aria-label="Dongjae Kang profile photo">
+              <PhotoImage src={profileSquare} alt="Dongjae (Jack) Kang" />
+            </Photo>
             <Bio>
               <p>
                 Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in

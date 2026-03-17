@@ -69,6 +69,7 @@ const NavItem = styled(NavLink)`
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  font-family: ${({ theme }) => theme.fonts.body};
   color: ${({ $home, theme }) => ($home ? theme.colors.home.text : theme.colors.subpage.text)};
   opacity: 0.62;
 

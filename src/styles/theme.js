@@ -21,7 +21,7 @@ export const theme = {
     },
   },
   fonts: {
-    heading: "'Azeret Mono', monospace",
+    heading: "'IBM Plex Mono', monospace",
     body: "'Inter', sans-serif",
   },
   fontSizes: {

@@ -21,9 +21,9 @@ const Tag = styled.span`
   padding: 10px 16px;
   border-radius: ${({ theme }) => theme.layout.pillRadius};
   font-size: 0.82rem;
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-weight: 500;
+  letter-spacing: 0.01em;
   transition: ${({ theme }) => theme.transitions.hover};
   ${({ $variant = 'light' }) => variants[$variant]};
 `;

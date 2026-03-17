@@ -24,11 +24,15 @@ const Back = styled(Link)`
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: ${({ theme }) => theme.colors.subpage.placeholder};
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({ theme }) => theme.colors.subpage.muted};
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
 `;
 
 const Title = styled.h1`
@@ -42,6 +46,20 @@ const DateText = styled.p`
 
 const Description = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
+`;
+
+const MediaLabel = styled.span`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+`;
+
+const MediaNote = styled.span`
+  max-width: 30ch;
+  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const TagList = styled.div`
@@ -60,6 +78,11 @@ const VideoWrap = styled.div`
     border: 0;
     border-radius: ${({ theme }) => theme.layout.radius};
   }
+`;
+
+const ArchiveNote = styled.p`
+  max-width: ${({ theme }) => theme.layout.textMax};
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 function ActivityDetail() {
@@ -84,7 +107,14 @@ function ActivityDetail() {
       <Page>
         <Container>
           <Back to="/activities">Back to Activities</Back>
-          <Photo>{item.title} media</Photo>
+          <Photo>
+            <MediaLabel>Activity Media</MediaLabel>
+            <MediaNote>
+              {item.media?.photos?.length
+                ? `${item.media.photos.length} photos in archive`
+                : 'Photo archive in progress. Media will be added as the site is updated.'}
+            </MediaNote>
+          </Photo>
           <div>
             <Title>{item.title}</Title>
             <DateText>{item.date || 'Date to be added'}</DateText>
@@ -105,6 +135,12 @@ function ActivityDetail() {
               />
               <p>Speech starts at 1:15:02</p>
             </VideoWrap>
+          )}
+          {!item.media?.photos?.length && item.id !== 'valedictorian' && (
+            <ArchiveNote>
+              This entry is live, but its visual archive has not been uploaded yet. Text content and
+              metadata are finalized from the current project brief.
+            </ArchiveNote>
           )}
         </Container>
       </Page>

@@ -57,11 +57,30 @@ const Card = styled.article`
 const Thumbnail = styled.div`
   aspect-ratio: 16 / 9;
   border-radius: ${({ theme }) => theme.layout.radius};
-  background: ${({ theme }) => theme.colors.subpage.placeholder};
-  display: grid;
-  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.16), rgba(221, 232, 224, 0.8));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 16px;
+  gap: 6px;
   color: ${({ theme }) => theme.colors.subpage.muted};
   border: 1px solid rgba(30, 91, 67, 0.14);
+`;
+
+const ThumbKicker = styled.span`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+`;
+
+const ThumbText = styled.span`
+  max-width: 24ch;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const CardTitle = styled.h2`
@@ -100,7 +119,10 @@ function Research() {
           <Grid>
             {research.map((item) => (
               <Card key={item.id} onClick={() => navigate(`/research/${item.id}`)}>
-                <Thumbnail>{item.title} thumbnail</Thumbnail>
+                <Thumbnail>
+                  <ThumbKicker>Research Archive</ThumbKicker>
+                  <ThumbText>{item.title} visual will be added here.</ThumbText>
+                </Thumbnail>
                 <div>
                   <CardTitle>{item.title}</CardTitle>
                   <Year>{item.year}</Year>
