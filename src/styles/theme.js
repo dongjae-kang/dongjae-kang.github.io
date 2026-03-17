@@ -1,0 +1,65 @@
+export const theme = {
+  colors: {
+    home: {
+      forest: '#1B3D2F',
+      leather: '#5C3D2E',
+      olive: '#4A5D3A',
+      base: '#1A1A1A',
+      text: '#F5F0E8',
+      hover: '#8BA888',
+      leadership: '#A0856E',
+      institution: '#666666',
+    },
+    subpage: {
+      background: '#F5F0E8',
+      text: '#2B2A2A',
+      accent: '#2D5A3D',
+      border: '#D4CFC7',
+      muted: '#6E685F',
+      placeholder: '#DED8D0',
+      cardShadow: 'rgba(43, 42, 42, 0.08)',
+    },
+  },
+  fonts: {
+    heading: "'JetBrains Mono', monospace",
+    body: "'Inter', sans-serif",
+  },
+  fontSizes: {
+    base: '16px',
+    h1: '2.5rem',
+    h2: '1.8rem',
+    h3: '1.3rem',
+    body: '1rem',
+    small: '0.85rem',
+  },
+  lineHeights: {
+    body: 1.7,
+    heading: 1.2,
+  },
+  spacing: {
+    xs: '8px',
+    sm: '16px',
+    md: '24px',
+    lg: '32px',
+    xl: '48px',
+    xxl: '64px',
+    section: '80px',
+    sectionMobile: '48px',
+  },
+  layout: {
+    textMax: '680px',
+    pageMax: '900px',
+    graphMax: '1200px',
+    radius: '8px',
+    pillRadius: '999px',
+    headerHeight: '88px',
+  },
+  breakpoints: {
+    mobile: '768px',
+    tablet: '1024px',
+  },
+  transitions: {
+    hover: 'opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+    page: { duration: 0.6, ease: 'easeOut' },
+  },
+};
