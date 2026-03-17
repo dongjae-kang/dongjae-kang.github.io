@@ -212,17 +212,6 @@ function getClusterTitleLayout(clusterId, width, height, isMobile) {
   };
 }
 
-function hashString(value) {
-  let hash = 2166136261;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash ^= value.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-
-  return hash >>> 0;
-}
-
 function scoreClusterFromGraph(startId, nodesById, adjacency, maxDepth = 4) {
   const scores = new Map();
   const visited = new Set([startId]);
@@ -488,26 +477,6 @@ function Graph() {
     const { nodes, edges } = buildLayout(data.nodes, data.edges, size.width, size.height, isMobile);
     scaleLayoutToFrame(nodes, size.width, size.height);
 
-    nodes.forEach((node) => {
-      const seed = hashString(node.id);
-      node.floatPhaseA = (seed % 360) * (Math.PI / 180);
-      node.floatPhaseB = ((seed >> 7) % 360) * (Math.PI / 180);
-      node.floatSpeed = 0.00018 + (seed % 7) * 0.000018;
-      node.floatAmplitude = isMobile
-        ? node.type === 'theme'
-          ? 1.6
-          : node.type === 'institution'
-            ? 2.1
-            : 2.8
-        : node.type === 'theme'
-          ? 2.4
-          : node.type === 'institution'
-            ? 3.2
-            : 5.2;
-      node.renderX = node.x;
-      node.renderY = node.y;
-    });
-
     const linkedById = new Set();
     edges.forEach((edge) => {
       linkedById.add(`${edge.source}-${edge.target}`);
@@ -732,21 +701,6 @@ function Graph() {
 
     const isConnected = (a, b) => a.id === b.id || linkedById.has(`${a.id}-${b.id}`);
 
-    const getFloatOffset = (node, time) => {
-      if (node.fx != null || node.fy != null) {
-        return { x: 0, y: 0 };
-      }
-
-      const driftX =
-        Math.sin(time * node.floatSpeed + node.floatPhaseA) * node.floatAmplitude +
-        Math.cos(time * node.floatSpeed * 0.61 + node.floatPhaseB) * node.floatAmplitude * 0.42;
-      const driftY =
-        Math.cos(time * node.floatSpeed * 0.84 + node.floatPhaseA) * node.floatAmplitude * 0.78 +
-        Math.sin(time * node.floatSpeed * 0.58 + node.floatPhaseB) * node.floatAmplitude * 0.32;
-
-      return { x: driftX, y: driftY };
-    };
-
     const renderRegions = () => {
       const regionData = Object.keys(semanticClusters).map((clusterId) => {
         const clusterNodes = nodes.filter((node) => node.cluster === clusterId);
@@ -759,8 +713,8 @@ function Graph() {
         const nodePoints = clusterNodes.flatMap((node) => {
           const radius = radiusFor(node) + (node.type === 'theme' ? 70 : 56);
           return d3.range(0, Math.PI * 2, Math.PI / 4).map((angle) => [
-            node.renderX + Math.cos(angle) * radius,
-            node.renderY + Math.sin(angle) * radius,
+            node.x + Math.cos(angle) * radius,
+            node.y + Math.sin(angle) * radius,
           ]);
         });
 
@@ -780,22 +734,14 @@ function Graph() {
         .attr('stroke-width', 1.05);
     };
 
-    const render = (time = performance.now()) => {
-      nodes.forEach((node) => {
-        clampNode(node);
-        const drift = getFloatOffset(node, time);
-        const padding = isMobile ? 28 : 40;
-        node.renderX = Math.max(padding, Math.min(size.width - padding, node.x + drift.x));
-        node.renderY = Math.max(padding, Math.min(size.height - padding, node.y + drift.y));
-      });
-
+    const render = () => {
       link
-        .attr('x1', (edge) => edge.source.renderX)
-        .attr('y1', (edge) => edge.source.renderY)
-        .attr('x2', (edge) => edge.target.renderX)
-        .attr('y2', (edge) => edge.target.renderY);
+        .attr('x1', (edge) => edge.source.x)
+        .attr('y1', (edge) => edge.source.y)
+        .attr('x2', (edge) => edge.target.x)
+        .attr('y2', (edge) => edge.target.y);
 
-      nodeShell.attr('transform', (node) => `translate(${node.renderX},${node.renderY})`);
+      nodeShell.attr('transform', (node) => `translate(${node.x},${node.y})`);
 
       renderRegions();
     };
@@ -876,21 +822,12 @@ function Graph() {
 
     simulation.on('tick', () => {
       nodes.forEach(clampNode);
-      render(performance.now());
+      render();
 
       if (simulation.alpha() < 0.024) {
         simulation.stop();
       }
     });
-
-    let animationFrameId = 0;
-
-    const animate = (time) => {
-      render(time);
-      animationFrameId = window.requestAnimationFrame(animate);
-    };
-
-    animationFrameId = window.requestAnimationFrame(animate);
 
     nodeShell.call(
       d3
@@ -905,7 +842,7 @@ function Graph() {
           node.fy = Math.max(24, Math.min(size.height - 24, event.y));
           node.x = node.fx;
           node.y = node.fy;
-          render(performance.now());
+          render();
         })
         .on('end', (event, node) => {
           if (!event.active) simulation.alpha(0).stop();
@@ -916,7 +853,6 @@ function Graph() {
 
     return () => {
       simulation.stop();
-      window.cancelAnimationFrame(animationFrameId);
     };
   }, [data.edges, data.nodes, isMobile, navigate, size.height, size.width]);
 
