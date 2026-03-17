@@ -21,8 +21,8 @@ export const theme = {
     },
   },
   fonts: {
-    heading: "'IBM Plex Mono', monospace",
-    body: "'Inter', sans-serif",
+    heading: "'Baskervville', serif",
+    body: "'PP Neue Montreal', 'Inter', sans-serif",
   },
   fontSizes: {
     base: '16px',
