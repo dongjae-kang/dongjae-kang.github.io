@@ -36,6 +36,63 @@ const StyledSvg = styled.svg`
   overflow: visible;
 `;
 
+const TitleOverlay = styled.div`
+  position: absolute;
+  inset: 20px;
+  pointer-events: none;
+  z-index: 2;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const ClusterTitleCard = styled.div`
+  position: absolute;
+  left: ${({ $x }) => `${$x}px`};
+  top: ${({ $y }) => `${$y}px`};
+  transform: ${({ $align }) => ($align === 'end' ? 'translateX(-100%)' : 'none')};
+  min-width: 188px;
+  max-width: 224px;
+  padding: 18px 22px 16px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(19, 33, 25, 0.88), rgba(8, 18, 14, 0.78)),
+    rgba(8, 18, 14, 0.72);
+  border: 1px solid ${({ $stroke }) => $stroke};
+  box-shadow:
+    0 20px 36px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  text-align: ${({ $align }) => ($align === 'end' ? 'right' : 'left')};
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    ${({ $align }) => ($align === 'end' ? 'right: 18px;' : 'left: 18px;')}
+    width: 38px;
+    height: 1px;
+    background: ${({ $stroke }) => $stroke};
+    opacity: 0.95;
+  }
+`;
+
+const ClusterTitleLine = styled.span`
+  display: block;
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: clamp(2rem, 2.1vw, 2.6rem);
+  line-height: 0.88;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: ${({ theme }) => theme.colors.home.text};
+  text-shadow: 0 1px 0 rgba(13, 26, 20, 0.4);
+
+  &:first-child {
+    margin-top: 10px;
+  }
+`;
+
 const Tooltip = styled.div`
   position: absolute;
   top: ${({ $y }) => `${$y}px`};
@@ -524,6 +581,35 @@ function Graph() {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, label: '' });
   const isMobile = size.width > 0 && size.width < 768;
+  const titleCards = useMemo(() => {
+    if (!size.width || !size.height || isMobile) return [];
+
+    const compactDesktop = size.width < 960;
+    const cards = {
+      discourse: {
+        x: size.width * 0.06,
+        y: size.height * 0.06,
+        align: 'start',
+      },
+      governance: {
+        x: size.width * 0.94,
+        y: size.height * 0.04,
+        align: 'end',
+      },
+      equity: {
+        x: size.width * (compactDesktop ? 0.22 : 0.31),
+        y: size.height * (compactDesktop ? 0.77 : 0.8),
+        align: 'start',
+      },
+    };
+
+    return Object.entries(semanticClusters).map(([id, cluster]) => ({
+      id,
+      lines: cluster.titleLines,
+      stroke: cluster.stroke,
+      ...cards[id],
+    }));
+  }, [isMobile, size.height, size.width]);
 
   const data = useMemo(
     () => ({
@@ -593,7 +679,6 @@ function Graph() {
     const root = svg.append('g').attr('transform', 'translate(20, 20)');
     const regionGlowLayer = root.append('g');
     const regionLayer = root.append('g');
-    const titleLayer = root.append('g');
     const linkLayer = root.append('g');
     const nodeGlowLayer = root.append('g');
     const nodeLayer = root.append('g');
@@ -733,91 +818,6 @@ function Graph() {
         .attr('fill-opacity', isMobile ? 0.52 : 0.92)
         .attr('stroke-opacity', isMobile ? 0.56 : 0.84);
 
-      if (!isMobile) {
-        const titleData = regionData.map((entry) => {
-          const layouts = {
-            discourse: {
-              x: entry.center.x - 176,
-              y: entry.center.y - 116,
-              lineToX: entry.center.x - 86,
-              lineToY: entry.center.y - 58,
-              align: 'start',
-            },
-            governance: {
-              x: entry.center.x + 164,
-              y: entry.center.y - 98,
-              lineToX: entry.center.x + 84,
-              lineToY: entry.center.y - 50,
-              align: 'end',
-            },
-            equity: {
-              x: entry.center.x - 132,
-              y: entry.center.y + 150,
-              lineToX: entry.center.x - 26,
-              lineToY: entry.center.y + 72,
-              align: 'start',
-            },
-          };
-
-          return {
-            ...entry,
-            ...layouts[entry.id],
-          };
-        });
-
-        const titleGroups = titleLayer
-          .selectAll('g')
-          .data(titleData)
-          .join('g')
-          .attr('transform', (entry) => `translate(${entry.x},${entry.y})`);
-
-        titleGroups
-          .selectAll('line')
-          .data((entry) => [entry])
-          .join('line')
-          .attr('x1', (entry) => (entry.align === 'end' ? -12 : 12))
-          .attr('y1', 0)
-          .attr('x2', (entry) => entry.lineToX - entry.x)
-          .attr('y2', (entry) => entry.lineToY - entry.y)
-          .attr('stroke', 'rgba(245, 240, 232, 0.2)')
-          .attr('stroke-width', 1);
-
-        titleGroups
-          .selectAll('circle')
-          .data((entry) => [entry])
-          .join('circle')
-          .attr('cx', (entry) => entry.lineToX - entry.x)
-          .attr('cy', (entry) => entry.lineToY - entry.y)
-          .attr('r', 3)
-          .attr('fill', 'rgba(245, 240, 232, 0.62)');
-
-        titleGroups
-          .selectAll('text')
-          .data((entry) => [entry])
-          .join('text')
-          .attr('text-anchor', (entry) => entry.align)
-          .attr('fill', '#F5F0E8')
-          .attr('font-family', 'Cormorant Garamond, serif')
-          .attr('font-size', 34)
-          .attr('font-weight', 600)
-          .attr('letter-spacing', '0.01em')
-          .attr('paint-order', 'stroke')
-          .attr('stroke', 'rgba(13, 26, 20, 0.58)')
-          .attr('stroke-width', 0.65)
-          .each(function renderTitle(entry) {
-            const text = d3.select(this);
-            text.selectAll('*').remove();
-
-            semanticClusters[entry.id].titleLines.forEach((line, index) => {
-              text
-                .append('tspan')
-                .text(line)
-                .attr('x', 0)
-                .attr('y', index === 0 ? 0 : null)
-                .attr('dy', index === 0 ? 0 : 30);
-            });
-          });
-      }
     };
 
     const render = () => {
@@ -947,6 +947,21 @@ function Graph() {
   return (
     <GraphWrap ref={wrapRef}>
       <StyledSvg ref={svgRef} role="img" aria-label="Interactive knowledge graph" />
+      <TitleOverlay aria-hidden="true">
+        {titleCards.map((card) => (
+          <ClusterTitleCard
+            key={card.id}
+            $x={card.x}
+            $y={card.y}
+            $align={card.align}
+            $stroke={card.stroke}
+          >
+            {card.lines.map((line) => (
+              <ClusterTitleLine key={`${card.id}-${line}`}>{line}</ClusterTitleLine>
+            ))}
+          </ClusterTitleCard>
+        ))}
+      </TitleOverlay>
       <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
         {tooltip.label}
       </Tooltip>
