@@ -35,6 +35,13 @@ const Photo = styled.div`
   padding: 20px;
 `;
 
+const PhotoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+`;
+
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme }) => theme.fontSizes.h1};
@@ -85,6 +92,24 @@ const ArchiveNote = styled.p`
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
+const Gallery = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const GalleryImage = styled.img`
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+  border: 1px solid rgba(30, 91, 67, 0.14);
+`;
+
 function ActivityDetail() {
   const { id } = useParams();
   const item = activities.find((entry) => entry.id === id);
@@ -108,12 +133,21 @@ function ActivityDetail() {
         <Container>
           <Back to="/activities">Back to Activities</Back>
           <Photo>
-            <MediaLabel>Activity Media</MediaLabel>
-            <MediaNote>
-              {item.media?.photos?.length
-                ? `${item.media.photos.length} photos in archive`
-                : 'Photo archive in progress. Media will be added as the site is updated.'}
-            </MediaNote>
+            {item.media?.cover || item.media?.photos?.[0] ? (
+              <PhotoImage
+                src={item.media?.cover || item.media?.photos?.[0]}
+                alt={`${item.title} visual`}
+              />
+            ) : (
+              <>
+                <MediaLabel>Activity Media</MediaLabel>
+                <MediaNote>
+                  {item.media?.photos?.length
+                    ? `${item.media.photos.length} photos in archive`
+                    : 'Photo archive in progress. Media will be added as the site is updated.'}
+                </MediaNote>
+              </>
+            )}
           </Photo>
           <div>
             <Title>{item.title}</Title>
@@ -135,6 +169,13 @@ function ActivityDetail() {
               />
               <p>Speech starts at 1:15:02</p>
             </VideoWrap>
+          )}
+          {item.media?.photos?.length > 1 && (
+            <Gallery>
+              {item.media.photos.slice(1).map((photo, index) => (
+                <GalleryImage key={photo} src={photo} alt={`${item.title} archive ${index + 2}`} />
+              ))}
+            </Gallery>
           )}
           {!item.media?.photos?.length && item.id !== 'valedictorian' && (
             <ArchiveNote>

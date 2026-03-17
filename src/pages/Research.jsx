@@ -69,6 +69,13 @@ const Thumbnail = styled.div`
   border: 1px solid rgba(30, 91, 67, 0.14);
 `;
 
+const ThumbnailImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+`;
+
 const ThumbKicker = styled.span`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.72rem;
@@ -120,8 +127,14 @@ function Research() {
             {research.map((item) => (
               <Card key={item.id} onClick={() => navigate(`/research/${item.id}`)}>
                 <Thumbnail>
-                  <ThumbKicker>Research Archive</ThumbKicker>
-                  <ThumbText>{item.title} visual will be added here.</ThumbText>
+                  {item.thumbnail ? (
+                    <ThumbnailImage src={item.thumbnail} alt={`${item.title} preview`} />
+                  ) : (
+                    <>
+                      <ThumbKicker>Research Archive</ThumbKicker>
+                      <ThumbText>{item.title} visual will be added here.</ThumbText>
+                    </>
+                  )}
                 </Thumbnail>
                 <div>
                   <CardTitle>{item.title}</CardTitle>

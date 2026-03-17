@@ -1,3 +1,9 @@
+import kgsaCareerPoster from '../assets/images/activities/kgsa-career-poster.jpg';
+import kgsaCareerRoom from '../assets/images/activities/kgsa-career-room.jpg';
+import upennMixerGroup from '../assets/images/activities/upenn-mixer-group.jpeg';
+import upennMixerOpening from '../assets/images/activities/upenn-mixer-opening.jpeg';
+import upennMixerStage from '../assets/images/activities/upenn-mixer-stage.jpeg';
+
 export const activities = [
   {
     id: 'valedictorian',
@@ -69,7 +75,10 @@ export const activities = [
     fullDesc:
       'Served as the main MC for a five-school mixer event at the University of Pennsylvania, bringing together approximately 200 Korean students. Led sessions and coordinated the event.',
     tags: ['Leadership', 'Community'],
-    media: { photos: [] },
+    media: {
+      cover: upennMixerGroup,
+      photos: [upennMixerGroup, upennMixerOpening, upennMixerStage],
+    },
   },
   {
     id: 'student-council',
@@ -99,6 +108,9 @@ export const activities = [
     fullDesc:
       "As Career Chair of the Korean Graduate Student Association at Columbia, organized and served as MC for a career event featuring five speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the United Nations.",
     tags: ['Leadership', 'Community'],
-    media: { photos: [] },
+    media: {
+      cover: kgsaCareerPoster,
+      photos: [kgsaCareerPoster, kgsaCareerRoom],
+    },
   },
 ];

@@ -73,6 +73,13 @@ const Photo = styled.div`
   padding: 16px;
 `;
 
+const PhotoImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+`;
+
 const PhotoKicker = styled.span`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.72rem;
@@ -120,8 +127,21 @@ function Activities() {
             {activities.map((item) => (
               <Card key={item.id} onClick={() => navigate(`/activities/${item.id}`)}>
                 <Photo>
-                  <PhotoKicker>Activity Archive</PhotoKicker>
-                  <PhotoText>{item.media?.photos?.length ? `${item.media.photos.length} photos available` : 'Photos will be added to this archive.'}</PhotoText>
+                  {item.media?.cover || item.media?.photos?.[0] ? (
+                    <PhotoImage
+                      src={item.media?.cover || item.media?.photos?.[0]}
+                      alt={`${item.title} preview`}
+                    />
+                  ) : (
+                    <>
+                      <PhotoKicker>Activity Archive</PhotoKicker>
+                      <PhotoText>
+                        {item.media?.photos?.length
+                          ? `${item.media.photos.length} photos available`
+                          : 'Photos will be added to this archive.'}
+                      </PhotoText>
+                    </>
+                  )}
                 </Photo>
                 <div>
                   <CardTitle>{item.title}</CardTitle>

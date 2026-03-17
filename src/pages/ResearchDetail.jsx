@@ -35,6 +35,13 @@ const Thumbnail = styled.div`
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
+const ThumbnailImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+`;
+
 const MediaLabel = styled.span`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 0.74rem;
@@ -81,6 +88,24 @@ const Links = styled.div`
   }
 `;
 
+const Gallery = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const GalleryImage = styled.img`
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.layout.radius};
+  border: 1px solid rgba(30, 91, 67, 0.14);
+`;
+
 function ResearchDetail() {
   const { id } = useParams();
   const item = research.find((entry) => entry.id === id);
@@ -104,10 +129,16 @@ function ResearchDetail() {
         <Container>
           <Back to="/research">Back to Research</Back>
           <Thumbnail>
-            <MediaLabel>Research Visual</MediaLabel>
-            <MediaNote>
-              {item.thumbnail ? `${item.title} thumbnail` : 'Project image, paper figure, or product screenshot to be added.'}
-            </MediaNote>
+            {item.thumbnail ? (
+              <ThumbnailImage src={item.thumbnail} alt={`${item.title} visual`} />
+            ) : (
+              <>
+                <MediaLabel>Research Visual</MediaLabel>
+                <MediaNote>
+                  Project image, paper figure, or product screenshot to be added.
+                </MediaNote>
+              </>
+            )}
           </Thumbnail>
           <div>
             <Title>{item.title}</Title>
@@ -119,6 +150,17 @@ function ResearchDetail() {
               <Tag key={tag}>{tag}</Tag>
             ))}
           </TagList>
+          {item.gallery?.length > 1 && (
+            <Gallery>
+              {item.gallery.slice(1).map((image, index) => (
+                <GalleryImage
+                  key={image}
+                  src={image}
+                  alt={`${item.title} archive ${index + 2}`}
+                />
+              ))}
+            </Gallery>
+          )}
           {item.links.length > 0 && (
             <Links>
               {item.links.map((link) => (

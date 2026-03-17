@@ -59,6 +59,10 @@ const ClusterCards = styled.div`
   inset: 0;
   z-index: 2;
   pointer-events: none;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
 `;
 
 const ClusterCard = styled.div`

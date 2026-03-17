@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import PageTransition from '../components/PageTransition';
-import profileSquare from '../assets/images/profile-square.png';
+import profileSquare from '../assets/images/profile-square.jpg';
 
 const Page = styled.main`
   min-height: 100vh;

@@ -1,3 +1,8 @@
+import crisisnewsThumbnail from '../assets/images/research/crisisnews-thumbnail.png';
+import prismThumbnail from '../assets/images/research/prism-thumbnail.png';
+import multiAgentSimWorkflow from '../assets/images/research/multi-agent-sim-workflow.png';
+import multiAgentSimMethod from '../assets/images/research/multi-agent-sim-method.png';
+
 export const research = [
   {
     id: 'crisisnews',
@@ -11,7 +16,7 @@ export const research = [
       { label: 'arXiv', url: 'https://arxiv.org/abs/2510.12243' },
       { label: 'Website', url: 'https://crisis-news.netlify.app' },
     ],
-    thumbnail: null,
+    thumbnail: crisisnewsThumbnail,
   },
   {
     id: 'prism',
@@ -19,10 +24,10 @@ export const research = [
     year: '2025',
     shortDesc: 'Multi-perspective news platform addressing misinformation through source visualization.',
     fullDesc:
-      'A platform that visualizes how news stories spread across different sources with fact-checking integration. Built a functional prototype independently as part of Columbia SIPA coursework.',
+      'A multi-perspective news platform built for Columbia SIPA coursework that reconstructs how politically charged stories unfold across the ideological spectrum. Instead of labeling a single source as truth, PRISM maps missing viewpoints, credibility indicators, fact-checks, and event timelines to support more resilient democratic discourse.',
     tags: ['Misinformation', 'Platform Design', 'HCI'],
     links: [{ label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' }],
-    thumbnail: null,
+    thumbnail: prismThumbnail,
   },
   {
     id: 'beyond-removal',
@@ -41,10 +46,11 @@ export const research = [
     year: '2026',
     shortDesc: 'Simulating AI fact-check labels vs. accuracy nudges with agent-based modeling.',
     fullDesc:
-      'Ethics of Media course project using Python multi-agent simulation to compare AI fact-check labels against accuracy nudges. Key finding: nudges that help humans think critically are more effective than labels that decide for them.',
+      'Ethics of Media course project using Python multi-agent simulation to compare AI fact-check labels against accuracy nudges. The simulation models how different agent types respond to misinformation over repeated rounds, with a key finding that nudges helping people think critically can outperform labels that decide for them.',
     tags: ['Misinformation', 'AI', 'Simulation'],
     links: [],
-    thumbnail: null,
+    thumbnail: multiAgentSimWorkflow,
+    gallery: [multiAgentSimWorkflow, multiAgentSimMethod],
   },
   {
     id: 'ai-in-smes',
