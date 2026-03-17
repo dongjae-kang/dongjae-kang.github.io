@@ -1,23 +1,33 @@
-import styled, { keyframes } from 'styled-components';
+import { motion } from 'framer-motion';
 
-const fadeSlideIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
+const MotionDiv = motion.div;
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const TransitionWrap = styled.div`
-  animation: ${fadeSlideIn} 0.6s ease-out both;
-`;
+const variants = {
+  initial: { opacity: 0, y: 20 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.4,
+      ease: 'easeIn',
+    },
+  },
+};
 
 function PageTransition({ children }) {
-  return <TransitionWrap>{children}</TransitionWrap>;
+  return (
+    <MotionDiv variants={variants} initial="initial" animate="animate" exit="exit">
+      {children}
+    </MotionDiv>
+  );
 }
 
 export default PageTransition;

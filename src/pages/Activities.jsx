@@ -1,8 +1,24 @@
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { activities } from '../data/activities';
+
+const featuredOrder = [
+  'upenn-mixer',
+  'kgsa-career',
+  'valedictorian',
+  'student-council',
+  'chi-2025',
+  'un-ga-hlw',
+  'un-youth-forum',
+  'columbia-ai-club',
+  'participatory-budget',
+  'youth-policy',
+  'hyc-mixer',
+  'ces',
+  'stanford',
+];
 
 const Page = styled.main`
   min-height: 100vh;
@@ -10,7 +26,7 @@ const Page = styled.main`
 `;
 
 const Container = styled.div`
-  width: min(1160px, 100%);
+  width: min(${({ theme }) => theme.layout.contentMax}, 100%);
   margin: 0 auto;
 `;
 
@@ -40,36 +56,33 @@ const Grid = styled.div`
   }
 `;
 
-const Card = styled.article`
-  padding: 20px;
-  border: 1px solid rgba(30, 91, 67, 0.12);
-  border-radius: ${({ theme }) => theme.layout.radius};
-  background:
-    linear-gradient(180deg, rgba(154, 199, 175, 0.12), rgba(255, 255, 255, 0.72));
+const Card = styled(Link)`
   display: grid;
-  gap: 18px;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid rgba(61, 90, 62, 0.12);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(154, 184, 158, 0.1), rgba(255, 255, 255, 0.74)),
+    ${({ theme }) => theme.colors.subpage.background};
   transition: ${({ theme }) => theme.transitions.hover};
-  cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(30, 91, 67, 0.28);
+    border-color: rgba(61, 90, 62, 0.28);
     box-shadow: 0 18px 36px ${({ theme }) => theme.colors.subpage.cardShadow};
   }
 `;
 
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  overflow: hidden;
+  border-radius: 14px;
   background:
-    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
-  border: 1px solid rgba(30, 91, 67, 0.14);
-  color: ${({ theme }) => theme.colors.subpage.muted};
+    linear-gradient(145deg, rgba(61, 90, 62, 0.14), rgba(225, 219, 210, 0.82));
+  border: 1px solid rgba(61, 90, 62, 0.12);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 6px;
+  align-items: flex-end;
   padding: 16px;
 `;
 
@@ -77,32 +90,68 @@ const PhotoImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: ${({ theme }) => theme.layout.radius};
+`;
+
+const Placeholder = styled.div`
+  display: grid;
+  gap: 6px;
 `;
 
 const PhotoKicker = styled.span`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.accent};
 `;
 
+const PhotoTitle = styled.span`
+  max-width: 13ch;
+  color: ${({ theme }) => theme.colors.subpage.text};
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  line-height: 0.92;
+`;
+
 const PhotoText = styled.span`
   max-width: 24ch;
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.colors.subpage.text};
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const CardTitle = styled.h2`
-  font-size: 1.08rem;
+  font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 0.92;
 `;
 
 const DateText = styled.p`
-  font-size: 0.85rem;
   color: ${({ theme }) => theme.colors.subpage.muted};
+`;
+
+const Summary = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.text};
+`;
+
+const Preview = styled.div`
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+
+  ${Card}:hover & {
+    max-height: 60px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    max-height: 60px;
+  }
+`;
+
+const PreviewText = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 `;
 
 const TagList = styled.div`
@@ -112,7 +161,12 @@ const TagList = styled.div`
 `;
 
 function Activities() {
-  const navigate = useNavigate();
+  const orderedActivities = [
+    ...featuredOrder
+      .map((id) => activities.find((item) => item.id === id))
+      .filter(Boolean),
+    ...activities.filter((item) => !featuredOrder.includes(item.id)),
+  ];
 
   return (
     <PageTransition>
@@ -120,12 +174,13 @@ function Activities() {
         <Container>
           <Title>Activities</Title>
           <Intro>
-            Talks, leadership roles, institutional work, and public-facing moments across research,
-            governance, and community building.
+            Talks, committee work, diplomacy, student leadership, and community-building across
+            research and public life.
           </Intro>
+
           <Grid>
-            {activities.map((item) => (
-              <Card key={item.id} onClick={() => navigate(`/activities/${item.id}`)}>
+            {orderedActivities.map((item) => (
+              <Card key={item.id} to={`/activities/${item.id}`}>
                 <Photo>
                   {item.media?.cover || item.media?.photos?.[0] ? (
                     <PhotoImage
@@ -133,21 +188,25 @@ function Activities() {
                       alt={`${item.title} preview`}
                     />
                   ) : (
-                    <>
-                      <PhotoKicker>Activity Archive</PhotoKicker>
-                      <PhotoText>
-                        {item.media?.photos?.length
-                          ? `${item.media.photos.length} photos available`
-                          : 'Photos will be added to this archive.'}
-                      </PhotoText>
-                    </>
+                    <Placeholder>
+                      <PhotoKicker>{item.date}</PhotoKicker>
+                      <PhotoTitle>{item.title}</PhotoTitle>
+                      <PhotoText>Photo archive forthcoming.</PhotoText>
+                    </Placeholder>
                   )}
                 </Photo>
+
                 <div>
                   <CardTitle>{item.title}</CardTitle>
-                  <DateText>{item.date || 'Date to be added'}</DateText>
+                  <DateText>{item.date}</DateText>
                 </div>
-                <p>{item.shortDesc}</p>
+
+                <Summary>{item.summary}</Summary>
+
+                <Preview>
+                  <PreviewText>{item.description}</PreviewText>
+                </Preview>
+
                 <TagList>
                   {item.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>

@@ -8,24 +8,24 @@ const GraphWrap = styled.div`
   position: relative;
   width: 100%;
   max-width: ${({ theme }) => theme.layout.graphMax};
-  height: min(84vh, 980px);
-  min-height: 680px;
+  height: min(65vh, 700px);
+  min-height: 520px;
   padding: 20px;
   border-radius: 32px;
   overflow: hidden;
-  border: 1px solid rgba(216, 234, 223, 0.12);
+  border: 1px solid rgba(245, 240, 232, 0.12);
   background:
-    radial-gradient(circle at 16% 18%, rgba(154, 199, 175, 0.16), transparent 28%),
-    radial-gradient(circle at 84% 20%, rgba(111, 164, 134, 0.14), transparent 28%),
-    radial-gradient(circle at 50% 82%, rgba(154, 199, 175, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(8, 23, 17, 0.16), rgba(8, 23, 17, 0.05));
+    radial-gradient(circle at 16% 18%, rgba(154, 184, 158, 0.18), transparent 28%),
+    radial-gradient(circle at 84% 20%, rgba(92, 61, 46, 0.08), transparent 28%),
+    radial-gradient(circle at 50% 82%, rgba(74, 93, 58, 0.14), transparent 32%),
+    linear-gradient(180deg, rgba(13, 26, 20, 0.2), rgba(13, 26, 20, 0.08));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
-    0 24px 60px rgba(0, 0, 0, 0.12);
+    0 24px 60px rgba(0, 0, 0, 0.16);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 68vh;
-    min-height: 520px;
+    height: 50vh;
+    min-height: 400px;
     padding: 16px;
   }
 `;
@@ -45,8 +45,8 @@ const Tooltip = styled.div`
   z-index: 3;
   padding: 8px 10px;
   border-radius: 10px;
-  background: rgba(8, 23, 17, 0.92);
-  border: 1px solid rgba(216, 234, 223, 0.12);
+  background: rgba(13, 26, 20, 0.92);
+  border: 1px solid rgba(245, 240, 232, 0.12);
   color: ${({ theme }) => theme.colors.home.text};
   font-size: 0.78rem;
   white-space: nowrap;
@@ -69,11 +69,11 @@ const ClusterCard = styled.div`
   position: absolute;
   width: ${({ $width }) => $width};
   display: grid;
-  gap: 10px;
-  padding: 16px 18px 18px;
-  border-radius: 20px;
-  border: 1px solid rgba(216, 234, 223, 0.08);
-  background: rgba(8, 23, 17, 0.24);
+  gap: 7px;
+  padding: 12px 14px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(245, 240, 232, 0.08);
+  background: rgba(13, 26, 20, 0.24);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(18px);
   text-align: ${({ $align }) => $align};
@@ -87,23 +87,23 @@ const ClusterCard = styled.div`
 const ClusterLine = styled.span`
   width: 68px;
   height: 1px;
-  background: rgba(216, 234, 223, 0.34);
+  background: rgba(245, 240, 232, 0.22);
   margin: ${({ $align }) =>
     $align === 'center' ? '0 auto' : $align === 'right' ? '0 0 0 auto' : '0'};
 `;
 
 const ClusterEyebrow = styled.span`
   font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(243, 247, 240, 0.66);
+  color: rgba(245, 240, 232, 0.58);
 `;
 
 const ClusterCardTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(1.55rem, 2vw, 2rem);
+  font-size: clamp(1.45rem, 1.9vw, 1.85rem);
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 0.95;
@@ -114,18 +114,12 @@ const ClusterCardTitle = styled.h3`
   }
 `;
 
-const ClusterCardBody = styled.p`
-  font-size: 0.84rem;
-  line-height: 1.45;
-  color: rgba(243, 247, 240, 0.74);
-`;
-
 const nodeStyle = {
-  research: { fill: '#9AC7AF', stroke: 'none', radius: 8 },
-  activity: { fill: '#F3F7F0', stroke: 'none', radius: 7 },
-  leadership: { fill: '#6FA486', stroke: 'none', radius: 7 },
-  theme: { fill: 'transparent', stroke: '#D8EADF', radius: 10 },
-  institution: { fill: '#5E7569', stroke: 'none', radius: 6 },
+  research: { fill: '#9AB89E', stroke: 'none', radius: 8 },
+  activity: { fill: '#F5F0E8', stroke: 'none', radius: 7 },
+  leadership: { fill: '#8AA27B', stroke: 'none', radius: 7 },
+  theme: { fill: 'transparent', stroke: '#F5F0E8', radius: 10 },
+  institution: { fill: '#6B746A', stroke: 'none', radius: 6 },
 };
 
 const semanticClusters = {
@@ -135,7 +129,7 @@ const semanticClusters = {
     subtitle: 'researching how technology shapes public conversation',
     fill: 'rgba(111, 164, 134, 0.08)',
     stroke: 'rgba(154, 199, 175, 0.22)',
-    text: '#DDEEE4',
+    text: '#E6DED2',
   },
   governance: {
     label: 'Leadership & Governance',
@@ -143,7 +137,7 @@ const semanticClusters = {
     subtitle: 'turning ideas into coalitions, institutions, and public action',
     fill: 'rgba(243, 247, 240, 0.05)',
     stroke: 'rgba(243, 247, 240, 0.16)',
-    text: '#F3F7F0',
+    text: '#F5F0E8',
   },
   equity: {
     label: 'Equity, Innovation & Opportunity',
@@ -151,7 +145,7 @@ const semanticClusters = {
     subtitle: 'using technology and policy to widen access and opportunity',
     fill: 'rgba(84, 129, 103, 0.08)',
     stroke: 'rgba(111, 164, 134, 0.18)',
-    text: '#D8EADF',
+    text: '#E6DED2',
   },
 };
 
@@ -228,9 +222,9 @@ function getClusterCenter(clusterId, width, height, isMobile) {
   }
 
   const desktopPositions = {
-    discourse: { x: width * 0.19, y: height * 0.37 },
-    governance: { x: width * 0.81, y: height * 0.37 },
-    equity: { x: width * 0.5, y: height * 0.71 },
+    discourse: { x: width * 0.24, y: height * 0.42 },
+    governance: { x: width * 0.76, y: height * 0.42 },
+    equity: { x: width * 0.5, y: height * 0.74 },
   };
 
   return desktopPositions[clusterId];
@@ -261,19 +255,19 @@ function getClusterCardLayout(clusterId, isMobile) {
 
   const desktopLayouts = {
     discourse: {
-      style: { top: '34px', left: '34px' },
-      width: '276px',
+      style: { top: '20px', left: '20px' },
+      width: '220px',
       align: 'left',
     },
     governance: {
-      style: { top: '34px', right: '34px' },
-      width: '276px',
-      align: 'left',
+      style: { top: '20px', right: '20px' },
+      width: '220px',
+      align: 'right',
     },
     equity: {
-      style: { right: '34px', bottom: '30px' },
-      width: '320px',
-      align: 'right',
+      style: { left: '50%', bottom: '18px', transform: 'translateX(-50%)' },
+      width: '250px',
+      align: 'center',
     },
   };
 
@@ -490,13 +484,13 @@ function scaleLayoutToFrame(nodes, width, height) {
     return;
   }
 
-  const contentWidth = xExtent[1] - xExtent[0] + 140;
-  const contentHeight = yExtent[1] - yExtent[0] + 150;
-  const scale = Math.min((width * 0.97) / contentWidth, (height * 0.92) / contentHeight, 1.9);
+  const contentWidth = xExtent[1] - xExtent[0] + 180;
+  const contentHeight = yExtent[1] - yExtent[0] + 180;
+  const scale = Math.min((width * 0.94) / contentWidth, (height * 0.86) / contentHeight, 1.75);
   const sourceCenterX = (xExtent[0] + xExtent[1]) / 2;
   const sourceCenterY = (yExtent[0] + yExtent[1]) / 2;
   const targetCenterX = width / 2;
-  const targetCenterY = height / 2 + 8;
+  const targetCenterY = height / 2 - 20;
 
   nodes.forEach((node) => {
     node.x = targetCenterX + (node.x - sourceCenterX) * scale;
@@ -624,7 +618,7 @@ function Graph() {
       .selectAll('line')
       .data(edges)
       .join('line')
-      .attr('stroke', '#D8EADF')
+      .attr('stroke', '#F5F0E8')
       .attr('stroke-opacity', 0.14)
       .attr('stroke-width', 0.9);
 
@@ -646,15 +640,15 @@ function Graph() {
     const labels = nodeShell
       .append('text')
       .attr('text-anchor', 'middle')
-      .attr('fill', '#F7FBF8')
-      .attr('stroke', 'rgba(8, 23, 17, 0.5)')
+      .attr('fill', '#F5F0E8')
+      .attr('stroke', 'rgba(13, 26, 20, 0.62)')
       .attr('stroke-width', 0.5)
       .attr('paint-order', 'stroke')
       .attr('font-family', 'PP Neue Montreal, Inter, sans-serif')
       .attr('font-size', (node) => {
         if (node.type === 'theme') return isMobile ? 10.5 : 13;
         if (node.type === 'institution') return isMobile ? 9 : 10.75;
-        return isMobile ? 0 : 10.2;
+        return isMobile ? 0 : 11;
       })
       .attr('font-weight', (node) => (node.type === 'theme' ? 600 : 500))
       .attr('letter-spacing', '0.01em')
@@ -855,7 +849,6 @@ function Graph() {
               <ClusterEyebrow>Thematic Cluster</ClusterEyebrow>
               <ClusterLine $align={layout.align} />
               <ClusterCardTitle>{cluster.title.join(' ')}</ClusterCardTitle>
-              <ClusterCardBody>{cluster.subtitle}</ClusterCardBody>
             </ClusterCard>
           );
         })}

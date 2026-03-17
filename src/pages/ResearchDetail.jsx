@@ -23,15 +23,15 @@ const Back = styled(Link)`
 
 const Thumbnail = styled.div`
   aspect-ratio: 16 / 9;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(30, 91, 67, 0.16), rgba(221, 232, 224, 0.8));
+    linear-gradient(135deg, rgba(61, 90, 62, 0.16), rgba(225, 219, 210, 0.8));
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 8px;
   padding: 20px;
-  border: 1px solid rgba(30, 91, 67, 0.14);
+  border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
@@ -39,27 +39,31 @@ const ThumbnailImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 18px;
 `;
 
 const MediaLabel = styled.span`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.accent};
 `;
 
 const MediaNote = styled.span`
   max-width: 30ch;
-  font-size: 0.95rem;
   color: ${({ theme }) => theme.colors.subpage.text};
+`;
+
+const TitleBlock = styled.div`
+  display: grid;
+  gap: 8px;
 `;
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: ${({ theme }) => theme.fontSizes.h1};
-  font-weight: 800;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 600;
+  line-height: 0.92;
 `;
 
 const Year = styled.p`
@@ -68,6 +72,37 @@ const Year = styled.p`
 
 const Description = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
+`;
+
+const MetaGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const MetaBlock = styled.div`
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: rgba(255, 255, 255, 0.34);
+`;
+
+const MetaTitle = styled.h2`
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-weight: 500;
+`;
+
+const MetaText = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const TagList = styled.div`
@@ -83,7 +118,6 @@ const Links = styled.div`
 
   a {
     color: ${({ theme }) => theme.colors.subpage.accent};
-    font-family: ${({ theme }) => theme.fonts.body};
     font-weight: 500;
   }
 `;
@@ -102,8 +136,8 @@ const GalleryImage = styled.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: ${({ theme }) => theme.layout.radius};
-  border: 1px solid rgba(30, 91, 67, 0.14);
+  border-radius: 18px;
+  border: 1px solid rgba(61, 90, 62, 0.14);
 `;
 
 function ResearchDetail() {
@@ -128,39 +162,48 @@ function ResearchDetail() {
       <Page>
         <Container>
           <Back to="/research">Back to Research</Back>
+
           <Thumbnail>
             {item.thumbnail ? (
               <ThumbnailImage src={item.thumbnail} alt={`${item.title} visual`} />
             ) : (
               <>
                 <MediaLabel>Research Visual</MediaLabel>
-                <MediaNote>
-                  Project image, paper figure, or product screenshot to be added.
-                </MediaNote>
+                <MediaNote>Project image, paper figure, or product screenshot to be added.</MediaNote>
               </>
             )}
           </Thumbnail>
-          <div>
+
+          <TitleBlock>
             <Title>{item.title}</Title>
             <Year>{item.year}</Year>
-          </div>
-          <Description>{item.fullDesc}</Description>
-          <TagList>
-            {item.tags.map((tag) => (
-              <Tag key={tag}>{tag}</Tag>
-            ))}
-          </TagList>
+          </TitleBlock>
+
+          <Description>{item.description}</Description>
+
+          <MetaGrid>
+            <MetaBlock>
+              <MetaTitle>Collaborators</MetaTitle>
+              <MetaText>{item.collaborators.join(' · ')}</MetaText>
+            </MetaBlock>
+            <MetaBlock>
+              <MetaTitle>Tags</MetaTitle>
+              <TagList>
+                {item.tags.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </TagList>
+            </MetaBlock>
+          </MetaGrid>
+
           {item.gallery?.length > 1 && (
             <Gallery>
               {item.gallery.slice(1).map((image, index) => (
-                <GalleryImage
-                  key={image}
-                  src={image}
-                  alt={`${item.title} archive ${index + 2}`}
-                />
+                <GalleryImage key={image} src={image} alt={`${item.title} archive ${index + 2}`} />
               ))}
             </Gallery>
           )}
+
           {item.links.length > 0 && (
             <Links>
               {item.links.map((link) => (

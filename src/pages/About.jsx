@@ -109,7 +109,7 @@ function About() {
               <p>
                 At KAIST&apos;s Collaborative Social Technologies Lab (2024-2025), he co-authored a
                 study analyzing two decades of social media crisis patterns, and presented the work
-                at the <Link to="/activities/chi-2025">ACM CHI 2025 Workshop</Link> in Yokohama.
+                at the <Link to="/research/crisisnews">ACM CHI 2025 Workshop</Link> in Yokohama.
                 At Columbia, he led a team building <Link to="/research/prism">PRISM</Link>, a
                 platform that visualizes how news stories spread across different sources, and is
                 currently researching content moderation remedies and AI-driven misinformation

@@ -15,8 +15,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.fonts.body};
     font-size: ${({ theme }) => theme.fontSizes.base};
     line-height: ${({ theme }) => theme.lineHeights.body};
-    background: ${({ theme }) => theme.colors.subpage.background};
-    color: ${({ theme }) => theme.colors.subpage.text};
+    background: ${({ theme }) => theme.colors.light.background};
+    color: ${({ theme }) => theme.colors.light.text};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -36,6 +36,18 @@ export const GlobalStyles = createGlobalStyle`
   textarea,
   select {
     font: inherit;
+  }
+
+  p,
+  li,
+  span,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  label {
+    font-size: max(0.78rem, 1em);
   }
 
   button {

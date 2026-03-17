@@ -8,45 +8,55 @@ export const research = [
     id: 'crisisnews',
     title: 'CrisisNews',
     year: '2024-2025',
-    shortDesc: 'Dataset of 93,250 news articles spanning 20 years of social media crises.',
-    fullDesc:
-      "Co-first authored with Jeanne Choi under Prof. Joseph Seering at KAIST's Collaborative Social Technologies Lab. Built a comprehensive dataset analyzing two decades of social media crisis patterns. Presented as sole presenter at the ACM CHI 2025 Workshop in Yokohama.",
+    summary: 'A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.',
+    description:
+      "At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.",
+    collaborators: ['Jeanne Choi', 'Prof. Joseph Seering'],
     tags: ['Misinformation', 'Platform Governance', 'Data Analysis'],
     links: [
       { label: 'arXiv', url: 'https://arxiv.org/abs/2510.12243' },
       { label: 'Website', url: 'https://crisis-news.netlify.app' },
     ],
     thumbnail: crisisnewsThumbnail,
+    gallery: [crisisnewsThumbnail],
   },
   {
     id: 'prism',
     title: 'PRISM',
     year: '2025',
-    shortDesc: 'Multi-perspective news platform addressing misinformation through source visualization.',
-    fullDesc:
-      'A multi-perspective news platform built for Columbia SIPA coursework that reconstructs how politically charged stories unfold across the ideological spectrum. Instead of labeling a single source as truth, PRISM maps missing viewpoints, credibility indicators, fact-checks, and event timelines to support more resilient democratic discourse.',
+    summary:
+      'A multi-perspective news platform that reconstructs how a story moves across sources instead of reducing it to one trusted outlet.',
+    description:
+      'PRISM began as Columbia SIPA coursework and became a functional prototype built by Kang. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can see what any single source leaves out. Rather than deciding credibility for the user, it surfaces perspective, provenance, and sequence. The project sits between interface design and platform governance, with misinformation as the motivating use case.',
+    collaborators: ['Columbia SIPA project team', 'Prototype implemented independently'],
     tags: ['Misinformation', 'Platform Design', 'HCI'],
     links: [{ label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' }],
     thumbnail: prismThumbnail,
+    gallery: [prismThumbnail],
   },
   {
     id: 'beyond-removal',
     title: 'Beyond Removal',
-    year: '2026',
-    shortDesc: 'Mapping crisis data to content moderation remedies frameworks.',
-    fullDesc:
-      "Trust & Safety course term paper that maps CrisisNews data to Goldman's content moderation remedies framework. Analyzes gaps in current platform governance approaches and proposes more nuanced alternatives to content removal.",
+    year: 'Spring 2026',
+    summary:
+      "A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.",
+    description:
+      "Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.",
+    collaborators: ['Columbia SIPA Trust & Safety course'],
     tags: ['Content Moderation', 'Platform Governance'],
     links: [],
     thumbnail: null,
+    gallery: [],
   },
   {
     id: 'multi-agent-sim',
     title: 'Misinformation Multi-Agent Simulation',
-    year: '2026',
-    shortDesc: 'Simulating AI fact-check labels vs. accuracy nudges with agent-based modeling.',
-    fullDesc:
-      'Ethics of Media course project using Python multi-agent simulation to compare AI fact-check labels against accuracy nudges. The simulation models how different agent types respond to misinformation over repeated rounds, with a key finding that nudges helping people think critically can outperform labels that decide for them.',
+    year: 'Spring 2026',
+    summary:
+      'A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.',
+    description:
+      'This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.',
+    collaborators: ['Columbia SIPA Ethics of Media course'],
     tags: ['Misinformation', 'AI', 'Simulation'],
     links: [],
     thumbnail: multiAgentSimWorkflow,
@@ -56,11 +66,14 @@ export const research = [
     id: 'ai-in-smes',
     title: 'AI in SMEs',
     year: '2024',
-    shortDesc: 'Policy solutions for equitable AI technology diffusion among Korean SMEs.',
-    fullDesc:
-      'Undergraduate thesis exploring policy-oriented solutions for equitable AI technology diffusion among small and medium enterprises in Korea. Analyzed barriers to adoption and proposed government intervention frameworks.',
+    summary:
+      'An undergraduate thesis on how Korea can expand AI adoption among small and medium enterprises more equitably.',
+    description:
+      'AI in SMEs was Kang\'s undergraduate thesis at KAIST. It examined why Korean small and medium enterprises face uneven access to AI adoption, including capital constraints, organizational readiness, and limited technical capacity. The thesis proposed policy responses around financing, shared infrastructure, and public support for adoption. It connected industrial engineering training with a science and technology policy question about who benefits from technical change.',
+    collaborators: ['KAIST undergraduate thesis'],
     tags: ['AI Policy', 'Equitable Development'],
     links: [],
     thumbnail: null,
+    gallery: [],
   },
 ];

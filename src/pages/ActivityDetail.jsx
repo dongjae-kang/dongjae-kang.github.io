@@ -23,10 +23,10 @@ const Back = styled(Link)`
 
 const Photo = styled.div`
   aspect-ratio: 3 / 2;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 18px;
   background:
-    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
-  border: 1px solid rgba(30, 91, 67, 0.14);
+    linear-gradient(145deg, rgba(61, 90, 62, 0.14), rgba(225, 219, 210, 0.82));
+  border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({ theme }) => theme.colors.subpage.muted};
   display: flex;
   flex-direction: column;
@@ -39,12 +39,19 @@ const PhotoImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: ${({ theme }) => theme.layout.radius};
+  border-radius: 18px;
+`;
+
+const TitleBlock = styled.div`
+  display: grid;
+  gap: 8px;
 `;
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: ${({ theme }) => theme.fontSizes.h1};
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 0.92;
+  font-weight: 600;
 `;
 
 const DateText = styled.p`
@@ -56,16 +63,22 @@ const Description = styled.p`
 `;
 
 const MediaLabel = styled.span`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.accent};
 `;
 
 const MediaNote = styled.span`
   max-width: 30ch;
-  font-size: 0.95rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
+`;
+
+const PlaceholderTitle = styled.span`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.92;
+  max-width: 14ch;
   color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
@@ -73,6 +86,17 @@ const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+`;
+
+const Links = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  a {
+    color: ${({ theme }) => theme.colors.subpage.accent};
+    font-weight: 500;
+  }
 `;
 
 const VideoWrap = styled.div`
@@ -83,7 +107,7 @@ const VideoWrap = styled.div`
     width: 100%;
     aspect-ratio: 16 / 9;
     border: 0;
-    border-radius: ${({ theme }) => theme.layout.radius};
+    border-radius: 18px;
   }
 `;
 
@@ -106,8 +130,8 @@ const GalleryImage = styled.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: ${({ theme }) => theme.layout.radius};
-  border: 1px solid rgba(30, 91, 67, 0.14);
+  border-radius: 18px;
+  border: 1px solid rgba(61, 90, 62, 0.14);
 `;
 
 function ActivityDetail() {
@@ -132,6 +156,7 @@ function ActivityDetail() {
       <Page>
         <Container>
           <Back to="/activities">Back to Activities</Back>
+
           <Photo>
             {item.media?.cover || item.media?.photos?.[0] ? (
               <PhotoImage
@@ -140,25 +165,45 @@ function ActivityDetail() {
               />
             ) : (
               <>
-                <MediaLabel>Activity Media</MediaLabel>
-                <MediaNote>
-                  {item.media?.photos?.length
-                    ? `${item.media.photos.length} photos in archive`
-                    : 'Photo archive in progress. Media will be added as the site is updated.'}
-                </MediaNote>
+                <MediaLabel>{item.date}</MediaLabel>
+                <PlaceholderTitle>{item.title}</PlaceholderTitle>
+                <MediaNote>Photo archive forthcoming.</MediaNote>
               </>
             )}
           </Photo>
-          <div>
+
+          <TitleBlock>
             <Title>{item.title}</Title>
-            <DateText>{item.date || 'Date to be added'}</DateText>
-          </div>
-          <Description>{item.fullDesc}</Description>
+            <DateText>{item.date}</DateText>
+          </TitleBlock>
+
+          <Description>{item.description}</Description>
+
           <TagList>
             {item.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
           </TagList>
+
+          {item.links?.length > 0 && (
+            <Links>
+              {item.links.map((link) => {
+                const isExternal = /^https?:\/\//.test(link.url);
+
+                return (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </Links>
+          )}
+
           {item.id === 'valedictorian' && (
             <VideoWrap>
               <iframe
@@ -170,6 +215,7 @@ function ActivityDetail() {
               <p>Speech starts at 1:15:02</p>
             </VideoWrap>
           )}
+
           {item.media?.photos?.length > 1 && (
             <Gallery>
               {item.media.photos.slice(1).map((photo, index) => (
@@ -177,10 +223,11 @@ function ActivityDetail() {
               ))}
             </Gallery>
           )}
+
           {!item.media?.photos?.length && item.id !== 'valedictorian' && (
             <ArchiveNote>
-              This entry is live, but its visual archive has not been uploaded yet. Text content and
-              metadata are finalized from the current project brief.
+              This entry is already part of the site, but its visual archive has not been uploaded
+              yet.
             </ArchiveNote>
           )}
         </Container>

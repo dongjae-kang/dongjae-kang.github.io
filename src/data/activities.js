@@ -9,13 +9,16 @@ export const activities = [
     id: 'valedictorian',
     title: 'KAIST Valedictorian',
     date: 'Feb 2026',
-    shortDesc: 'Commencement address representing all graduates, attended by the President of Korea.',
-    fullDesc:
-      'Delivered the commencement address at KAIST as Valedictorian, representing all graduating students. The ceremony was attended by the President of the Republic of Korea.',
+    summary:
+      'Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.',
+    description:
+      'Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea. The speech is available publicly and is embedded on this site.',
     tags: ['Leadership', 'KAIST'],
+    links: [{ label: 'Video', url: 'https://www.youtube.com/watch?v=U7m4LpyHffk' }],
     media: {
       youtube: 'https://www.youtube.com/watch?v=U7m4LpyHffk',
       youtubeNote: 'Speech starts at 1:15:02',
+      // PHOTO: Owner will provide
       photos: [],
     },
   },
@@ -23,58 +26,85 @@ export const activities = [
     id: 'un-youth-forum',
     title: 'UN ECOSOC Youth Forum - SDG 9 Speaker',
     date: 'Apr 2026',
-    shortDesc: 'Speaking at the SDG 9 session as a representative of Columbia University at UN HQ.',
-    fullDesc:
-      'Selected to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. Representing Columbia University at the United Nations Headquarters in New York.',
+    summary:
+      'Scheduled to speak at the SDG 9 session of the UN ECOSOC Youth Forum as a representative of Columbia University.',
+    description:
+      'In April 2026, Kang is scheduled to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. He will represent Columbia University at United Nations Headquarters in New York. The invitation reflects the overlap between his work on technology governance and broader questions of public infrastructure and access.',
     tags: ['UN', 'Platform Governance', 'Speaking'],
-    media: { photos: [] },
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'un-ga-hlw',
     title: 'UN General Assembly High-Level Week',
     date: 'Sep 2025',
-    shortDesc: 'Event Assistant at the Permanent Mission of Korea to the United Nations.',
-    fullDesc:
-      'Served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations during the General Assembly High-Level Week. Supported Presidential Secretariat operations.',
+    summary:
+      'Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.',
+    description:
+      'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar. It added a practical diplomatic layer to work otherwise centered on research and domestic public policy.',
     tags: ['UN', 'Diplomacy'],
-    media: { photos: [] },
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'ces',
     title: 'CES Visit',
-    date: '',
-    shortDesc: 'Consumer Electronics Show visit.',
-    fullDesc: 'Attended the Consumer Electronics Show (CES), exploring the latest innovations in technology and industry trends.',
+    date: 'Date to be added',
+    summary: 'Visited CES to track current technology products, narratives, and industry direction.',
+    description:
+      'Kang attended the Consumer Electronics Show to see how emerging technologies are framed in industry settings. The visit was less about product consumption than about understanding what companies choose to surface, who they imagine their users to be, and how innovation is translated into public expectation.',
     tags: ['Technology', 'Industry'],
-    media: { photos: [] },
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'stanford',
     title: 'Stanford Visit',
-    date: '',
-    shortDesc: 'Visit to Stanford University.',
-    fullDesc: 'Academic visit to Stanford University.',
+    date: 'Date to be added',
+    summary: 'Visited Stanford as part of ongoing academic and technology exploration.',
+    description:
+      'Kang visited Stanford University as part of a broader interest in how technical institutions shape research agendas and public discourse. The visit belongs to the same strand of work that links academic inquiry, policy training, and institutional observation.',
     tags: ['Academia'],
-    media: { photos: [] },
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'hyc-mixer',
     title: 'Harvard-Yale-Columbia Korean Student Mixer - MC',
-    date: '',
-    shortDesc: 'Main MC for a mixer of ~200 Korean students from three universities.',
-    fullDesc:
-      'Served as the main MC for a mixer event bringing together approximately 200 Korean students from Harvard, Yale, and Columbia. Led sessions and facilitated interactions among attendees.',
+    date: 'Date to be added',
+    summary:
+      'Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.',
+    description:
+      'Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. The role involved leading the program in front of a large room while also shaping the event\'s tone as a social bridge rather than a formal obligation.',
     tags: ['Leadership', 'Community'],
-    media: { photos: [] },
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'upenn-mixer',
     title: '5-School Mixer at UPenn - MC',
-    date: '',
-    shortDesc: 'Main MC for a mixer of ~200 Korean students from five universities.',
-    fullDesc:
-      'Served as the main MC for a five-school mixer event at the University of Pennsylvania, bringing together approximately 200 Korean students. Led sessions and coordinated the event.',
+    date: 'Nov 15, 2025',
+    summary:
+      'Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.',
+    description:
+      'At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees and helped turn a large gathering into something structured and usable for the people in it. The event sits in the same category as his other work: building institutions that help people meet, orient, and move.',
     tags: ['Leadership', 'Community'],
+    links: [],
     media: {
       cover: upennMixerGroup,
       photos: [upennMixerGroup, upennMixerOpening, upennMixerStage],
@@ -84,33 +114,93 @@ export const activities = [
     id: 'student-council',
     title: 'KAIST Student Council President',
     date: '2022-2023',
-    shortDesc: 'Rebuilt the student council after three years of inactivity; led an 11-university policy coalition.',
-    fullDesc:
-      "As President of the KAIST Undergraduate Student Council, rebuilt the organization after three years of inactivity. Coordinated dialogue among 11 universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy.",
+    summary:
+      'Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea\'s R&D budget cut.',
+    description:
+      'As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries instead of choosing confrontation. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.',
     tags: ['Leadership', 'Policy', 'KAIST'],
-    media: { photos: [] },
+    links: [
+      { label: 'JoongAng Ilbo', url: 'https://www.joongang.co.kr/article/25215586' },
+      { label: 'KAIST Herald', url: 'https://herald.kaist.ac.kr/news/articleView.html?idxno=20910' },
+    ],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'chi-2025',
     title: 'CHI 2025 Workshop Presentation - Yokohama',
     date: 'Apr 2025',
-    shortDesc: 'Sole presenter for CrisisNews research at ACM CHI 2025.',
-    fullDesc:
-      'Presented the CrisisNews research as the sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan. Shared findings on two decades of social media crisis patterns with the HCI research community.',
+    summary:
+      'Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.',
+    description:
+      'Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.',
     tags: ['Research', 'Speaking', 'HCI'],
-    media: { photos: [] },
+    links: [{ label: 'Related Research', url: '/#/research/crisisnews' }],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
   },
   {
     id: 'kgsa-career',
-    title: "KGSA Career Event - Organizer & MC",
+    title: 'KGSA Career Event - Organizer & MC',
     date: 'Mar 2026',
-    shortDesc: "Organized and MC'd a career event with speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.",
-    fullDesc:
-      "As Career Chair of the Korean Graduate Student Association at Columbia, organized and served as MC for a career event featuring five speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the United Nations.",
+    summary:
+      'Organized and MC\'d a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.',
+    description:
+      'As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event was designed as a practical bridge between student questions and career paths already being navigated by alumni and practitioners.',
     tags: ['Leadership', 'Community'],
+    links: [],
     media: {
       cover: kgsaCareerPoster,
       photos: [kgsaCareerPoster, kgsaCareerRoom],
+    },
+  },
+  {
+    id: 'participatory-budget',
+    title: 'Participatory Budget Committee - Seoul Jungnang-gu',
+    date: '2017-2018',
+    summary:
+      'Served as the sole youth representative on the Jungnang-gu participatory budget committee at age seventeen.',
+    description:
+      'Kang served as the only youth representative among forty committee members on Seoul Jungnang-gu\'s participatory budget committee. The committee allocated roughly one million dollars each year across more than thirty local projects. It was an early experience in distributing public resources through deliberation rather than abstract theory.',
+    tags: ['Public Service', 'Participatory Governance'],
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
+  },
+  {
+    id: 'youth-policy',
+    title: 'Youth Policy Coordination Committee - Daejeon',
+    date: '2023-2025',
+    summary:
+      'Served on Daejeon\'s Youth Policy Coordination Committee, reviewing projects across multiple municipal departments.',
+    description:
+      'Kang served as one of thirty members of Daejeon\'s Youth Policy Coordination Committee from 2023 to 2025. The committee reviewed more than seventy projects spanning nine municipal departments. The work involved administrative detail, interdepartmental coordination, and the slower end of public governance that rarely makes it into speeches.',
+    tags: ['Public Service', 'Youth Policy'],
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
+    },
+  },
+  {
+    id: 'columbia-ai-club',
+    title: 'Columbia AI Club at SIPA',
+    date: '2025-Present',
+    summary:
+      'Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.',
+    description:
+      'Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role extends his research interests into a student institution, building a place where policy students can work on AI questions with more structure and continuity.',
+    tags: ['Leadership', 'AI', 'Columbia SIPA'],
+    links: [],
+    media: {
+      // PHOTO: Owner will provide
+      photos: [],
     },
   },
 ];
