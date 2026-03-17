@@ -64,6 +64,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  font-family: ${({theme:e})=>e.fonts.body};
   color: ${({$home:e,theme:t})=>e?t.colors.home.text:t.colors.subpage.text};
   opacity: 0.62;
 
@@ -137,9 +138,9 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding: 10px 16px;
   border-radius: ${({theme:e})=>e.layout.pillRadius};
   font-size: 0.82rem;
-  font-family: ${({theme:e})=>e.fonts.heading};
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: ${({theme:e})=>e.fonts.body};
+  font-weight: 500;
+  letter-spacing: 0.01em;
   transition: ${({theme:e})=>e.transitions.hover};
   ${({$variant:e=`light`})=>Mm[e]};
 `,Pm=kn.div,Fm={initial:{opacity:0,y:18},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-18,transition:{duration:.45,ease:`easeOut`}}};function Im({children:e}){return(0,k.jsx)(Pm,{variants:Fm,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var Lm=U.main`
@@ -183,19 +184,19 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-`;function Um(){return(0,k.jsx)(Im,{children:(0,k.jsx)(Lm,{children:(0,k.jsxs)(Rm,{children:[(0,k.jsx)(jm,{}),(0,k.jsxs)(zm,{children:[(0,k.jsx)(Bm,{children:`Dongjae (Jack) Kang`}),(0,k.jsx)(Vm,{children:`Researching how technology shapes public discourse and how governance can make it more equitable.`}),(0,k.jsxs)(Hm,{children:[(0,k.jsx)(Nm,{$variant:`dark`,children:`Columbia SIPA`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`Platform Governance`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`Misinformation`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`HCI`})]})]})]})})})}var Wm={color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0},Gm=S.createContext&&S.createContext(Wm),Km=[`attr`,`size`,`title`];function qm(e,t){if(e==null)return{};var n,r,i=Jm(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)===-1&&{}.propertyIsEnumerable.call(e,n)&&(i[n]=e[n])}return i}function Jm(e,t){if(e==null)return{};var n={};for(var r in e)if({}.hasOwnProperty.call(e,r)){if(t.indexOf(r)!==-1)continue;n[r]=e[r]}return n}function Ym(){return Ym=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)({}).hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},Ym.apply(null,arguments)}function Xm(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)}return n}function Zm(e){for(var t=1;t<arguments.length;t++){var n=arguments[t]==null?{}:arguments[t];t%2?Xm(Object(n),!0).forEach(function(t){Qm(e,t,n[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):Xm(Object(n)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))})}return e}function Qm(e,t,n){return(t=$m(t))in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function $m(e){var t=eh(e,`string`);return typeof t==`symbol`?t:t+``}function eh(e,t){if(typeof e!=`object`||!e)return e;var n=e[Symbol.toPrimitive];if(n!==void 0){var r=n.call(e,t||`default`);if(typeof r!=`object`)return r;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(t===`string`?String:Number)(e)}function th(e){return e&&e.map((e,t)=>S.createElement(e.tag,Zm({key:t},e.attr),th(e.child)))}function nh(e){return t=>S.createElement(rh,Ym({attr:Zm({},e.attr)},t),th(e.child))}function rh(e){var t=t=>{var{attr:n,size:r,title:i}=e,a=qm(e,Km),o=r||t.size||`1em`,s;return t.className&&(s=t.className),e.className&&(s=(s?s+` `:``)+e.className),S.createElement(`svg`,Ym({stroke:`currentColor`,fill:`currentColor`,strokeWidth:`0`},t.attr,n,a,{className:s,style:Zm(Zm({color:e.color||t.color},t.style),e.style),height:o,width:o,xmlns:`http://www.w3.org/2000/svg`}),i&&S.createElement(`title`,null,i),e.children)};return Gm===void 0?t(Wm):S.createElement(Gm.Consumer,null,e=>t(e))}function ih(e){return nh({tag:`svg`,attr:{viewBox:`0 0 448 512`},child:[{tag:`path`,attr:{d:`M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z`},child:[]}]})(e)}function ah(e){return nh({tag:`svg`,attr:{viewBox:`0 0 496 512`},child:[{tag:`path`,attr:{d:`M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z`},child:[]}]})(e)}function oh(e){return nh({tag:`svg`,attr:{viewBox:`0 0 512 512`},child:[{tag:`path`,attr:{d:`M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z`},child:[]}]})(e)}var sh=U.main`
+`;function Um(){return(0,k.jsx)(Im,{children:(0,k.jsx)(Lm,{children:(0,k.jsxs)(Rm,{children:[(0,k.jsx)(jm,{}),(0,k.jsxs)(zm,{children:[(0,k.jsx)(Bm,{children:`Dongjae (Jack) Kang`}),(0,k.jsx)(Vm,{children:`Researching how technology shapes public discourse and how governance can make it more equitable.`}),(0,k.jsxs)(Hm,{children:[(0,k.jsx)(Nm,{$variant:`dark`,children:`Columbia SIPA`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`Platform Governance`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`Misinformation`}),(0,k.jsx)(Nm,{$variant:`dark`,children:`HCI`})]})]})]})})})}var Wm={color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0},Gm=S.createContext&&S.createContext(Wm),Km=[`attr`,`size`,`title`];function qm(e,t){if(e==null)return{};var n,r,i=Jm(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)===-1&&{}.propertyIsEnumerable.call(e,n)&&(i[n]=e[n])}return i}function Jm(e,t){if(e==null)return{};var n={};for(var r in e)if({}.hasOwnProperty.call(e,r)){if(t.indexOf(r)!==-1)continue;n[r]=e[r]}return n}function Ym(){return Ym=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)({}).hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},Ym.apply(null,arguments)}function Xm(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)}return n}function Zm(e){for(var t=1;t<arguments.length;t++){var n=arguments[t]==null?{}:arguments[t];t%2?Xm(Object(n),!0).forEach(function(t){Qm(e,t,n[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):Xm(Object(n)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))})}return e}function Qm(e,t,n){return(t=$m(t))in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function $m(e){var t=eh(e,`string`);return typeof t==`symbol`?t:t+``}function eh(e,t){if(typeof e!=`object`||!e)return e;var n=e[Symbol.toPrimitive];if(n!==void 0){var r=n.call(e,t||`default`);if(typeof r!=`object`)return r;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(t===`string`?String:Number)(e)}function th(e){return e&&e.map((e,t)=>S.createElement(e.tag,Zm({key:t},e.attr),th(e.child)))}function nh(e){return t=>S.createElement(rh,Ym({attr:Zm({},e.attr)},t),th(e.child))}function rh(e){var t=t=>{var{attr:n,size:r,title:i}=e,a=qm(e,Km),o=r||t.size||`1em`,s;return t.className&&(s=t.className),e.className&&(s=(s?s+` `:``)+e.className),S.createElement(`svg`,Ym({stroke:`currentColor`,fill:`currentColor`,strokeWidth:`0`},t.attr,n,a,{className:s,style:Zm(Zm({color:e.color||t.color},t.style),e.style),height:o,width:o,xmlns:`http://www.w3.org/2000/svg`}),i&&S.createElement(`title`,null,i),e.children)};return Gm===void 0?t(Wm):S.createElement(Gm.Consumer,null,e=>t(e))}function ih(e){return nh({tag:`svg`,attr:{viewBox:`0 0 448 512`},child:[{tag:`path`,attr:{d:`M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z`},child:[]}]})(e)}function ah(e){return nh({tag:`svg`,attr:{viewBox:`0 0 496 512`},child:[{tag:`path`,attr:{d:`M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z`},child:[]}]})(e)}function oh(e){return nh({tag:`svg`,attr:{viewBox:`0 0 512 512`},child:[{tag:`path`,attr:{d:`M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z`},child:[]}]})(e)}var sh=`/assets/profile-square-Cinvb9KG.png`,ch=U.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
   background: ${({theme:e})=>e.colors.subpage.background};
-`,ch=U.div`
+`,lh=U.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
-`,lh=U.h1`
+`,uh=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   letter-spacing: 0.02em;
   margin-bottom: 40px;
-`,uh=U.section`
+`,dh=U.section`
   display: grid;
   grid-template-columns: 200px minmax(0, 1fr);
   gap: 32px;
@@ -204,23 +205,24 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,dh=U.div`
+`,fh=U.div`
   width: 200px;
   height: 200px;
   border-radius: ${({theme:e})=>e.layout.radius};
   background: ${({theme:e})=>e.colors.subpage.placeholder};
   border: 1px solid ${({theme:e})=>e.colors.subpage.border};
-  display: grid;
-  place-items: center;
-  font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: 2.2rem;
-  color: ${({theme:e})=>e.colors.subpage.muted};
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(21, 54, 41, 0.14);
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     width: 150px;
     height: 150px;
   }
-`,fh=U.div`
+`,ph=U.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`,mh=U.div`
   display: grid;
   gap: 24px;
   max-width: ${({theme:e})=>e.layout.textMax};
@@ -232,34 +234,34 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   a {
     color: ${({theme:e})=>e.colors.subpage.accent};
   }
-`,ph=U.hr`
+`,hh=U.hr`
   margin: 48px 0 28px;
   border: 0;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,mh=U.section`
+`,gh=U.section`
   display: grid;
   gap: 16px;
-`,hh=U.a`
+`,_h=U.a`
   display: inline-flex;
   align-items: center;
   gap: 10px;
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`;function gh(){return(0,k.jsx)(Im,{children:(0,k.jsx)(sh,{children:(0,k.jsxs)(ch,{children:[(0,k.jsx)(lh,{children:`About`}),(0,k.jsxs)(uh,{children:[(0,k.jsx)(dh,{"aria-label":`Profile photo placeholder`,children:`DK`}),(0,k.jsxs)(fh,{children:[(0,k.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,k.jsx)(N,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,k.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,k.jsx)(N,{to:`/activities/chi-2025`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,k.jsx)(N,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,k.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,k.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,k.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,k.jsx)(ph,{}),(0,k.jsxs)(mh,{children:[(0,k.jsxs)(hh,{href:`mailto:dk3500@columbia.edu`,children:[(0,k.jsx)(oh,{}),` dk3500@columbia.edu`]}),(0,k.jsxs)(hh,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,k.jsx)(ih,{}),` linkedin.com/in/jackkang3780`]}),(0,k.jsxs)(hh,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,k.jsx)(ah,{}),` github.com/dongjae-kang`]})]})]})})})}var _h=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,shortDesc:`Dataset of 93,250 news articles spanning 20 years of social media crises.`,fullDesc:`Co-first authored with Jeanne Choi under Prof. Joseph Seering at KAIST's Collaborative Social Technologies Lab. Built a comprehensive dataset analyzing two decades of social media crisis patterns. Presented as sole presenter at the ACM CHI 2025 Workshop in Yokohama.`,tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:null},{id:`prism`,title:`PRISM`,year:`2025`,shortDesc:`Multi-perspective news platform addressing misinformation through source visualization.`,fullDesc:`A platform that visualizes how news stories spread across different sources with fact-checking integration. Built a functional prototype independently as part of Columbia SIPA coursework.`,tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:null},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,shortDesc:`Mapping crisis data to content moderation remedies frameworks.`,fullDesc:`Trust & Safety course term paper that maps CrisisNews data to Goldman's content moderation remedies framework. Analyzes gaps in current platform governance approaches and proposes more nuanced alternatives to content removal.`,tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null},{id:`multi-agent-sim`,title:`Misinformation Multi-Agent Simulation`,year:`2026`,shortDesc:`Simulating AI fact-check labels vs. accuracy nudges with agent-based modeling.`,fullDesc:`Ethics of Media course project using Python multi-agent simulation to compare AI fact-check labels against accuracy nudges. Key finding: nudges that help humans think critically are more effective than labels that decide for them.`,tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:null},{id:`ai-in-smes`,title:`AI in SMEs`,year:`2024`,shortDesc:`Policy solutions for equitable AI technology diffusion among Korean SMEs.`,fullDesc:`Undergraduate thesis exploring policy-oriented solutions for equitable AI technology diffusion among small and medium enterprises in Korea. Analyzed barriers to adoption and proposed government intervention frameworks.`,tags:[`AI Policy`,`Equitable Development`],links:[],thumbnail:null}],vh=U.main`
+`;function vh(){return(0,k.jsx)(Im,{children:(0,k.jsx)(ch,{children:(0,k.jsxs)(lh,{children:[(0,k.jsx)(uh,{children:`About`}),(0,k.jsxs)(dh,{children:[(0,k.jsx)(fh,{"aria-label":`Dongjae Kang profile photo`,children:(0,k.jsx)(ph,{src:sh,alt:`Dongjae (Jack) Kang`})}),(0,k.jsxs)(mh,{children:[(0,k.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,k.jsx)(N,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,k.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,k.jsx)(N,{to:`/activities/chi-2025`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,k.jsx)(N,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,k.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,k.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,k.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,k.jsx)(hh,{}),(0,k.jsxs)(gh,{children:[(0,k.jsxs)(_h,{href:`mailto:dk3500@columbia.edu`,children:[(0,k.jsx)(oh,{}),` dk3500@columbia.edu`]}),(0,k.jsxs)(_h,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,k.jsx)(ih,{}),` linkedin.com/in/jackkang3780`]}),(0,k.jsxs)(_h,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,k.jsx)(ah,{}),` github.com/dongjae-kang`]})]})]})})})}var yh=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,shortDesc:`Dataset of 93,250 news articles spanning 20 years of social media crises.`,fullDesc:`Co-first authored with Jeanne Choi under Prof. Joseph Seering at KAIST's Collaborative Social Technologies Lab. Built a comprehensive dataset analyzing two decades of social media crisis patterns. Presented as sole presenter at the ACM CHI 2025 Workshop in Yokohama.`,tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:null},{id:`prism`,title:`PRISM`,year:`2025`,shortDesc:`Multi-perspective news platform addressing misinformation through source visualization.`,fullDesc:`A platform that visualizes how news stories spread across different sources with fact-checking integration. Built a functional prototype independently as part of Columbia SIPA coursework.`,tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:null},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,shortDesc:`Mapping crisis data to content moderation remedies frameworks.`,fullDesc:`Trust & Safety course term paper that maps CrisisNews data to Goldman's content moderation remedies framework. Analyzes gaps in current platform governance approaches and proposes more nuanced alternatives to content removal.`,tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null},{id:`multi-agent-sim`,title:`Misinformation Multi-Agent Simulation`,year:`2026`,shortDesc:`Simulating AI fact-check labels vs. accuracy nudges with agent-based modeling.`,fullDesc:`Ethics of Media course project using Python multi-agent simulation to compare AI fact-check labels against accuracy nudges. Key finding: nudges that help humans think critically are more effective than labels that decide for them.`,tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:null},{id:`ai-in-smes`,title:`AI in SMEs`,year:`2024`,shortDesc:`Policy solutions for equitable AI technology diffusion among Korean SMEs.`,fullDesc:`Undergraduate thesis exploring policy-oriented solutions for equitable AI technology diffusion among small and medium enterprises in Korea. Analyzed barriers to adoption and proposed government intervention frameworks.`,tags:[`AI Policy`,`Equitable Development`],links:[],thumbnail:null}],bh=U.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,yh=U.div`
+`,xh=U.div`
   width: min(1100px, 100%);
   margin: 0 auto;
-`,bh=U.h1`
+`,Sh=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,xh=U.p`
+`,Ch=U.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 40px;
-`,Sh=U.div`
+`,wh=U.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -267,7 +269,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,Ch=U.article`
+`,Th=U.article`
   padding: 24px;
   border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({theme:e})=>e.layout.radius};
@@ -283,59 +285,88 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({theme:e})=>e.colors.subpage.cardShadow};
   }
-`,wh=U.div`
+`,Eh=U.div`
   aspect-ratio: 16 / 9;
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: ${({theme:e})=>e.colors.subpage.placeholder};
-  display: grid;
-  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.16), rgba(221, 232, 224, 0.8));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 16px;
+  gap: 6px;
   color: ${({theme:e})=>e.colors.subpage.muted};
   border: 1px solid rgba(30, 91, 67, 0.14);
-`,Th=U.h2`
+`,Dh=U.span`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({theme:e})=>e.colors.subpage.accent};
+`,Oh=U.span`
+  max-width: 24ch;
+  font-size: 0.9rem;
+  color: ${({theme:e})=>e.colors.subpage.text};
+`,kh=U.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.2rem;
   font-weight: 700;
-`,Eh=U.p`
+`,Ah=U.p`
   font-size: 0.85rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Dh=U.p`
+`,jh=U.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,Oh=U.div`
+`,Mh=U.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`;function kh(){let e=qr();return(0,k.jsx)(Im,{children:(0,k.jsx)(vh,{children:(0,k.jsxs)(yh,{children:[(0,k.jsx)(bh,{children:`Research`}),(0,k.jsx)(xh,{children:`Research projects in platform governance, misinformation, AI policy, and interface design.`}),(0,k.jsx)(Sh,{children:_h.map(t=>(0,k.jsxs)(Ch,{onClick:()=>e(`/research/${t.id}`),children:[(0,k.jsxs)(wh,{children:[t.title,` thumbnail`]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(Th,{children:t.title}),(0,k.jsx)(Eh,{children:t.year})]}),(0,k.jsx)(Dh,{children:t.shortDesc}),(0,k.jsx)(Oh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))})]},t.id))})]})})})}var Ah=U.main`
+`;function Nh(){let e=qr();return(0,k.jsx)(Im,{children:(0,k.jsx)(bh,{children:(0,k.jsxs)(xh,{children:[(0,k.jsx)(Sh,{children:`Research`}),(0,k.jsx)(Ch,{children:`Research projects in platform governance, misinformation, AI policy, and interface design.`}),(0,k.jsx)(wh,{children:yh.map(t=>(0,k.jsxs)(Th,{onClick:()=>e(`/research/${t.id}`),children:[(0,k.jsxs)(Eh,{children:[(0,k.jsx)(Dh,{children:`Research Archive`}),(0,k.jsxs)(Oh,{children:[t.title,` visual will be added here.`]})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(kh,{children:t.title}),(0,k.jsx)(Ah,{children:t.year})]}),(0,k.jsx)(jh,{children:t.shortDesc}),(0,k.jsx)(Mh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))})]},t.id))})]})})})}var Ph=U.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,jh=U.div`
+`,Fh=U.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,Mh=U(N)`
+`,Ih=U(N)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`,Nh=U.div`
+`,Lh=U.div`
   aspect-ratio: 16 / 9;
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: ${({theme:e})=>e.colors.subpage.placeholder};
-  display: grid;
-  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.16), rgba(221, 232, 224, 0.8));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
   border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Ph=U.h1`
+`,Rh=U.span`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({theme:e})=>e.colors.subpage.accent};
+`,zh=U.span`
+  max-width: 30ch;
+  font-size: 0.95rem;
+  color: ${({theme:e})=>e.colors.subpage.text};
+`,Bh=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   font-weight: 800;
-`,Fh=U.p`
+`,Vh=U.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Ih=U.p`
+`,Hh=U.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,Lh=U.div`
+`,Uh=U.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,Rh=U.div`
+`,Wh=U.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -345,21 +376,21 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     font-family: ${({theme:e})=>e.fonts.heading};
     font-weight: 600;
   }
-`;function zh(){let{id:e}=Yr(),t=_h.find(t=>t.id===e);return t?(0,k.jsx)(Im,{children:(0,k.jsx)(Ah,{children:(0,k.jsxs)(jh,{children:[(0,k.jsx)(Mh,{to:`/research`,children:`Back to Research`}),(0,k.jsxs)(Nh,{children:[t.title,` thumbnail`]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(Ph,{children:t.title}),(0,k.jsx)(Fh,{children:t.year})]}),(0,k.jsx)(Ih,{children:t.fullDesc}),(0,k.jsx)(Lh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))}),t.links.length>0&&(0,k.jsx)(Rh,{children:t.links.map(e=>(0,k.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})})}):(0,k.jsx)(Im,{children:(0,k.jsx)(Ah,{children:(0,k.jsxs)(jh,{children:[(0,k.jsx)(Mh,{to:`/research`,children:`Back to Research`}),(0,k.jsx)(Ph,{children:`Project not found`})]})})})}var Bh=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,shortDesc:`Commencement address representing all graduates, attended by the President of Korea.`,fullDesc:`Delivered the commencement address at KAIST as Valedictorian, representing all graduating students. The ceremony was attended by the President of the Republic of Korea.`,tags:[`Leadership`,`KAIST`],media:{youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Speaker`,date:`Apr 2026`,shortDesc:`Speaking at the SDG 9 session as a representative of Columbia University at UN HQ.`,fullDesc:`Selected to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. Representing Columbia University at the United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,shortDesc:`Event Assistant at the Permanent Mission of Korea to the United Nations.`,fullDesc:`Served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations during the General Assembly High-Level Week. Supported Presidential Secretariat operations.`,tags:[`UN`,`Diplomacy`],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:``,shortDesc:`Consumer Electronics Show visit.`,fullDesc:`Attended the Consumer Electronics Show (CES), exploring the latest innovations in technology and industry trends.`,tags:[`Technology`,`Industry`],media:{photos:[]}},{id:`stanford`,title:`Stanford Visit`,date:``,shortDesc:`Visit to Stanford University.`,fullDesc:`Academic visit to Stanford University.`,tags:[`Academia`],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from three universities.`,fullDesc:`Served as the main MC for a mixer event bringing together approximately 200 Korean students from Harvard, Yale, and Columbia. Led sessions and facilitated interactions among attendees.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from five universities.`,fullDesc:`Served as the main MC for a five-school mixer event at the University of Pennsylvania, bringing together approximately 200 Korean students. Led sessions and coordinated the event.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,shortDesc:`Rebuilt the student council after three years of inactivity; led an 11-university policy coalition.`,fullDesc:`As President of the KAIST Undergraduate Student Council, rebuilt the organization after three years of inactivity. Coordinated dialogue among 11 universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy.`,tags:[`Leadership`,`Policy`,`KAIST`],media:{photos:[]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,shortDesc:`Sole presenter for CrisisNews research at ACM CHI 2025.`,fullDesc:`Presented the CrisisNews research as the sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan. Shared findings on two decades of social media crisis patterns with the HCI research community.`,tags:[`Research`,`Speaking`,`HCI`],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 2026`,shortDesc:`Organized and MC'd a career event with speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,fullDesc:`As Career Chair of the Korean Graduate Student Association at Columbia, organized and served as MC for a career event featuring five speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the United Nations.`,tags:[`Leadership`,`Community`],media:{photos:[]}}],Vh=U.main`
+`;function Gh(){let{id:e}=Yr(),t=yh.find(t=>t.id===e);return t?(0,k.jsx)(Im,{children:(0,k.jsx)(Ph,{children:(0,k.jsxs)(Fh,{children:[(0,k.jsx)(Ih,{to:`/research`,children:`Back to Research`}),(0,k.jsxs)(Lh,{children:[(0,k.jsx)(Rh,{children:`Research Visual`}),(0,k.jsx)(zh,{children:t.thumbnail?`${t.title} thumbnail`:`Project image, paper figure, or product screenshot to be added.`})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(Bh,{children:t.title}),(0,k.jsx)(Vh,{children:t.year})]}),(0,k.jsx)(Hh,{children:t.fullDesc}),(0,k.jsx)(Uh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))}),t.links.length>0&&(0,k.jsx)(Wh,{children:t.links.map(e=>(0,k.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})})}):(0,k.jsx)(Im,{children:(0,k.jsx)(Ph,{children:(0,k.jsxs)(Fh,{children:[(0,k.jsx)(Ih,{to:`/research`,children:`Back to Research`}),(0,k.jsx)(Bh,{children:`Project not found`})]})})})}var Kh=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,shortDesc:`Commencement address representing all graduates, attended by the President of Korea.`,fullDesc:`Delivered the commencement address at KAIST as Valedictorian, representing all graduating students. The ceremony was attended by the President of the Republic of Korea.`,tags:[`Leadership`,`KAIST`],media:{youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Speaker`,date:`Apr 2026`,shortDesc:`Speaking at the SDG 9 session as a representative of Columbia University at UN HQ.`,fullDesc:`Selected to speak at the SDG 9: Industry, Innovation, and Infrastructure session of the UN ECOSOC Youth Forum. Representing Columbia University at the United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,shortDesc:`Event Assistant at the Permanent Mission of Korea to the United Nations.`,fullDesc:`Served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations during the General Assembly High-Level Week. Supported Presidential Secretariat operations.`,tags:[`UN`,`Diplomacy`],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:``,shortDesc:`Consumer Electronics Show visit.`,fullDesc:`Attended the Consumer Electronics Show (CES), exploring the latest innovations in technology and industry trends.`,tags:[`Technology`,`Industry`],media:{photos:[]}},{id:`stanford`,title:`Stanford Visit`,date:``,shortDesc:`Visit to Stanford University.`,fullDesc:`Academic visit to Stanford University.`,tags:[`Academia`],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from three universities.`,fullDesc:`Served as the main MC for a mixer event bringing together approximately 200 Korean students from Harvard, Yale, and Columbia. Led sessions and facilitated interactions among attendees.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:``,shortDesc:`Main MC for a mixer of ~200 Korean students from five universities.`,fullDesc:`Served as the main MC for a five-school mixer event at the University of Pennsylvania, bringing together approximately 200 Korean students. Led sessions and coordinated the event.`,tags:[`Leadership`,`Community`],media:{photos:[]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,shortDesc:`Rebuilt the student council after three years of inactivity; led an 11-university policy coalition.`,fullDesc:`As President of the KAIST Undergraduate Student Council, rebuilt the organization after three years of inactivity. Coordinated dialogue among 11 universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy.`,tags:[`Leadership`,`Policy`,`KAIST`],media:{photos:[]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,shortDesc:`Sole presenter for CrisisNews research at ACM CHI 2025.`,fullDesc:`Presented the CrisisNews research as the sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan. Shared findings on two decades of social media crisis patterns with the HCI research community.`,tags:[`Research`,`Speaking`,`HCI`],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 2026`,shortDesc:`Organized and MC'd a career event with speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,fullDesc:`As Career Chair of the Korean Graduate Student Association at Columbia, organized and served as MC for a career event featuring five speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the United Nations.`,tags:[`Leadership`,`Community`],media:{photos:[]}}],qh=U.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,Hh=U.div`
+`,Jh=U.div`
   width: min(1160px, 100%);
   margin: 0 auto;
-`,Uh=U.h1`
+`,Yh=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,Wh=U.p`
+`,Xh=U.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 40px;
-`,Gh=U.div`
+`,Zh=U.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -371,7 +402,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,Kh=U.article`
+`,Qh=U.article`
   padding: 20px;
   border: 1px solid rgba(30, 91, 67, 0.12);
   border-radius: ${({theme:e})=>e.layout.radius};
@@ -387,56 +418,85 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: rgba(30, 91, 67, 0.28);
     box-shadow: 0 18px 36px ${({theme:e})=>e.colors.subpage.cardShadow};
   }
-`,qh=U.div`
+`,$h=U.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: ${({theme:e})=>e.colors.subpage.placeholder};
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
   border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({theme:e})=>e.colors.subpage.muted};
-  display: grid;
-  place-items: center;
-`,Jh=U.h2`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px;
+`,eg=U.span`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({theme:e})=>e.colors.subpage.accent};
+`,tg=U.span`
+  max-width: 24ch;
+  font-size: 0.9rem;
+  color: ${({theme:e})=>e.colors.subpage.text};
+`,ng=U.h2`
   font-size: 1.08rem;
   font-family: ${({theme:e})=>e.fonts.heading};
   font-weight: 700;
-`,Yh=U.p`
+`,rg=U.p`
   font-size: 0.85rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Xh=U.div`
+`,ig=U.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`;function Zh(){let e=qr();return(0,k.jsx)(Im,{children:(0,k.jsx)(Vh,{children:(0,k.jsxs)(Hh,{children:[(0,k.jsx)(Uh,{children:`Activities`}),(0,k.jsx)(Wh,{children:`Talks, leadership roles, institutional work, and public-facing moments across research, governance, and community building.`}),(0,k.jsx)(Gh,{children:Bh.map(t=>(0,k.jsxs)(Kh,{onClick:()=>e(`/activities/${t.id}`),children:[(0,k.jsxs)(qh,{children:[t.title,` photo`]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(Jh,{children:t.title}),(0,k.jsx)(Yh,{children:t.date||`Date to be added`})]}),(0,k.jsx)(`p`,{children:t.shortDesc}),(0,k.jsx)(Xh,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))})]},t.id))})]})})})}var Qh=U.main`
+`;function ag(){let e=qr();return(0,k.jsx)(Im,{children:(0,k.jsx)(qh,{children:(0,k.jsxs)(Jh,{children:[(0,k.jsx)(Yh,{children:`Activities`}),(0,k.jsx)(Xh,{children:`Talks, leadership roles, institutional work, and public-facing moments across research, governance, and community building.`}),(0,k.jsx)(Zh,{children:Kh.map(t=>(0,k.jsxs)(Qh,{onClick:()=>e(`/activities/${t.id}`),children:[(0,k.jsxs)($h,{children:[(0,k.jsx)(eg,{children:`Activity Archive`}),(0,k.jsx)(tg,{children:t.media?.photos?.length?`${t.media.photos.length} photos available`:`Photos will be added to this archive.`})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(ng,{children:t.title}),(0,k.jsx)(rg,{children:t.date||`Date to be added`})]}),(0,k.jsx)(`p`,{children:t.shortDesc}),(0,k.jsx)(ig,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))})]},t.id))})]})})})}var og=U.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,$h=U.div`
+`,sg=U.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,eg=U(N)`
+`,cg=U(N)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`,tg=U.div`
+`,lg=U.div`
   aspect-ratio: 3 / 2;
   border-radius: ${({theme:e})=>e.layout.radius};
-  background: ${({theme:e})=>e.colors.subpage.placeholder};
-  border: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  background:
+    linear-gradient(135deg, rgba(30, 91, 67, 0.14), rgba(221, 232, 224, 0.82));
+  border: 1px solid rgba(30, 91, 67, 0.14);
   color: ${({theme:e})=>e.colors.subpage.muted};
-  display: grid;
-  place-items: center;
-`,ng=U.h1`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
+`,ug=U.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
-`,rg=U.p`
+`,dg=U.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,ig=U.p`
+`,fg=U.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,ag=U.div`
+`,pg=U.span`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({theme:e})=>e.colors.subpage.accent};
+`,mg=U.span`
+  max-width: 30ch;
+  font-size: 0.95rem;
+  color: ${({theme:e})=>e.colors.subpage.text};
+`,hg=U.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,og=U.div`
+`,gg=U.div`
   display: grid;
   gap: 12px;
 
@@ -446,7 +506,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border: 0;
     border-radius: ${({theme:e})=>e.layout.radius};
   }
-`;function sg(){let{id:e}=Yr(),t=Bh.find(t=>t.id===e);return t?(0,k.jsx)(Im,{children:(0,k.jsx)(Qh,{children:(0,k.jsxs)($h,{children:[(0,k.jsx)(eg,{to:`/activities`,children:`Back to Activities`}),(0,k.jsxs)(tg,{children:[t.title,` media`]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(ng,{children:t.title}),(0,k.jsx)(rg,{children:t.date||`Date to be added`})]}),(0,k.jsx)(ig,{children:t.fullDesc}),(0,k.jsx)(ag,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))}),t.id===`valedictorian`&&(0,k.jsxs)(og,{children:[(0,k.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,k.jsx)(`p`,{children:`Speech starts at 1:15:02`})]})]})})}):(0,k.jsx)(Im,{children:(0,k.jsx)(Qh,{children:(0,k.jsxs)($h,{children:[(0,k.jsx)(eg,{to:`/activities`,children:`Back to Activities`}),(0,k.jsx)(ng,{children:`Activity not found`})]})})})}var cg=yc`
+`,_g=U.p`
+  max-width: ${({theme:e})=>e.layout.textMax};
+  color: ${({theme:e})=>e.colors.subpage.muted};
+`;function vg(){let{id:e}=Yr(),t=Kh.find(t=>t.id===e);return t?(0,k.jsx)(Im,{children:(0,k.jsx)(og,{children:(0,k.jsxs)(sg,{children:[(0,k.jsx)(cg,{to:`/activities`,children:`Back to Activities`}),(0,k.jsxs)(lg,{children:[(0,k.jsx)(pg,{children:`Activity Media`}),(0,k.jsx)(mg,{children:t.media?.photos?.length?`${t.media.photos.length} photos in archive`:`Photo archive in progress. Media will be added as the site is updated.`})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(ug,{children:t.title}),(0,k.jsx)(dg,{children:t.date||`Date to be added`})]}),(0,k.jsx)(fg,{children:t.fullDesc}),(0,k.jsx)(hg,{children:t.tags.map(e=>(0,k.jsx)(Nm,{children:e},e))}),t.id===`valedictorian`&&(0,k.jsxs)(gg,{children:[(0,k.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,k.jsx)(`p`,{children:`Speech starts at 1:15:02`})]}),!t.media?.photos?.length&&t.id!==`valedictorian`&&(0,k.jsx)(_g,{children:`This entry is live, but its visual archive has not been uploaded yet. Text content and metadata are finalized from the current project brief.`})]})})}):(0,k.jsx)(Im,{children:(0,k.jsx)(og,{children:(0,k.jsxs)(sg,{children:[(0,k.jsx)(cg,{to:`/activities`,children:`Back to Activities`}),(0,k.jsx)(ug,{children:`Activity not found`})]})})})}var yg=yc`
   * {
     margin: 0;
     padding: 0;
@@ -499,4 +562,4 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   ::selection {
     background: rgba(139, 168, 136, 0.22);
   }
-`,lg={colors:{home:{forest:`#0F3D2E`,leather:`#1B5A43`,olive:`#3C7A5E`,base:`#081711`,text:`#F3F7F0`,hover:`#9AC7AF`,leadership:`#6FA486`,institution:`#5E7569`},subpage:{background:`#F2F5EF`,text:`#1E2923`,accent:`#1E5B43`,border:`#C8D6CD`,muted:`#5D6D63`,placeholder:`#DDE8E0`,cardShadow:`rgba(21, 54, 41, 0.14)`}},fonts:{heading:`'Azeret Mono', monospace`,body:`'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.85rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,graphMax:`1200px`,radius:`8px`,pillRadius:`999px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function ug(){let e=Wr();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,k.jsxs)(k.Fragment,{children:[(0,k.jsx)(Tc,{}),(0,k.jsx)(Nt,{mode:`wait`,children:(0,k.jsxs)(xi,{location:e,children:[(0,k.jsx)(yi,{path:`/`,element:(0,k.jsx)(Um,{})}),(0,k.jsx)(yi,{path:`/about`,element:(0,k.jsx)(gh,{})}),(0,k.jsx)(yi,{path:`/research`,element:(0,k.jsx)(kh,{})}),(0,k.jsx)(yi,{path:`/research/:id`,element:(0,k.jsx)(zh,{})}),(0,k.jsx)(yi,{path:`/activities`,element:(0,k.jsx)(Zh,{})}),(0,k.jsx)(yi,{path:`/activities/:id`,element:(0,k.jsx)(sg,{})})]},e.pathname)}),(0,k.jsx)(Oc,{})]})}function dg(){return(0,k.jsxs)(uc,{theme:lg,children:[(0,k.jsx)(cg,{}),(0,k.jsx)(aa,{children:(0,k.jsx)(ug,{})})]})}(0,Ta.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(S.StrictMode,{children:(0,k.jsx)(dg,{})}));
+`,bg={colors:{home:{forest:`#0F3D2E`,leather:`#1B5A43`,olive:`#3C7A5E`,base:`#081711`,text:`#F3F7F0`,hover:`#9AC7AF`,leadership:`#6FA486`,institution:`#5E7569`},subpage:{background:`#F2F5EF`,text:`#1E2923`,accent:`#1E5B43`,border:`#C8D6CD`,muted:`#5D6D63`,placeholder:`#DDE8E0`,cardShadow:`rgba(21, 54, 41, 0.14)`}},fonts:{heading:`'IBM Plex Mono', monospace`,body:`'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.85rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,graphMax:`1200px`,radius:`8px`,pillRadius:`999px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function xg(){let e=Wr();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,k.jsxs)(k.Fragment,{children:[(0,k.jsx)(Tc,{}),(0,k.jsx)(Nt,{mode:`wait`,children:(0,k.jsxs)(xi,{location:e,children:[(0,k.jsx)(yi,{path:`/`,element:(0,k.jsx)(Um,{})}),(0,k.jsx)(yi,{path:`/about`,element:(0,k.jsx)(vh,{})}),(0,k.jsx)(yi,{path:`/research`,element:(0,k.jsx)(Nh,{})}),(0,k.jsx)(yi,{path:`/research/:id`,element:(0,k.jsx)(Gh,{})}),(0,k.jsx)(yi,{path:`/activities`,element:(0,k.jsx)(ag,{})}),(0,k.jsx)(yi,{path:`/activities/:id`,element:(0,k.jsx)(vg,{})})]},e.pathname)}),(0,k.jsx)(Oc,{})]})}function Sg(){return(0,k.jsxs)(uc,{theme:bg,children:[(0,k.jsx)(yg,{}),(0,k.jsx)(aa,{children:(0,k.jsx)(xg,{})})]})}(0,Ta.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(S.StrictMode,{children:(0,k.jsx)(Sg,{})}));
