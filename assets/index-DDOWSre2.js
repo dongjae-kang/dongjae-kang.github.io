@@ -272,146 +272,92 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   white-space: nowrap;
   opacity: ${({$visible:e})=>e?1:0};
   transition: opacity 0.16s ease;
-`,jS={greenDark:`#1B3D2F`,greenMid:`#2D5A3D`,greenLight:`#4A7A5E`,greenPale:`#9AB89E`,copper:`#C4956A`,text:`#2B2A2A`,muted:`#6B6560`,institution:`rgba(154, 149, 144, 0.8)`},MS=new Map([[`crisisnews|misinformation`,{delay:`0s`,duration:`5.3s`}],[`prism|platform-governance`,{delay:`1.1s`,duration:`5.8s`}],[`beyond-removal|content-moderation`,{delay:`2.4s`,duration:`4.9s`}],[`multi-agent-sim|ai-policy`,{delay:`0.8s`,duration:`5.5s`}],[`student-council|participatory-governance`,{delay:`1.9s`,duration:`5.4s`}],[`chi-2025|misinformation`,{delay:`2.8s`,duration:`4.7s`}],[`un-ga-hlw|platform-governance`,{delay:`0.4s`,duration:`5.6s`}],[`un-youth-forum|ai-policy`,{delay:`1.6s`,duration:`5.1s`}]]),NS=[`rgba(45, 90, 61, 0.18)`,`rgba(27, 61, 47, 0.15)`,`rgba(196, 149, 106, 0.13)`,`rgba(74, 122, 94, 0.13)`,`rgba(196, 149, 106, 0.11)`],PS={theme:{radius:13.5,fill:jS.greenDark,labelSize:12.4,labelWeight:500,labelOpacity:.92},researchMain:{radius:9,fill:jS.greenMid,labelSize:11,labelWeight:400,labelOpacity:.82},researchSupport:{radius:7.5,fill:jS.greenMid,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMajor:{radius:8,fill:jS.copper,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMinor:{radius:5.6,fill:`rgba(196, 149, 106, 0.65)`,labelSize:9.5,labelWeight:400,labelOpacity:.62},institution:{radius:5,fill:jS.institution,labelSize:9,labelWeight:400,labelOpacity:.5}},FS=new Set([`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`columbia-ai-club`]);function IS(e){return[...e].reduce((e,t)=>e*31+t.charCodeAt(0)|0,0)}function LS(e){let t=Math.abs(IS(e)),n=t%5-2||1,r=Math.floor(t/5)%5-2||-1;return{driftX:`${n*.9}px`,driftY:`${r*.9}px`,driftDuration:`${8+t%6}s`,driftDelay:`${-(t%9)}s`,pulseDuration:`${5+t%3}s`,pulseDelay:`${-(t%5)}s`}}function RS(e,t){let n=e.split(` `),r=[],i=``;return n.forEach(e=>{let n=i?`${i} ${e}`:e;n.length>t&&i?(r.push(i),i=e):i=n}),i&&r.push(i),r.slice(0,3)}function zS(e){return e.type===`theme`?PS.theme:e.type===`research`?e.importance===`main`?PS.researchMain:PS.researchSupport:e.type===`engagement`?e.importance===`minor`?PS.engagementMinor:PS.engagementMajor:PS.institution}function BS(e,t){return e.type===`research`?{dx:15,dy:4,anchor:`start`,baseline:`middle`}:e.type===`engagement`?{dx:-15,dy:4,anchor:`end`,baseline:`middle`}:e.type===`institution`?{dx:0,dy:18,anchor:`middle`,baseline:`hanging`}:(t?{misinformation:{dx:0,dy:-24,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-20,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-20,dy:4,anchor:`end`,baseline:`middle`}}:{misinformation:{dx:0,dy:-26,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-24,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-24,dy:4,anchor:`end`,baseline:`middle`}})[e.id]}function VS(e,t,n,r){let i=r?10:24,a=r?10:18,o=t-i*2,s=n-a*2,c=e.nodes.map(e=>{let t=e[r?`mobile`:`desktop`];return{...e,x:i+o*t.x,y:a+s*t.y,motion:LS(e.id)}}),l=new Map(c.map(e=>[e.id,e])),u=e.edges.map(e=>({source:l.get(e.source),target:l.get(e.target)})),d=new Map(c.map(e=>[e.id,new Set([e.id])]));return u.forEach(e=>{d.get(e.source.id)?.add(e.target.id),d.get(e.target.id)?.add(e.source.id)}),{nodes:c,edges:u,adjacency:d}}function HS(e){return`${e.source.id}|${e.target.id}`}function US(e){let t=e.target.x-e.source.x,n=e.target.y-e.source.y,r=Math.hypot(t,n)||1,i=-n/r,a=t/r,o=(e.source.x+e.target.x)/2,s=(e.source.y+e.target.y)/2,c=IS(HS(e))%2==0?1:-1,l=Math.min(28,r*.12)*c,u=o+i*l,d=s+a*l;return`M${e.source.x},${e.source.y} Q${u},${d} ${e.target.x},${e.target.y}`}function WS(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=Ud(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:TS.nodes.map(e=>({...e})),edges:TS.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let{nodes:i,edges:a,adjacency:l}=VS(c,r.width,r.height,s),u=uy(e.current);u.selectAll(`*`).remove();let d=u.append(`g`),f=d.append(`defs`);f.append(`filter`).attr(`id`,`theme-label-halo`).attr(`x`,`-60%`).attr(`y`,`-60%`).attr(`width`,`220%`).attr(`height`,`220%`).append(`feGaussianBlur`).attr(`stdDeviation`,s?3.6:5.4),NS.forEach((e,t)=>{let n=f.append(`radialGradient`).attr(`id`,`theme-glow-${t}`);n.append(`stop`).attr(`offset`,`0%`).attr(`stop-color`,e),n.append(`stop`).attr(`offset`,`100%`).attr(`stop-color`,`rgba(255,255,255,0)`)});let p=i.filter(e=>e.type===`theme`);d.append(`g`).selectAll(`circle`).data(p).join(`circle`).attr(`cx`,e=>e.x).attr(`cy`,e=>e.y).attr(`r`,s?66:88).attr(`fill`,(e,t)=>`url(#theme-glow-${t%NS.length})`),s||(d.append(`text`).attr(`x`,r.width*.1).attr(`y`,r.height*.12).attr(`fill`,`rgba(43, 42, 42, 0.14)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).text(`Research`),d.append(`text`).attr(`x`,r.width*.79).attr(`y`,r.height*.12).attr(`fill`,`rgba(196, 149, 106, 0.2)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).attr(`text-anchor`,`end`).text(`Engagement`),d.append(`text`).attr(`x`,r.width*.5).attr(`y`,r.height*.08).attr(`fill`,`rgba(43, 42, 42, 0.12)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,10).attr(`letter-spacing`,`0.16em`).attr(`text-anchor`,`middle`).text(`THEMES`));let m=d.append(`g`),h=d.append(`g`),g=d.append(`g`),_=m.selectAll(`path`).data(a).join(`path`).attr(`d`,US).attr(`fill`,`none`).attr(`stroke`,jS.greenLight).attr(`stroke-width`,.95).attr(`stroke-linecap`,`round`).attr(`opacity`,.24),v=h.selectAll(`g`).data(a.filter(e=>MS.has(HS(e)))).join(`g`).attr(`opacity`,1);v.append(`circle`).attr(`r`,1.8).attr(`fill`,jS.greenPale).attr(`opacity`,0).each(function(e){let t=MS.get(HS(e)),n=uy(this);n.append(`animateMotion`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`).attr(`path`,US(e)),n.append(`animate`).attr(`attributeName`,`opacity`).attr(`values`,`0;0.45;0.45;0`).attr(`keyTimes`,`0;0.08;0.92;1`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`)});let y=g.selectAll(`g.node`).data(i).join(`g`).attr(`class`,`node`).attr(`transform`,e=>`translate(${e.x}, ${e.y})`).style(`cursor`,e=>e.url?`pointer`:`grab`),b=y.append(`g`).attr(`class`,`node-drift`).style(`--drift-x`,e=>e.motion.driftX).style(`--drift-y`,e=>e.motion.driftY).style(`--drift-duration`,e=>e.motion.driftDuration).style(`--drift-delay`,e=>e.motion.driftDelay);b.append(`circle`).attr(`class`,e=>e.type===`theme`?`theme-pulse`:null).style(`--pulse-duration`,e=>e.motion.pulseDuration).style(`--pulse-delay`,e=>e.motion.pulseDelay).attr(`r`,e=>zS(e).radius).attr(`fill`,e=>zS(e).fill).attr(`stroke`,`rgba(247, 247, 245, 0.92)`).attr(`stroke-width`,e=>e.type===`institution`?1:1.2);let x=b.filter(e=>e.type===`theme`).append(`text`).attr(`fill`,`rgba(45, 90, 61, 0.28)`).attr(`filter`,`url(#theme-label-halo)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,e=>`${zS(e).labelSize+.35}px`).attr(`font-weight`,500).attr(`opacity`,.72).attr(`text-anchor`,e=>BS(e,s).anchor).attr(`dominant-baseline`,e=>BS(e,s).baseline).attr(`x`,e=>BS(e,s).dx).attr(`y`,e=>BS(e,s).dy),S=b.append(`text`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,e=>`${zS(e).labelSize}px`).attr(`font-weight`,e=>zS(e).labelWeight).attr(`letter-spacing`,e=>e.type===`theme`?`0.005em`:null).attr(`fill`,e=>e.type===`theme`?`rgba(27, 61, 47, 0.92)`:jS.text).attr(`opacity`,e=>s&&FS.has(e.id)?0:zS(e).labelOpacity).attr(`text-anchor`,e=>BS(e,s).anchor).attr(`dominant-baseline`,e=>BS(e,s).baseline).attr(`x`,e=>BS(e,s).dx).attr(`y`,e=>BS(e,s).dy);function C(e){e.selectAll(`tspan`).data(e=>RS(e.label,s?16:18)).join(`tspan`).attr(`x`,function(){return uy(this.parentNode).attr(`x`)}).attr(`dy`,(e,t)=>t===0?0:`1.15em`).text(e=>e)}C(x),C(S);let w=(e,t)=>l.get(e.id)?.has(t.id);function ee(){y.attr(`transform`,e=>`translate(${e.x}, ${e.y})`),_.attr(`d`,US),v.selectAll(`circle`).each(function(e){uy(this).select(`animateMotion`).attr(`path`,US(e))})}function te(e){_.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?.48:.06:.22),v.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?1:.1:1),b.select(`circle`).attr(`opacity`,t=>e?w(e,t)?1:.25:1),S.attr(`opacity`,t=>e?s&&FS.has(t.id)?0:w(e,t)?.96:.22:s&&FS.has(t.id)?0:zS(t).labelOpacity),x.attr(`opacity`,t=>e?w(e,t)?.76:.16:.72)}let ne=Ty().on(`start`,function(){uy(this).style(`cursor`,`grabbing`)}).on(`drag`,function(e,t){t.x=Math.max(24,Math.min(r.width-24,e.x)),t.y=Math.max(24,Math.min(r.height-24,e.y)),ee(),o(n=>({...n,visible:!0,x:e.x,y:e.y,label:t.label}))}).on(`end`,function(e,t){uy(this).style(`cursor`,t.url?`pointer`:`grab`),o(e=>({...e,visible:!1}))});y.on(`mouseenter`,function(e,t){te(t),o({visible:!0,x:t.x,y:t.y,label:t.label})}).on(`mousemove`,function(e,n){let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})}).on(`mouseleave`,function(){te(null),o(e=>({...e,visible:!1}))}).on(`click`,(e,t)=>{t.url&&n(t.url)}).call(ne),ee(),te(null)},[c,s,n,r.height,r.width]),(0,L.jsxs)(OS,{ref:t,children:[(0,L.jsx)(kS,{ref:e,viewBox:`0 0 ${r.width||1e3} ${r.height||560}`,children:(0,L.jsx)(`title`,{children:`Dongjae Kang semantic map`})}),(0,L.jsx)(AS,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var GS=Ou.div,KS={initial:{opacity:0,y:20},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-20,transition:{duration:.4,ease:`easeIn`}}};function qS({children:e}){return(0,L.jsx)(GS,{variants:KS,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var JS=`/assets/crisisnews-thumbnail-BYtxTvwG.png`,YS=`/assets/prism-thumbnail-BSMB3k5z.png`,XS=`/assets/multi-agent-sim-workflow-D4FMYsKp.png`,ZS=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,summary:`A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.`,description:`At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.`,collaborators:[`Jeanne Choi`,`Prof. Joseph Seering`],tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:JS,gallery:[JS]},{id:`prism`,title:`PRISM`,year:`2025`,summary:`A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.`,description:`PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.`,collaborators:[`Columbia SIPA project team`,`Prototype implemented independently`],tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:YS,gallery:[YS]},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,summary:`A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.`,description:`Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.`,collaborators:[`Columbia SIPA Trust & Safety course`],tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null,gallery:[]},{id:`multi-agent-sim`,title:`Multi-Agent Simulation`,year:`2026`,summary:`A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.`,description:`This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.`,collaborators:[`Columbia SIPA Ethics of Media course`],tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:XS,gallery:[XS,`/assets/multi-agent-sim-method-Dhay_e8C.png`]}],QS=`/assets/ces-foundry-B74FjpOQ.jpeg`,$S=`/assets/hyc-mixer-presenting-BdEhYOXT.jpeg`,eC=`/assets/kgsa-career-poster-B7wQ7cK3.jpg`,tC=`/assets/upenn-mixer-opening-NhlrWB42.jpeg`,nC=`/assets/kaist-podium-DkP3TL19.jpeg`,rC=`/assets/upenn-mixer-group-B13IMclc.jpeg`,iC=`/assets/upenn-mixer-opening-NhlrWB42.jpeg`,aC=`/assets/upenn-mixer-stage-B99hHFNL.jpeg`,oC=`/assets/valedictorian-gown-K-Raxk8w.jpeg`,sC=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,location:`Daejeon`,summary:`Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.`,description:`Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea. The speech is available publicly and is embedded on this site.`,tags:[`Leadership`,`KAIST`],links:[{label:`Video`,url:`https://www.youtube.com/watch?v=U7m4LpyHffk`}],media:{cover:oC,youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[oC]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Respondent`,date:`Apr 2026`,location:`United Nations Headquarters, New York`,summary:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.`,description:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],links:[],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,location:`New York`,summary:`Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.`,description:`During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar.`,tags:[`UN`,`Diplomacy`],links:[],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,summary:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,description:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,tags:[`Technology`,`Industry`],links:[],media:{cover:QS,photos:[QS]}},{id:`stanford`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,summary:`Visited Stanford University.`,description:`Visited Stanford University.`,tags:[`Academia`],links:[],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:`Jan 2026`,location:`New York`,summary:`Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.`,description:`Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. He led the program for a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:$S,photos:[$S]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:`Nov 15, 2025`,location:`Philadelphia`,summary:`Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.`,description:`At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:rC,photos:[rC,iC,aC]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,location:`KAIST`,summary:`Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.`,description:`As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries instead of choosing confrontation. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.`,tags:[`Leadership`,`Policy`,`KAIST`],links:[{label:`JoongAng Ilbo`,url:`https://www.joongang.co.kr/article/25215586`},{label:`KAIST Herald`,url:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`}],media:{cover:nC,photos:[nC]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,location:`Yokohama`,summary:`Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.`,description:`Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.`,tags:[`Research`,`Speaking`,`HCI`],links:[{label:`Related Research`,url:`/research/crisisnews`}],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 28, 2026`,location:`Columbia University`,summary:`Organized and MC'd a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,description:`As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event featured speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,tags:[`Leadership`,`Community`],links:[],media:{cover:eC,photos:[eC,tC]}},{id:`columbia-ai-club`,title:`Columbia AI Club at SIPA`,date:`2025-Present`,location:`New York`,summary:`Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.`,description:`Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role includes helping build the club's research programming and institutional structure.`,tags:[`Leadership`,`AI`,`Columbia SIPA`],links:[],media:{photos:[]}}];function cC(e=.15){let[t,n]=(0,S.useState)(null),[r,i]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{if(!t)return;let n=new IntersectionObserver(([e])=>{e.isIntersecting&&i(!0)},{threshold:e});return n.observe(t),()=>n.disconnect()},[t,e]),[n,r]}var lC=Tg`
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(7px);
-  }
+`,jS={greenDark:`#1B3D2F`,greenMid:`#2D5A3D`,greenLight:`#4A7A5E`,greenPale:`#9AB89E`,copper:`#C4956A`,text:`#2B2A2A`,muted:`#6B6560`,institution:`rgba(154, 149, 144, 0.8)`},MS=new Map([[`crisisnews|misinformation`,{delay:`0s`,duration:`5.3s`}],[`prism|platform-governance`,{delay:`1.1s`,duration:`5.8s`}],[`beyond-removal|content-moderation`,{delay:`2.4s`,duration:`4.9s`}],[`multi-agent-sim|ai-policy`,{delay:`0.8s`,duration:`5.5s`}],[`student-council|participatory-governance`,{delay:`1.9s`,duration:`5.4s`}],[`chi-2025|misinformation`,{delay:`2.8s`,duration:`4.7s`}],[`un-ga-hlw|platform-governance`,{delay:`0.4s`,duration:`5.6s`}],[`un-youth-forum|ai-policy`,{delay:`1.6s`,duration:`5.1s`}]]),NS=[`rgba(45, 90, 61, 0.18)`,`rgba(27, 61, 47, 0.15)`,`rgba(196, 149, 106, 0.13)`,`rgba(74, 122, 94, 0.13)`,`rgba(196, 149, 106, 0.11)`],PS={theme:{radius:13.5,fill:jS.greenDark,labelSize:12.4,labelWeight:500,labelOpacity:.92},researchMain:{radius:9,fill:jS.greenMid,labelSize:11,labelWeight:400,labelOpacity:.82},researchSupport:{radius:7.5,fill:jS.greenMid,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMajor:{radius:8,fill:jS.copper,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMinor:{radius:5.6,fill:`rgba(196, 149, 106, 0.65)`,labelSize:9.5,labelWeight:400,labelOpacity:.62},institution:{radius:5,fill:jS.institution,labelSize:9,labelWeight:400,labelOpacity:.5}},FS=new Set([`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`columbia-ai-club`]);function IS(e){return[...e].reduce((e,t)=>e*31+t.charCodeAt(0)|0,0)}function LS(e){let t=Math.abs(IS(e)),n=t%5-2||1,r=Math.floor(t/5)%5-2||-1;return{driftX:`${n*.9}px`,driftY:`${r*.9}px`,driftDuration:`${8+t%6}s`,driftDelay:`${-(t%9)}s`,pulseDuration:`${5+t%3}s`,pulseDelay:`${-(t%5)}s`}}function RS(e,t){let n=e.split(` `),r=[],i=``;return n.forEach(e=>{let n=i?`${i} ${e}`:e;n.length>t&&i?(r.push(i),i=e):i=n}),i&&r.push(i),r.slice(0,3)}function zS(e){return e.type===`theme`?PS.theme:e.type===`research`?e.importance===`main`?PS.researchMain:PS.researchSupport:e.type===`engagement`?e.importance===`minor`?PS.engagementMinor:PS.engagementMajor:PS.institution}function BS(e,t){return e.type===`research`?{dx:15,dy:4,anchor:`start`,baseline:`middle`}:e.type===`engagement`?{dx:-15,dy:4,anchor:`end`,baseline:`middle`}:e.type===`institution`?{dx:0,dy:18,anchor:`middle`,baseline:`hanging`}:(t?{misinformation:{dx:0,dy:-24,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-20,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-20,dy:4,anchor:`end`,baseline:`middle`}}:{misinformation:{dx:0,dy:-26,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-24,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-24,dy:4,anchor:`end`,baseline:`middle`}})[e.id]}function VS(e,t,n,r){let i=r?10:24,a=r?10:18,o=t-i*2,s=n-a*2,c=e.nodes.map(e=>{let t=e[r?`mobile`:`desktop`];return{...e,x:i+o*t.x,y:a+s*t.y,motion:LS(e.id)}}),l=new Map(c.map(e=>[e.id,e])),u=e.edges.map(e=>({source:l.get(e.source),target:l.get(e.target)})),d=new Map(c.map(e=>[e.id,new Set([e.id])]));return u.forEach(e=>{d.get(e.source.id)?.add(e.target.id),d.get(e.target.id)?.add(e.source.id)}),{nodes:c,edges:u,adjacency:d}}function HS(e){return`${e.source.id}|${e.target.id}`}function US(e){let t=e.target.x-e.source.x,n=e.target.y-e.source.y,r=Math.hypot(t,n)||1,i=-n/r,a=t/r,o=(e.source.x+e.target.x)/2,s=(e.source.y+e.target.y)/2,c=IS(HS(e))%2==0?1:-1,l=Math.min(28,r*.12)*c,u=o+i*l,d=s+a*l;return`M${e.source.x},${e.source.y} Q${u},${d} ${e.target.x},${e.target.y}`}function WS(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=Ud(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:TS.nodes.map(e=>({...e})),edges:TS.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let{nodes:i,edges:a,adjacency:l}=VS(c,r.width,r.height,s),u=uy(e.current);u.selectAll(`*`).remove();let d=u.append(`g`),f=d.append(`defs`);f.append(`filter`).attr(`id`,`theme-label-halo`).attr(`x`,`-60%`).attr(`y`,`-60%`).attr(`width`,`220%`).attr(`height`,`220%`).append(`feGaussianBlur`).attr(`stdDeviation`,s?3.6:5.4),NS.forEach((e,t)=>{let n=f.append(`radialGradient`).attr(`id`,`theme-glow-${t}`);n.append(`stop`).attr(`offset`,`0%`).attr(`stop-color`,e),n.append(`stop`).attr(`offset`,`100%`).attr(`stop-color`,`rgba(255,255,255,0)`)});let p=i.filter(e=>e.type===`theme`);d.append(`g`).selectAll(`circle`).data(p).join(`circle`).attr(`cx`,e=>e.x).attr(`cy`,e=>e.y).attr(`r`,s?66:88).attr(`fill`,(e,t)=>`url(#theme-glow-${t%NS.length})`),s||(d.append(`text`).attr(`x`,r.width*.1).attr(`y`,r.height*.12).attr(`fill`,`rgba(43, 42, 42, 0.14)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).text(`Research`),d.append(`text`).attr(`x`,r.width*.79).attr(`y`,r.height*.12).attr(`fill`,`rgba(196, 149, 106, 0.2)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).attr(`text-anchor`,`end`).text(`Engagement`),d.append(`text`).attr(`x`,r.width*.5).attr(`y`,r.height*.08).attr(`fill`,`rgba(43, 42, 42, 0.12)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,10).attr(`letter-spacing`,`0.16em`).attr(`text-anchor`,`middle`).text(`THEMES`));let m=d.append(`g`),h=d.append(`g`),g=d.append(`g`),_=m.selectAll(`path`).data(a).join(`path`).attr(`d`,US).attr(`fill`,`none`).attr(`stroke`,jS.greenLight).attr(`stroke-width`,.95).attr(`stroke-linecap`,`round`).attr(`opacity`,.24),v=h.selectAll(`g`).data(a.filter(e=>MS.has(HS(e)))).join(`g`).attr(`opacity`,1);v.append(`circle`).attr(`r`,1.8).attr(`fill`,jS.greenPale).attr(`opacity`,0).each(function(e){let t=MS.get(HS(e)),n=uy(this);n.append(`animateMotion`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`).attr(`path`,US(e)),n.append(`animate`).attr(`attributeName`,`opacity`).attr(`values`,`0;0.45;0.45;0`).attr(`keyTimes`,`0;0.08;0.92;1`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`)});let y=g.selectAll(`g.node`).data(i).join(`g`).attr(`class`,`node`).attr(`transform`,e=>`translate(${e.x}, ${e.y})`).style(`cursor`,e=>e.url?`pointer`:`grab`),b=y.append(`g`).attr(`class`,`node-drift`).style(`--drift-x`,e=>e.motion.driftX).style(`--drift-y`,e=>e.motion.driftY).style(`--drift-duration`,e=>e.motion.driftDuration).style(`--drift-delay`,e=>e.motion.driftDelay);b.filter(e=>e.type===`theme`).append(`circle`).attr(`r`,e=>zS(e).radius+8).attr(`fill`,`none`).attr(`stroke`,`rgba(45, 90, 61, 0.22)`).attr(`stroke-width`,1).attr(`stroke-dasharray`,`3 4`),b.append(`circle`).attr(`class`,e=>e.type===`theme`?`theme-pulse`:null).style(`--pulse-duration`,e=>e.motion.pulseDuration).style(`--pulse-delay`,e=>e.motion.pulseDelay).attr(`r`,e=>zS(e).radius).attr(`fill`,e=>zS(e).fill).attr(`stroke`,e=>e.type===`theme`?`none`:`rgba(247, 247, 245, 0.7)`).attr(`stroke-width`,e=>e.type===`institution`?.8:1);let x=b.filter(e=>e.type===`theme`).append(`text`).attr(`fill`,`rgba(45, 90, 61, 0.28)`).attr(`filter`,`url(#theme-label-halo)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,e=>`${zS(e).labelSize+.35}px`).attr(`font-weight`,500).attr(`opacity`,.72).attr(`text-anchor`,e=>BS(e,s).anchor).attr(`dominant-baseline`,e=>BS(e,s).baseline).attr(`x`,e=>BS(e,s).dx).attr(`y`,e=>BS(e,s).dy),S=b.append(`text`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,e=>`${zS(e).labelSize}px`).attr(`font-weight`,e=>zS(e).labelWeight).attr(`letter-spacing`,e=>e.type===`theme`?`0.005em`:null).attr(`fill`,e=>e.type===`theme`?`rgba(27, 61, 47, 0.92)`:jS.text).attr(`opacity`,e=>s&&FS.has(e.id)?0:zS(e).labelOpacity).attr(`text-anchor`,e=>BS(e,s).anchor).attr(`dominant-baseline`,e=>BS(e,s).baseline).attr(`x`,e=>BS(e,s).dx).attr(`y`,e=>BS(e,s).dy);function C(e){e.selectAll(`tspan`).data(e=>RS(e.label,s?16:18)).join(`tspan`).attr(`x`,function(){return uy(this.parentNode).attr(`x`)}).attr(`dy`,(e,t)=>t===0?0:`1.15em`).text(e=>e)}C(x),C(S);let w=(e,t)=>l.get(e.id)?.has(t.id);function ee(){y.attr(`transform`,e=>`translate(${e.x}, ${e.y})`),_.attr(`d`,US),v.selectAll(`circle`).each(function(e){uy(this).select(`animateMotion`).attr(`path`,US(e))})}function te(e){_.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?.48:.06:.22),v.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?1:.1:1),b.select(`circle`).attr(`opacity`,t=>e?w(e,t)?1:.25:1),S.attr(`opacity`,t=>e?s&&FS.has(t.id)?0:w(e,t)?.96:.22:s&&FS.has(t.id)?0:zS(t).labelOpacity),x.attr(`opacity`,t=>e?w(e,t)?.76:.16:.72)}let ne=Ty().on(`start`,function(){uy(this).style(`cursor`,`grabbing`)}).on(`drag`,function(e,t){t.x=Math.max(24,Math.min(r.width-24,e.x)),t.y=Math.max(24,Math.min(r.height-24,e.y)),ee(),o(n=>({...n,visible:!0,x:e.x,y:e.y,label:t.label}))}).on(`end`,function(e,t){uy(this).style(`cursor`,t.url?`pointer`:`grab`),o(e=>({...e,visible:!1}))});y.on(`mouseenter`,function(e,t){te(t),o({visible:!0,x:t.x,y:t.y,label:t.label})}).on(`mousemove`,function(e,n){let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})}).on(`mouseleave`,function(){te(null),o(e=>({...e,visible:!1}))}).on(`click`,(e,t)=>{t.url&&n(t.url)}).call(ne),ee(),te(null)},[c,s,n,r.height,r.width]),(0,L.jsxs)(OS,{ref:t,children:[(0,L.jsx)(kS,{ref:e,viewBox:`0 0 ${r.width||1e3} ${r.height||560}`,children:(0,L.jsx)(`title`,{children:`Dongjae Kang semantic map`})}),(0,L.jsx)(AS,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var GS=Ou.div,KS={initial:{opacity:0,y:20},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-20,transition:{duration:.4,ease:`easeIn`}}};function qS({children:e}){return(0,L.jsx)(GS,{variants:KS,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var JS=`/assets/crisisnews-thumbnail-BYtxTvwG.png`,YS=`/assets/prism-thumbnail-BSMB3k5z.png`,XS=`/assets/multi-agent-sim-workflow-D4FMYsKp.png`,ZS=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,summary:`A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.`,description:`At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.`,collaborators:[`Jeanne Choi`,`Prof. Joseph Seering`],tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:JS,gallery:[JS]},{id:`prism`,title:`PRISM`,year:`2025`,summary:`A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.`,description:`PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.`,collaborators:[`Columbia SIPA project team`,`Prototype implemented independently`],tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:YS,gallery:[YS]},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,summary:`A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.`,description:`Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.`,collaborators:[`Columbia SIPA Trust & Safety course`],tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null,gallery:[]},{id:`multi-agent-sim`,title:`Multi-Agent Simulation`,year:`2026`,summary:`A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.`,description:`This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.`,collaborators:[`Columbia SIPA Ethics of Media course`],tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:XS,gallery:[XS,`/assets/multi-agent-sim-method-Dhay_e8C.png`]}],QS=`/assets/ces-foundry-B74FjpOQ.jpeg`,$S=`/assets/hyc-mixer-presenting-BdEhYOXT.jpeg`,eC=`/assets/kgsa-career-poster-B7wQ7cK3.jpg`,tC=`/assets/kgsa-career-room-NhlrWB42.jpg`,nC=`/assets/kaist-podium-DkP3TL19.jpeg`,rC=`/assets/upenn-mixer-group-B13IMclc.jpeg`,iC=`/assets/kgsa-career-room-NhlrWB42.jpg`,aC=`/assets/upenn-mixer-stage-B99hHFNL.jpeg`,oC=`/assets/valedictorian-gown-K-Raxk8w.jpeg`,sC=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,location:`Daejeon`,summary:`Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.`,description:`Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea. The speech is available publicly and is embedded on this site.`,tags:[`Leadership`,`KAIST`],links:[{label:`Video`,url:`https://www.youtube.com/watch?v=U7m4LpyHffk`}],media:{cover:oC,youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[oC]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Respondent`,date:`Apr 2026`,location:`United Nations Headquarters, New York`,summary:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.`,description:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],links:[],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,location:`New York`,summary:`Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.`,description:`During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar.`,tags:[`UN`,`Diplomacy`],links:[],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,summary:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,description:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,tags:[`Technology`,`Industry`],links:[],media:{cover:QS,photos:[QS]}},{id:`stanford`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,summary:`Visited Stanford University.`,description:`Visited Stanford University.`,tags:[`Academia`],links:[],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:`Jan 2026`,location:`New York`,summary:`Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.`,description:`Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. He led the program for a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:$S,photos:[$S]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:`Nov 15, 2025`,location:`Philadelphia`,summary:`Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.`,description:`At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:rC,photos:[rC,iC,aC]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,location:`KAIST`,summary:`Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.`,description:`As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries instead of choosing confrontation. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.`,tags:[`Leadership`,`Policy`,`KAIST`],links:[{label:`JoongAng Ilbo`,url:`https://www.joongang.co.kr/article/25215586`},{label:`KAIST Herald`,url:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`}],media:{cover:nC,photos:[nC]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,location:`Yokohama`,summary:`Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.`,description:`Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.`,tags:[`Research`,`Speaking`,`HCI`],links:[{label:`Related Research`,url:`/research/crisisnews`}],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 28, 2026`,location:`Columbia University`,summary:`Organized and MC'd a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,description:`As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event featured speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,tags:[`Leadership`,`Community`],links:[],media:{cover:eC,photos:[eC,tC]}},{id:`columbia-ai-club`,title:`Columbia AI Club at SIPA`,date:`2025-Present`,location:`New York`,summary:`Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.`,description:`Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role includes helping build the club's research programming and institutional structure.`,tags:[`Leadership`,`AI`,`Columbia SIPA`],links:[],media:{photos:[]}}];function cC(e=.12){let[t,n]=(0,S.useState)(null),[r,i]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{if(!t)return;let n=new IntersectionObserver(([e])=>{e.isIntersecting&&i(!0)},{threshold:e});return n.observe(t),()=>n.disconnect()},[t,e]),[n,r]}var lC=Tg`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 `,uC=bg`
   opacity: ${({$visible:e})=>e?1:0};
-  transform: translateY(${({$visible:e})=>e?`0`:`18px`});
-  transition:
-    opacity 0.75s ease,
-    transform 0.75s ease;
+  transform: translateY(${({$visible:e})=>e?`0`:`16px`});
+  transition: opacity 0.65s ease, transform 0.65s ease;
 `,dC=$.main`
-  position: relative;
-  min-height: 100vh;
   background: ${({theme:e})=>e.colors.subpage.background};
   color: ${({theme:e})=>e.colors.subpage.text};
   overflow-x: hidden;
 `,fC=$.section`
   position: relative;
   min-height: 100vh;
-  padding: 108px 0 44px;
+  padding: 108px 24px 44px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 
   &::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    width: min(900px, 88vw);
-    height: min(720px, 74vw);
+    width: min(960px, 90vw);
+    height: min(800px, 80vh);
     transform: translate(-50%, -54%);
     background:
       radial-gradient(ellipse at 30% 40%, rgba(27, 61, 47, 0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 35%, rgba(196, 149, 106, 0.08) 0%, transparent 45%),
-      radial-gradient(ellipse at 50% 60%, rgba(74, 122, 94, 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 45% 45%, rgba(154, 184, 158, 0.06) 0%, transparent 55%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: min(760px, 74vw);
-    height: min(620px, 66vw);
-    transform: translate(-50%, -52%);
-    background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.08), transparent 72%);
+      radial-gradient(ellipse at 70% 35%, rgba(196, 149, 106, 0.07) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 60%, rgba(74, 122, 94, 0.09) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    padding: 96px 0 36px;
+    padding: 96px 16px 36px;
   }
 `,pC=$.div`
   position: relative;
   z-index: 1;
-  width: calc(100% - 48px);
+  width: 100%;
   max-width: 1060px;
-  margin: 0 auto;
   display: grid;
   justify-items: center;
   gap: 16px;
-  text-align: center;
-`,mC=$.div`
-  display: none;
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-`,hC=$.span`
-  padding: 6px 10px;
-  border: 1px solid rgba(27, 61, 47, 0.12);
-  border-radius: 4px;
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: ${({theme:e})=>e.colors.subpage.muted};
-  background: rgba(247, 247, 245, 0.8);
-`,gC=$.h1`
+`,mC=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: clamp(3rem, 5.1vw, 4.95rem);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   font-weight: 600;
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: -0.02em;
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    font-size: clamp(2.55rem, 12.6vw, 3.9rem);
-    text-wrap: balance;
-  }
-`,_C=$.p`
-  max-width: 1020px;
-  font-size: clamp(1rem, 1.2vw, 1.12rem);
+`,hC=$.p`
+  max-width: 620px;
+  font-size: 1.05rem;
+  line-height: 1.6;
   color: ${({theme:e})=>e.colors.subpage.muted};
 
-  @media (min-width: 1024px) {
-    white-space: nowrap;
-  }
-
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    max-width: 480px;
-    font-size: 1rem;
-    white-space: normal;
+    font-size: 0.95rem;
   }
-`,vC=$.button`
+`,gC=$.button`
   display: grid;
-  gap: 8px;
+  gap: 6px;
   justify-items: center;
-  margin-top: 6px;
+  margin-top: 8px;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-
+  opacity: 0.5;
   svg {
-    font-size: 1.05rem;
+    font-size: 1rem;
     animation: ${({$stopped:e})=>e?`none`:bg`${lC} 2.5s ease-in-out infinite`};
   }
-`,yC=$.div`
-  padding: 0 0 108px;
-`,bC=$.div`
-  width: calc(100% - 48px);
+`,_C=$.div`
   max-width: 920px;
   margin: 0 auto;
-  display: grid;
-  gap: 0;
-`,xC=$.section`
-  display: grid;
-  gap: 36px;
-  align-content: center;
-  min-height: calc(100vh - 120px);
+  padding: 0 24px 100px;
+
+  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
+    padding: 0 16px 72px;
+  }
+`,vC=$.section`
   padding: 72px 0;
   ${uC};
 
@@ -419,277 +365,189 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
   }
 
-  @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
-    min-height: auto;
-    align-content: start;
-    padding: 52px 0;
-
-    & + & {
-      padding-top: 52px;
-    }
+  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
+    padding: 48px 0;
   }
-`,SC=$.div`
-  display: grid;
-  gap: 0;
-  min-width: 0;
-  max-width: 460px;
-`,CC=$.div`
+`,yC=$.div`
   display: flex;
   align-items: baseline;
-  gap: 14px;
-  margin-bottom: 12px;
-`,wC=$.span`
-  font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: clamp(1.55rem, 2vw, 1.75rem);
-  line-height: 1;
-  color: rgba(27, 61, 47, 0.24);
-`,TC=$.span`
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: ${({theme:e})=>e.colors.subpage.accent};
-`,EC=$.h2`
-  font-family: ${({theme:e})=>e.fonts.heading};
-  max-width: 460px;
-  margin-bottom: 20px;
-  font-size: clamp(2rem, 2.9vw, 3.1rem);
-  font-weight: 600;
-  line-height: 1.08;
-  overflow-wrap: anywhere;
-`,DC=$.p`
-  max-width: 460px;
-  font-size: 0.98rem;
-  line-height: 1.75;
-  color: ${({theme:e})=>e.colors.subpage.muted};
-  overflow-wrap: anywhere;
-`,OC=$.div`
-  display: grid;
-  grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
-  gap: 48px;
-  align-items: start;
-
-  > * {
-    min-width: 0;
-  }
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-`,kC=$.div`
-  position: relative;
-  display: grid;
-  border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,AC=$(sp)`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: 12px 20px;
-  padding: 20px 0;
-  border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
-  transition: ${({theme:e})=>e.transitions.hover};
-
-  &:hover {
-    background: rgba(27, 61, 47, 0.04);
-  }
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    grid-template-columns: minmax(0, 1fr) auto;
-    row-gap: 8px;
-  }
-`,jC=$.h3`
-  min-width: 0;
+  gap: 12px;
+  margin-bottom: 10px;
+`,bC=$.span`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.4rem;
-  line-height: 1.15;
+  color: rgba(27, 61, 47, 0.24);
+`,xC=$.span`
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ${({theme:e})=>e.colors.subpage.accent};
+`,SC=$.h2`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
   font-weight: 600;
-  overflow-wrap: anywhere;
-`,MC=$.p`
-  grid-column: 1 / -1;
+  line-height: 1.12;
+  margin-bottom: 16px;
+  max-width: 500px;
+`,CC=$.p`
+  max-width: 500px;
+  font-size: 0.96rem;
+  line-height: 1.75;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  max-width: 480px;
-  margin-top: 4px;
+  margin-bottom: 28px;
+`,wC=$.div`
+  border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  max-width: 100%;
+  overflow: hidden;
+`,TC=$(sp)`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(27, 61, 47, 0.03);
+  }
+`,EC=$.div`
+  min-width: 0;
+  flex: 1;
+`,DC=$.h3`
+  font-family: ${({theme:e})=>e.fonts.body};
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.3;
+`,OC=$.p`
   font-size: 0.86rem;
-  line-height: 1.65;
-`,NC=$.span`
-  justify-self: end;
+  color: ${({theme:e})=>e.colors.subpage.muted};
+  margin-top: 3px;
+  line-height: 1.55;
+`,kC=$.span`
   font-size: 0.75rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
   white-space: nowrap;
-`,PC=$.div`
-  position: relative;
-  min-width: 0;
-`,FC=$.div`
-  position: fixed;
-  top: ${({$y:e})=>`${e}px`};
-  left: ${({$x:e})=>`${e}px`};
-  width: 164px;
-  aspect-ratio: 3 / 2;
-  overflow: hidden;
-  border-radius: 3px;
-  border: 1px solid rgba(27, 61, 47, 0.16);
-  background: #d8ddd8;
-  box-shadow: 0 12px 30px rgba(27, 61, 47, 0.12);
-  opacity: ${({$visible:e})=>e?1:0};
-  pointer-events: none;
-  transition: opacity 0.16s ease;
-  z-index: 40;
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    display: none;
-  }
-`,IC=$.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`,LC=$(sp)`
-  width: fit-content;
+  flex-shrink: 0;
+`,AC=$(sp)`
+  display: inline-block;
   color: ${({theme:e})=>e.colors.subpage.accent};
   font-size: 0.84rem;
-  letter-spacing: 0.06em;
   margin-top: 18px;
-`,RC=$.div`
-  display: grid;
-  grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
-  gap: 48px;
-  align-items: start;
-
-  > * {
-    min-width: 0;
-  }
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-`,zC=$.div`
-  display: grid;
-  border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,BC=$.div`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+`,jC=$.div`
+  display: flex;
+  justify-content: space-between;
   align-items: baseline;
-  gap: 12px 20px;
+  gap: 16px;
   padding: 16px 0;
   border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-`,VC=$.h3`
+`,MC=$.div`
   min-width: 0;
-  font-size: 0.96rem;
-  line-height: 1.45;
+  flex: 1;
+`,NC=$.h3`
+  font-family: ${({theme:e})=>e.fonts.body};
+  font-size: 1.05rem;
   font-weight: 500;
-  overflow-wrap: anywhere;
-`,HC=$.span`
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  line-height: 1.3;
+`,PC=$.p`
+  font-size: 0.86rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  white-space: nowrap;
-
-  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
-    justify-self: start;
-  }
-`,UC=$.p`
-  grid-column: 1 / -1;
-  color: ${({theme:e})=>e.colors.subpage.muted};
-  font-size: 0.82rem;
-  line-height: 1.65;
-`,WC=$.div`
+  margin-top: 3px;
+  line-height: 1.55;
+`,FC=$.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 18px;
-  padding-top: 16px;
-
+  gap: 14px;
+  margin-top: 6px;
   a {
+    font-size: 0.8rem;
     color: ${({theme:e})=>e.colors.subpage.accent};
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
   }
-`,GC=$.div`
-  display: grid;
-  gap: 0;
-  max-width: 520px;
-`,KC=$.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(220px, 260px);
-  gap: 18px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scroll-snap-type: x proximity;
-
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgba(27, 61, 47, 0.22);
-  }
-`,qC=$(sp)`
-  display: grid;
-  gap: 10px;
-  scroll-snap-align: start;
-`,JC=$.div`
-  position: relative;
-  aspect-ratio: 4 / 5;
+`,IC=$.div`
   overflow: hidden;
+  max-width: 100%;
+`,LC=$.div`
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar { height: 6px; }
+  &::-webkit-scrollbar-thumb { background: rgba(27, 61, 47, 0.18); border-radius: 3px; }
+`,RC=$(sp)`
+  flex: 0 0 200px;
+  display: grid;
+  gap: 8px;
+`,zC=$.div`
+  position: relative;
+  height: 140px;
   border-radius: 3px;
+  overflow: hidden;
   border: 1px solid ${({theme:e})=>e.colors.subpage.border};
-  background:
-    ${({$hasImage:e})=>e?`#dbe1db`:`linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))`};
+  background: ${({$hasImage:e})=>e?`#dbe1db`:`linear-gradient(155deg, rgba(27,61,47,0.88), rgba(45,90,61,0.72) 50%, rgba(154,184,158,0.5))`};
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: ${({$hasImage:e})=>e?`rgba(13, 26, 20, 0.12)`:`transparent`};
+    background: ${({$hasImage:e})=>e?`rgba(13,26,20,0.12)`:`transparent`};
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,YC=$.img`
+`,BC=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,XC=$.span`
+`,VC=$.span`
   position: absolute;
-  left: 12px;
-  bottom: 12px;
+  left: 10px;
+  bottom: 10px;
   z-index: 1;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #f7f7f5;
-`,ZC=$.div`
-  display: grid;
-  gap: 4px;
-`,QC=$.h3`
-  font-family: ${({theme:e})=>e.fonts.heading};
-  font-size: 1.45rem;
-  line-height: 1.08;
+`,HC=$.h3`
+  font-size: 0.9rem;
   font-weight: 500;
-`,$C=$.span`
+`,UC=$.span`
+  font-size: 0.78rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
-  font-size: 0.84rem;
-`,ew=[`crisisnews`,`prism`,`beyond-removal`,`multi-agent-sim`],tw=[`chi-2025`,`un-ga-hlw`,`un-youth-forum`,`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`valedictorian`];function nw(){let e=(0,S.useRef)(null),[t,n]=(0,S.useState)(!1),[r,i]=cC(),[a,o]=cC(),[s,c]=cC(),[l,u]=(0,S.useState)({visible:!1,x:0,y:0,image:null,title:``});(0,S.useEffect)(()=>{let e=()=>{window.scrollY>100&&n(!0)};return window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[]);let d=ew.map(e=>ZS.find(t=>t.id===e)).filter(Boolean),f=[sC.find(e=>e.id===`student-council`),sC.find(e=>e.id===`columbia-ai-club`)].filter(Boolean),p=tw.map(e=>sC.find(t=>t.id===e)).filter(Boolean),m=(e,t)=>{if(!t.thumbnail||window.innerWidth<1024)return;let n=e.clientX+22,r=e.clientY-110/2;n+164>window.innerWidth-20&&(n=e.clientX-164-22),r=Math.min(window.innerHeight-110-20,Math.max(20,r)),u({visible:!0,x:n,y:r,image:t.thumbnail,title:t.title})};return(0,L.jsx)(qS,{children:(0,L.jsxs)(dC,{children:[(0,L.jsx)(fC,{children:(0,L.jsxs)(pC,{children:[(0,L.jsx)(WS,{}),(0,L.jsxs)(mC,{children:[(0,L.jsx)(hC,{children:`Research`}),(0,L.jsx)(hC,{children:`Themes`}),(0,L.jsx)(hC,{children:`Engagement`})]}),(0,L.jsx)(gC,{children:`Dongjae (Jack) Kang`}),(0,L.jsx)(_C,{children:`Studying misinformation, platform governance, and the systems that shape what people believe.`}),(0,L.jsxs)(vC,{type:`button`,$stopped:t,onClick:()=>e.current?.scrollIntoView({behavior:`smooth`}),children:[(0,L.jsx)(`span`,{children:`Scroll to explore`}),(0,L.jsx)(a_,{})]})]})}),(0,L.jsx)(yC,{ref:e,children:(0,L.jsxs)(bC,{children:[(0,L.jsx)(xC,{ref:r,$visible:i,children:(0,L.jsxs)(OC,{children:[(0,L.jsxs)(SC,{children:[(0,L.jsxs)(CC,{children:[(0,L.jsx)(wC,{children:`01`}),(0,L.jsx)(TC,{children:`Research`})]}),(0,L.jsx)(EC,{children:`How platforms shape what people believe.`}),(0,L.jsx)(DC,{children:`He studies misinformation, platform governance, and content moderation across both empirical research and interface design. The work ranges from a dataset of 93,250 news articles to prototype systems for comparing how the same story moves across sources.`})]}),(0,L.jsxs)(PC,{children:[(0,L.jsx)(kC,{children:d.map(e=>(0,L.jsxs)(AC,{to:`/research/${e.id}`,onMouseEnter:t=>m(t,e),onMouseMove:t=>m(t,e),onMouseLeave:()=>u(e=>({...e,visible:!1})),children:[(0,L.jsx)(jC,{children:e.title}),(0,L.jsx)(NC,{children:e.year}),(0,L.jsx)(MC,{children:e.summary})]},e.id))}),(0,L.jsx)(FC,{$visible:l.visible,$x:l.x,$y:l.y,children:l.image&&(0,L.jsx)(IC,{src:l.image,alt:`${l.title} preview`})}),(0,L.jsx)(LC,{to:`/research`,children:`View all research →`})]})]})}),(0,L.jsx)(xC,{ref:a,$visible:o,children:(0,L.jsxs)(RC,{children:[(0,L.jsxs)(SC,{children:[(0,L.jsxs)(CC,{children:[(0,L.jsx)(wC,{children:`02`}),(0,L.jsx)(TC,{children:`Leadership`})]}),(0,L.jsx)(EC,{children:`Research is one line of work. Institutions are another.`}),(0,L.jsx)(DC,{children:`As President of KAIST's Undergraduate Student Council, he rebuilt an organization inactive for three years. When Korea announced a 16% R&D budget cut, he coordinated dialogue across universities, the National Assembly, and government ministries. The method was not confrontation for its own sake. It was dialogue, patience, and enough credibility to keep people at the table.`})]}),(0,L.jsxs)(`div`,{children:[(0,L.jsx)(zC,{children:f.map(e=>(0,L.jsxs)(BC,{children:[(0,L.jsx)(VC,{children:e.title}),(0,L.jsx)(HC,{children:e.date}),(0,L.jsx)(UC,{children:e.summary})]},e.id))}),(0,L.jsxs)(WC,{children:[(0,L.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`JoongAng Ilbo column →`}),(0,L.jsx)(`a`,{href:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`,target:`_blank`,rel:`noopener noreferrer`,children:`KAIST Herald →`})]})]})]})}),(0,L.jsxs)(xC,{ref:s,$visible:c,children:[(0,L.jsxs)(GC,{children:[(0,L.jsxs)(CC,{children:[(0,L.jsx)(wC,{children:`03`}),(0,L.jsx)(TC,{children:`Selected Activities`})]}),(0,L.jsx)(EC,{children:`From Yokohama to the General Assembly.`}),(0,L.jsx)(DC,{children:`He presented misinformation research at ACM CHI in Yokohama, supported diplomatic operations during the UN General Assembly High-Level Week, and organized networking events for 200+ students across Ivy League campuses. The settings differ. The pattern is the same.`})]}),(0,L.jsxs)(`div`,{children:[(0,L.jsx)(KC,{children:p.map(e=>{let t=e.media?.cover||e.media?.photos?.[0];return(0,L.jsxs)(qC,{to:`/activities/${e.id}`,children:[(0,L.jsxs)(JC,{$hasImage:!!t,children:[t&&(0,L.jsx)(YC,{src:t,alt:`${e.title} preview`}),(0,L.jsx)(XC,{children:e.location})]}),(0,L.jsxs)(ZC,{children:[(0,L.jsx)(QC,{children:e.title}),(0,L.jsx)($C,{children:e.date})]})]},e.id)})}),(0,L.jsx)(LC,{to:`/activities`,children:`View all activities →`})]})]})]})})]})})}var rw=`/assets/profile-square-C1RNx-Re.jpg`,iw=`/assets/profile-full-D33NEozT.jpg`,aw=$.main`
+`,WC=$.div`
+  position: fixed;
+  top: ${({$y:e})=>`${e}px`};
+  left: ${({$x:e})=>`${e}px`};
+  width: 160px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid rgba(27, 61, 47, 0.14);
+  background: #d8ddd8;
+  box-shadow: 0 10px 28px rgba(27, 61, 47, 0.12);
+  opacity: ${({$visible:e})=>e?1:0};
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 40;
+
+  @media (max-width: 1024px) { display: none; }
+`,GC=$.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`,KC=[`crisisnews`,`prism`,`beyond-removal`,`multi-agent-sim`],qC=[`chi-2025`,`un-ga-hlw`,`un-youth-forum`,`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`valedictorian`];function JC(){let e=(0,S.useRef)(null),[t,n]=(0,S.useState)(!1),[r,i]=cC(),[a,o]=cC(),[s,c]=cC(),[l,u]=(0,S.useState)({visible:!1,x:0,y:0,image:null});(0,S.useEffect)(()=>{let e=()=>{window.scrollY>100&&n(!0)};return window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[]);let d=KC.map(e=>ZS.find(t=>t.id===e)).filter(Boolean),f=[sC.find(e=>e.id===`student-council`),sC.find(e=>e.id===`columbia-ai-club`)].filter(Boolean),p=qC.map(e=>sC.find(t=>t.id===e)).filter(Boolean),m=(e,t)=>{if(!t.thumbnail||window.innerWidth<1024)return;let n=e.clientX+20,r=e.clientY-107/2;n+160>window.innerWidth-16&&(n=e.clientX-160-20),r=Math.min(window.innerHeight-107-16,Math.max(16,r)),u({visible:!0,x:n,y:r,image:t.thumbnail})},h=()=>u(e=>({...e,visible:!1}));return(0,L.jsx)(qS,{children:(0,L.jsxs)(dC,{children:[(0,L.jsx)(fC,{children:(0,L.jsxs)(pC,{children:[(0,L.jsx)(WS,{}),(0,L.jsx)(mC,{children:`Dongjae (Jack) Kang`}),(0,L.jsx)(hC,{children:`Studying misinformation, platform governance, and the systems that shape what people believe.`}),(0,L.jsxs)(gC,{type:`button`,$stopped:t,onClick:()=>e.current?.scrollIntoView({behavior:`smooth`}),children:[(0,L.jsx)(`span`,{children:`Scroll to explore`}),(0,L.jsx)(a_,{})]})]})}),(0,L.jsxs)(_C,{ref:e,children:[(0,L.jsxs)(vC,{ref:r,$visible:i,children:[(0,L.jsxs)(yC,{children:[(0,L.jsx)(bC,{children:`01`}),(0,L.jsx)(xC,{children:`Research`})]}),(0,L.jsx)(SC,{children:`How platforms shape what people believe.`}),(0,L.jsx)(CC,{children:`He studies misinformation, platform governance, and content moderation across both empirical research and interface design. The work ranges from a dataset of 93,250 news articles to prototype systems for comparing how the same story moves across sources.`}),(0,L.jsx)(wC,{children:d.map(e=>(0,L.jsxs)(TC,{to:`/research/${e.id}`,onMouseEnter:t=>m(t,e),onMouseMove:t=>m(t,e),onMouseLeave:h,children:[(0,L.jsxs)(EC,{children:[(0,L.jsx)(DC,{children:e.title}),(0,L.jsx)(OC,{children:e.summary})]}),(0,L.jsx)(kC,{children:e.year})]},e.id))}),(0,L.jsx)(AC,{to:`/research`,children:`View all research →`})]}),(0,L.jsxs)(vC,{ref:a,$visible:o,children:[(0,L.jsxs)(yC,{children:[(0,L.jsx)(bC,{children:`02`}),(0,L.jsx)(xC,{children:`Leadership`})]}),(0,L.jsx)(SC,{children:`Research is one line of work. Institutions are another.`}),(0,L.jsx)(CC,{children:`As President of KAIST's Undergraduate Student Council, he rebuilt an organization inactive for three years. When Korea announced a 16% R&D budget cut, he coordinated dialogue across universities, the National Assembly, and government ministries.`}),(0,L.jsx)(wC,{children:f.map(e=>(0,L.jsxs)(jC,{children:[(0,L.jsxs)(MC,{children:[(0,L.jsx)(NC,{children:e.title}),(0,L.jsx)(PC,{children:e.summary}),e.id===`student-council`&&(0,L.jsxs)(FC,{children:[(0,L.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`JoongAng Ilbo column →`}),(0,L.jsx)(`a`,{href:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`,target:`_blank`,rel:`noopener noreferrer`,children:`KAIST Herald →`})]})]}),(0,L.jsx)(kC,{children:e.date})]},e.id))})]}),(0,L.jsxs)(vC,{ref:s,$visible:c,children:[(0,L.jsxs)(yC,{children:[(0,L.jsx)(bC,{children:`03`}),(0,L.jsx)(xC,{children:`From Yokohama to the General Assembly`})]}),(0,L.jsx)(SC,{children:`Studying how systems work, then working inside them.`}),(0,L.jsx)(CC,{children:`He presented misinformation research at ACM CHI in Yokohama, supported diplomatic operations during the UN General Assembly High-Level Week, and organized networking events for 200+ students across Ivy League campuses. The settings differ. The pattern is the same.`}),(0,L.jsx)(IC,{children:(0,L.jsx)(LC,{children:p.map(e=>{let t=e.media?.cover||e.media?.photos?.[0];return(0,L.jsxs)(RC,{to:`/activities/${e.id}`,children:[(0,L.jsxs)(zC,{$hasImage:!!t,children:[t&&(0,L.jsx)(BC,{src:t,alt:e.title}),(0,L.jsx)(VC,{children:e.location})]}),(0,L.jsx)(HC,{children:e.title}),(0,L.jsx)(UC,{children:e.date})]},e.id)})})}),(0,L.jsx)(AC,{to:`/activities`,children:`View all activities →`})]})]}),(0,L.jsx)(WC,{$visible:l.visible,$x:l.x,$y:l.y,children:l.image&&(0,L.jsx)(GC,{src:l.image,alt:`preview`})})]})})}var YC=`/assets/profile-square-C1RNx-Re.jpg`,XC=`/assets/profile-full-D33NEozT.jpg`,ZC=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
   background: ${({theme:e})=>e.colors.subpage.background};
-`,ow=$.div`
+`,QC=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
-`,sw=$.h1`
+`,$C=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   letter-spacing: 0.02em;
   margin-bottom: 40px;
-`,cw=$.section`
+`,ew=$.section`
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 32px;
@@ -698,10 +556,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,lw=$.div`
+`,tw=$.div`
   display: grid;
   gap: 14px;
-`,uw=$.div`
+`,nw=$.div`
   width: 220px;
   height: 220px;
   border-radius: 4px;
@@ -713,7 +571,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     width: 160px;
     height: 160px;
   }
-`,dw=$.div`
+`,rw=$.div`
   width: 220px;
   aspect-ratio: 4 / 5;
   border-radius: 4px;
@@ -724,11 +582,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     display: none;
   }
-`,fw=$.img`
+`,iw=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,pw=$.div`
+`,aw=$.div`
   display: grid;
   gap: 24px;
   max-width: ${({theme:e})=>e.layout.textMax};
@@ -744,10 +602,56 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     text-decoration-thickness: 1px;
     text-underline-offset: 0.16em;
   }
-`,mw=$.hr`
+`,ow=$.hr`
   margin: 48px 0 28px;
   border: 0;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
+`,sw=$.h2`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+`,cw=$.div`
+  display: grid;
+  gap: 0;
+  border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
+`,lw=$.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
+
+  @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
+    flex-direction: column;
+    gap: 4px;
+  }
+`,uw=$.div`
+  min-width: 0;
+  flex: 1;
+`,dw=$.h3`
+  font-family: ${({theme:e})=>e.fonts.body};
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+`,fw=$.p`
+  font-size: 0.88rem;
+  color: ${({theme:e})=>e.colors.subpage.muted};
+  margin-top: 2px;
+`,pw=$.span`
+  font-size: 0.78rem;
+  color: ${({theme:e})=>e.colors.subpage.muted};
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+`,mw=$.h3`
+  font-family: ${({theme:e})=>e.fonts.heading};
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 4px;
+  color: ${({theme:e})=>e.colors.subpage.accent};
 `,hw=$.section`
   display: flex;
   flex-wrap: wrap;
@@ -758,7 +662,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
-`;function _w(){return(0,L.jsx)(qS,{children:(0,L.jsx)(aw,{children:(0,L.jsxs)(ow,{children:[(0,L.jsx)(sw,{children:`About`}),(0,L.jsxs)(cw,{children:[(0,L.jsxs)(lw,{children:[(0,L.jsx)(uw,{"aria-label":`Dongjae Kang profile photo`,children:(0,L.jsx)(fw,{src:rw,alt:`Dongjae (Jack) Kang`})}),(0,L.jsx)(dw,{"aria-label":`Dongjae Kang full portrait`,children:(0,L.jsx)(fw,{src:iw,alt:`Dongjae (Jack) Kang portrait`})})]}),(0,L.jsxs)(pw,{children:[(0,L.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,L.jsx)(sp,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,L.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,L.jsx)(sp,{to:`/research/crisisnews`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,L.jsx)(sp,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,L.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,L.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,L.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,L.jsx)(mw,{}),(0,L.jsxs)(hw,{children:[(0,L.jsx)(gw,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,L.jsx)(gw,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`linkedin.com/in/jackkang3780`}),(0,L.jsx)(gw,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`github.com/dongjae-kang`})]})]})})})}var vw={dark:bg`
+`,_w=[{category:`Education`,items:[{role:`MPA, Technology, Policy and Innovation`,org:`Columbia University, School of International and Public Affairs (SIPA)`,period:`2025 - Present`},{role:`BS Industrial and Systems Engineering`,org:`KAIST (double major: Business; minor: S&T Policy)`,period:`2018 - 2025`}]},{category:`Research`,items:[{role:`Research Assistant`,org:`KAIST Collaborative Social Technologies Lab (Prof. Joseph Seering)`,period:`2024 - 2025`},{role:`Undergraduate Researcher`,org:`ISTI-CNR (Italy) x KAIST international collaboration`,period:`2024 - 2025`},{role:`Research Assistant`,org:`KAIST di-Lab (Prof. KyungRyul Park)`,period:`2024`}]},{category:`Leadership & Public Service`,items:[{role:`Founding Board / VP of Research Lab`,org:`Columbia AI Club at SIPA`,period:`2025 - Present`},{role:`President`,org:`KAIST Undergraduate Student Council (34th)`,period:`2022 - 2023`},{role:`Member`,org:`Daejeon Youth Policy Coordination Committee`,period:`2023 - 2025`},{role:`Youth Representative`,org:`Seoul Jungnang-gu Participatory Budget Committee`,period:`2017 - 2018`}]},{category:`Professional`,items:[{role:`Event Assistant, UN General Assembly High-Level Week`,org:`Permanent Mission of the Republic of Korea to the UN`,period:`Sep 2025`},{role:`Member, Young Engineers Honor Society (YEHS)`,org:`National Academy of Engineering of Korea`,period:`2024 - 2025`},{role:`IT Consultant`,org:`Columbia SIPA`,period:`2025 - Present`}]}];function vw(){return(0,L.jsx)(qS,{children:(0,L.jsx)(ZC,{children:(0,L.jsxs)(QC,{children:[(0,L.jsx)($C,{children:`About`}),(0,L.jsxs)(ew,{children:[(0,L.jsxs)(tw,{children:[(0,L.jsx)(nw,{"aria-label":`Dongjae Kang profile photo`,children:(0,L.jsx)(iw,{src:YC,alt:`Dongjae (Jack) Kang`})}),(0,L.jsx)(rw,{"aria-label":`Dongjae Kang full portrait`,children:(0,L.jsx)(iw,{src:XC,alt:`Dongjae (Jack) Kang portrait`})})]}),(0,L.jsxs)(aw,{children:[(0,L.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,L.jsx)(sp,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,L.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,L.jsx)(sp,{to:`/research/crisisnews`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,L.jsx)(sp,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,L.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,L.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,L.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,L.jsx)(ow,{}),(0,L.jsx)(sw,{children:`Experience`}),_w.map(e=>(0,L.jsxs)(`div`,{children:[(0,L.jsx)(mw,{children:e.category}),(0,L.jsx)(cw,{children:e.items.map(e=>(0,L.jsxs)(lw,{children:[(0,L.jsxs)(uw,{children:[(0,L.jsx)(dw,{children:e.role}),(0,L.jsx)(fw,{children:e.org})]}),(0,L.jsx)(pw,{children:e.period})]},`${e.role}-${e.period}`))})]},e.category)),(0,L.jsx)(ow,{}),(0,L.jsxs)(hw,{children:[(0,L.jsx)(gw,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,L.jsx)(gw,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`linkedin.com/in/jackkang3780`}),(0,L.jsx)(gw,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`github.com/dongjae-kang`})]})]})})})}var yw={dark:bg`
     color: ${({theme:e})=>e.colors.home.text};
     border: 1px solid rgba(45, 90, 61, 0.22);
     background: rgba(45, 90, 61, 0.08);
@@ -766,7 +670,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.text};
     border: 1px solid rgba(45, 90, 61, 0.16);
     background: rgba(45, 90, 61, 0.06);
-  `},yw=$.span`
+  `},bw=$.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -778,30 +682,30 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: ${({theme:e})=>e.transitions.hover};
-  ${({$variant:e=`light`})=>vw[e]};
-`,bw=[{id:`jungnang-housing`,title:`Revitalizing Jungnang-gu`,course:`Housing Policy and the City`,year:`Fall 2025`,summary:`A housing policy paper proposing a demand-driven inclusive housing strategy for Seoul's Jungnang-gu.`,file:`/assets/jungnang-housing-strategy-D17Ym1_B.pdf`},{id:`chronic-absenteeism`,title:`Reducing Chronic Absenteeism in Washington, D.C.`,course:`Urban Policy Research Project`,year:`2025`,summary:`A policy proposal for mayoral action built around family engagement, early warning systems, community hubs, health services, and accountability.`,file:`/assets/chronic-absenteeism-dc-i9dhpjf-.pdf`}],xw=$.main`
+  ${({$variant:e=`light`})=>yw[e]};
+`,xw=[{id:`jungnang-housing`,title:`Revitalizing Jungnang-gu`,course:`Housing Policy and the City`,year:`Fall 2025`,summary:`A housing policy paper proposing a demand-driven inclusive housing strategy for Seoul's Jungnang-gu.`,file:`/assets/jungnang-housing-strategy-D17Ym1_B.pdf`},{id:`chronic-absenteeism`,title:`Reducing Chronic Absenteeism in Washington, D.C.`,course:`Urban Policy Research Project`,year:`2025`,summary:`A policy proposal for mayoral action built around family engagement, early warning systems, community hubs, health services, and accountability.`,file:`/assets/chronic-absenteeism-dc-i9dhpjf-.pdf`}],Sw=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,Sw=$.div`
+`,Cw=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, 100%);
   margin: 0 auto;
-`,Cw=$.h1`
+`,ww=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,ww=$.p`
+`,Tw=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 32px;
   font-size: 1.04rem;
   padding-bottom: 24px;
   border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,Tw=$.div`
+`,Ew=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 28px;
-`,Ew=$(sp)`
+`,Dw=$(sp)`
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -809,7 +713,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   border-bottom: 1px solid
     ${({$active:e})=>e?`rgba(27, 61, 47, 0.36)`:`rgba(43, 42, 42, 0.08)`};
   padding-bottom: 6px;
-`,Dw=$.div`
+`,Ow=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -817,25 +721,25 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,Ow=$.section`
+`,kw=$.section`
   display: grid;
   gap: 20px;
   margin-top: 56px;
   padding-top: 24px;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
   scroll-margin-top: 108px;
-`,kw=$.h2`
+`,Aw=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 600;
-`,Aw=$.p`
+`,jw=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,jw=$.div`
+`,Mw=$.div`
   display: grid;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,Mw=$.a`
+`,Nw=$.a`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px 20px;
@@ -846,25 +750,25 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   &:hover {
     background: rgba(27, 61, 47, 0.04);
   }
-`,Nw=$.h3`
+`,Pw=$.h3`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.45rem;
   line-height: 1.08;
   font-weight: 500;
-`,Pw=$.span`
+`,Fw=$.span`
   justify-self: end;
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.84rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,Fw=$.span`
+`,Iw=$.span`
   color: ${({theme:e})=>e.colors.subpage.accent};
   font-size: 0.84rem;
   letter-spacing: 0.06em;
-`,Iw=$.p`
+`,Lw=$.p`
   grid-column: 1 / -1;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Lw=$(sp)`
+`,Rw=$(sp)`
   display: grid;
   gap: 18px;
   padding: 24px;
@@ -878,7 +782,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: ${({theme:e})=>e.colors.subpage.accent};
     background: rgba(27, 61, 47, 0.04);
   }
-`,Rw=$.div`
+`,zw=$.div`
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 3px;
@@ -888,54 +792,54 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   align-items: center;
   justify-content: center;
   padding: 16px;
-`,zw=$.img`
+`,Bw=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,Bw=$.div`
+`,Vw=$.div`
   display: grid;
   gap: 4px;
   text-align: center;
   justify-items: center;
-`,Vw=$.span`
+`,Hw=$.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`,Hw=$.span`
+`,Uw=$.span`
   max-width: 26ch;
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,Uw=$.div`
+`,Ww=$.div`
   display: grid;
   gap: 6px;
-`,Ww=$.h2`
+`,Gw=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 500;
-`,Gw=$.p`
-  color: ${({theme:e})=>e.colors.subpage.muted};
 `,Kw=$.p`
+  color: ${({theme:e})=>e.colors.subpage.muted};
+`,qw=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,qw=$.div`
+`,Jw=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`;function Jw(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{r===`coursework`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[r]),(0,L.jsx)(qS,{children:(0,L.jsx)(xw,{children:(0,L.jsxs)(Sw,{children:[(0,L.jsx)(Cw,{children:`Research`}),(0,L.jsx)(ww,{children:`Core research projects in misinformation and platform governance, followed by a smaller selection of coursework papers in urban policy and public problem-solving.`}),(0,L.jsxs)(Tw,{children:[(0,L.jsx)(Ew,{to:`/research`,$active:!r,children:`Projects`}),(0,L.jsx)(Ew,{to:`/research?section=coursework`,$active:r===`coursework`,children:`Coursework & Papers`})]}),(0,L.jsx)(Dw,{ref:t,children:ZS.map(e=>(0,L.jsxs)(Lw,{to:`/research/${e.id}`,children:[(0,L.jsx)(Rw,{children:e.thumbnail?(0,L.jsx)(zw,{src:e.thumbnail,alt:`${e.title} preview`}):(0,L.jsxs)(Bw,{children:[(0,L.jsx)(Vw,{children:`Research Archive`}),(0,L.jsx)(Hw,{children:`Project image coming soon.`})]})}),(0,L.jsxs)(Uw,{children:[(0,L.jsx)(Ww,{children:e.title}),(0,L.jsx)(Gw,{children:e.year})]}),(0,L.jsx)(Kw,{children:e.summary}),(0,L.jsx)(qw,{children:e.tags.map(e=>(0,L.jsx)(yw,{children:e},e))})]},e.id))}),(0,L.jsxs)(Ow,{id:`coursework`,ref:n,children:[(0,L.jsx)(kw,{children:`Selected Coursework & Papers`}),(0,L.jsx)(Aw,{children:`Course-based work in urban policy and public problem-solving, included here because it extends the same questions into a different format.`}),(0,L.jsx)(jw,{children:bw.map(e=>(0,L.jsxs)(Mw,{href:e.file,target:`_blank`,rel:`noopener noreferrer`,children:[(0,L.jsx)(Nw,{children:e.title}),(0,L.jsx)(Pw,{children:e.year}),(0,L.jsx)(Fw,{children:e.course}),(0,L.jsx)(Iw,{children:e.summary})]},e.id))})]})]})})})}var Yw=$.main`
+`;function Yw(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{r===`coursework`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[r]),(0,L.jsx)(qS,{children:(0,L.jsx)(Sw,{children:(0,L.jsxs)(Cw,{children:[(0,L.jsx)(ww,{children:`Research`}),(0,L.jsx)(Tw,{children:`Core research projects in misinformation and platform governance, followed by a smaller selection of coursework papers in urban policy and public problem-solving.`}),(0,L.jsxs)(Ew,{children:[(0,L.jsx)(Dw,{to:`/research`,$active:!r,children:`Projects`}),(0,L.jsx)(Dw,{to:`/research?section=coursework`,$active:r===`coursework`,children:`Coursework & Papers`})]}),(0,L.jsx)(Ow,{ref:t,children:ZS.map(e=>(0,L.jsxs)(Rw,{to:`/research/${e.id}`,children:[(0,L.jsx)(zw,{children:e.thumbnail?(0,L.jsx)(Bw,{src:e.thumbnail,alt:`${e.title} preview`}):(0,L.jsxs)(Vw,{children:[(0,L.jsx)(Hw,{children:`Research Archive`}),(0,L.jsx)(Uw,{children:`Project image coming soon.`})]})}),(0,L.jsxs)(Ww,{children:[(0,L.jsx)(Gw,{children:e.title}),(0,L.jsx)(Kw,{children:e.year})]}),(0,L.jsx)(qw,{children:e.summary}),(0,L.jsx)(Jw,{children:e.tags.map(e=>(0,L.jsx)(bw,{children:e},e))})]},e.id))}),(0,L.jsxs)(kw,{id:`coursework`,ref:n,children:[(0,L.jsx)(Aw,{children:`Selected Coursework & Papers`}),(0,L.jsx)(jw,{children:`Course-based work in urban policy and public problem-solving, included here because it extends the same questions into a different format.`}),(0,L.jsx)(Mw,{children:xw.map(e=>(0,L.jsxs)(Nw,{href:e.file,target:`_blank`,rel:`noopener noreferrer`,children:[(0,L.jsx)(Pw,{children:e.title}),(0,L.jsx)(Fw,{children:e.year}),(0,L.jsx)(Iw,{children:e.course}),(0,L.jsx)(Lw,{children:e.summary})]},e.id))})]})]})})})}var Xw=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,Xw=$.div`
+`,Zw=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,Zw=$(sp)`
+`,Qw=$(sp)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.copper};
-`,Qw=$.div`
+`,$w=$.div`
   aspect-ratio: 16 / 9;
   border-radius: 4px;
   background: #f0ede8;
@@ -946,12 +850,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding: ${({$hasImage:e})=>e?`0`:`20px`};
   border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,$w=$.img`
+`,eT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 3px;
-`,eT=$.span`
+`,tT=$.span`
   display: inline-flex;
   align-items: center;
   min-height: 1.1rem;
@@ -961,22 +865,22 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,tT=$.span`
+`,nT=$.span`
   max-width: 30ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,nT=$.div`
+`,rT=$.div`
   display: grid;
   gap: 8px;
-`,rT=$.h1`
+`,iT=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   font-weight: 500;
   line-height: 1.05;
-`,iT=$.p`
-  color: ${({theme:e})=>e.colors.subpage.muted};
 `,aT=$.p`
+  color: ${({theme:e})=>e.colors.subpage.muted};
+`,oT=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,oT=$.div`
+`,sT=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
@@ -984,20 +888,20 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,sT=$.div`
+`,cT=$.div`
   display: grid;
   gap: 10px;
   padding: 18px;
   border-radius: 4px;
   border: 1px solid ${({theme:e})=>e.colors.subpage.border};
   background: #fdfcfa;
-`,cT=$.p`
+`,lT=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,lT=$.div`
+`,uT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,uT=$.div`
+`,dT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -1006,10 +910,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.copper};
     font-weight: 400;
   }
-`,dT=$.section`
+`,fT=$.section`
   display: grid;
   gap: 14px;
-`,fT=$.div`
+`,pT=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -1017,23 +921,23 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,pT=$.img`
+`,mT=$.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
-`;function mT(){let{id:e}=Gd(),t=ZS.find(t=>t.id===e);return t?(0,L.jsx)(qS,{children:(0,L.jsx)(Yw,{children:(0,L.jsxs)(Xw,{children:[(0,L.jsx)(Zw,{to:`/research`,children:`Back to Research`}),(0,L.jsx)(Qw,{$hasImage:!!t.thumbnail,children:t.thumbnail?(0,L.jsx)($w,{src:t.thumbnail,alt:`${t.title} visual`}):(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(eT,{children:`Research Visual`}),(0,L.jsx)(tT,{children:`Project image, paper figure, or product screenshot to be added.`})]})}),(0,L.jsxs)(nT,{children:[(0,L.jsx)(rT,{children:t.title}),(0,L.jsx)(iT,{children:t.year})]}),(0,L.jsx)(aT,{children:t.description}),(0,L.jsxs)(oT,{children:[(0,L.jsxs)(sT,{children:[(0,L.jsx)(eT,{children:`Collaborators`}),(0,L.jsx)(cT,{children:t.collaborators.join(` · `)})]}),(0,L.jsxs)(sT,{children:[(0,L.jsx)(eT,{children:`Tags`}),(0,L.jsx)(lT,{children:t.tags.map(e=>(0,L.jsx)(yw,{children:e},e))})]})]}),t.gallery?.length>1&&(0,L.jsxs)(dT,{children:[(0,L.jsx)(eT,{children:`Gallery`}),(0,L.jsx)(fT,{children:t.gallery.slice(1).map((e,n)=>(0,L.jsx)(pT,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),t.links.length>0&&(0,L.jsxs)(dT,{children:[(0,L.jsx)(eT,{children:`Links`}),(0,L.jsx)(uT,{children:t.links.map(e=>(0,L.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})]})})}):(0,L.jsx)(qS,{children:(0,L.jsx)(Yw,{children:(0,L.jsxs)(Xw,{children:[(0,L.jsx)(Zw,{to:`/research`,children:`Back to Research`}),(0,L.jsx)(rT,{children:`Project not found`})]})})})}var hT=[{id:`stanford-visit`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,image:null},{id:`ces-visit`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,image:QS},{id:`campus-portrait`,title:`Campus portrait`,date:`KAIST years`,location:`Daejeon`,image:oC},{id:`winter-pond`,title:`Winter pond`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-winter-pond-4oMEs2_D.jpeg`},{id:`evening-shuttle`,title:`Evening shuttle`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-evening-shuttle-DzODv5vf.jpeg`}],gT=[`un-youth-forum`,`kgsa-career`,`valedictorian`,`hyc-mixer`,`upenn-mixer`,`un-ga-hlw`,`chi-2025`,`student-council`,`columbia-ai-club`],_T=$.main`
+`;function hT(){let{id:e}=Gd(),t=ZS.find(t=>t.id===e);return t?(0,L.jsx)(qS,{children:(0,L.jsx)(Xw,{children:(0,L.jsxs)(Zw,{children:[(0,L.jsx)(Qw,{to:`/research`,children:`Back to Research`}),(0,L.jsx)($w,{$hasImage:!!t.thumbnail,children:t.thumbnail?(0,L.jsx)(eT,{src:t.thumbnail,alt:`${t.title} visual`}):(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(tT,{children:`Research Visual`}),(0,L.jsx)(nT,{children:`Project image, paper figure, or product screenshot to be added.`})]})}),(0,L.jsxs)(rT,{children:[(0,L.jsx)(iT,{children:t.title}),(0,L.jsx)(aT,{children:t.year})]}),(0,L.jsx)(oT,{children:t.description}),(0,L.jsxs)(sT,{children:[(0,L.jsxs)(cT,{children:[(0,L.jsx)(tT,{children:`Collaborators`}),(0,L.jsx)(lT,{children:t.collaborators.join(` · `)})]}),(0,L.jsxs)(cT,{children:[(0,L.jsx)(tT,{children:`Tags`}),(0,L.jsx)(uT,{children:t.tags.map(e=>(0,L.jsx)(bw,{children:e},e))})]})]}),t.gallery?.length>1&&(0,L.jsxs)(fT,{children:[(0,L.jsx)(tT,{children:`Gallery`}),(0,L.jsx)(pT,{children:t.gallery.slice(1).map((e,n)=>(0,L.jsx)(mT,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),t.links.length>0&&(0,L.jsxs)(fT,{children:[(0,L.jsx)(tT,{children:`Links`}),(0,L.jsx)(dT,{children:t.links.map(e=>(0,L.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})]})})}):(0,L.jsx)(qS,{children:(0,L.jsx)(Xw,{children:(0,L.jsxs)(Zw,{children:[(0,L.jsx)(Qw,{to:`/research`,children:`Back to Research`}),(0,L.jsx)(iT,{children:`Project not found`})]})})})}var gT=[{id:`stanford-visit`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,image:null},{id:`ces-visit`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,image:QS},{id:`campus-portrait`,title:`Campus portrait`,date:`KAIST years`,location:`Daejeon`,image:oC},{id:`winter-pond`,title:`Winter pond`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-winter-pond-4oMEs2_D.jpeg`},{id:`evening-shuttle`,title:`Evening shuttle`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-evening-shuttle-DzODv5vf.jpeg`}],_T=[`un-youth-forum`,`kgsa-career`,`valedictorian`,`hyc-mixer`,`upenn-mixer`,`un-ga-hlw`,`chi-2025`,`student-council`,`columbia-ai-club`],vT=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,vT=$.div`
+`,yT=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, 100%);
   margin: 0 auto;
-`,yT=$.h1`
+`,bT=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,bT=$.div`
+`,xT=$.div`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 32px;
@@ -1041,12 +945,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding-bottom: 24px;
   border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
 
-`,xT=$.div`
+`,ST=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 28px;
-`,ST=$(sp)`
+`,CT=$(sp)`
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1054,7 +958,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   border-bottom: 1px solid
     ${({$active:e})=>e?`rgba(27, 61, 47, 0.36)`:`rgba(43, 42, 42, 0.08)`};
   padding-bottom: 6px;
-`,CT=$.div`
+`,wT=$.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -1066,22 +970,22 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,wT=$.section`
+`,TT=$.section`
   margin-top: 56px;
   padding-top: 28px;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
   scroll-margin-top: 108px;
-`,TT=$.h2`
+`,ET=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 600;
   margin-bottom: 10px;
-`,ET=$.p`
+`,DT=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 24px;
-`,DT=$(sp)`
+`,OT=$(sp)`
   display: grid;
   gap: 16px;
   padding: 20px;
@@ -1095,7 +999,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: ${({theme:e})=>e.colors.subpage.accent};
     background: rgba(27, 61, 47, 0.04);
   }
-`,OT=$.div`
+`,kT=$.div`
   position: relative;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -1116,44 +1020,44 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,kT=$.img`
+`,AT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,AT=$.div`
+`,jT=$.div`
   display: grid;
   gap: 4px;
   text-align: center;
   justify-items: center;
-`,jT=$.span`
+`,MT=$.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(247, 247, 245, 0.72);
-`,MT=$.span`
+`,NT=$.span`
   max-width: 14ch;
   color: rgba(247, 247, 245, 0.9);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,NT=$.span`
+`,PT=$.span`
   max-width: 24ch;
   color: rgba(247, 247, 245, 0.62);
   font-size: 0.74rem;
-`,PT=$.h2`
+`,FT=$.h2`
   font-size: 1.8rem;
   font-family: ${({theme:e})=>e.fonts.heading};
   font-weight: 500;
   line-height: 1.08;
-`,FT=$.p`
-  color: ${({theme:e})=>e.colors.subpage.muted};
 `,IT=$.p`
+  color: ${({theme:e})=>e.colors.subpage.muted};
+`,LT=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,LT=$.div`
+`,RT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,RT=$.div`
+`,zT=$.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -1165,10 +1069,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,zT=$.article`
+`,BT=$.article`
   display: grid;
   gap: 12px;
-`,BT=$.div`
+`,VT=$.div`
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -1185,11 +1089,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,VT=$.img`
+`,HT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,HT=$.div`
+`,UT=$.div`
   position: absolute;
   inset: 0;
   display: grid;
@@ -1200,29 +1104,29 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,UT=$.div`
+`,WT=$.div`
   display: grid;
   gap: 2px;
-`,WT=$.h3`
+`,GT=$.h3`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.5rem;
   line-height: 1.08;
   font-weight: 500;
-`,GT=$.span`
+`,KT=$.span`
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.84rem;
-`;function KT(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new Set(gT),i=[...gT.map(e=>sC.find(t=>t.id===e)).filter(Boolean),...sC.filter(e=>!r.has(e.id)&&![`ces`,`stanford`].includes(e.id))],a=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{a===`archive`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[a]),(0,L.jsx)(qS,{children:(0,L.jsx)(_T,{children:(0,L.jsxs)(vT,{children:[(0,L.jsx)(yT,{children:`Activities`}),(0,L.jsx)(bT,{children:`Talks, diplomacy, student leadership, and community-building across research and public life. Lighter records stay below as a smaller archive, not as a separate front page.`}),(0,L.jsxs)(xT,{children:[(0,L.jsx)(ST,{to:`/activities`,$active:!a,children:`Activities`}),(0,L.jsx)(ST,{to:`/activities?section=archive`,$active:a===`archive`,children:`Archive`})]}),(0,L.jsx)(CT,{ref:t,children:i.map(e=>(0,L.jsxs)(DT,{to:`/activities/${e.id}`,children:[(0,L.jsx)(OT,{$hasImage:!!(e.media?.cover||e.media?.photos?.[0]),children:e.media?.cover||e.media?.photos?.[0]?(0,L.jsx)(kT,{src:e.media?.cover||e.media?.photos?.[0],alt:`${e.title} preview`}):(0,L.jsxs)(AT,{children:[(0,L.jsx)(jT,{children:e.date}),(0,L.jsx)(MT,{children:e.title}),(0,L.jsx)(NT,{children:`Photos coming soon.`})]})}),(0,L.jsxs)(`div`,{children:[(0,L.jsx)(PT,{children:e.title}),(0,L.jsx)(FT,{children:e.date})]}),(0,L.jsx)(IT,{children:e.summary}),(0,L.jsx)(LT,{children:e.tags.map(e=>(0,L.jsx)(yw,{children:e},e))})]},e.id))}),(0,L.jsxs)(wT,{ref:n,id:`archive`,children:[(0,L.jsx)(TT,{children:`Archive`}),(0,L.jsx)(ET,{children:`A smaller visual record of visits, campus scenes, and lighter intervals that belong on the site, but not at the same level as the main professional work.`}),(0,L.jsx)(RT,{children:hT.map(e=>(0,L.jsxs)(zT,{children:[(0,L.jsx)(BT,{$hasImage:!!e.image,children:e.image?(0,L.jsx)(VT,{src:e.image,alt:e.title}):(0,L.jsx)(HT,{children:e.title})}),(0,L.jsxs)(UT,{children:[(0,L.jsx)(WT,{children:e.title}),(0,L.jsxs)(GT,{children:[e.date,` · `,e.location]})]})]},e.id))})]})]})})})}var qT=$.main`
+`;function qT(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new Set(_T),i=[..._T.map(e=>sC.find(t=>t.id===e)).filter(Boolean),...sC.filter(e=>!r.has(e.id)&&![`ces`,`stanford`].includes(e.id))],a=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{a===`archive`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[a]),(0,L.jsx)(qS,{children:(0,L.jsx)(vT,{children:(0,L.jsxs)(yT,{children:[(0,L.jsx)(bT,{children:`Activities`}),(0,L.jsx)(xT,{children:`Talks, diplomacy, student leadership, and community-building across research and public life. Lighter records stay below as a smaller archive, not as a separate front page.`}),(0,L.jsxs)(ST,{children:[(0,L.jsx)(CT,{to:`/activities`,$active:!a,children:`Activities`}),(0,L.jsx)(CT,{to:`/activities?section=archive`,$active:a===`archive`,children:`Archive`})]}),(0,L.jsx)(wT,{ref:t,children:i.map(e=>(0,L.jsxs)(OT,{to:`/activities/${e.id}`,children:[(0,L.jsx)(kT,{$hasImage:!!(e.media?.cover||e.media?.photos?.[0]),children:e.media?.cover||e.media?.photos?.[0]?(0,L.jsx)(AT,{src:e.media?.cover||e.media?.photos?.[0],alt:`${e.title} preview`}):(0,L.jsxs)(jT,{children:[(0,L.jsx)(MT,{children:e.date}),(0,L.jsx)(NT,{children:e.title}),(0,L.jsx)(PT,{children:`Photos coming soon.`})]})}),(0,L.jsxs)(`div`,{children:[(0,L.jsx)(FT,{children:e.title}),(0,L.jsx)(IT,{children:e.date})]}),(0,L.jsx)(LT,{children:e.summary}),(0,L.jsx)(RT,{children:e.tags.map(e=>(0,L.jsx)(bw,{children:e},e))})]},e.id))}),(0,L.jsxs)(TT,{ref:n,id:`archive`,children:[(0,L.jsx)(ET,{children:`Archive`}),(0,L.jsx)(DT,{children:`A smaller visual record of visits, campus scenes, and lighter intervals that belong on the site, but not at the same level as the main professional work.`}),(0,L.jsx)(zT,{children:gT.map(e=>(0,L.jsxs)(BT,{children:[(0,L.jsx)(VT,{$hasImage:!!e.image,children:e.image?(0,L.jsx)(HT,{src:e.image,alt:e.title}):(0,L.jsx)(UT,{children:e.title})}),(0,L.jsxs)(WT,{children:[(0,L.jsx)(GT,{children:e.title}),(0,L.jsxs)(KT,{children:[e.date,` · `,e.location]})]})]},e.id))})]})]})})})}var JT=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,JT=$.div`
+`,YT=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,YT=$(sp)`
+`,XT=$(sp)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.copper};
-`,XT=$.div`
+`,ZT=$.div`
   aspect-ratio: 3 / 2;
   border-radius: 4px;
   background: #f0ede8;
@@ -1233,24 +1137,24 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   justify-content: flex-end;
   gap: 8px;
   padding: ${({$hasImage:e})=>e?`0`:`20px`};
-`,ZT=$.img`
+`,QT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 3px;
-`,QT=$.div`
+`,$T=$.div`
   display: grid;
   gap: 8px;
-`,$T=$.h1`
+`,eE=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   line-height: 1.05;
   font-weight: 500;
-`,eE=$.p`
-  color: ${({theme:e})=>e.colors.subpage.muted};
 `,tE=$.p`
+  color: ${({theme:e})=>e.colors.subpage.muted};
+`,nE=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,nE=$.span`
+`,rE=$.span`
   display: inline-flex;
   align-items: center;
   min-height: 1.1rem;
@@ -1260,20 +1164,20 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,rE=$.span`
+`,iE=$.span`
   max-width: 30ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,iE=$.span`
+`,aE=$.span`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.05;
   max-width: 14ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,aE=$.div`
+`,oE=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,oE=$.div`
+`,sE=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -1283,10 +1187,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.copper};
     font-weight: 400;
   }
-`,sE=$.section`
+`,cE=$.section`
   display: grid;
   gap: 14px;
-`,cE=$.div`
+`,lE=$.div`
   display: grid;
   gap: 12px;
 
@@ -1296,10 +1200,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border: 0;
     border-radius: 4px;
   }
-`,lE=$.p`
+`,uE=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,uE=$.div`
+`,dE=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -1307,13 +1211,13 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,dE=$.img`
+`,fE=$.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
-`;function fE(){let{id:e}=Gd(),t=sC.find(t=>t.id===e);return t?(0,L.jsx)(qS,{children:(0,L.jsx)(qT,{children:(0,L.jsxs)(JT,{children:[(0,L.jsx)(YT,{to:`/activities`,children:`Back to Activities`}),(0,L.jsx)(XT,{$hasImage:!!(t.media?.cover||t.media?.photos?.[0]),children:t.media?.cover||t.media?.photos?.[0]?(0,L.jsx)(ZT,{src:t.media?.cover||t.media?.photos?.[0],alt:`${t.title} visual`}):(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(nE,{children:t.date}),(0,L.jsx)(iE,{children:t.title}),(0,L.jsx)(rE,{children:`Photos coming soon.`})]})}),(0,L.jsxs)(QT,{children:[(0,L.jsx)($T,{children:t.title}),(0,L.jsx)(eE,{children:t.date})]}),(0,L.jsx)(tE,{children:t.description}),(0,L.jsx)(aE,{children:t.tags.map(e=>(0,L.jsx)(yw,{children:e},e))}),t.links?.length>0&&(0,L.jsxs)(sE,{children:[(0,L.jsx)(nE,{children:`Links`}),(0,L.jsx)(oE,{children:t.links.map(e=>/^https?:\/\//.test(e.url)?(0,L.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url):(0,L.jsx)(sp,{to:e.url,children:e.label},e.url))})]}),t.id===`valedictorian`&&(0,L.jsxs)(sE,{children:[(0,L.jsx)(nE,{children:`Video`}),(0,L.jsxs)(cE,{children:[(0,L.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,L.jsx)(`p`,{children:`Speech starts at 1:15:02`})]})]}),t.media?.photos?.length>1&&(0,L.jsxs)(sE,{children:[(0,L.jsx)(nE,{children:`Gallery`}),(0,L.jsx)(uE,{children:t.media.photos.slice(1).map((e,n)=>(0,L.jsx)(dE,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),!t.media?.photos?.length&&t.id!==`valedictorian`&&(0,L.jsx)(lE,{children:`Photos coming soon.`})]})})}):(0,L.jsx)(qS,{children:(0,L.jsx)(qT,{children:(0,L.jsxs)(JT,{children:[(0,L.jsx)(YT,{to:`/activities`,children:`Back to Activities`}),(0,L.jsx)($T,{children:`Activity not found`})]})})})}var pE=wg`
+`;function pE(){let{id:e}=Gd(),t=sC.find(t=>t.id===e);return t?(0,L.jsx)(qS,{children:(0,L.jsx)(JT,{children:(0,L.jsxs)(YT,{children:[(0,L.jsx)(XT,{to:`/activities`,children:`Back to Activities`}),(0,L.jsx)(ZT,{$hasImage:!!(t.media?.cover||t.media?.photos?.[0]),children:t.media?.cover||t.media?.photos?.[0]?(0,L.jsx)(QT,{src:t.media?.cover||t.media?.photos?.[0],alt:`${t.title} visual`}):(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(rE,{children:t.date}),(0,L.jsx)(aE,{children:t.title}),(0,L.jsx)(iE,{children:`Photos coming soon.`})]})}),(0,L.jsxs)($T,{children:[(0,L.jsx)(eE,{children:t.title}),(0,L.jsx)(tE,{children:t.date})]}),(0,L.jsx)(nE,{children:t.description}),(0,L.jsx)(oE,{children:t.tags.map(e=>(0,L.jsx)(bw,{children:e},e))}),t.links?.length>0&&(0,L.jsxs)(cE,{children:[(0,L.jsx)(rE,{children:`Links`}),(0,L.jsx)(sE,{children:t.links.map(e=>/^https?:\/\//.test(e.url)?(0,L.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url):(0,L.jsx)(sp,{to:e.url,children:e.label},e.url))})]}),t.id===`valedictorian`&&(0,L.jsxs)(cE,{children:[(0,L.jsx)(rE,{children:`Video`}),(0,L.jsxs)(lE,{children:[(0,L.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,L.jsx)(`p`,{children:`Speech starts at 1:15:02`})]})]}),t.media?.photos?.length>1&&(0,L.jsxs)(cE,{children:[(0,L.jsx)(rE,{children:`Gallery`}),(0,L.jsx)(dE,{children:t.media.photos.slice(1).map((e,n)=>(0,L.jsx)(fE,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),!t.media?.photos?.length&&t.id!==`valedictorian`&&(0,L.jsx)(uE,{children:`Photos coming soon.`})]})})}):(0,L.jsx)(qS,{children:(0,L.jsx)(JT,{children:(0,L.jsxs)(YT,{children:[(0,L.jsx)(XT,{to:`/activities`,children:`Back to Activities`}),(0,L.jsx)(eE,{children:`Activity not found`})]})})})}var mE=wg`
   * {
     margin: 0;
     padding: 0;
@@ -1323,6 +1227,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
@@ -1334,6 +1239,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   a {
@@ -1376,4 +1282,4 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   ::selection {
     background: rgba(154, 184, 158, 0.32);
   }
-`,mE={colors:{copper:`#C4956A`,home:{base:`#F7F7F5`,text:`#2B2A2A`,forest:`#1B3D2F`,leather:`#5C3D2E`,olive:`#4A7A5E`,hover:`#2D5A3D`,leadership:`#9AB89E`,institution:`#9A9590`,copper:`#C4956A`},light:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`},subpage:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`}},fonts:{heading:`'Cormorant Garamond', serif`,body:`'PP Neue Montreal', 'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.78rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,contentMax:`1100px`,graphMax:`1100px`,radius:`4px`,pillRadius:`4px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function hE(){let e=Bd();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(zg,{}),(0,L.jsx)(Lc,{mode:`wait`,children:(0,L.jsxs)(vf,{location:e,children:[(0,L.jsx)(gf,{path:`/`,element:(0,L.jsx)(nw,{})}),(0,L.jsx)(gf,{path:`/about`,element:(0,L.jsx)(_w,{})}),(0,L.jsx)(gf,{path:`/research`,element:(0,L.jsx)(Jw,{})}),(0,L.jsx)(gf,{path:`/research/:id`,element:(0,L.jsx)(mT,{})}),(0,L.jsx)(gf,{path:`/activities`,element:(0,L.jsx)(KT,{})}),(0,L.jsx)(gf,{path:`/activities/:id`,element:(0,L.jsx)(fE,{})})]},e.pathname)}),(0,L.jsx)(Wg,{})]})}function gE(){return(0,L.jsxs)(hg,{theme:mE,children:[(0,L.jsx)(pE,{}),(0,L.jsx)(ip,{children:(0,L.jsx)(hE,{})})]})}(0,Tp.createRoot)(document.getElementById(`root`)).render((0,L.jsx)(S.StrictMode,{children:(0,L.jsx)(gE,{})}));
+`,hE={colors:{copper:`#C4956A`,home:{base:`#F7F7F5`,text:`#2B2A2A`,forest:`#1B3D2F`,leather:`#5C3D2E`,olive:`#4A7A5E`,hover:`#2D5A3D`,leadership:`#9AB89E`,institution:`#9A9590`,copper:`#C4956A`},light:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`},subpage:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`}},fonts:{heading:`'Cormorant Garamond', serif`,body:`'PP Neue Montreal', 'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.78rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,contentMax:`1100px`,graphMax:`1100px`,radius:`4px`,pillRadius:`4px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function gE(){let e=Bd();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,L.jsxs)(L.Fragment,{children:[(0,L.jsx)(zg,{}),(0,L.jsx)(Lc,{mode:`wait`,children:(0,L.jsxs)(vf,{location:e,children:[(0,L.jsx)(gf,{path:`/`,element:(0,L.jsx)(JC,{})}),(0,L.jsx)(gf,{path:`/about`,element:(0,L.jsx)(vw,{})}),(0,L.jsx)(gf,{path:`/research`,element:(0,L.jsx)(Yw,{})}),(0,L.jsx)(gf,{path:`/research/:id`,element:(0,L.jsx)(hT,{})}),(0,L.jsx)(gf,{path:`/activities`,element:(0,L.jsx)(qT,{})}),(0,L.jsx)(gf,{path:`/activities/:id`,element:(0,L.jsx)(pE,{})})]},e.pathname)}),(0,L.jsx)(Wg,{})]})}function _E(){return(0,L.jsxs)(hg,{theme:hE,children:[(0,L.jsx)(mE,{}),(0,L.jsx)(ip,{children:(0,L.jsx)(gE,{})})]})}(0,Tp.createRoot)(document.getElementById(`root`)).render((0,L.jsx)(S.StrictMode,{children:(0,L.jsx)(_E,{})}));
