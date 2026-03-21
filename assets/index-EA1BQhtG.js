@@ -283,6 +283,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background: ${({theme:e})=>e.colors.subpage.background};
   color: ${({theme:e})=>e.colors.subpage.text};
   overflow-x: hidden;
+  scroll-snap-type: y proximity;
 `,fC=$.section`
   position: relative;
   min-height: 100vh;
@@ -292,6 +293,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   align-items: center;
   justify-content: center;
   text-align: center;
+  scroll-snap-align: start;
 
   &::before {
     content: '';
@@ -327,13 +329,18 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   line-height: 0.95;
   letter-spacing: -0.02em;
 `,hC=$.p`
-  max-width: 620px;
+  max-width: 820px;
   font-size: 1.05rem;
   line-height: 1.6;
   color: ${({theme:e})=>e.colors.subpage.muted};
 
+  @media (min-width: 1024px) {
+    white-space: nowrap;
+  }
+
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     font-size: 0.95rem;
+    white-space: normal;
   }
 `,gC=$.button`
   display: grid;
@@ -359,6 +366,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,vC=$.section`
   padding: 72px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
   ${uC};
 
   & + & {
@@ -367,6 +379,8 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     padding: 48px 0;
+    min-height: auto;
+    scroll-snap-align: none;
   }
 `,yC=$.div`
   display: flex;
@@ -388,7 +402,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-weight: 600;
   line-height: 1.12;
   margin-bottom: 16px;
-  max-width: 500px;
+  max-width: 620px;
+
+  @media (min-width: 1024px) {
+    white-space: nowrap;
+  }
 `,CC=$.p`
   max-width: 500px;
   font-size: 0.96rem;
