@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
+import Lightbox from '../components/Lightbox';
 import { activities } from '../data/activities';
 import { archive } from '../data/archive';
 
@@ -221,6 +222,8 @@ const ArchivePhoto = styled.div`
   overflow: hidden;
   border-radius: 3px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
+  transition: transform 0.15s ease;
   background:
     ${({ $hasImage }) =>
       $hasImage
@@ -235,6 +238,12 @@ const ArchivePhoto = styled.div`
     mix-blend-mode: multiply;
     pointer-events: none;
   }
+
+  ${({ $clickable }) =>
+    $clickable &&
+    `&:hover {
+      transform: scale(1.02);
+    }`};
 `;
 
 const ArchiveImage = styled.img`
@@ -273,11 +282,64 @@ const ArchiveCaption = styled.span`
   font-size: 0.84rem;
 `;
 
+const ArchiveDescription = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.text};
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-top: 4px;
+`;
+
+const ArchiveLink = styled.a`
+  color: ${({ theme }) => theme.colors.subpage.copper};
+  font-size: 0.82rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  margin-top: 2px;
+  width: fit-content;
+`;
+
+const PhotoCount = styled.span`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.52);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  z-index: 1;
+`;
+
 function Activities() {
   const location = useLocation();
   const activitiesRef = useRef(null);
   const archiveRef = useRef(null);
+  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0 });
   const visibleIds = new Set(featuredOrder);
+
+  const openLightbox = useCallback((images, index = 0) => {
+    setLightbox({ open: true, images, index });
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightbox((prev) => ({ ...prev, open: false }));
+  }, []);
+
+  const prevImage = useCallback(() => {
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index - 1 + prev.images.length) % prev.images.length,
+    }));
+  }, []);
+
+  const nextImage = useCallback(() => {
+    setLightbox((prev) => ({
+      ...prev,
+      index: (prev.index + 1) % prev.images.length,
+    }));
+  }, []);
   const orderedActivities = [
     ...featuredOrder
       .map((id) => activities.find((item) => item.id === id))
@@ -348,31 +410,59 @@ function Activities() {
           <Section ref={archiveRef} id="archive">
             <SectionTitle>Archive</SectionTitle>
             <SectionText>
-              A smaller visual record of visits, campus scenes, and lighter intervals that belong
-              on the site, but not at the same level as the main professional work.
+              Concerts, golf, campus moments, and other scenes from life in New York and beyond.
             </SectionText>
 
             <ArchiveGrid>
-              {archive.map((item) => (
-                <ArchiveCard key={item.id}>
-                  <ArchivePhoto $hasImage={!!item.image}>
-                    {item.image ? (
-                      <ArchiveImage src={item.image} alt={item.title} />
-                    ) : (
-                      <ArchivePlaceholder>{item.title}</ArchivePlaceholder>
-                    )}
-                  </ArchivePhoto>
-                  <ArchiveMeta>
-                    <ArchiveTitle>{item.title}</ArchiveTitle>
-                    <ArchiveCaption>
-                      {item.date} · {item.location}
-                    </ArchiveCaption>
-                  </ArchiveMeta>
-                </ArchiveCard>
-              ))}
+              {archive.map((item) => {
+                const coverSrc = item.photos?.[0]?.src || null;
+                const hasPhotos = item.photos?.length > 0;
+                return (
+                  <ArchiveCard key={item.id}>
+                    <ArchivePhoto
+                      $hasImage={!!coverSrc}
+                      $clickable={hasPhotos}
+                      onClick={() => hasPhotos && openLightbox(item.photos, 0)}
+                    >
+                      {coverSrc ? (
+                        <ArchiveImage src={coverSrc} alt={item.title} />
+                      ) : (
+                        <ArchivePlaceholder>{item.title}</ArchivePlaceholder>
+                      )}
+                      {item.photos?.length > 1 && (
+                        <PhotoCount>{item.photos.length} photos</PhotoCount>
+                      )}
+                    </ArchivePhoto>
+                    <ArchiveMeta>
+                      <ArchiveTitle>{item.title}</ArchiveTitle>
+                      <ArchiveCaption>
+                        {item.date} · {item.location}
+                      </ArchiveCaption>
+                      {item.description && (
+                        <ArchiveDescription>{item.description}</ArchiveDescription>
+                      )}
+                      {item.link && (
+                        <ArchiveLink href={item.link.url} target="_blank" rel="noopener noreferrer">
+                          {item.link.label}
+                        </ArchiveLink>
+                      )}
+                    </ArchiveMeta>
+                  </ArchiveCard>
+                );
+              })}
             </ArchiveGrid>
           </Section>
         </Container>
+
+        {lightbox.open && (
+          <Lightbox
+            images={lightbox.images}
+            index={lightbox.index}
+            onClose={closeLightbox}
+            onPrev={lightbox.images.length > 1 ? prevImage : null}
+            onNext={lightbox.images.length > 1 ? nextImage : null}
+          />
+        )}
       </Page>
     </PageTransition>
   );
