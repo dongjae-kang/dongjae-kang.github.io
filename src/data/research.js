@@ -62,6 +62,7 @@ export const research = [
       { label: 'CHI 2025 Workshop', url: 'https://sites.google.com/view/newsfutures/home' },
       { label: 'CHI Workshop Paper', url: '/assets/papers/chi-2025-workshop-paper.pdf' },
     ],
+    related: ['prism', 'beyond-removal', 'vinesight-policy-guide'],
     thumbnail: crisisnewsThumbnail,
     gallery: [
       { src: crisisnewsThumbnail, alt: 'CrisisNews dataset overview', caption: 'Dataset overview' },
@@ -93,7 +94,8 @@ export const research = [
       'A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.',
     description:
       'PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.',
-    collaborators: ['Columbia SIPA project team', 'Prototype implemented independently'],
+    courseContext: 'Understanding Emerging Technologies (TPINIA7005), Prof. Laura Scherling and Laurence Wilse-Samson, Fall 2025',
+    collaborators: ['Columbia SIPA project team (4 members)', 'Prototype implemented independently'],
     tags: ['Misinformation', 'Platform Design', 'HCI'],
     highlights: [
       'Maps framing differences across multiple outlets',
@@ -117,6 +119,8 @@ export const research = [
         url: '/assets/papers/prism-pitch.pdf',
       },
     ],
+    related: ['crisisnews', 'multi-agent-sim', 'vinesight-policy-guide'],
+    liveDemo: 'https://tpi-emerging-tech.netlify.app',
     links: [
       { label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' },
       { label: 'Pitch Deck', url: '/assets/papers/prism-pitch.pdf' },
@@ -134,7 +138,9 @@ export const research = [
       "A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.",
     description:
       "Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.",
-    collaborators: ['Columbia SIPA Trust & Safety course'],
+    courseContext: 'Trust & Safety (TPIN7008IA), Prof. Tim Bernard, Spring 2026',
+    related: ['crisisnews', 'multi-agent-sim'],
+    collaborators: ['Individual project'],
     tags: ['Content Moderation', 'Platform Governance'],
     highlights: [
       'Built directly on CrisisNews case material',
@@ -159,7 +165,9 @@ export const research = [
       'A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.',
     description:
       'This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.',
-    collaborators: ['Columbia SIPA Ethics of Media course'],
+    courseContext: 'Ethics of Media (JOUR6998IA), Columbia SIPA, Spring 2026',
+    related: ['crisisnews', 'prism', 'beyond-removal'],
+    collaborators: ['Individual project'],
     tags: ['Misinformation', 'AI', 'Simulation'],
     highlights: [
       'Python agent-based model for repeated sharing environments',

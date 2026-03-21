@@ -307,13 +307,17 @@ function Research() {
   const location = useLocation();
   const projectsRef = useRef(null);
   const courseworkRef = useRef(null);
-  const section = new URLSearchParams(location.search).get('section');
+  const params = new URLSearchParams(location.search);
+  const section = params.get('section');
+  const activeTag = params.get('tag');
 
   useEffect(() => {
     if (section === 'coursework') {
       courseworkRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [section]);
+
+  const matchesTag = (item) => !activeTag || item.tags?.includes(activeTag);
 
   return (
     <PageTransition>
@@ -327,17 +331,26 @@ function Research() {
           </Intro>
 
           <SectionNav>
-            <SectionNavLink to="/research" $active={!section}>
+            <SectionNavLink to="/research" $active={!section && !activeTag}>
               Projects
             </SectionNavLink>
             <SectionNavLink to="/research?section=coursework" $active={section === 'coursework'}>
               Coursework & Papers
             </SectionNavLink>
+            {activeTag && (
+              <SectionNavLink
+                to="/research"
+                $active
+                style={{ marginLeft: 'auto' }}
+              >
+                Showing: {activeTag} ×
+              </SectionNavLink>
+            )}
           </SectionNav>
 
           <Grid ref={projectsRef}>
             {research.map((item) => (
-              <Card key={item.id} to={`/research/${item.id}`}>
+              <Card key={item.id} to={`/research/${item.id}`} style={activeTag && !matchesTag(item) ? { opacity: 0.35, pointerEvents: 'none' } : {}}>
                 <Thumbnail>
                   {item.thumbnail ? (
                     <ThumbnailImage src={item.thumbnail} alt={`${item.title} preview`} />
@@ -355,6 +368,11 @@ function Research() {
                 </CardHeader>
 
                 <Summary>{item.summary}</Summary>
+                {item.courseContext && (
+                  <AssetRow style={{ fontStyle: 'italic', textTransform: 'none', letterSpacing: '0.02em' }}>
+                    Course: {item.courseContext.split(',')[0]}
+                  </AssetRow>
+                )}
                 {item.materials?.length > 0 && (
                   <AssetRow>
                     {item.materials.map((material) => (
@@ -380,7 +398,7 @@ function Research() {
 
             <CourseworkGrid>
               {coursework.map((item) => (
-                <CourseworkCard key={item.id}>
+                <CourseworkCard key={item.id} style={activeTag && !matchesTag(item) ? { opacity: 0.35 } : {}}>
                   <CourseworkVisual>
                     {item.thumbnail ? (
                       <CourseworkImage src={item.thumbnail} alt={`${item.title} preview`} />

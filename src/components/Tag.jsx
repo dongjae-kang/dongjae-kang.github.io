@@ -1,4 +1,7 @@
 import styled, { css } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
+const MULTI_PROJECT_TAGS = ['Misinformation', 'Platform Governance'];
 
 const variants = {
   dark: css`
@@ -13,7 +16,7 @@ const variants = {
   `,
 };
 
-const Tag = styled.span`
+const TagBase = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -26,6 +29,44 @@ const Tag = styled.span`
   text-transform: uppercase;
   transition: ${({ theme }) => theme.transitions.hover};
   ${({ $variant = 'light' }) => variants[$variant]};
+  ${({ $clickable }) =>
+    $clickable &&
+    css`
+      cursor: pointer;
+      &:hover {
+        background: rgba(45, 90, 61, 0.14);
+        border-color: rgba(45, 90, 61, 0.32);
+      }
+    `};
 `;
+
+function Tag({ children, $variant, onClick, ...rest }) {
+  const navigate = useNavigate();
+  const isClickable = MULTI_PROJECT_TAGS.includes(children);
+
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+    if (isClickable) {
+      e.preventDefault();
+      e.stopPropagation();
+      navigate(`/research?tag=${encodeURIComponent(children)}`);
+    }
+  };
+
+  return (
+    <TagBase
+      $variant={$variant}
+      $clickable={isClickable}
+      onClick={handleClick}
+      title={isClickable ? `View all ${children} projects` : undefined}
+      {...rest}
+    >
+      {children}
+    </TagBase>
+  );
+}
 
 export default Tag;

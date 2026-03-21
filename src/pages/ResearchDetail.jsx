@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
+import PhoneFrame from '../components/PhoneFrame';
+import PdfViewer from '../components/PdfViewer';
 import { research } from '../data/research';
 import { coursework } from '../data/coursework';
 
@@ -196,6 +198,44 @@ const MaterialLink = styled.a`
   color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
+const RelatedGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+`;
+
+const RelatedCard = styled(Link)`
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: #fdfcfa;
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.subpage.accent};
+    background: rgba(27, 61, 47, 0.04);
+  }
+`;
+
+const RelatedTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+`;
+
+const RelatedSummary = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
 function ResearchDetail() {
   const { id } = useParams();
   const item = research.find((entry) => entry.id === id) || coursework.find((entry) => entry.id === id);
@@ -253,11 +293,11 @@ function ResearchDetail() {
           )}
 
           <MetaGrid>
-            {(isCoursework || item.course || item.professor || item.semester) && (
+            {(isCoursework || item.course || item.professor || item.semester || item.courseContext) && (
               <MetaBlock>
                 <SectionLabel>Course Context</SectionLabel>
                 <MetaText>
-                  {[item.course, item.professor, item.semester].filter(Boolean).join(' · ')}
+                  {item.courseContext || [item.course, item.professor, item.semester].filter(Boolean).join(' · ')}
                 </MetaText>
               </MetaBlock>
             )}
@@ -294,6 +334,30 @@ function ResearchDetail() {
             </DetailSection>
           )}
 
+          {/* PRISM live demo in iPhone frame */}
+          {(item.id === 'prism' || item.id === 'prism-product-pitch') && item.liveDemo && (
+            <DetailSection>
+              <SectionLabel>Live Demo</SectionLabel>
+              <PhoneFrame url={item.liveDemo} title={`${item.title} prototype`} />
+            </DetailSection>
+          )}
+
+          {/* Inline PDF viewer for coursework papers */}
+          {isCoursework && item.pdf && (
+            <DetailSection>
+              <SectionLabel>Paper</SectionLabel>
+              <PdfViewer pdfs={item.pdf} />
+            </DetailSection>
+          )}
+          {isCoursework && item.pdfs?.length > 0 && (
+            <DetailSection>
+              <SectionLabel>Papers</SectionLabel>
+              <PdfViewer
+                pdfs={item.pdfs.map((p) => ({ label: p.label, url: p.file }))}
+              />
+            </DetailSection>
+          )}
+
           {item.gallery?.length > 0 && (
             <DetailSection>
               <SectionLabel>Gallery</SectionLabel>
@@ -320,6 +384,27 @@ function ResearchDetail() {
               </Links>
             </DetailSection>
           )}
+
+          {item.related?.length > 0 && (() => {
+            const allItems = [...research, ...coursework];
+            const relatedItems = item.related
+              .map((relId) => allItems.find((entry) => entry.id === relId))
+              .filter(Boolean);
+            if (relatedItems.length === 0) return null;
+            return (
+              <DetailSection>
+                <SectionLabel>Related</SectionLabel>
+                <RelatedGrid>
+                  {relatedItems.map((rel) => (
+                    <RelatedCard key={rel.id} to={`/research/${rel.id}`}>
+                      <RelatedTitle>{rel.title}</RelatedTitle>
+                      <RelatedSummary>{rel.summary}</RelatedSummary>
+                    </RelatedCard>
+                  ))}
+                </RelatedGrid>
+              </DetailSection>
+            );
+          })()}
         </Container>
       </Page>
     </PageTransition>

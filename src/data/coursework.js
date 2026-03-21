@@ -1,9 +1,7 @@
 import housingThumbnail from '../assets/images/research/housing-thumbnail.png';
-import prismThumbnail from '../assets/images/research/prism-thumbnail.png';
 import vinesightThumbnail from '../assets/images/research/vinesight-thumbnail.png';
 import housingDemographicTable from '../assets/images/research/figures/housing-demographic-table.png';
 import housingImplementationTimeline from '../assets/images/research/figures/housing-implementation-timeline.png';
-import prismMockupDetail from '../assets/images/research/figures/prism-mockup-detail.png';
 import vinesightCoreValues from '../assets/images/research/figures/vinesight-core-values.png';
 import vinesightPipeline from '../assets/images/research/figures/vinesight-pipeline.png';
 import vinesightDashboard from '../assets/images/research/figures/vinesight-dashboard.png';
@@ -43,6 +41,7 @@ export const coursework = [
         url: '/assets/papers/housing-policy-jungnang-gu.pdf',
       },
     ],
+    related: ['dc-chronic-absenteeism'],
     pdf: '/assets/papers/housing-policy-jungnang-gu.pdf',
     thumbnail: housingThumbnail,
     gallery: [
@@ -105,6 +104,7 @@ export const coursework = [
       { label: 'Policy Memo', file: '/assets/papers/dc-absenteeism-memo.pdf' },
       { label: 'Research Paper', file: '/assets/papers/dc-absenteeism-paper.pdf' },
     ],
+    related: ['housing-policy-jungnang-gu'],
     thumbnail: dcAbsenteeismMemoCover,
     gallery: [
       {
@@ -119,60 +119,6 @@ export const coursework = [
       },
     ],
     links: [],
-  },
-  {
-    id: 'prism-product-pitch',
-    title: 'PRISM: See The Full Spectrum',
-    subtitle: 'A Multi-Perspective Platform for Democratic Resilience',
-    year: 'Fall 2025',
-    course: 'Understanding Emerging Technologies (TPINIA7005)',
-    professor: 'Laura Scherling and Laurence Wilse-Samson',
-    semester: 'Fall 2025',
-    type: 'Group (4 members)',
-    summary:
-      'A product pitch for a platform that maps news coverage across the political spectrum, integrates fact-checking, and tracks how stories evolve over time. It includes a literature review, competitor analysis, business model, and UI mockups. The deployed prototype was fully built by Kang.',
-    description:
-      'This coursework entry documents PRISM as an academic deliverable rather than only as a working product. The pitch deck combines a literature review, competitor analysis, proposed product logic, business framing, and interface mockups for a platform designed to help users compare how the same event is framed across sources. While the course deliverable was a group project, Kang independently built and deployed the working prototype linked on the site. The result is useful because it shows both the paper logic and the actual implementation.',
-    collaborators: ['Group project (4 members)', 'Prototype implemented independently by Kang'],
-    tags: ['Misinformation', 'Media Literacy', 'Platform Design', 'Product'],
-    highlights: [
-      'Academic pitch deck and deployed prototype shown side by side',
-      'Combines product logic, business framing, and interface design',
-      'Useful counterpart to the separate PRISM research/project entry',
-    ],
-    heroMedia: {
-      src: prismThumbnail,
-      alt: 'PRISM interface mockup from the product pitch',
-      label: 'Pitch Visual',
-    },
-    materials: [
-      {
-        label: 'Pitch Deck',
-        note: 'Full course deliverable with literature review, model, and product framing.',
-        url: '/assets/papers/prism-pitch.pdf',
-      },
-      {
-        label: 'Live Demo',
-        note: 'Deployed prototype implemented by Kang.',
-        url: 'https://tpi-emerging-tech.netlify.app/',
-      },
-    ],
-    pdf: '/assets/papers/prism-pitch.pdf',
-    liveDemo: 'https://tpi-emerging-tech.netlify.app/',
-    thumbnail: prismThumbnail,
-    gallery: [
-      {
-        src: prismThumbnail,
-        alt: 'PRISM interface mockup from coursework pitch deck',
-        caption: 'Course pitch mockup',
-      },
-      {
-        src: prismMockupDetail,
-        alt: 'Detailed PRISM interface mockup from the pitch deck appendix',
-        caption: 'Appendix UI mockup from the pitch deck',
-      },
-    ],
-    links: [{ label: 'Live Demo', url: 'https://tpi-emerging-tech.netlify.app/' }],
   },
   {
     id: 'vinesight-policy-guide',
@@ -206,6 +152,7 @@ export const coursework = [
         url: '/assets/papers/vinesight-policy-guide.pdf',
       },
     ],
+    related: ['crisisnews', 'prism'],
     pdf: '/assets/papers/vinesight-policy-guide.pdf',
     thumbnail: vinesightThumbnail,
     gallery: [
