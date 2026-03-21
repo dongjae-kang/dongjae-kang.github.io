@@ -53,6 +53,7 @@ const Hero = styled.section`
   justify-content: center;
   text-align: center;
   scroll-snap-align: start;
+  scroll-snap-align: start;
 
   &::before {
     content: '';
@@ -190,7 +191,7 @@ const SectionTitle = styled.h2`
 `;
 
 const SectionBody = styled.p`
-  max-width: 500px;
+  max-width: 680px;
   font-size: 0.96rem;
   line-height: 1.75;
   color: ${({ theme }) => theme.colors.subpage.muted};

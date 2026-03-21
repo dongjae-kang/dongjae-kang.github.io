@@ -163,7 +163,7 @@ const SubmenuHint = styled.div`
   position: absolute;
   top: -4px;
   left: calc(100% + 10px);
-  width: 220px;
+  width: 180px;
   padding: 12px 14px;
   border: 1px solid rgba(74, 122, 94, 0.24);
   border-radius: 4px;
