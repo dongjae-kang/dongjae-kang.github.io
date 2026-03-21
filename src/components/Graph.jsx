@@ -400,7 +400,7 @@ function Graph() {
       .attr('stroke', COLORS.greenLight)
       .attr('stroke-width', 0.95)
       .attr('stroke-linecap', 'round')
-      .attr('opacity', 0.12);
+      .attr('opacity', 0.09);
 
     const flowSelection = flowLayer
       .selectAll('g')
@@ -536,18 +536,18 @@ function Graph() {
 
     function updateHighlight(activeNode) {
       edgeSelection.attr('opacity', (edge) => {
-        if (!activeNode) return 0.22;
-        return edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.48 : 0.06;
+        if (!activeNode) return 0.09;
+        return edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 0.45 : 0.03;
       });
 
       flowSelection.attr('opacity', (edge) => {
         if (!activeNode) return 1;
-        return edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1 : 0.1;
+        return edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1 : 0.05;
       });
 
       driftGroup.select('circle').attr('opacity', (node) => {
         if (!activeNode) return 1;
-        return isConnected(activeNode, node) ? 1 : 0.25;
+        return isConnected(activeNode, node) ? 1 : 0.15;
       });
 
       labelGroups.attr('opacity', (node) => {
@@ -555,7 +555,7 @@ function Graph() {
           return isMobile && mobileHiddenLabelIds.has(node.id) ? 0 : nodeVisual(node).labelOpacity;
         }
         if (isMobile && mobileHiddenLabelIds.has(node.id)) return 0;
-        return isConnected(activeNode, node) ? 0.96 : 0.22;
+        return isConnected(activeNode, node) ? 0.96 : 0.12;
       });
 
       labelHalos.attr('opacity', (node) => {

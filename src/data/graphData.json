@@ -95,8 +95,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-youth-forum",
-      "desktop": { "x": 0.71, "y": 0.34 },
-      "mobile": { "x": 0.74, "y": 0.36 }
+      "desktop": { "x": 0.73, "y": 0.30 },
+      "mobile": { "x": 0.74, "y": 0.32 }
     },
     {
       "id": "student-council",
@@ -104,8 +104,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/student-council",
-      "desktop": { "x": 0.91, "y": 0.46 },
-      "mobile": { "x": 0.88, "y": 0.48 }
+      "desktop": { "x": 0.90, "y": 0.42 },
+      "mobile": { "x": 0.88, "y": 0.44 }
     },
     {
       "id": "valedictorian",
@@ -113,8 +113,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/valedictorian",
-      "desktop": { "x": 0.67, "y": 0.55 },
-      "mobile": { "x": 0.70, "y": 0.56 }
+      "desktop": { "x": 0.68, "y": 0.52 },
+      "mobile": { "x": 0.70, "y": 0.54 }
     },
     {
       "id": "kgsa-career",
@@ -122,8 +122,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/kgsa-career",
-      "desktop": { "x": 0.77, "y": 0.70 },
-      "mobile": { "x": 0.78, "y": 0.70 }
+      "desktop": { "x": 0.76, "y": 0.66 },
+      "mobile": { "x": 0.78, "y": 0.66 }
     },
     {
       "id": "upenn-mixer",
@@ -131,8 +131,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/upenn-mixer",
-      "desktop": { "x": 0.94, "y": 0.72 },
-      "mobile": { "x": 0.90, "y": 0.74 }
+      "desktop": { "x": 0.92, "y": 0.68 },
+      "mobile": { "x": 0.90, "y": 0.70 }
     },
     {
       "id": "hyc-mixer",
@@ -140,8 +140,8 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/hyc-mixer",
-      "desktop": { "x": 0.63, "y": 0.83 },
-      "mobile": { "x": 0.64, "y": 0.84 }
+      "desktop": { "x": 0.64, "y": 0.80 },
+      "mobile": { "x": 0.64, "y": 0.82 }
     },
     {
       "id": "columbia-ai-club",
@@ -149,8 +149,8 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/columbia-ai-club",
-      "desktop": { "x": 0.85, "y": 0.85 },
-      "mobile": { "x": 0.84, "y": 0.86 }
+      "desktop": { "x": 0.83, "y": 0.82 },
+      "mobile": { "x": 0.82, "y": 0.84 }
     },
     {
       "id": "kaist",
