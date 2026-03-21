@@ -178,14 +178,21 @@ const journey = [
     category: 'Education',
     items: [
       { role: 'MPA, Technology, Policy and Innovation', org: 'Columbia University, School of International and Public Affairs (SIPA)', period: '2025 - Present' },
-      { role: 'BS Industrial and Systems Engineering', org: 'KAIST (double major: Business; minor: S&T Policy)', period: '2018 - 2025' },
+      { role: 'BS Industrial and Systems Engineering', org: 'KAIST (double major: Business and Technology Management; minor: Science and Technology Policy)', period: '2018 - 2025' },
     ],
   },
   {
-    category: 'Research',
+    category: 'Publications',
+    items: [
+      { role: 'CrisisNews: A Dataset Mapping Two Decades of News Articles on Online Problematic Behavior at Scale', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Yubin Choi, Juhoon Lee, Joseph Seering, Under Review', period: '2025' },
+      { role: 'Understanding Social Media Crisis: A Data-driven Analysis of Online Problematic Behavior', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Joseph Seering, CHI 2025 Workshop Paper', period: '2025' },
+    ],
+  },
+  {
+    category: 'Research Experience',
     items: [
       { role: 'Research Assistant', org: 'KAIST Collaborative Social Technologies Lab (Prof. Joseph Seering)', period: '2024 - 2025' },
-      { role: 'Undergraduate Researcher', org: 'ISTI-CNR (Italy) x KAIST international collaboration', period: '2024 - 2025' },
+      { role: 'Undergraduate Researcher', org: 'ISTI-CNR (Italy) x KAIST, International collaboration on fault-tolerant Systems-of-Systems', period: '2024 - 2025' },
       { role: 'Research Assistant', org: 'KAIST di-Lab (Prof. KyungRyul Park)', period: '2024' },
     ],
   },
@@ -201,9 +208,20 @@ const journey = [
   {
     category: 'Professional',
     items: [
-      { role: 'Event Assistant, UN General Assembly High-Level Week', org: 'Permanent Mission of the Republic of Korea to the UN', period: 'Sep 2025' },
+      { role: 'Event Assistant, UN General Assembly High-Level Week', org: 'Permanent Mission of the Republic of Korea to the United Nations', period: 'Sep 2025' },
       { role: 'Member, Young Engineers Honor Society (YEHS)', org: 'National Academy of Engineering of Korea', period: '2024 - 2025' },
-      { role: 'IT Consultant', org: 'Columbia SIPA', period: '2025 - Present' },
+      { role: 'Sergeant, Technical & Administrative Specialist', org: 'Korea Army Training Center (Honorable Discharge)', period: '2021 - 2022' },
+    ],
+  },
+  {
+    category: 'Honors & Awards',
+    items: [
+      { role: 'KAIST Q-Day Presidential Award', org: 'Recognized for trust-based communication and excellence in creative education and research', period: '2024' },
+      { role: 'KAIST College of Engineering Leadership Award', org: 'Accomplishments beyond coursework including publications and social service', period: '2024' },
+      { role: 'KAIST Honors Scholarships (Department Honors / Highest Honors)', org: 'Exceptional academic performance', period: '2020, 2023' },
+      { role: 'KAIST Inseong Fellow', org: 'Significant service and positive impact on university community', period: '2020' },
+      { role: 'KAIST Valedictorian, Freshman Graduation', org: 'Selected as sole speaker representing entire freshman class', period: '2018' },
+      { role: 'National Science and Technology Scholarship', org: 'Full tuition throughout undergraduate studies', period: '2018 - 2023' },
     ],
   },
 ];

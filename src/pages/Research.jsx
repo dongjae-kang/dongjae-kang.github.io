@@ -207,6 +207,82 @@ const TagList = styled.div`
   gap: 10px;
 `;
 
+const CourseworkGrid = styled(Grid)`
+  margin-top: 8px;
+`;
+
+const CourseworkCard = styled.article`
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 4px;
+  background: #fdfcfa;
+`;
+
+const CourseworkVisual = styled.div`
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #f0ede8;
+  border: 1px solid rgba(196, 149, 106, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+`;
+
+const CourseworkImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const CourseworkHeader = styled.div`
+  display: grid;
+  gap: 8px;
+`;
+
+const CourseworkTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 2rem;
+  line-height: 1.08;
+  font-weight: 600;
+`;
+
+const CourseworkSubtitle = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  line-height: 1.5;
+`;
+
+const CourseworkMeta = styled.div`
+  display: grid;
+  gap: 4px;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.88rem;
+`;
+
+const CourseworkActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+`;
+
+const CourseworkAction = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 4px;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #fff;
+`;
+
 function Research() {
   const location = useLocation();
   const projectsRef = useRef(null);
@@ -226,7 +302,8 @@ function Research() {
           <Title>Research</Title>
           <Intro>
             Core research projects in misinformation and platform governance, followed by a smaller
-            selection of coursework papers in urban policy and public problem-solving.
+            selection of coursework projects in policy analysis, urban governance, and
+            technology policy design.
           </Intro>
 
           <SectionNav>
@@ -268,22 +345,66 @@ function Research() {
           </Grid>
 
           <Section id="coursework" ref={courseworkRef}>
-            <SectionTitle>Selected Coursework & Papers</SectionTitle>
+            <SectionTitle>Coursework</SectionTitle>
             <SectionText>
-              Course-based work in urban policy and public problem-solving, included here because
-              it extends the same questions into a different format.
+              Course projects from Columbia SIPA demonstrating policy analysis, urban
+              governance, and technology policy design.
             </SectionText>
 
-            <PaperList>
+            <CourseworkGrid>
               {coursework.map((item) => (
-                <PaperRow key={item.id} href={item.file} target="_blank" rel="noopener noreferrer">
-                  <PaperTitle>{item.title}</PaperTitle>
-                  <PaperYear>{item.year}</PaperYear>
-                  <PaperMeta>{item.course}</PaperMeta>
-                  <PaperSummary>{item.summary}</PaperSummary>
-                </PaperRow>
+                <CourseworkCard key={item.id}>
+                  <CourseworkVisual>
+                    {item.thumbnail ? (
+                      <CourseworkImage src={item.thumbnail} alt={`${item.title} preview`} />
+                    ) : (
+                      <Placeholder>
+                        <Kicker>Coursework</Kicker>
+                        <PlaceholderText>Project image coming soon.</PlaceholderText>
+                      </Placeholder>
+                    )}
+                  </CourseworkVisual>
+
+                  <CourseworkHeader>
+                    <CourseworkTitle>{item.title}</CourseworkTitle>
+                    <CourseworkSubtitle>{item.subtitle}</CourseworkSubtitle>
+                  </CourseworkHeader>
+
+                  <CourseworkMeta>
+                    <span>{item.course}</span>
+                    <span>{item.professor}</span>
+                    <span>{item.semester}</span>
+                  </CourseworkMeta>
+
+                  <TagList>
+                    <Tag>{item.type}</Tag>
+                    {item.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </TagList>
+
+                  <Summary>{item.summary}</Summary>
+
+                  <CourseworkActions>
+                    {item.pdf && (
+                      <CourseworkAction href={item.pdf} target="_blank" rel="noopener noreferrer">
+                        View PDF
+                      </CourseworkAction>
+                    )}
+                    {item.pdfs?.map((pdf) => (
+                      <CourseworkAction key={pdf.file} href={pdf.file} target="_blank" rel="noopener noreferrer">
+                        {pdf.label}
+                      </CourseworkAction>
+                    ))}
+                    {item.liveDemo && (
+                      <CourseworkAction href={item.liveDemo} target="_blank" rel="noopener noreferrer">
+                        Live Demo
+                      </CourseworkAction>
+                    )}
+                  </CourseworkActions>
+                </CourseworkCard>
               ))}
-            </PaperList>
+            </CourseworkGrid>
           </Section>
         </Container>
       </Page>

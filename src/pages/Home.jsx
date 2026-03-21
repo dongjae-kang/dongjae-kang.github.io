@@ -456,12 +456,14 @@ function Home() {
               <SectionNum>01</SectionNum>
               <SectionLabel>Research</SectionLabel>
             </SectionLead>
-            <SectionTitle>How platforms shape what people believe.</SectionTitle>
+            <SectionTitle>How platforms shape what people see, share, and believe.</SectionTitle>
             <SectionBody>
-              He studies misinformation, platform governance, and content moderation across
-              both empirical research and interface design. The work ranges from a dataset
-              of 93,250 news articles to prototype systems for comparing how the same story
-              moves across sources.
+              His research examines how problematic behaviors emerge and escalate on social
+              media platforms. At KAIST, he co-built CrisisNews, a dataset of 93,250 news
+              articles spanning two decades of social media crises, and presented the work at
+              ACM CHI 2025 in Yokohama. At Columbia, he led the development of PRISM, a
+              platform that maps how the same news event is framed across the political
+              spectrum.
             </SectionBody>
 
             <ListWrap>
@@ -492,10 +494,13 @@ function Home() {
             </SectionLead>
             <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
             <SectionBody>
-              As President of KAIST&apos;s Undergraduate Student Council, he rebuilt an
-              organization inactive for three years. When Korea announced a 16% R&amp;D budget
-              cut, he coordinated dialogue across universities, the National Assembly, and
-              government ministries.
+              As President of KAIST&apos;s Undergraduate Student Council, he rebuilt the
+              organization after three years of inactivity, achieving the highest satisfaction
+              rating in council history. When Korea&apos;s government proposed a 16% R&amp;D budget
+              cut, he led a coalition of 11 university student organizations in direct
+              engagement with National Assembly members and Ministry officials. The experience
+              led to an invitation to publish a column in JoongAng Ilbo, one of Korea&apos;s
+              leading national newspapers.
             </SectionBody>
 
             <ListWrap>
@@ -529,10 +534,11 @@ function Home() {
             </SectionLead>
             <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
             <SectionBody>
-              He presented misinformation research at ACM CHI in Yokohama, supported
-              diplomatic operations during the UN General Assembly High-Level Week, and
-              organized networking events for 200+ students across Ivy League campuses.
-              The settings differ. The pattern is the same.
+              He presented research at ACM CHI in Yokohama, supported Presidential
+              Secretariat operations during the UN General Assembly High-Level Week, and was
+              selected as a Respondent for the SDG 9 session at the 2026 UN ECOSOC Youth
+              Forum. At Columbia, he organized career and networking events connecting 200+
+              students across Ivy League campuses.
             </SectionBody>
 
             <StripWrap>

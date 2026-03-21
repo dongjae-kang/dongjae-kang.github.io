@@ -1,4 +1,5 @@
 import crisisnewsThumbnail from '../assets/images/research/crisisnews-thumbnail.png';
+import crisisnewsDemo from '../assets/images/research/crisisnews-demo.gif';
 import prismThumbnail from '../assets/images/research/prism-thumbnail.png';
 import multiAgentSimWorkflow from '../assets/images/research/multi-agent-sim-workflow.png';
 import multiAgentSimMethod from '../assets/images/research/multi-agent-sim-method.png';
@@ -8,17 +9,23 @@ export const research = [
     id: 'crisisnews',
     title: 'CrisisNews',
     year: '2024-2025',
-    summary: 'A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.',
+    summary: 'A 20-year dataset of 93,250 news articles mapping how social media crises emerge, escalate, and resolve.',
     description:
-      "At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.",
-    collaborators: ['Jeanne Choi', 'Prof. Joseph Seering'],
-    tags: ['Misinformation', 'Platform Governance', 'Data Analysis'],
+      "At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Prof. Joseph Seering. The project introduces the concept of a social media crisis and builds a structured dataset of 93,250 news articles from 31 international sources, covering incidents from 2004 to 2023. A subset of 1,354 articles was manually annotated across four dimensions: stakeholder relationships, online problematic behavior types, platforms, and aftermath. The analysis found that ordinary user communities, rather than influential individuals, were the primary drivers of social media crises. An earlier version was presented by Kang as sole presenter at the ACM CHI 2025 News Futures Workshop in Yokohama. The full dataset and interactive browsing tool were released publicly.",
+    collaborators: [
+      'Jeanne Choi (co-first author)',
+      'Yubin Choi',
+      'Juhoon Lee',
+      'Prof. Joseph Seering',
+    ],
+    tags: ['Misinformation', 'Platform Governance', 'Dataset', 'Trust & Safety'],
     links: [
       { label: 'arXiv', url: 'https://arxiv.org/abs/2510.12243' },
-      { label: 'Website', url: 'https://crisis-news.netlify.app' },
+      { label: 'Dataset', url: 'https://crisis-news.netlify.app' },
+      { label: 'CHI 2025 Workshop', url: 'https://sites.google.com/view/newsfutures/home' },
     ],
     thumbnail: crisisnewsThumbnail,
-    gallery: [crisisnewsThumbnail],
+    gallery: [crisisnewsThumbnail, crisisnewsDemo],
   },
   {
     id: 'prism',
