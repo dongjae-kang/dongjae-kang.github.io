@@ -40,7 +40,6 @@ const Page = styled.main`
   background: ${({ theme }) => theme.colors.subpage.background};
   color: ${({ theme }) => theme.colors.subpage.text};
   overflow-x: hidden;
-  scroll-snap-type: y proximity;
 `;
 
 /* ─── HERO ─── */
@@ -368,13 +367,13 @@ const FloatingPreview = styled.div`
   position: fixed;
   top: ${({ $y }) => `${$y}px`};
   left: ${({ $x }) => `${$x}px`};
-  width: 160px;
-  aspect-ratio: 3 / 2;
+  width: 280px;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 4px;
   border: 1px solid rgba(27, 61, 47, 0.14);
   background: #d8ddd8;
-  box-shadow: 0 10px 28px rgba(27, 61, 47, 0.12);
+  box-shadow: 0 12px 36px rgba(27, 61, 47, 0.14);
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: none;
   transition: opacity 0.15s ease;
@@ -416,11 +415,11 @@ function Home() {
 
   const showPreview = (e, item) => {
     if (!item.thumbnail || window.innerWidth < 1024) return;
-    const w = 160, h = 107;
-    let x = e.clientX + 20;
+    const w = 280, h = 175;
+    let x = e.clientX + 24;
     let y = e.clientY - h / 2;
-    if (x + w > window.innerWidth - 16) x = e.clientX - w - 20;
-    y = Math.min(window.innerHeight - h - 16, Math.max(16, y));
+    if (x + w > window.innerWidth - 20) x = e.clientX - w - 24;
+    y = Math.min(window.innerHeight - h - 20, Math.max(20, y));
     setPreview({ visible: true, x, y, image: item.thumbnail });
   };
 

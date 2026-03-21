@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     scroll-behavior: smooth;
     overflow-x: hidden;
     max-width: 100vw;
+    scroll-snap-type: y proximity;
   }
 
   body {
