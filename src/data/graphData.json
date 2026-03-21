@@ -95,8 +95,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-youth-forum",
-      "desktop": { "x": 0.69, "y": 0.41 },
-      "mobile": { "x": 0.77, "y": 0.40 }
+      "desktop": { "x": 0.72, "y": 0.44 },
+      "mobile": { "x": 0.80, "y": 0.43 }
     },
     {
       "id": "student-council",
@@ -113,8 +113,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/valedictorian",
-      "desktop": { "x": 0.69, "y": 0.64 },
-      "mobile": { "x": 0.76, "y": 0.62 }
+      "desktop": { "x": 0.72, "y": 0.60 },
+      "mobile": { "x": 0.79, "y": 0.58 }
     },
     {
       "id": "kgsa-career",
