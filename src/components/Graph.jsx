@@ -380,7 +380,7 @@ function Graph() {
 
       root
         .append('text')
-        .attr('x', size.width * 0.79)
+        .attr('x', size.width * 0.84)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
         .attr('font-family', "'Cormorant Garamond', serif")
