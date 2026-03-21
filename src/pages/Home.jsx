@@ -40,6 +40,7 @@ const Page = styled.main`
   background: ${({ theme }) => theme.colors.subpage.background};
   color: ${({ theme }) => theme.colors.subpage.text};
   overflow-x: hidden;
+  scroll-snap-type: y proximity;
 `;
 
 /* ─── HERO ─── */
@@ -52,6 +53,7 @@ const Hero = styled.section`
   align-items: center;
   justify-content: center;
   text-align: center;
+  scroll-snap-align: start;
 
   &::before {
     content: '';
@@ -93,13 +95,18 @@ const Name = styled.h1`
 `;
 
 const Tagline = styled.p`
-  max-width: 620px;
+  max-width: 820px;
   font-size: 1.05rem;
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.subpage.muted};
 
+  @media (min-width: 1024px) {
+    white-space: nowrap;
+  }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: 0.95rem;
+    white-space: normal;
   }
 `;
 
@@ -132,6 +139,11 @@ const Narrative = styled.div`
 
 const Section = styled.section`
   padding: 72px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
   ${fadeUp};
 
   & + & {
@@ -140,6 +152,8 @@ const Section = styled.section`
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 48px 0;
+    min-height: auto;
+    scroll-snap-align: none;
   }
 `;
 
@@ -169,7 +183,11 @@ const SectionTitle = styled.h2`
   font-weight: 600;
   line-height: 1.12;
   margin-bottom: 16px;
-  max-width: 500px;
+  max-width: 620px;
+
+  @media (min-width: 1024px) {
+    white-space: nowrap;
+  }
 `;
 
 const SectionBody = styled.p`
