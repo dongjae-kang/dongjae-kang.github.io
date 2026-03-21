@@ -31,6 +31,7 @@ const GraphWrap = styled.div`
   height: min(52vh, 560px);
   min-height: 390px;
   margin: 0 auto;
+  overflow: clip;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 44vh;
@@ -41,7 +42,7 @@ const GraphWrap = styled.div`
 const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
-  overflow: visible;
+  overflow: hidden;
 
   .node-drift {
     animation: ${drift} var(--drift-duration) ease-in-out var(--drift-delay) infinite;

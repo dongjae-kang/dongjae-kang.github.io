@@ -181,7 +181,7 @@ const StoryInner = styled.div`
 
 const GuideGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   padding-top: 12px;
 
@@ -539,18 +539,13 @@ const siteGuide = [
   },
   {
     title: 'Research',
-    text: 'Core projects in misinformation, platform governance, and content moderation.',
+    text: 'Core projects plus a smaller coursework layer for papers that matter but sit beside the main research.',
     to: '/research',
   },
   {
-    title: 'Coursework',
-    text: 'Selected papers and policy work from SIPA coursework, alongside the main projects.',
-    to: '/research',
-  },
-  {
-    title: 'Archive',
-    text: 'Lighter visits, campus scenes, and personal records kept separate from the main portfolio.',
-    to: '/archive',
+    title: 'Activities',
+    text: 'Public work first, with a smaller archive of lighter records kept inside the same section.',
+    to: '/activities',
   },
 ];
 

@@ -10,7 +10,6 @@ import Research from './pages/Research';
 import ResearchDetail from './pages/ResearchDetail';
 import Activities from './pages/Activities';
 import ActivityDetail from './pages/ActivityDetail';
-import Archive from './pages/Archive';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { theme } from './styles/theme';
 
@@ -32,7 +31,6 @@ function AppRoutes() {
           <Route path="/research/:id" element={<ResearchDetail />} />
           <Route path="/activities" element={<Activities />} />
           <Route path="/activities/:id" element={<ActivityDetail />} />
-          <Route path="/archive" element={<Archive />} />
         </Routes>
       </AnimatePresence>
       <Footer />

@@ -40,36 +40,36 @@
       "id": "misinformation",
       "label": "Misinformation",
       "type": "theme",
-      "desktop": { "x": 0.47, "y": 0.11 },
-      "mobile": { "x": 0.46, "y": 0.11 }
+      "desktop": { "x": 0.50, "y": 0.12 },
+      "mobile": { "x": 0.50, "y": 0.11 }
     },
     {
       "id": "platform-governance",
       "label": "Platform Governance",
       "type": "theme",
-      "desktop": { "x": 0.60, "y": 0.30 },
-      "mobile": { "x": 0.61, "y": 0.29 }
+      "desktop": { "x": 0.59, "y": 0.31 },
+      "mobile": { "x": 0.60, "y": 0.30 }
     },
     {
       "id": "content-moderation",
       "label": "Content Moderation",
       "type": "theme",
-      "desktop": { "x": 0.38, "y": 0.52 },
-      "mobile": { "x": 0.34, "y": 0.49 }
+      "desktop": { "x": 0.49, "y": 0.50 },
+      "mobile": { "x": 0.47, "y": 0.48 }
     },
     {
       "id": "ai-policy",
       "label": "AI Policy",
       "type": "theme",
-      "desktop": { "x": 0.61, "y": 0.70 },
-      "mobile": { "x": 0.62, "y": 0.68 }
+      "desktop": { "x": 0.59, "y": 0.68 },
+      "mobile": { "x": 0.60, "y": 0.67 }
     },
     {
       "id": "participatory-governance",
       "label": "Participatory Governance",
       "type": "theme",
-      "desktop": { "x": 0.39, "y": 0.87 },
-      "mobile": { "x": 0.35, "y": 0.86 }
+      "desktop": { "x": 0.49, "y": 0.86 },
+      "mobile": { "x": 0.47, "y": 0.85 }
     },
     {
       "id": "chi-2025",

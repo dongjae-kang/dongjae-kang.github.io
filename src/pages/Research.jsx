@@ -1,5 +1,6 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
@@ -28,6 +29,25 @@ const Intro = styled.p`
   font-size: 1.04rem;
   padding-bottom: 24px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+const SectionNav = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+`;
+
+const SectionNavLink = styled(Link)`
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ $active, theme }) =>
+    $active ? theme.colors.subpage.accent : theme.colors.subpage.muted};
+  border-bottom: 1px solid
+    ${({ $active }) =>
+      $active ? 'rgba(27, 61, 47, 0.36)' : 'rgba(43, 42, 42, 0.08)'};
+  padding-bottom: 6px;
 `;
 
 const Grid = styled.div`
@@ -187,6 +207,17 @@ const TagList = styled.div`
 `;
 
 function Research() {
+  const location = useLocation();
+  const projectsRef = useRef(null);
+  const courseworkRef = useRef(null);
+  const section = new URLSearchParams(location.search).get('section');
+
+  useEffect(() => {
+    if (section === 'coursework') {
+      courseworkRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [section]);
+
   return (
     <PageTransition>
       <Page>
@@ -197,7 +228,16 @@ function Research() {
             selection of coursework papers in urban policy and public problem-solving.
           </Intro>
 
-          <Grid>
+          <SectionNav>
+            <SectionNavLink to="/research" $active={!section}>
+              Projects
+            </SectionNavLink>
+            <SectionNavLink to="/research?section=coursework" $active={section === 'coursework'}>
+              Coursework & Papers
+            </SectionNavLink>
+          </SectionNav>
+
+          <Grid ref={projectsRef}>
             {research.map((item) => (
               <Card key={item.id} to={`/research/${item.id}`}>
                 <Thumbnail>
@@ -226,7 +266,7 @@ function Research() {
             ))}
           </Grid>
 
-          <Section id="coursework">
+          <Section id="coursework" ref={courseworkRef}>
             <SectionTitle>Selected Coursework & Papers</SectionTitle>
             <SectionText>
               Course-based work in urban policy and public problem-solving, included here because

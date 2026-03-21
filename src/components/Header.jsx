@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const HeaderShell = styled.header`
   position: fixed;
@@ -51,6 +51,16 @@ const Nav = styled.nav`
   flex-wrap: wrap;
 `;
 
+const NavGroup = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    position: static;
+  }
+`;
+
 const NavItem = styled(NavLink)`
   font-size: 0.82rem;
   font-weight: 400;
@@ -66,6 +76,98 @@ const NavItem = styled(NavLink)`
     color: ${({ theme }) => theme.colors.subpage.accent};
   }
 `;
+
+const Submenu = styled.div`
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  min-width: 220px;
+  padding: 12px 14px;
+  border: 1px solid rgba(43, 42, 42, 0.08);
+  border-radius: 4px;
+  background: rgba(247, 247, 245, 0.98);
+  backdrop-filter: blur(16px);
+  display: grid;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  ${NavGroup}:hover &,
+  ${NavGroup}:focus-within & {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const SubmenuLink = styled(Link)`
+  display: grid;
+  gap: 2px;
+  padding: 2px 0;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.subpage.accent};
+  }
+`;
+
+const SubmenuTitle = styled.span`
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+
+const SubmenuText = styled.span`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.82rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+`;
+
+const menus = [
+  {
+    label: 'About',
+    to: '/about',
+  },
+  {
+    label: 'Research',
+    to: '/research',
+    submenu: [
+      {
+        label: 'Projects',
+        to: '/research',
+        text: 'Core research projects in misinformation and platform governance.',
+      },
+      {
+        label: 'Coursework',
+        to: '/research?section=coursework',
+        text: 'Selected papers and course-based work kept under the same umbrella.',
+      },
+    ],
+  },
+  {
+    label: 'Activities',
+    to: '/activities',
+    submenu: [
+      {
+        label: 'Activities',
+        to: '/activities',
+        text: 'Talks, diplomacy, leadership, and public-facing work.',
+      },
+      {
+        label: 'Archive',
+        to: '/activities?section=archive',
+        text: 'Lighter visits and records kept inside Activities, not as a separate front door.',
+      },
+    ],
+  },
+];
 
 function Header() {
   const location = useLocation();
@@ -89,18 +191,23 @@ function Header() {
           DONGJAE KANG
         </Brand>
         <Nav>
-          <NavItem to="/about">
-            About
-          </NavItem>
-          <NavItem to="/research">
-            Research
-          </NavItem>
-          <NavItem to="/activities">
-            Activities
-          </NavItem>
-          <NavItem to="/archive">
-            Archive
-          </NavItem>
+          {menus.map((item) => (
+            <NavGroup key={item.label}>
+              <NavItem to={item.to}>
+                {item.label}
+              </NavItem>
+              {item.submenu && (
+                <Submenu>
+                  {item.submenu.map((subitem) => (
+                    <SubmenuLink key={subitem.label} to={subitem.to}>
+                      <SubmenuTitle>{subitem.label}</SubmenuTitle>
+                      <SubmenuText>{subitem.text}</SubmenuText>
+                    </SubmenuLink>
+                  ))}
+                </Submenu>
+              )}
+            </NavGroup>
+          ))}
         </Nav>
       </HeaderInner>
     </HeaderShell>
