@@ -81,11 +81,11 @@ const primaryFlowPairs = new Map([
 ]);
 
 const themeAuraPalette = {
-  misinformation: { color: 'rgba(45, 90, 61, 0.22)', desktopRadius: 74, mobileRadius: 54 },
-  'platform-governance': { color: 'rgba(27, 61, 47, 0.2)', desktopRadius: 74, mobileRadius: 54 },
-  'content-moderation': { color: 'rgba(74, 122, 94, 0.22)', desktopRadius: 76, mobileRadius: 56 },
-  'ai-policy': { color: 'rgba(45, 90, 61, 0.18)', desktopRadius: 72, mobileRadius: 52 },
-  'participatory-governance': { color: 'rgba(53, 97, 69, 0.22)', desktopRadius: 78, mobileRadius: 58 },
+  misinformation: { color: 'rgba(45, 90, 61, 0.16)', desktopRadius: 64, mobileRadius: 48 },
+  'platform-governance': { color: 'rgba(27, 61, 47, 0.14)', desktopRadius: 64, mobileRadius: 48 },
+  'content-moderation': { color: 'rgba(74, 122, 94, 0.12)', desktopRadius: 66, mobileRadius: 50 },
+  'ai-policy': { color: 'rgba(45, 90, 61, 0.11)', desktopRadius: 62, mobileRadius: 46 },
+  'participatory-governance': { color: 'rgba(53, 97, 69, 0.11)', desktopRadius: 66, mobileRadius: 50 },
 };
 
 const nodeStyles = {
@@ -504,8 +504,8 @@ function Graph() {
       });
 
       themeAuraSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.88;
-        return isConnected(activeNode, node) ? 1 : 0.12;
+        if (!activeNode) return 0.58;
+        return isConnected(activeNode, node) ? 0.74 : 0.08;
       });
 
       labelGroups.attr('opacity', (node) => {
