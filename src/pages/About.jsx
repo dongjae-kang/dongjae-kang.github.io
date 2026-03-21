@@ -95,6 +95,70 @@ const Divider = styled.hr`
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
+/* ─── JOURNEY SECTION ─── */
+const JourneyTitle = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+`;
+
+const Timeline = styled.div`
+  display: grid;
+  gap: 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+const TimelineRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    gap: 4px;
+  }
+`;
+
+const TimelineInfo = styled.div`
+  min-width: 0;
+  flex: 1;
+`;
+
+const TimelineRole = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+`;
+
+const TimelineOrg = styled.p`
+  font-size: 0.88rem;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  margin-top: 2px;
+`;
+
+const TimelinePeriod = styled.span`
+  font-size: 0.78rem;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+`;
+
+const TimelineCategory = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+`;
+
+/* ─── CONTACTS ─── */
 const Contacts = styled.section`
   display: flex;
   flex-wrap: wrap;
@@ -108,6 +172,41 @@ const ContactLink = styled.a`
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
 `;
+
+const journey = [
+  {
+    category: 'Education',
+    items: [
+      { role: 'MPA, Technology, Policy and Innovation', org: 'Columbia University, School of International and Public Affairs (SIPA)', period: '2025 - Present' },
+      { role: 'BS Industrial and Systems Engineering', org: 'KAIST (double major: Business; minor: S&T Policy)', period: '2018 - 2025' },
+    ],
+  },
+  {
+    category: 'Research',
+    items: [
+      { role: 'Research Assistant', org: 'KAIST Collaborative Social Technologies Lab (Prof. Joseph Seering)', period: '2024 - 2025' },
+      { role: 'Undergraduate Researcher', org: 'ISTI-CNR (Italy) x KAIST international collaboration', period: '2024 - 2025' },
+      { role: 'Research Assistant', org: 'KAIST di-Lab (Prof. KyungRyul Park)', period: '2024' },
+    ],
+  },
+  {
+    category: 'Leadership & Public Service',
+    items: [
+      { role: 'Founding Board / VP of Research Lab', org: 'Columbia AI Club at SIPA', period: '2025 - Present' },
+      { role: 'President', org: 'KAIST Undergraduate Student Council (34th)', period: '2022 - 2023' },
+      { role: 'Member', org: 'Daejeon Youth Policy Coordination Committee', period: '2023 - 2025' },
+      { role: 'Youth Representative', org: 'Seoul Jungnang-gu Participatory Budget Committee', period: '2017 - 2018' },
+    ],
+  },
+  {
+    category: 'Professional',
+    items: [
+      { role: 'Event Assistant, UN General Assembly High-Level Week', org: 'Permanent Mission of the Republic of Korea to the UN', period: 'Sep 2025' },
+      { role: 'Member, Young Engineers Honor Society (YEHS)', org: 'National Academy of Engineering of Korea', period: '2024 - 2025' },
+      { role: 'IT Consultant', org: 'Columbia SIPA', period: '2025 - Present' },
+    ],
+  },
+];
 
 function About() {
   return (
@@ -166,7 +265,29 @@ function About() {
               </p>
             </Bio>
           </Intro>
+
           <Divider />
+
+          <JourneyTitle>Experience</JourneyTitle>
+          {journey.map((section) => (
+            <div key={section.category}>
+              <TimelineCategory>{section.category}</TimelineCategory>
+              <Timeline>
+                {section.items.map((item) => (
+                  <TimelineRow key={`${item.role}-${item.period}`}>
+                    <TimelineInfo>
+                      <TimelineRole>{item.role}</TimelineRole>
+                      <TimelineOrg>{item.org}</TimelineOrg>
+                    </TimelineInfo>
+                    <TimelinePeriod>{item.period}</TimelinePeriod>
+                  </TimelineRow>
+                ))}
+              </Timeline>
+            </div>
+          ))}
+
+          <Divider />
+
           <Contacts>
             <ContactLink href="mailto:dk3500@columbia.edu">dk3500@columbia.edu</ContactLink>
             <ContactLink

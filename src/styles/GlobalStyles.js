@@ -10,6 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
@@ -21,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    max-width: 100vw;
   }
 
   a {

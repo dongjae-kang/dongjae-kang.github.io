@@ -450,6 +450,17 @@ function Graph() {
       .style('--drift-duration', (node) => node.motion.driftDuration)
       .style('--drift-delay', (node) => node.motion.driftDelay);
 
+    /* Outer dashed ring for theme nodes — sophisticated distinction */
+    driftGroup
+      .filter((node) => node.type === 'theme')
+      .append('circle')
+      .attr('r', (node) => nodeVisual(node).radius + 8)
+      .attr('fill', 'none')
+      .attr('stroke', 'rgba(45, 90, 61, 0.22)')
+      .attr('stroke-width', 1)
+      .attr('stroke-dasharray', '3 4');
+
+    /* Main node circle */
     driftGroup
       .append('circle')
       .attr('class', (node) => (node.type === 'theme' ? 'theme-pulse' : null))
@@ -457,8 +468,8 @@ function Graph() {
       .style('--pulse-delay', (node) => node.motion.pulseDelay)
       .attr('r', (node) => nodeVisual(node).radius)
       .attr('fill', (node) => nodeVisual(node).fill)
-      .attr('stroke', 'rgba(247, 247, 245, 0.92)')
-      .attr('stroke-width', (node) => (node.type === 'institution' ? 1 : 1.2));
+      .attr('stroke', (node) => node.type === 'theme' ? 'none' : 'rgba(247, 247, 245, 0.7)')
+      .attr('stroke-width', (node) => (node.type === 'institution' ? 0.8 : 1));
 
     const labelHalos = driftGroup
       .filter((node) => node.type === 'theme')
