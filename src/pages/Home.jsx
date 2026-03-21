@@ -64,9 +64,9 @@ const Hero = styled.section`
   &::before {
     content: '';
     position: absolute;
-    inset: 5% auto auto 50%;
+    inset: 4% auto auto 50%;
     width: min(94vw, 980px);
-    height: min(102vw, 1160px);
+    height: min(118vw, 1320px);
     transform: translateX(-50%);
     background:
       radial-gradient(circle at 48% 44%, rgba(74, 122, 94, 0.26) 0%, rgba(154, 184, 158, 0.14) 24%, rgba(196, 149, 106, 0.07) 48%, transparent 76%);
@@ -77,9 +77,9 @@ const Hero = styled.section`
   &::after {
     content: '';
     position: absolute;
-    inset: 14% auto auto 50%;
-    width: min(78vw, 860px);
-    height: min(92vw, 980px);
+    inset: 12% auto auto 50%;
+    width: min(82vw, 900px);
+    height: min(108vw, 1160px);
     transform: translateX(-50%);
     background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.1), transparent 72%);
     pointer-events: none;
@@ -94,7 +94,7 @@ const Hero = styled.section`
 const HeroInner = styled.div`
   position: relative;
   z-index: 1;
-  width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
+  width: min(920px, calc(100% - 48px));
   margin: 0 auto;
   display: grid;
   justify-items: center;
@@ -170,11 +170,11 @@ const ScrollCue = styled.button`
 `;
 
 const Story = styled.div`
-  padding: 24px 0 120px;
+  padding: 0 0 108px;
 `;
 
 const StoryInner = styled.div`
-  width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
+  width: min(920px, calc(100% - 48px));
   margin: 0 auto;
   display: grid;
   gap: 0;
@@ -182,39 +182,45 @@ const StoryInner = styled.div`
 
 const NarrativeSection = styled.section`
   display: grid;
-  gap: 28px;
+  gap: 30px;
   align-content: center;
   min-height: calc(100vh - 112px);
-  padding: 12px 0;
+  padding: 72px 0;
   ${fadeUpStyles};
 
   & + & {
-    padding-top: 28px;
     border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     min-height: auto;
     align-content: start;
-    padding: 0;
+    padding: 52px 0;
 
     & + & {
-      padding-top: 28px;
+      padding-top: 52px;
     }
   }
 `;
 
 const SectionHeader = styled.div`
   display: grid;
-  gap: 12px;
-  max-width: 44rem;
+  gap: 0;
+  max-width: 520px;
+`;
+
+const SectionLead = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 12px;
 `;
 
 const SectionNumber = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 0.86;
-  color: rgba(27, 61, 47, 0.18);
+  font-size: clamp(1.55rem, 2vw, 1.75rem);
+  line-height: 1;
+  color: rgba(27, 61, 47, 0.24);
 `;
 
 const SectionEyebrow = styled.span`
@@ -226,43 +232,39 @@ const SectionEyebrow = styled.span`
 
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  max-width: 520px;
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 3vw, 2.95rem);
   font-weight: 600;
   line-height: 1.08;
 `;
 
 const SectionBody = styled.p`
-  font-size: 1.12rem;
+  max-width: 520px;
+  font-size: 1rem;
   line-height: 1.75;
-  color: ${({ theme }) => theme.colors.subpage.text};
+  color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const ResearchGrid = styled.div`
   display: grid;
-  grid-template-columns: 0.76fr 1.24fr;
-  gap: 40px;
+  gap: 0;
   align-items: start;
-
-  > * {
-    min-width: 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const ResearchList = styled.div`
   position: relative;
   display: grid;
+  margin-top: 32px;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
 const ResearchRow = styled(Link)`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px 20px;
-  padding: 18px 0;
+  align-items: baseline;
+  gap: 12px 20px;
+  padding: 20px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
   transition: ${({ theme }) => theme.transitions.hover};
 
@@ -279,23 +281,28 @@ const ResearchRow = styled(Link)`
 const ResearchTitle = styled.h3`
   min-width: 0;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.55rem;
-  line-height: 1.08;
-  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.15;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 `;
 
 const ResearchSummary = styled.p`
   grid-column: 1 / -1;
   color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.98rem;
+  max-width: 480px;
+  margin-top: 4px;
+  font-size: 0.86rem;
+  line-height: 1.65;
 `;
 
 const ResearchYear = styled.span`
   justify-self: end;
-  font-size: 0.84rem;
+  font-size: 0.75rem;
   color: ${({ theme }) => theme.colors.subpage.muted};
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 `;
 
 const ResearchRail = styled.div`
@@ -333,36 +340,29 @@ const PreviewImage = styled.img`
 const ViewAllLink = styled(Link)`
   width: fit-content;
   color: ${({ theme }) => theme.colors.subpage.accent};
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   letter-spacing: 0.06em;
   margin-top: 18px;
 `;
 
 const LeadershipGrid = styled.div`
   display: grid;
-  grid-template-columns: 0.84fr 1.16fr;
-  gap: 40px;
+  gap: 0;
   align-items: start;
-
-  > * {
-    min-width: 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const RoleList = styled.div`
   display: grid;
+  margin-top: 28px;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
 const RoleRow = styled.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
   gap: 12px 20px;
-  padding: 18px 0;
+  padding: 16px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -373,17 +373,18 @@ const RoleRow = styled.div`
 
 const RoleTitle = styled.h3`
   min-width: 0;
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.38rem;
-  line-height: 1.08;
+  font-size: 0.96rem;
+  line-height: 1.45;
   font-weight: 500;
+  overflow-wrap: anywhere;
 `;
 
 const RoleYear = styled.span`
-  font-size: 0.84rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.muted};
+  white-space: nowrap;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     justify-self: start;
@@ -393,6 +394,8 @@ const RoleYear = styled.span`
 const RoleSummary = styled.p`
   grid-column: 1 / -1;
   color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.82rem;
+  line-height: 1.65;
 `;
 
 const LinkRow = styled.div`
@@ -400,18 +403,19 @@ const LinkRow = styled.div`
   flex-wrap: wrap;
   gap: 18px;
   margin-top: 18px;
+  padding-top: 16px;
 
   a {
     color: ${({ theme }) => theme.colors.subpage.accent};
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     letter-spacing: 0.06em;
   }
 `;
 
 const ActivityIntro = styled.div`
   display: grid;
-  gap: 12px;
-  max-width: 46rem;
+  gap: 0;
+  max-width: 520px;
 `;
 
 const ActivityStrip = styled.div`
@@ -589,8 +593,10 @@ function Home() {
             <NarrativeSection ref={researchRef} $visible={researchVisible}>
               <ResearchGrid>
                 <SectionHeader>
-                  <SectionNumber>01</SectionNumber>
-                  <SectionEyebrow>Research</SectionEyebrow>
+                  <SectionLead>
+                    <SectionNumber>01</SectionNumber>
+                    <SectionEyebrow>Research</SectionEyebrow>
+                  </SectionLead>
                   <SectionTitle>How platforms shape what people believe.</SectionTitle>
                   <SectionBody>
                     He studies misinformation, platform governance, and content moderation across
@@ -632,8 +638,10 @@ function Home() {
             <NarrativeSection ref={leadershipRef} $visible={leadershipVisible}>
               <LeadershipGrid>
                 <SectionHeader>
-                  <SectionNumber>02</SectionNumber>
-                  <SectionEyebrow>Leadership</SectionEyebrow>
+                  <SectionLead>
+                    <SectionNumber>02</SectionNumber>
+                    <SectionEyebrow>Leadership</SectionEyebrow>
+                  </SectionLead>
                   <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
                   <SectionBody>
                     As President of KAIST&apos;s Undergraduate Student Council, he rebuilt an
@@ -676,8 +684,10 @@ function Home() {
 
             <NarrativeSection ref={activitiesRef} $visible={activitiesVisible}>
               <ActivityIntro>
-                <SectionNumber>03</SectionNumber>
-                <SectionEyebrow>Selected Activities</SectionEyebrow>
+                <SectionLead>
+                  <SectionNumber>03</SectionNumber>
+                  <SectionEyebrow>Selected Activities</SectionEyebrow>
+                </SectionLead>
                 <SectionTitle>From Yokohama to the General Assembly.</SectionTitle>
                 <SectionBody>
                   He presented misinformation research at ACM CHI in Yokohama, supported

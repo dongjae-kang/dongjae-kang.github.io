@@ -12,7 +12,7 @@ const HeaderShell = styled.header`
 `;
 
 const HeaderInner = styled.div`
-  width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
+  width: min(1060px, calc(100% - 32px));
   margin-top: 16px;
   padding: 16px 20px;
   border-radius: 4px;
@@ -109,16 +109,16 @@ const Submenu = styled.div`
   right: 0;
   min-width: 190px;
   padding: 8px 0;
-  border: 1px solid rgba(154, 184, 158, 0.16);
+  border: 1px solid rgba(74, 122, 94, 0.24);
   border-radius: 4px;
-  background: rgba(27, 61, 47, 0.92);
+  background: linear-gradient(180deg, rgba(27, 61, 47, 0.95), rgba(33, 74, 54, 0.92));
   backdrop-filter: blur(16px);
   display: grid;
   gap: 0;
   opacity: 0;
   transform: translateY(-4px);
   pointer-events: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(27, 61, 47, 0.16);
   transition: opacity 0.18s ease, transform 0.18s ease;
 
   ${NavGroup}:hover &,
@@ -144,7 +144,7 @@ const SubmenuButton = styled.button`
 
   &:hover {
     color: rgba(247, 247, 245, 1);
-    background: rgba(154, 184, 158, 0.08);
+    background: rgba(74, 122, 94, 0.16);
   }
 `;
 

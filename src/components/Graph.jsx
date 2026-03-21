@@ -26,16 +26,16 @@ const pulse = keyframes`
 
 const GraphWrap = styled.div`
   position: relative;
-  width: 100%;
-  max-width: ${({ theme }) => theme.layout.graphMax};
-  height: min(52vh, 560px);
-  min-height: 390px;
+  width: min(680px, 88vw);
+  height: min(52vh, 480px);
+  min-height: 360px;
   margin: 0 auto;
   overflow: visible;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    height: 44vh;
-    min-height: 330px;
+    width: min(92vw, 520px);
+    height: min(45vh, 360px);
+    min-height: 320px;
   }
 `;
 
@@ -326,6 +326,16 @@ function Graph() {
     const root = svg.append('g');
     const defs = root.append('defs');
 
+    const haloFilter = defs
+      .append('filter')
+      .attr('id', 'theme-label-halo')
+      .attr('x', '-60%')
+      .attr('y', '-60%')
+      .attr('width', '220%')
+      .attr('height', '220%');
+
+    haloFilter.append('feGaussianBlur').attr('stdDeviation', isMobile ? 3.6 : 5.4);
+
     themeGlowPalette.forEach((color, index) => {
       const gradient = defs.append('radialGradient').attr('id', `theme-glow-${index}`);
       gradient.append('stop').attr('offset', '0%').attr('stop-color', color);
@@ -450,17 +460,27 @@ function Graph() {
       .attr('stroke', 'rgba(247, 247, 245, 0.92)')
       .attr('stroke-width', (node) => (node.type === 'institution' ? 1 : 1.2));
 
+    const labelHalos = driftGroup
+      .filter((node) => node.type === 'theme')
+      .append('text')
+      .attr('fill', 'rgba(45, 90, 61, 0.28)')
+      .attr('filter', 'url(#theme-label-halo)')
+      .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
+      .attr('font-size', (node) => `${nodeVisual(node).labelSize + 0.35}px`)
+      .attr('font-weight', 500)
+      .attr('opacity', 0.72)
+      .attr('text-anchor', (node) => labelLayout(node, isMobile).anchor)
+      .attr('dominant-baseline', (node) => labelLayout(node, isMobile).baseline)
+      .attr('x', (node) => labelLayout(node, isMobile).dx)
+      .attr('y', (node) => labelLayout(node, isMobile).dy);
+
     const labelGroups = driftGroup
       .append('text')
-      .attr('fill', COLORS.text)
       .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
       .attr('font-size', (node) => `${nodeVisual(node).labelSize}px`)
       .attr('font-weight', (node) => nodeVisual(node).labelWeight)
-      .attr('letter-spacing', (node) => (node.type === 'theme' ? '0.01em' : null))
-      .attr('paint-order', (node) => (node.type === 'theme' ? 'stroke fill' : null))
-      .attr('stroke', (node) => (node.type === 'theme' ? 'rgba(247, 247, 245, 0.94)' : 'none'))
-      .attr('stroke-width', (node) => (node.type === 'theme' ? 4.5 : 0))
-      .attr('stroke-linejoin', 'round')
+      .attr('letter-spacing', (node) => (node.type === 'theme' ? '0.005em' : null))
+      .attr('fill', (node) => (node.type === 'theme' ? 'rgba(27, 61, 47, 0.92)' : COLORS.text))
       .attr('opacity', (node) =>
         isMobile && mobileHiddenLabelIds.has(node.id)
           ? 0
@@ -471,15 +491,20 @@ function Graph() {
       .attr('x', (node) => labelLayout(node, isMobile).dx)
       .attr('y', (node) => labelLayout(node, isMobile).dy);
 
-    labelGroups
-      .selectAll('tspan')
-      .data((node) => wrapLabel(node.label, isMobile ? 16 : 18))
-      .join('tspan')
-      .attr('x', function getX() {
-        return d3.select(this.parentNode).attr('x');
-      })
-      .attr('dy', (_, index) => (index === 0 ? 0 : '1.15em'))
-      .text((line) => line);
+    function appendWrappedLines(selection) {
+      selection
+        .selectAll('tspan')
+        .data((node) => wrapLabel(node.label, isMobile ? 16 : 18))
+        .join('tspan')
+        .attr('x', function getX() {
+          return d3.select(this.parentNode).attr('x');
+        })
+        .attr('dy', (_, index) => (index === 0 ? 0 : '1.15em'))
+        .text((line) => line);
+    }
+
+    appendWrappedLines(labelHalos);
+    appendWrappedLines(labelGroups);
 
     const isConnected = (source, target) => adjacency.get(source.id)?.has(target.id);
 
@@ -513,6 +538,11 @@ function Graph() {
         }
         if (isMobile && mobileHiddenLabelIds.has(node.id)) return 0;
         return isConnected(activeNode, node) ? 0.96 : 0.22;
+      });
+
+      labelHalos.attr('opacity', (node) => {
+        if (!activeNode) return 0.72;
+        return isConnected(activeNode, node) ? 0.76 : 0.16;
       });
     }
 

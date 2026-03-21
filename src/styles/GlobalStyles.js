@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   body {
@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.light.text};
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
 
   a {
