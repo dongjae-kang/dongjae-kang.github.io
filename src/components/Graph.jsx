@@ -400,7 +400,7 @@ function Graph() {
       .attr('stroke', COLORS.greenLight)
       .attr('stroke-width', 0.95)
       .attr('stroke-linecap', 'round')
-      .attr('opacity', 0.16);
+      .attr('opacity', 0.12);
 
     const flowSelection = flowLayer
       .selectAll('g')
@@ -450,15 +450,22 @@ function Graph() {
       .style('--drift-duration', (node) => node.motion.driftDuration)
       .style('--drift-delay', (node) => node.motion.driftDelay);
 
-    /* Outer dashed ring for theme nodes — sophisticated distinction */
+    /* Theme node soft glow — radial gradient fading outward from node */
+    const themeGlowFilter = defs
+      .append('filter')
+      .attr('id', 'node-glow')
+      .attr('x', '-100%')
+      .attr('y', '-100%')
+      .attr('width', '300%')
+      .attr('height', '300%');
+    themeGlowFilter.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', isMobile ? 6 : 9);
+
     driftGroup
       .filter((node) => node.type === 'theme')
       .append('circle')
-      .attr('r', (node) => nodeVisual(node).radius + 8)
-      .attr('fill', 'none')
-      .attr('stroke', 'rgba(45, 90, 61, 0.22)')
-      .attr('stroke-width', 1)
-      .attr('stroke-dasharray', '3 4');
+      .attr('r', (node) => nodeVisual(node).radius + 6)
+      .attr('fill', 'rgba(45, 90, 61, 0.25)')
+      .attr('filter', 'url(#node-glow)');
 
     /* Main node circle */
     driftGroup
