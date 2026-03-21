@@ -356,8 +356,8 @@ function Graph() {
     if (!isMobile) {
       root
         .append('text')
-        .attr('x', size.width * 0.12)
-        .attr('y', size.height * 0.08)
+        .attr('x', size.width * 0.18)
+        .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
         .attr('font-family', "'Cormorant Garamond', serif")
         .attr('font-size', 42)
@@ -366,8 +366,8 @@ function Graph() {
 
       root
         .append('text')
-        .attr('x', size.width * 0.82)
-        .attr('y', size.height * 0.07)
+        .attr('x', size.width * 0.79)
+        .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
         .attr('font-family', "'Cormorant Garamond', serif")
         .attr('font-size', 42)
@@ -377,8 +377,8 @@ function Graph() {
 
       root
         .append('text')
-        .attr('x', size.width * 0.46)
-        .attr('y', size.height * 0.06)
+        .attr('x', size.width * 0.5)
+        .attr('y', size.height * 0.08)
         .attr('fill', 'rgba(43, 42, 42, 0.12)')
         .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 10)
