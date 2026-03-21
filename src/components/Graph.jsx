@@ -81,11 +81,36 @@ const primaryFlowPairs = new Map([
 ]);
 
 const themeAuraPalette = {
-  misinformation: { color: 'rgba(45, 90, 61, 0.16)', desktopRadius: 64, mobileRadius: 48 },
-  'platform-governance': { color: 'rgba(27, 61, 47, 0.14)', desktopRadius: 64, mobileRadius: 48 },
-  'content-moderation': { color: 'rgba(74, 122, 94, 0.12)', desktopRadius: 66, mobileRadius: 50 },
-  'ai-policy': { color: 'rgba(45, 90, 61, 0.11)', desktopRadius: 62, mobileRadius: 46 },
-  'participatory-governance': { color: 'rgba(53, 97, 69, 0.11)', desktopRadius: 66, mobileRadius: 50 },
+  misinformation: {
+    aura: 'rgba(45, 90, 61, 0.12)',
+    core: 'rgba(45, 90, 61, 0.16)',
+    desktopRadius: 34,
+    mobileRadius: 28,
+  },
+  'platform-governance': {
+    aura: 'rgba(27, 61, 47, 0.1)',
+    core: 'rgba(27, 61, 47, 0.14)',
+    desktopRadius: 34,
+    mobileRadius: 28,
+  },
+  'content-moderation': {
+    aura: 'rgba(74, 122, 94, 0.11)',
+    core: 'rgba(74, 122, 94, 0.15)',
+    desktopRadius: 36,
+    mobileRadius: 29,
+  },
+  'ai-policy': {
+    aura: 'rgba(45, 90, 61, 0.1)',
+    core: 'rgba(45, 90, 61, 0.14)',
+    desktopRadius: 33,
+    mobileRadius: 27,
+  },
+  'participatory-governance': {
+    aura: 'rgba(53, 97, 69, 0.11)',
+    core: 'rgba(53, 97, 69, 0.15)',
+    desktopRadius: 37,
+    mobileRadius: 30,
+  },
 };
 
 const nodeStyles = {
@@ -269,8 +294,9 @@ function edgePath(edge) {
 function themeAura(node, isMobile) {
   const config = themeAuraPalette[node.id];
   return {
-    color: config?.color || 'rgba(45, 90, 61, 0.2)',
-    radius: isMobile ? config?.mobileRadius || 54 : config?.desktopRadius || 74,
+    aura: config?.aura || 'rgba(45, 90, 61, 0.11)',
+    core: config?.core || 'rgba(45, 90, 61, 0.15)',
+    radius: isMobile ? config?.mobileRadius || 28 : config?.desktopRadius || 34,
   };
 }
 
@@ -312,12 +338,25 @@ function Graph() {
     const root = svg.append('g');
     const defs = root.append('defs');
 
+    const themeGlowFilter = defs
+      .append('filter')
+      .attr('id', 'theme-node-glow')
+      .attr('x', '-220%')
+      .attr('y', '-220%')
+      .attr('width', '540%')
+      .attr('height', '540%');
+
+    themeGlowFilter
+      .append('feGaussianBlur')
+      .attr('in', 'SourceGraphic')
+      .attr('stdDeviation', isMobile ? 10 : 14);
+
     const themeNodes = nodes.filter((node) => node.type === 'theme');
     themeNodes.forEach((node) => {
       const aura = themeAura(node, isMobile);
       const gradient = defs.append('radialGradient').attr('id', `theme-glow-${node.id}`);
-      gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.color);
-      gradient.append('stop').attr('offset', '50%').attr('stop-color', aura.color);
+      gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.core);
+      gradient.append('stop').attr('offset', '48%').attr('stop-color', aura.aura);
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
@@ -419,7 +458,16 @@ function Graph() {
       .append('circle')
       .attr('class', 'theme-aura')
       .attr('r', (node) => themeAura(node, isMobile).radius)
-      .attr('fill', (node) => `url(#theme-glow-${node.id})`);
+      .attr('fill', (node) => `url(#theme-glow-${node.id})`)
+      .attr('filter', 'url(#theme-node-glow)');
+
+    const themeCoreGlowSelection = nodeGroup
+      .filter((node) => node.type === 'theme')
+      .append('circle')
+      .attr('class', 'theme-core-glow')
+      .attr('r', (node) => nodeVisual(node).radius + (isMobile ? 6 : 8))
+      .attr('fill', (node) => themeAura(node, isMobile).core)
+      .attr('filter', 'url(#theme-node-glow)');
 
     /* Main node circle */
     const nodeMainSelection = nodeGroup
@@ -503,9 +551,14 @@ function Graph() {
         return isConnected(activeNode, node) ? 1 : 0.15;
       });
 
+      themeCoreGlowSelection.attr('opacity', (node) => {
+        if (!activeNode) return 0.72;
+        return isConnected(activeNode, node) ? 0.86 : 0.08;
+      });
+
       themeAuraSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.58;
-        return isConnected(activeNode, node) ? 0.74 : 0.08;
+        if (!activeNode) return 0.5;
+        return isConnected(activeNode, node) ? 0.66 : 0.06;
       });
 
       labelGroups.attr('opacity', (node) => {
