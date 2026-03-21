@@ -356,33 +356,33 @@ function Graph() {
     if (!isMobile) {
       root
         .append('text')
-        .attr('x', size.width * 0.1)
-        .attr('y', size.height * 0.12)
+        .attr('x', size.width * 0.08)
+        .attr('y', size.height * 0.07)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
         .attr('font-family', "'Cormorant Garamond', serif")
-        .attr('font-size', 36)
-        .attr('font-weight', 500)
+        .attr('font-size', 42)
+        .attr('font-weight', 400)
         .text('Research');
 
       root
         .append('text')
-        .attr('x', size.width * 0.79)
-        .attr('y', size.height * 0.12)
+        .attr('x', size.width * 0.92)
+        .attr('y', size.height * 0.07)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
         .attr('font-family', "'Cormorant Garamond', serif")
-        .attr('font-size', 36)
-        .attr('font-weight', 500)
+        .attr('font-size', 42)
+        .attr('font-weight', 400)
         .attr('text-anchor', 'end')
         .text('Engagement');
 
       root
         .append('text')
-        .attr('x', size.width * 0.5)
-        .attr('y', size.height * 0.08)
+        .attr('x', size.width * 0.48)
+        .attr('y', size.height * 0.06)
         .attr('fill', 'rgba(43, 42, 42, 0.12)')
         .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 10)
-        .attr('letter-spacing', '0.16em')
+        .attr('letter-spacing', '0.18em')
         .attr('text-anchor', 'middle')
         .text('THEMES');
     }
