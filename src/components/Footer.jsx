@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
 
 const FooterWrap = styled.footer`
   width: 100%;
   padding: 32px 24px 40px;
-  background: ${({ $home, theme }) => ($home ? theme.colors.home.base : 'transparent')};
+  background: transparent;
 `;
 
 const FooterInner = styled.div`
@@ -16,7 +15,9 @@ const FooterInner = styled.div`
   gap: 18px;
   font-size: 0.82rem;
   letter-spacing: 0.08em;
-  color: ${({ $home }) => ($home ? 'rgba(245, 240, 232, 0.8)' : 'rgba(43, 42, 42, 0.7)')};
+  color: rgba(43, 42, 42, 0.68);
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  padding-top: 20px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     flex-direction: column;
@@ -40,12 +41,9 @@ const FooterLink = styled.a`
 `;
 
 function Footer() {
-  const location = useLocation();
-  const isHome = location.pathname === '/';
-
   return (
-    <FooterWrap $home={isHome}>
-      <FooterInner $home={isHome}>
+    <FooterWrap>
+      <FooterInner>
         <ContactRow>
           <FooterLink href="mailto:dk3500@columbia.edu">dk3500@columbia.edu</FooterLink>
           <FooterLink

@@ -34,13 +34,13 @@ const bounce = keyframes`
   }
 
   50% {
-    transform: translateY(8px);
+    transform: translateY(7px);
   }
 `;
 
 const fadeUpStyles = css`
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transform: translateY(${({ $visible }) => ($visible ? '0' : '20px')});
+  transform: translateY(${({ $visible }) => ($visible ? '0' : '18px')});
   transition:
     opacity 0.75s ease,
     transform 0.75s ease;
@@ -48,21 +48,29 @@ const fadeUpStyles = css`
 
 const Page = styled.main`
   min-height: 100vh;
-  color: ${({ theme }) => theme.colors.home.text};
-  background:
-    radial-gradient(ellipse at 18% 25%, rgba(15, 61, 46, 0.7) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 15%, rgba(92, 61, 46, 0.3) 0%, transparent 45%),
-    radial-gradient(ellipse at 55% 65%, rgba(74, 93, 58, 0.5) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 80%, rgba(92, 61, 46, 0.2) 0%, transparent 40%),
-    radial-gradient(ellipse at 85% 75%, rgba(13, 26, 20, 0.9) 0%, transparent 60%),
-    linear-gradient(160deg, #0d1a14 0%, #081711 100%);
+  background: ${({ theme }) => theme.colors.subpage.background};
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const Hero = styled.section`
+  position: relative;
   min-height: 100vh;
-  padding: 100px 0 40px;
+  padding: 108px 0 44px;
   display: flex;
   align-items: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 5% auto auto 50%;
+    width: min(88vw, 900px);
+    height: min(72vw, 860px);
+    transform: translateX(-50%);
+    background:
+      radial-gradient(circle at 48% 44%, rgba(154, 184, 158, 0.22) 0%, rgba(154, 184, 158, 0.1) 24%, rgba(196, 149, 106, 0.08) 48%, transparent 76%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 96px 0 36px;
@@ -70,6 +78,8 @@ const Hero = styled.section`
 `;
 
 const HeroInner = styled.div`
+  position: relative;
+  z-index: 1;
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
@@ -86,28 +96,26 @@ const MobileMapLegend = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    margin-top: -4px;
   }
 `;
 
 const MobileMapChip = styled.span`
   padding: 6px 10px;
+  border: 1px solid rgba(27, 61, 47, 0.12);
   border-radius: 4px;
-  border: 1px solid rgba(196, 149, 106, 0.22);
-  background: rgba(10, 24, 18, 0.38);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.82);
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  background: rgba(247, 247, 245, 0.8);
 `;
 
 const Name = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5.1vw, 4.95rem);
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.02em;
-  text-wrap: balance;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     font-size: clamp(2.7rem, 14vw, 4.2rem);
@@ -115,13 +123,18 @@ const Name = styled.h1`
 `;
 
 const Tagline = styled.p`
-  max-width: 980px;
-  font-size: clamp(1rem, 1.55vw, 1.18rem);
-  color: rgba(245, 240, 232, 0.86);
+  max-width: 1020px;
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
+  color: ${({ theme }) => theme.colors.subpage.muted};
+
+  @media (min-width: 1024px) {
+    white-space: nowrap;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     max-width: 480px;
-    font-size: 1.02rem;
+    font-size: 1rem;
+    white-space: normal;
   }
 `;
 
@@ -129,30 +142,20 @@ const ScrollCue = styled.button`
   display: grid;
   gap: 8px;
   justify-items: center;
-  margin-top: 8px;
-  color: rgba(245, 240, 232, 0.72);
-  font-size: 0.82rem;
-  letter-spacing: 0.1em;
+  margin-top: 6px;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 
   svg {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     animation: ${({ $stopped }) => ($stopped ? 'none' : css`${bounce} 2.5s ease-in-out infinite`)};
   }
 `;
 
 const Story = styled.div`
-  position: relative;
-  margin-top: -20px;
-  padding: 88px 0 120px;
-  background: ${({ theme }) => theme.colors.subpage.background};
-  color: ${({ theme }) => theme.colors.subpage.text};
-  border-radius: 12px 12px 0 0;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    padding: 72px 0 88px;
-    border-radius: 12px 12px 0 0;
-  }
+  padding: 24px 0 120px;
 `;
 
 const StoryInner = styled.div`
@@ -163,247 +166,248 @@ const StoryInner = styled.div`
 `;
 
 const NarrativeSection = styled.section`
-  min-height: 54vh;
   display: grid;
-  align-items: center;
   gap: 28px;
+  align-content: start;
+  padding-top: 28px;
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
   ${fadeUpStyles};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    min-height: auto;
-  }
 `;
 
-const NarrativeGrid = styled.div`
-  display: grid;
-  grid-template-columns: ${({ $layout = 'media' }) =>
-    $layout === 'media' ? '1.15fr 0.85fr' : '0.85fr 1.15fr'};
-  gap: 40px;
-  align-items: center;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const SectionCopy = styled.div`
+const SectionHeader = styled.div`
   display: grid;
   gap: 12px;
-  align-content: start;
+  max-width: 44rem;
 `;
 
 const SectionNumber = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(3.1rem, 7vw, 5.8rem);
-  line-height: 0.82;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.86;
   color: rgba(196, 149, 106, 0.35);
-  margin-bottom: -4px;
 `;
 
 const SectionEyebrow = styled.span`
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.muted};
 `;
 
 const SectionTitle = styled.h2`
-  margin-top: 4px;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   font-weight: 600;
   line-height: 1.08;
-  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const SectionBody = styled.p`
-  margin-top: 8px;
-  max-width: 42rem;
-  color: ${({ theme }) => theme.colors.subpage.text};
   font-size: 1.12rem;
   line-height: 1.75;
-`;
-
-const ResearchStack = styled.div`
-  display: grid;
-  gap: 18px;
-`;
-
-const FeatureLink = styled(Link)`
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 18px;
-  padding: 18px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #fdfcfa;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: ${({ theme }) => theme.transitions.hover};
-
-  &:hover {
-    transform: translateY(-1px);
-    border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const FeatureThumb = styled.div`
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  border-radius: 3px;
-  background: #f0ede8;
-  border: 1px solid rgba(196, 149, 106, 0.16);
-`;
-
-const FeatureImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const FeatureContent = styled.div`
-  display: grid;
-  gap: 10px;
-  align-content: center;
-`;
-
-const FeatureMeta = styled.span`
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.copper};
-`;
-
-const FeatureTitle = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1;
   color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
-const FeatureText = styled.p`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-`;
-
-const EvidencePanel = styled.div`
+const ResearchGrid = styled.div`
   display: grid;
-  gap: 18px;
-  padding: 24px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #fdfcfa;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-`;
-
-const EvidenceLabel = styled.span`
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.copper};
-`;
-
-const MetricGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const MetricCard = styled.div`
-  display: grid;
-  gap: 4px;
-  padding: 14px;
-  border-radius: 4px;
-  background: rgba(245, 240, 232, 0.72);
-  border: 1px solid rgba(196, 149, 106, 0.18);
-`;
-
-const MetricValue = styled.span`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
-  line-height: 0.95;
-  color: ${({ theme }) => theme.colors.subpage.text};
-`;
-
-const MetricLabel = styled.span`
-  font-size: 0.82rem;
-  color: ${({ theme }) => theme.colors.subpage.muted};
-`;
-
-const EvidenceBody = styled.p`
-  color: ${({ theme }) => theme.colors.subpage.text};
-`;
-
-const EvidenceList = styled.div`
-  display: grid;
-  gap: 10px;
-`;
-
-const EvidenceItem = styled.div`
-  padding-top: 10px;
-  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  color: ${({ theme }) => theme.colors.subpage.text};
-`;
-
-const EvidenceLinks = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  a {
-    color: ${({ theme }) => theme.colors.subpage.copper};
-  }
-`;
-
-const ActivitySection = styled.div`
-  display: grid;
-  gap: 26px;
-`;
-
-const ActivityRow = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 40px;
+  align-items: start;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
 
-const ActivityCard = styled(Link)`
+const ResearchList = styled.div`
   display: grid;
-  gap: 12px;
-  padding: 18px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: #fdfcfa;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+const ResearchRow = styled(Link)`
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr) auto 128px;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    transform: translateY(-1px);
-    border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(27, 61, 47, 0.03);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 8px;
   }
 `;
 
-const ActivityVisual = styled.div`
-  aspect-ratio: 4 / 3;
+const ResearchTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.55rem;
+  line-height: 1.08;
+  font-weight: 500;
+`;
+
+const ResearchSummary = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.98rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-column: 1 / -1;
+  }
+`;
+
+const ResearchYear = styled.span`
+  justify-self: end;
+  font-size: 0.84rem;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`;
+
+const ResearchPreview = styled.div`
+  width: 120px;
+  aspect-ratio: 3 / 2;
+  justify-self: end;
   overflow: hidden;
   border-radius: 3px;
-  border: 1px solid rgba(196, 149, 106, 0.14);
-  background: #f0ede8;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: ${({ $hasImage }) => ($hasImage ? '#d8ddd8' : 'transparent')};
+  opacity: ${({ $hasImage }) => ($hasImage ? 0 : 0)};
+  transform: translateX(${({ $hasImage }) => ($hasImage ? '10px' : '0')});
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  ${ResearchRow}:hover & {
+    opacity: ${({ $hasImage }) => ($hasImage ? 1 : 0)};
+    transform: translateX(0);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const ResearchPreviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const ViewAllLink = styled(Link)`
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.subpage.copper};
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+  margin-top: 18px;
+`;
+
+const LeadershipGrid = styled.div`
+  display: grid;
+  grid-template-columns: 0.84fr 1.16fr;
+  gap: 40px;
+  align-items: start;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const RoleList = styled.div`
+  display: grid;
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+const RoleRow = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+const RoleTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.38rem;
+  line-height: 1.08;
+  font-weight: 500;
+`;
+
+const RoleYear = styled.span`
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+`;
+
+const RoleSummary = styled.p`
+  grid-column: 1 / -1;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+`;
+
+const LinkRow = styled.div`
   display: flex;
-  align-items: flex-end;
-  padding: 16px;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 18px;
+
+  a {
+    color: ${({ theme }) => theme.colors.subpage.copper};
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+`;
+
+const ActivityIntro = styled.div`
+  display: grid;
+  gap: 12px;
+  max-width: 46rem;
+`;
+
+const ActivityStrip = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 260px);
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(27, 61, 47, 0.16);
+  }
+`;
+
+const ActivityCard = styled(Link)`
+  display: grid;
+  gap: 10px;
+  scroll-snap-align: start;
+`;
+
+const ActivityVisual = styled.div`
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background:
+    ${({ $hasImage }) =>
+      $hasImage
+        ? '#dbe1db'
+        : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')};
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
 `;
 
 const ActivityImage = styled.img`
@@ -412,24 +416,15 @@ const ActivityImage = styled.img`
   object-fit: cover;
 `;
 
-const ActivityPlaceholder = styled.div`
-  display: grid;
-  gap: 6px;
-`;
-
-const ActivityKicker = styled.span`
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
+const ActivityLocation = styled.span`
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 1;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.copper};
-`;
-
-const ActivityTitle = styled.h3`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.8rem;
-  line-height: 1.05;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.subpage.text};
+  color: #f7f7f5;
 `;
 
 const ActivityMeta = styled.div`
@@ -437,34 +432,35 @@ const ActivityMeta = styled.div`
   gap: 4px;
 `;
 
-const ActivityName = styled.h4`
-  font-size: 1.02rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.colors.subpage.text};
+const ActivityTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.45rem;
+  line-height: 1.08;
+  font-weight: 500;
 `;
 
 const ActivityDate = styled.span`
   color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.82rem;
+  font-size: 0.84rem;
 `;
 
-const SectionLink = styled(Link)`
-  width: fit-content;
-  font-size: 0.88rem;
-  color: ${({ theme }) => theme.colors.subpage.copper};
-  letter-spacing: 0.02em;
-`;
+const researchOrder = ['crisisnews', 'prism', 'beyond-removal', 'multi-agent-sim'];
+const activityRailOrder = [
+  'chi-2025',
+  'un-ga-hlw',
+  'un-youth-forum',
+  'kgsa-career',
+  'upenn-mixer',
+  'hyc-mixer',
+  'valedictorian',
+];
 
 function Home() {
   const storyRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [setResearchNode, isResearchVisible] = useFadeIn(0.2);
-  const [setLeadershipNode, isLeadershipVisible] = useFadeIn(0.2);
-  const [setActivitiesNode, isActivitiesVisible] = useFadeIn(0.2);
-  const featuredResearch = research.filter((item) => ['crisisnews', 'prism'].includes(item.id));
-  const featuredActivities = activities.filter((item) =>
-    ['chi-2025', 'un-ga-hlw', 'upenn-mixer'].includes(item.id)
-  );
+  const [researchRef, researchVisible] = useFadeIn();
+  const [leadershipRef, leadershipVisible] = useFadeIn();
+  const [activitiesRef, activitiesVisible] = useFadeIn();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -475,23 +471,37 @@ function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const featuredResearch = researchOrder
+    .map((id) => research.find((item) => item.id === id))
+    .filter(Boolean);
+
+  const leadershipRoles = [
+    activities.find((item) => item.id === 'student-council'),
+    activities.find((item) => item.id === 'columbia-ai-club'),
+  ].filter(Boolean);
+
+  const activityStripItems = activityRailOrder
+    .map((id) => activities.find((item) => item.id === id))
+    .filter(Boolean);
+
   return (
     <PageTransition>
       <Page>
         <Hero>
           <HeroInner>
             <Graph />
-            <MobileMapLegend aria-hidden="true">
+            <MobileMapLegend>
               <MobileMapChip>Research</MobileMapChip>
               <MobileMapChip>Themes</MobileMapChip>
               <MobileMapChip>Engagement</MobileMapChip>
             </MobileMapLegend>
             <Name>Dongjae (Jack) Kang</Name>
             <Tagline>
-              Studying misinformation, platform governance, and the systems that shape what people
-              believe.
+              Studying misinformation, platform governance, and the systems that shape what
+              people believe.
             </Tagline>
             <ScrollCue
+              type="button"
               $stopped={hasScrolled}
               onClick={() => storyRef.current?.scrollIntoView({ behavior: 'smooth' })}
             >
@@ -503,142 +513,119 @@ function Home() {
 
         <Story ref={storyRef}>
           <StoryInner>
-            <NarrativeSection ref={setResearchNode} $visible={isResearchVisible}>
-              <NarrativeGrid $layout="media">
-                <ResearchStack>
-                  {featuredResearch.map((item) => (
-                    <FeatureLink key={item.id} to={`/research/${item.id}`}>
-                      <FeatureThumb>
-                        {item.thumbnail ? <FeatureImage src={item.thumbnail} alt={item.title} /> : null}
-                      </FeatureThumb>
-                      <FeatureContent>
-                        <FeatureMeta>Research · {item.year}</FeatureMeta>
-                        <FeatureTitle>{item.title}</FeatureTitle>
-                        <FeatureText>{item.summary}</FeatureText>
-                      </FeatureContent>
-                    </FeatureLink>
-                  ))}
-                </ResearchStack>
-
-                <SectionCopy>
+            <NarrativeSection ref={researchRef} $visible={researchVisible}>
+              <ResearchGrid>
+                <SectionHeader>
                   <SectionNumber>01</SectionNumber>
                   <SectionEyebrow>Research</SectionEyebrow>
                   <SectionTitle>How platforms shape what people believe.</SectionTitle>
                   <SectionBody>
-                    He studies misinformation, platform governance, and the design of information
-                    systems. That work includes CrisisNews, a study of 93,250 news articles across
-                    two decades of social media crises, and PRISM, a platform that reconstructs
-                    how a story moves across outlets instead of reducing it to one source. The
-                    question behind both is simple: what kinds of platforms make collective
-                    judgment harder, and what kinds make it more possible.
+                    He studies misinformation, platform governance, and content moderation across
+                    both empirical research and interface design. The work ranges from a dataset of
+                    93,250 news articles to prototype systems for comparing how the same story
+                    moves across sources.
                   </SectionBody>
-                  <SectionLink to="/research">View all research →</SectionLink>
-                </SectionCopy>
-              </NarrativeGrid>
+                </SectionHeader>
+
+                <div>
+                  <ResearchList>
+                    {featuredResearch.map((item) => (
+                      <ResearchRow key={item.id} to={`/research/${item.id}`}>
+                        <ResearchTitle>{item.title}</ResearchTitle>
+                        <ResearchSummary>{item.summary}</ResearchSummary>
+                        <ResearchYear>{item.year}</ResearchYear>
+                        <ResearchPreview $hasImage={!!item.thumbnail}>
+                          {item.thumbnail && (
+                            <ResearchPreviewImage src={item.thumbnail} alt={`${item.title} preview`} />
+                          )}
+                        </ResearchPreview>
+                      </ResearchRow>
+                    ))}
+                  </ResearchList>
+                  <ViewAllLink to="/research">View all research →</ViewAllLink>
+                </div>
+              </ResearchGrid>
             </NarrativeSection>
 
-            <NarrativeSection ref={setLeadershipNode} $visible={isLeadershipVisible}>
-              <NarrativeGrid $layout="copy">
-                <SectionCopy>
+            <NarrativeSection ref={leadershipRef} $visible={leadershipVisible}>
+              <LeadershipGrid>
+                <SectionHeader>
                   <SectionNumber>02</SectionNumber>
                   <SectionEyebrow>Leadership</SectionEyebrow>
                   <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
                   <SectionBody>
                     As President of KAIST&apos;s Undergraduate Student Council, he rebuilt an
-                    organization that had been inactive for three years. When Korea announced a
-                    16% cut to the national R&amp;D budget, he coordinated dialogue across
-                    universities, National Assembly members, and government ministries. The method
-                    was not confrontation for its own sake. It was dialogue, patience, and enough
-                    credibility to keep people at the table.
+                    organization inactive for three years. When Korea announced a 16% R&amp;D budget
+                    cut, he coordinated dialogue across universities, the National Assembly, and
+                    government ministries. The method was not confrontation for its own sake. It
+                    was dialogue, patience, and enough credibility to keep people at the table.
                   </SectionBody>
-                </SectionCopy>
+                </SectionHeader>
 
-                <EvidencePanel>
-                  <EvidenceLabel>Council Record</EvidenceLabel>
-                  <MetricGrid>
-                    <MetricCard>
-                      <MetricValue>52.06%</MetricValue>
-                      <MetricLabel>Election turnout</MetricLabel>
-                    </MetricCard>
-                    <MetricCard>
-                      <MetricValue>88.93%</MetricValue>
-                      <MetricLabel>Approval in election</MetricLabel>
-                    </MetricCard>
-                    <MetricCard>
-                      <MetricValue>3.87 / 4.3</MetricValue>
-                      <MetricLabel>Highest satisfaction score on record</MetricLabel>
-                    </MetricCard>
-                  </MetricGrid>
-                  <EvidenceBody>
-                    The council became a site of institution-building rather than simple protest.
-                    It also connected to committee work in Seoul, Daejeon, and later at Columbia.
-                  </EvidenceBody>
-                  <EvidenceList>
-                    <EvidenceItem>Participatory Budget Committee, Seoul Jungnang-gu (2017-2018)</EvidenceItem>
-                    <EvidenceItem>Youth Policy Coordination Committee, Daejeon (2023-2025)</EvidenceItem>
-                    <EvidenceItem>Founding board member, Columbia AI Club at SIPA</EvidenceItem>
-                  </EvidenceList>
-                  <EvidenceLinks>
+                <div>
+                  <RoleList>
+                    {leadershipRoles.map((item) => (
+                      <RoleRow key={item.id}>
+                        <RoleTitle>{item.title}</RoleTitle>
+                        <RoleYear>{item.date}</RoleYear>
+                        <RoleSummary>{item.summary}</RoleSummary>
+                      </RoleRow>
+                    ))}
+                  </RoleList>
+                  <LinkRow>
                     <a
                       href="https://www.joongang.co.kr/article/25215586"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      JoongAng Ilbo column
+                      JoongAng Ilbo column →
                     </a>
                     <a
                       href="https://herald.kaist.ac.kr/news/articleView.html?idxno=20910"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      KAIST Herald article
+                      KAIST Herald →
                     </a>
-                  </EvidenceLinks>
-                </EvidencePanel>
-              </NarrativeGrid>
+                  </LinkRow>
+                </div>
+              </LeadershipGrid>
             </NarrativeSection>
 
-            <NarrativeSection ref={setActivitiesNode} $visible={isActivitiesVisible}>
-              <ActivitySection>
-                <SectionCopy>
-                  <SectionNumber>03</SectionNumber>
-                  <SectionEyebrow>Activities</SectionEyebrow>
-                  <SectionTitle>From Yokohama to the General Assembly.</SectionTitle>
-                  <SectionBody>
-                    He presented misinformation research at ACM CHI in Yokohama, supported
-                    diplomatic operations during the UN General Assembly High-Level Week, and
-                    organized networking events for 200+ students across Ivy League campuses. The
-                    settings differ. The pattern is the same: studying how systems work, then
-                    working inside them.
-                  </SectionBody>
-                </SectionCopy>
+            <NarrativeSection ref={activitiesRef} $visible={activitiesVisible}>
+              <ActivityIntro>
+                <SectionNumber>03</SectionNumber>
+                <SectionEyebrow>Selected Activities</SectionEyebrow>
+                <SectionTitle>From Yokohama to the General Assembly.</SectionTitle>
+                <SectionBody>
+                  He presented misinformation research at ACM CHI in Yokohama, supported
+                  diplomatic operations during the UN General Assembly High-Level Week, and
+                  organized networking events for 200+ students across Ivy League campuses. The
+                  settings differ. The pattern is the same.
+                </SectionBody>
+              </ActivityIntro>
 
-                <ActivityRow>
-                  {featuredActivities.map((item) => (
-                    <ActivityCard key={item.id} to={`/activities/${item.id}`}>
-                      <ActivityVisual>
-                        {item.media?.cover || item.media?.photos?.[0] ? (
-                          <ActivityImage
-                            src={item.media?.cover || item.media?.photos?.[0]}
-                            alt={item.title}
-                          />
-                        ) : (
-                          <ActivityPlaceholder>
-                            <ActivityKicker>{item.date}</ActivityKicker>
-                            <ActivityTitle>{item.title}</ActivityTitle>
-                          </ActivityPlaceholder>
-                        )}
-                      </ActivityVisual>
-                      <ActivityMeta>
-                        <ActivityName>{item.title}</ActivityName>
-                        <ActivityDate>{item.date}</ActivityDate>
-                      </ActivityMeta>
-                    </ActivityCard>
-                  ))}
-                </ActivityRow>
+              <div>
+                <ActivityStrip>
+                  {activityStripItems.map((item) => {
+                    const cover = item.media?.cover || item.media?.photos?.[0];
 
-                <SectionLink to="/activities">View all activities →</SectionLink>
-              </ActivitySection>
+                    return (
+                      <ActivityCard key={item.id} to={`/activities/${item.id}`}>
+                        <ActivityVisual $hasImage={!!cover}>
+                          {cover && <ActivityImage src={cover} alt={`${item.title} preview`} />}
+                          <ActivityLocation>{item.location}</ActivityLocation>
+                        </ActivityVisual>
+                        <ActivityMeta>
+                          <ActivityTitle>{item.title}</ActivityTitle>
+                          <ActivityDate>{item.date}</ActivityDate>
+                        </ActivityMeta>
+                      </ActivityCard>
+                    );
+                  })}
+                </ActivityStrip>
+                <ViewAllLink to="/activities">View all activities →</ViewAllLink>
+              </div>
             </NarrativeSection>
           </StoryInner>
         </Story>

@@ -1,46 +1,228 @@
 {
   "nodes": [
-    { "id": "crisisnews", "label": "CrisisNews", "type": "research", "url": "/research/crisisnews" },
-    { "id": "prism", "label": "PRISM", "type": "research", "url": "/research/prism" },
-    { "id": "beyond-removal", "label": "Beyond Removal", "type": "research", "url": "/research/beyond-removal" },
-    { "id": "multi-agent-sim", "label": "Multi-Agent Sim", "type": "research", "url": "/research/multi-agent-sim" },
-    { "id": "chi-2025", "label": "CHI 2025", "type": "activity", "url": "/activities/chi-2025" },
-    { "id": "un-ga-hlw", "label": "UN GA HLW", "type": "activity", "url": "/activities/un-ga-hlw" },
-    { "id": "student-council", "label": "Student Council", "type": "activity", "url": "/activities/student-council" },
-    { "id": "valedictorian", "label": "Valedictorian", "type": "activity", "url": "/activities/valedictorian" },
-    { "id": "participatory-budget", "label": "Participatory Budget", "type": "activity", "url": "/activities/participatory-budget" },
-    { "id": "misinformation", "label": "Misinformation", "type": "theme" },
-    { "id": "platform-governance", "label": "Platform Governance", "type": "theme" },
-    { "id": "content-moderation", "label": "Content Moderation", "type": "theme" },
-    { "id": "ai-policy", "label": "AI Policy", "type": "theme" },
-    { "id": "participatory-governance", "label": "Participatory Governance", "type": "theme" },
-    { "id": "kaist", "label": "KAIST", "type": "institution" },
-    { "id": "columbia-sipa", "label": "Columbia SIPA", "type": "institution" }
+    {
+      "id": "crisisnews",
+      "label": "CrisisNews",
+      "type": "research",
+      "importance": "main",
+      "url": "/research/crisisnews",
+      "desktop": { "x": 0.16, "y": 0.18 },
+      "mobile": { "x": 0.14, "y": 0.18 }
+    },
+    {
+      "id": "prism",
+      "label": "PRISM",
+      "type": "research",
+      "importance": "main",
+      "url": "/research/prism",
+      "desktop": { "x": 0.26, "y": 0.31 },
+      "mobile": { "x": 0.22, "y": 0.33 }
+    },
+    {
+      "id": "beyond-removal",
+      "label": "Beyond Removal",
+      "type": "research",
+      "importance": "support",
+      "url": "/research/beyond-removal",
+      "desktop": { "x": 0.21, "y": 0.56 },
+      "mobile": { "x": 0.16, "y": 0.56 }
+    },
+    {
+      "id": "multi-agent-sim",
+      "label": "Multi-Agent Sim",
+      "type": "research",
+      "importance": "support",
+      "url": "/research/multi-agent-sim",
+      "desktop": { "x": 0.31, "y": 0.74 },
+      "mobile": { "x": 0.24, "y": 0.76 }
+    },
+    {
+      "id": "misinformation",
+      "label": "Misinformation",
+      "type": "theme",
+      "desktop": { "x": 0.49, "y": 0.16 },
+      "mobile": { "x": 0.50, "y": 0.14 }
+    },
+    {
+      "id": "platform-governance",
+      "label": "Platform Governance",
+      "type": "theme",
+      "desktop": { "x": 0.52, "y": 0.34 },
+      "mobile": { "x": 0.55, "y": 0.34 }
+    },
+    {
+      "id": "content-moderation",
+      "label": "Content Moderation",
+      "type": "theme",
+      "desktop": { "x": 0.48, "y": 0.52 },
+      "mobile": { "x": 0.50, "y": 0.53 }
+    },
+    {
+      "id": "ai-policy",
+      "label": "AI Policy",
+      "type": "theme",
+      "desktop": { "x": 0.53, "y": 0.69 },
+      "mobile": { "x": 0.55, "y": 0.72 }
+    },
+    {
+      "id": "participatory-governance",
+      "label": "Participatory Governance",
+      "type": "theme",
+      "desktop": { "x": 0.5, "y": 0.84 },
+      "mobile": { "x": 0.51, "y": 0.89 }
+    },
+    {
+      "id": "chi-2025",
+      "label": "CHI 2025",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/chi-2025",
+      "desktop": { "x": 0.67, "y": 0.18 },
+      "mobile": { "x": 0.77, "y": 0.16 }
+    },
+    {
+      "id": "un-ga-hlw",
+      "label": "UN GA HLW",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/un-ga-hlw",
+      "desktop": { "x": 0.82, "y": 0.26 },
+      "mobile": { "x": 0.88, "y": 0.29 }
+    },
+    {
+      "id": "un-youth-forum",
+      "label": "UN Youth Forum",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/un-youth-forum",
+      "desktop": { "x": 0.69, "y": 0.4 },
+      "mobile": { "x": 0.77, "y": 0.42 }
+    },
+    {
+      "id": "student-council",
+      "label": "Student Council",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/student-council",
+      "desktop": { "x": 0.82, "y": 0.5 },
+      "mobile": { "x": 0.88, "y": 0.55 }
+    },
+    {
+      "id": "valedictorian",
+      "label": "Valedictorian",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/valedictorian",
+      "desktop": { "x": 0.68, "y": 0.62 },
+      "mobile": { "x": 0.74, "y": 0.64 }
+    },
+    {
+      "id": "kgsa-career",
+      "label": "KGSA Career",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/kgsa-career",
+      "desktop": { "x": 0.75, "y": 0.74 },
+      "mobile": { "x": 0.82, "y": 0.76 }
+    },
+    {
+      "id": "upenn-mixer",
+      "label": "UPenn Mixer",
+      "type": "engagement",
+      "importance": "major",
+      "url": "/activities/upenn-mixer",
+      "desktop": { "x": 0.89, "y": 0.74 },
+      "mobile": { "x": 0.92, "y": 0.82 }
+    },
+    {
+      "id": "hyc-mixer",
+      "label": "HYC Mixer",
+      "type": "engagement",
+      "importance": "minor",
+      "url": "/activities/hyc-mixer",
+      "desktop": { "x": 0.64, "y": 0.84 },
+      "mobile": { "x": 0.70, "y": 0.84 }
+    },
+    {
+      "id": "columbia-ai-club",
+      "label": "Columbia AI Club",
+      "type": "engagement",
+      "importance": "minor",
+      "url": "/activities/columbia-ai-club",
+      "desktop": { "x": 0.83, "y": 0.88 },
+      "mobile": { "x": 0.86, "y": 0.93 }
+    },
+    {
+      "id": "ces",
+      "label": "CES",
+      "type": "engagement",
+      "importance": "minor",
+      "url": "/activities/ces",
+      "desktop": { "x": 0.91, "y": 0.4 },
+      "mobile": { "x": 0.94, "y": 0.42 }
+    },
+    {
+      "id": "stanford",
+      "label": "Stanford",
+      "type": "engagement",
+      "importance": "minor",
+      "url": "/activities/stanford",
+      "desktop": { "x": 0.91, "y": 0.6 },
+      "mobile": { "x": 0.95, "y": 0.66 }
+    },
+    {
+      "id": "kaist",
+      "label": "KAIST",
+      "type": "institution",
+      "desktop": { "x": 0.25, "y": 0.93 },
+      "mobile": { "x": 0.29, "y": 0.95 }
+    },
+    {
+      "id": "columbia-sipa",
+      "label": "Columbia SIPA",
+      "type": "institution",
+      "desktop": { "x": 0.77, "y": 0.94 },
+      "mobile": { "x": 0.72, "y": 0.97 }
+    }
   ],
   "edges": [
     { "source": "crisisnews", "target": "misinformation" },
     { "source": "crisisnews", "target": "platform-governance" },
+    { "source": "crisisnews", "target": "kaist" },
     { "source": "prism", "target": "misinformation" },
     { "source": "prism", "target": "platform-governance" },
     { "source": "prism", "target": "columbia-sipa" },
-    { "source": "beyond-removal", "target": "platform-governance" },
     { "source": "beyond-removal", "target": "content-moderation" },
+    { "source": "beyond-removal", "target": "platform-governance" },
     { "source": "multi-agent-sim", "target": "misinformation" },
     { "source": "multi-agent-sim", "target": "ai-policy" },
-    { "source": "chi-2025", "target": "misinformation" },
-    { "source": "chi-2025", "target": "kaist" },
-    { "source": "un-ga-hlw", "target": "participatory-governance" },
-    { "source": "un-ga-hlw", "target": "columbia-sipa" },
-    { "source": "student-council", "target": "participatory-governance" },
-    { "source": "student-council", "target": "kaist" },
-    { "source": "student-council", "target": "participatory-budget" },
-    { "source": "valedictorian", "target": "student-council" },
-    { "source": "valedictorian", "target": "kaist" },
-    { "source": "participatory-budget", "target": "participatory-governance" },
-    { "source": "participatory-budget", "target": "kaist" },
     { "source": "misinformation", "target": "platform-governance" },
     { "source": "platform-governance", "target": "content-moderation" },
     { "source": "content-moderation", "target": "ai-policy" },
-    { "source": "ai-policy", "target": "participatory-governance" }
+    { "source": "ai-policy", "target": "participatory-governance" },
+    { "source": "chi-2025", "target": "misinformation" },
+    { "source": "chi-2025", "target": "platform-governance" },
+    { "source": "un-ga-hlw", "target": "platform-governance" },
+    { "source": "un-ga-hlw", "target": "columbia-sipa" },
+    { "source": "un-youth-forum", "target": "platform-governance" },
+    { "source": "un-youth-forum", "target": "ai-policy" },
+    { "source": "un-youth-forum", "target": "columbia-sipa" },
+    { "source": "student-council", "target": "participatory-governance" },
+    { "source": "student-council", "target": "platform-governance" },
+    { "source": "student-council", "target": "kaist" },
+    { "source": "valedictorian", "target": "kaist" },
+    { "source": "valedictorian", "target": "participatory-governance" },
+    { "source": "kgsa-career", "target": "columbia-sipa" },
+    { "source": "kgsa-career", "target": "ai-policy" },
+    { "source": "upenn-mixer", "target": "columbia-sipa" },
+    { "source": "upenn-mixer", "target": "participatory-governance" },
+    { "source": "hyc-mixer", "target": "columbia-sipa" },
+    { "source": "hyc-mixer", "target": "participatory-governance" },
+    { "source": "columbia-ai-club", "target": "columbia-sipa" },
+    { "source": "columbia-ai-club", "target": "ai-policy" },
+    { "source": "ces", "target": "ai-policy" },
+    { "source": "ces", "target": "columbia-sipa" },
+    { "source": "stanford", "target": "ai-policy" },
+    { "source": "stanford", "target": "columbia-sipa" }
   ]
 }

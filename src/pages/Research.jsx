@@ -46,13 +46,12 @@ const Card = styled(Link)`
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
   background: #fdfcfa;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
     transform: translateY(-1px);
     border-color: ${({ theme }) => theme.colors.subpage.copper};
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(196, 149, 106, 0.04);
   }
 `;
 
@@ -128,7 +127,9 @@ function Research() {
       <Page>
         <Container>
           <Title>Research</Title>
-          <Intro>Research in misinformation, platform governance, and technology policy.</Intro>
+          <Intro>
+            Research in misinformation, platform governance, and technology policy.
+          </Intro>
 
           <Grid>
             {research.map((item) => (

@@ -37,7 +37,7 @@ export const research = [
   {
     id: 'beyond-removal',
     title: 'Beyond Removal',
-    year: 'Spring 2026',
+    year: '2026',
     summary:
       "A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.",
     description:
@@ -50,8 +50,8 @@ export const research = [
   },
   {
     id: 'multi-agent-sim',
-    title: 'Misinformation Multi-Agent Simulation',
-    year: 'Spring 2026',
+    title: 'Multi-Agent Simulation',
+    year: '2026',
     summary:
       'A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.',
     description:
@@ -61,19 +61,5 @@ export const research = [
     links: [],
     thumbnail: multiAgentSimWorkflow,
     gallery: [multiAgentSimWorkflow, multiAgentSimMethod],
-  },
-  {
-    id: 'ai-in-smes',
-    title: 'AI in SMEs',
-    year: '2024',
-    summary:
-      'An undergraduate thesis on how Korea can expand AI adoption among small and medium enterprises more equitably.',
-    description:
-      'AI in SMEs was Kang\'s undergraduate thesis at KAIST. It examined why Korean small and medium enterprises face uneven access to AI adoption, including capital constraints, organizational readiness, and limited technical capacity. The thesis proposed policy responses around financing, shared infrastructure, and public support for adoption. It asked how technical change can spread more evenly rather than concentrating only in large firms.',
-    collaborators: ['KAIST undergraduate thesis'],
-    tags: ['AI Policy', 'Equitable Development'],
-    links: [],
-    thumbnail: null,
-    gallery: [],
   },
 ];

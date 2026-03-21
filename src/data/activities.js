@@ -13,6 +13,7 @@ export const activities = [
     id: 'valedictorian',
     title: 'KAIST Valedictorian',
     date: 'Feb 2026',
+    location: 'Daejeon',
     summary:
       'Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.',
     description:
@@ -28,12 +29,13 @@ export const activities = [
   },
   {
     id: 'un-youth-forum',
-    title: 'UN ECOSOC Youth Forum - SDG 9 Application',
+    title: 'UN ECOSOC Youth Forum - SDG 9 Respondent',
     date: 'Apr 2026',
+    location: 'United Nations Headquarters, New York',
     summary:
-      'Applied to speak at the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.',
+      'Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.',
     description:
-      'Applied to speak at the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University. Selection results are pending as of March 2026.',
+      'Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.',
     tags: ['UN', 'Platform Governance', 'Speaking'],
     links: [],
     media: {
@@ -45,6 +47,7 @@ export const activities = [
     id: 'un-ga-hlw',
     title: 'UN General Assembly High-Level Week',
     date: 'Sep 2025',
+    location: 'New York',
     summary:
       'Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.',
     description:
@@ -60,10 +63,11 @@ export const activities = [
     id: 'ces',
     title: 'CES Visit',
     date: 'Jan 2026',
+    location: 'Las Vegas',
     summary:
-      'Visited the Consumer Electronics Show, exploring developments in AI hardware, autonomous systems, and consumer technology.',
+      'Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.',
     description:
-      'Visited the Consumer Electronics Show, exploring developments in AI hardware, autonomous systems, and consumer technology.',
+      'Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.',
     tags: ['Technology', 'Industry'],
     links: [],
     media: {
@@ -75,6 +79,7 @@ export const activities = [
     id: 'stanford',
     title: 'Stanford Visit',
     date: '2025',
+    location: 'Stanford',
     summary: 'Visited Stanford University.',
     description: 'Visited Stanford University.',
     tags: ['Academia'],
@@ -88,6 +93,7 @@ export const activities = [
     id: 'hyc-mixer',
     title: 'Harvard-Yale-Columbia Korean Student Mixer - MC',
     date: 'Jan 2026',
+    location: 'New York',
     summary:
       'Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.',
     description:
@@ -103,6 +109,7 @@ export const activities = [
     id: 'upenn-mixer',
     title: '5-School Mixer at UPenn - MC',
     date: 'Nov 15, 2025',
+    location: 'Philadelphia',
     summary:
       'Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.',
     description:
@@ -118,6 +125,7 @@ export const activities = [
     id: 'student-council',
     title: 'KAIST Student Council President',
     date: '2022-2023',
+    location: 'KAIST',
     summary:
       'Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea\'s R&D budget cut.',
     description:
@@ -136,6 +144,7 @@ export const activities = [
     id: 'chi-2025',
     title: 'CHI 2025 Workshop Presentation - Yokohama',
     date: 'Apr 2025',
+    location: 'Yokohama',
     summary:
       'Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.',
     description:
@@ -151,6 +160,7 @@ export const activities = [
     id: 'kgsa-career',
     title: 'KGSA Career Event - Organizer & MC',
     date: 'Mar 28, 2026',
+    location: 'Columbia University',
     summary:
       'Organized and MC\'d a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.',
     description:
@@ -163,39 +173,10 @@ export const activities = [
     },
   },
   {
-    id: 'participatory-budget',
-    title: 'Participatory Budget Committee - Seoul Jungnang-gu',
-    date: '2017-2018',
-    summary:
-      'Served as the sole youth representative on the Jungnang-gu participatory budget committee at age seventeen.',
-    description:
-      'Kang served as the only youth representative among forty committee members on Seoul Jungnang-gu\'s participatory budget committee. The committee allocated roughly one million dollars each year across more than thirty local projects.',
-    tags: ['Public Service', 'Participatory Governance'],
-    links: [],
-    media: {
-      // PHOTO: Owner will provide
-      photos: [],
-    },
-  },
-  {
-    id: 'youth-policy',
-    title: 'Youth Policy Coordination Committee - Daejeon',
-    date: '2023-2025',
-    summary:
-      'Served on Daejeon\'s Youth Policy Coordination Committee, reviewing projects across multiple municipal departments.',
-    description:
-      'Kang served as one of thirty members of Daejeon\'s Youth Policy Coordination Committee from 2023 to 2025. The committee reviewed more than seventy projects spanning nine municipal departments.',
-    tags: ['Public Service', 'Youth Policy'],
-    links: [],
-    media: {
-      // PHOTO: Owner will provide
-      photos: [],
-    },
-  },
-  {
     id: 'columbia-ai-club',
     title: 'Columbia AI Club at SIPA',
     date: '2025-Present',
+    location: 'New York',
     summary:
       'Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.',
     description:

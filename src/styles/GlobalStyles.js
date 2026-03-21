@@ -59,6 +59,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ::selection {
-    background: rgba(139, 168, 136, 0.22);
+    background: rgba(154, 184, 158, 0.32);
   }
 `;

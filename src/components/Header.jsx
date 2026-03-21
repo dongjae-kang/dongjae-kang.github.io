@@ -15,29 +15,16 @@ const HeaderInner = styled.div`
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin-top: 16px;
   padding: 16px 20px;
-  border-radius: 12px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   pointer-events: auto;
-  backdrop-filter: blur(18px);
-  background: ${({ $homeDark, $scrolled }) =>
-    $homeDark
-      ? $scrolled
-        ? 'rgba(13, 26, 20, 0.76)'
-        : 'rgba(13, 26, 20, 0.34)'
-      : $scrolled
-        ? 'rgba(245, 240, 232, 0.9)'
-        : 'rgba(245, 240, 232, 0.74)'};
-  border: 1px solid
-    ${({ $homeDark }) => ($homeDark ? 'rgba(154, 184, 158, 0.18)' : 'rgba(61, 90, 62, 0.12)')};
-  box-shadow: ${({ $scrolled, $homeDark }) =>
-    $scrolled
-      ? $homeDark
-        ? '0 14px 40px rgba(0, 0, 0, 0.2)'
-        : '0 12px 30px rgba(21, 54, 41, 0.08)'
-      : 'none'};
+  backdrop-filter: blur(16px);
+  background: ${({ $scrolled }) =>
+    $scrolled ? 'rgba(247, 247, 245, 0.92)' : 'rgba(247, 247, 245, 0.68)'};
+  border: 1px solid rgba(43, 42, 42, 0.08);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: calc(100% - 24px);
@@ -54,8 +41,7 @@ const Brand = styled(NavLink)`
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ $homeDark, theme }) =>
-    $homeDark ? theme.colors.home.text : theme.colors.subpage.text};
+  color: ${({ theme }) => theme.colors.subpage.text};
 `;
 
 const Nav = styled.nav`
@@ -71,8 +57,7 @@ const NavItem = styled(NavLink)`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.body};
-  color: ${({ $homeDark, theme }) =>
-    $homeDark ? theme.colors.home.text : theme.colors.subpage.text};
+  color: ${({ theme }) => theme.colors.subpage.text};
   opacity: 0.7;
 
   &.active,
@@ -84,41 +69,32 @@ const NavItem = styled(NavLink)`
 function Header() {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
-  const [heroPassed, setHeroPassed] = useState(false);
-  const isHome = location.pathname === '/';
-  const homeDark = isHome && !heroPassed;
 
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 24);
-
-      if (isHome) {
-        setHeroPassed(y > Math.max(window.innerHeight * 0.74, 520));
-      } else {
-        setHeroPassed(false);
-      }
     };
 
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
-  }, [isHome]);
+  }, [location.pathname]);
 
   return (
     <HeaderShell>
-      <HeaderInner $homeDark={homeDark} $scrolled={scrolled}>
-        <Brand to="/" $homeDark={homeDark}>
+      <HeaderInner $scrolled={scrolled}>
+        <Brand to="/">
           DONGJAE KANG
         </Brand>
         <Nav>
-          <NavItem to="/about" $homeDark={homeDark}>
+          <NavItem to="/about">
             About
           </NavItem>
-          <NavItem to="/research" $homeDark={homeDark}>
+          <NavItem to="/research">
             Research
           </NavItem>
-          <NavItem to="/activities" $homeDark={homeDark}>
+          <NavItem to="/activities">
             Activities
           </NavItem>
         </Nav>

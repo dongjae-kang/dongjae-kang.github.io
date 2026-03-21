@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 import PageTransition from '../components/PageTransition';
 import profileSquare from '../assets/images/profile-square.jpg';
 import profileFull from '../assets/images/profile-full.jpg';
@@ -46,7 +45,6 @@ const Photo = styled.div`
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   overflow: hidden;
-  box-shadow: 0 18px 40px rgba(21, 54, 41, 0.14);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 160px;
@@ -61,7 +59,6 @@ const SecondaryPhoto = styled.div`
   background: ${({ theme }) => theme.colors.subpage.placeholder};
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   overflow: hidden;
-  box-shadow: 0 18px 40px rgba(21, 54, 41, 0.1);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
@@ -99,16 +96,17 @@ const Divider = styled.hr`
 `;
 
 const Contacts = styled.section`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  color: ${({ theme }) => theme.colors.subpage.copper};
 `;
 
 const ContactLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   width: fit-content;
-  color: ${({ theme }) => theme.colors.subpage.copper};
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
 `;
 
 function About() {
@@ -170,22 +168,20 @@ function About() {
           </Intro>
           <Divider />
           <Contacts>
-            <ContactLink href="mailto:dk3500@columbia.edu">
-              <FaEnvelope /> dk3500@columbia.edu
-            </ContactLink>
+            <ContactLink href="mailto:dk3500@columbia.edu">dk3500@columbia.edu</ContactLink>
             <ContactLink
               href="https://linkedin.com/in/jackkang3780"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin /> linkedin.com/in/jackkang3780
+              linkedin.com/in/jackkang3780
             </ContactLink>
             <ContactLink
               href="https://github.com/dongjae-kang"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaGithub /> github.com/dongjae-kang
+              github.com/dongjae-kang
             </ContactLink>
           </Contacts>
         </Container>
