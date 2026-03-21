@@ -7,6 +7,8 @@ import upennMixerGroup from '../assets/images/activities/upenn-mixer-group.jpeg'
 import upennMixerOpening from '../assets/images/activities/upenn-mixer-opening.jpeg';
 import upennMixerStage from '../assets/images/activities/upenn-mixer-stage.jpeg';
 import valedictorianGown from '../assets/images/activities/valedictorian-gown.jpeg';
+import chiWorkshopMainPage from '../assets/images/research/figures/chi-workshop-main-page.png';
+import chiWorkshopAcceptedSubmissions from '../assets/images/research/figures/chi-workshop-accepted-submissions.png';
 
 export const activities = [
   {
@@ -146,14 +148,18 @@ export const activities = [
     date: 'Apr 2025',
     location: 'Yokohama',
     summary:
-      'Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.',
+      'Presented CrisisNews as sole presenter at the ACM CHI 2025 News Futures Workshop in Yokohama, Japan.',
     description:
-      'Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.',
+      'Kang presented the CrisisNews project at the ACM CHI 2025 News Futures Workshop in Yokohama as the sole presenter. The paper was an earlier research output from the same line that later produced the CrisisNews dataset paper. It focused on 19 social media crisis cases and their implications for platform design, news systems, and public communication.',
     tags: ['Research', 'Speaking', 'HCI'],
-    links: [{ label: 'Related Research', url: '/research/crisisnews' }],
+    links: [
+      { label: 'Related Research', url: '/research/crisisnews' },
+      { label: 'Workshop Paper', url: '/assets/papers/chi-2025-workshop-paper.pdf' },
+      { label: 'Workshop Website', url: 'https://sites.google.com/view/newsfutures/home' },
+    ],
     media: {
-      // PHOTO: Owner will provide
-      photos: [],
+      cover: chiWorkshopMainPage,
+      photos: [chiWorkshopMainPage, chiWorkshopAcceptedSubmissions],
     },
   },
   {

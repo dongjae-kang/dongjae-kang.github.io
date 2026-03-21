@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
+import { coursework } from '../data/coursework';
 
 const Page = styled.main`
   min-height: 100vh;
@@ -88,7 +89,7 @@ const Highlights = styled.ul`
 
 const MetaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -197,7 +198,8 @@ const MaterialLink = styled.a`
 
 function ResearchDetail() {
   const { id } = useParams();
-  const item = research.find((entry) => entry.id === id);
+  const item = research.find((entry) => entry.id === id) || coursework.find((entry) => entry.id === id);
+  const isCoursework = coursework.some((entry) => entry.id === id);
 
   if (!item) {
     return (
@@ -251,8 +253,16 @@ function ResearchDetail() {
           )}
 
           <MetaGrid>
+            {(isCoursework || item.course || item.professor || item.semester) && (
+              <MetaBlock>
+                <SectionLabel>Course Context</SectionLabel>
+                <MetaText>
+                  {[item.course, item.professor, item.semester].filter(Boolean).join(' · ')}
+                </MetaText>
+              </MetaBlock>
+            )}
             <MetaBlock>
-              <SectionLabel>Collaborators</SectionLabel>
+              <SectionLabel>{isCoursework ? 'Project Type' : 'Collaborators'}</SectionLabel>
               <MetaText>{item.collaborators.join(' · ')}</MetaText>
             </MetaBlock>
             <MetaBlock>
@@ -298,7 +308,7 @@ function ResearchDetail() {
             </DetailSection>
           )}
 
-          {item.links.length > 0 && (
+          {item.links?.length > 0 && (
             <DetailSection>
               <SectionLabel>Links</SectionLabel>
               <Links>

@@ -3,6 +3,11 @@ import crisisnewsDemo from '../assets/images/research/crisisnews-demo.gif';
 import prismThumbnail from '../assets/images/research/prism-thumbnail.png';
 import multiAgentSimWorkflow from '../assets/images/research/multi-agent-sim-workflow.png';
 import multiAgentSimMethod from '../assets/images/research/multi-agent-sim-method.png';
+import crisisnewsPipeline from '../assets/images/research/figures/crisisnews-pipeline.png';
+import crisisnewsYearlyDist from '../assets/images/research/figures/crisisnews-yearly-dist.png';
+import crisisnewsStakeholderMatrix from '../assets/images/research/figures/crisisnews-stakeholder-matrix.png';
+import chiWorkshopMainPage from '../assets/images/research/figures/chi-workshop-main-page.png';
+import chiWorkshopAcceptedSubmissions from '../assets/images/research/figures/chi-workshop-accepted-submissions.png';
 
 export const research = [
   {
@@ -45,16 +50,39 @@ export const research = [
         note: 'News Futures workshop page for the Yokohama presentation.',
         url: 'https://sites.google.com/view/newsfutures/home',
       },
+      {
+        label: 'CHI Workshop Paper',
+        note: 'Earlier workshop paper presented at CHI 2025 in Yokohama.',
+        url: '/assets/papers/chi-2025-workshop-paper.pdf',
+      },
     ],
     links: [
       { label: 'arXiv', url: 'https://arxiv.org/abs/2510.12243' },
       { label: 'Dataset', url: 'https://crisis-news.netlify.app' },
       { label: 'CHI 2025 Workshop', url: 'https://sites.google.com/view/newsfutures/home' },
+      { label: 'CHI Workshop Paper', url: '/assets/papers/chi-2025-workshop-paper.pdf' },
     ],
     thumbnail: crisisnewsThumbnail,
     gallery: [
       { src: crisisnewsThumbnail, alt: 'CrisisNews dataset overview', caption: 'Dataset overview' },
       { src: crisisnewsDemo, alt: 'CrisisNews browser demo', caption: 'Public browser demo' },
+      { src: crisisnewsPipeline, alt: 'CrisisNews dataset pipeline figure', caption: 'Dataset pipeline figure' },
+      { src: crisisnewsYearlyDist, alt: 'Yearly distribution of social media crises', caption: 'Yearly distribution, 2004 to 2023' },
+      {
+        src: crisisnewsStakeholderMatrix,
+        alt: 'Stakeholder relationship matrix from CrisisNews',
+        caption: 'Stakeholder relationship matrix',
+      },
+      {
+        src: chiWorkshopMainPage,
+        alt: 'News Futures at CHI 2025 workshop page',
+        caption: 'Workshop page for News Futures at CHI 2025',
+      },
+      {
+        src: chiWorkshopAcceptedSubmissions,
+        alt: 'Accepted submissions page highlighting Kang on the CHI workshop website',
+        caption: 'Accepted submissions page highlighting the paper',
+      },
     ],
   },
   {

@@ -259,6 +259,10 @@ const CourseworkHeader = styled.div`
   gap: 8px;
 `;
 
+const CourseworkTitleLink = styled(Link)`
+  color: inherit;
+`;
+
 const CourseworkTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
@@ -389,7 +393,9 @@ function Research() {
                   </CourseworkVisual>
 
                   <CourseworkHeader>
-                    <CourseworkTitle>{item.title}</CourseworkTitle>
+                    <CourseworkTitleLink to={`/research/${item.id}`}>
+                      <CourseworkTitle>{item.title}</CourseworkTitle>
+                    </CourseworkTitleLink>
                     <CourseworkSubtitle>{item.subtitle}</CourseworkSubtitle>
                   </CourseworkHeader>
 
@@ -408,7 +414,18 @@ function Research() {
 
                   <Summary>{item.summary}</Summary>
 
+                  {item.materials?.length > 0 && (
+                    <AssetRow>
+                      {item.materials.map((material) => (
+                        <AssetItem key={`${item.id}-${material.label}`}>{material.label}</AssetItem>
+                      ))}
+                    </AssetRow>
+                  )}
+
                   <CourseworkActions>
+                    <CourseworkAction as={Link} to={`/research/${item.id}`}>
+                      Details
+                    </CourseworkAction>
                     {item.pdf && (
                       <CourseworkAction href={item.pdf} target="_blank" rel="noopener noreferrer">
                         View PDF
