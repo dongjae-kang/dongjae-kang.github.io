@@ -37,6 +37,7 @@ const FooterLink = styled.a`
   &:hover {
     opacity: 1;
     text-decoration: underline;
+    color: ${({ theme }) => theme.colors.subpage.accent};
   }
 `;
 

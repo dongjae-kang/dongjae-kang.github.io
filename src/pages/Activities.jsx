@@ -3,18 +3,15 @@ import { Link } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { activities } from '../data/activities';
-import { archive } from '../data/archive';
 
 const featuredOrder = [
   'un-youth-forum',
   'kgsa-career',
   'valedictorian',
   'hyc-mixer',
-  'ces',
   'upenn-mixer',
   'un-ga-hlw',
   'chi-2025',
-  'stanford',
   'student-council',
   'columbia-ai-club',
 ];
@@ -35,13 +32,19 @@ const Title = styled.h1`
   margin-bottom: 16px;
 `;
 
-const Intro = styled.p`
+const Intro = styled.div`
   max-width: ${({ theme }) => theme.layout.textMax};
   color: ${({ theme }) => theme.colors.subpage.muted};
   margin-bottom: 32px;
   font-size: 1.04rem;
   padding-bottom: 24px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+
+  a {
+    color: ${({ theme }) => theme.colors.subpage.accent};
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+  }
 `;
 
 const Grid = styled.div`
@@ -58,85 +61,6 @@ const Grid = styled.div`
   }
 `;
 
-const ArchiveSection = styled.section`
-  display: grid;
-  gap: 20px;
-  margin-top: 64px;
-  padding-top: 24px;
-  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
-`;
-
-const ArchiveHeader = styled.div`
-  display: grid;
-  gap: 8px;
-  max-width: ${({ theme }) => theme.layout.textMax};
-`;
-
-const ArchiveText = styled.p`
-  max-width: ${({ theme }) => theme.layout.textMax};
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 1.04rem;
-`;
-
-const ArchiveGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const ArchiveCard = styled.article`
-  display: grid;
-  gap: 10px;
-`;
-
-const ArchivePhoto = styled.div`
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border-radius: 3px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(13, 26, 20, 0.12);
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-`;
-
-const ArchiveImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const ArchiveMeta = styled.div`
-  display: grid;
-  gap: 2px;
-`;
-
-const ArchiveTitle = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.5rem;
-  line-height: 1.08;
-  font-weight: 500;
-`;
-
-const ArchiveCaption = styled.span`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.84rem;
-`;
-
 const Card = styled(Link)`
   display: grid;
   gap: 16px;
@@ -148,8 +72,8 @@ const Card = styled(Link)`
 
   &:hover {
     transform: translateY(-1px);
-    border-color: ${({ theme }) => theme.colors.subpage.copper};
-    background: rgba(196, 149, 106, 0.04);
+    border-color: ${({ theme }) => theme.colors.subpage.accent};
+    background: rgba(27, 61, 47, 0.04);
   }
 `;
 
@@ -235,11 +159,12 @@ const TagList = styled.div`
 `;
 
 function Activities() {
+  const visibleIds = new Set(featuredOrder);
   const orderedActivities = [
     ...featuredOrder
       .map((id) => activities.find((item) => item.id === id))
       .filter(Boolean),
-    ...activities.filter((item) => !featuredOrder.includes(item.id)),
+    ...activities.filter((item) => !visibleIds.has(item.id) && !['ces', 'stanford'].includes(item.id)),
   ];
 
   return (
@@ -249,7 +174,8 @@ function Activities() {
           <Title>Activities</Title>
           <Intro>
             Talks, diplomacy, student leadership, and community-building across research and
-            public life.
+            public life. Lighter visits and personal records sit separately in{' '}
+            <Link to="/archive">Archive</Link>.
           </Intro>
 
           <Grid>
@@ -284,30 +210,6 @@ function Activities() {
               </Card>
             ))}
           </Grid>
-
-          <ArchiveSection>
-            <ArchiveHeader>
-              <Title as="h2">Archive</Title>
-              <ArchiveText>
-                A lighter record of campus scenes and ordinary intervals alongside the formal work.
-              </ArchiveText>
-            </ArchiveHeader>
-            <ArchiveGrid>
-              {archive.map((item) => (
-                <ArchiveCard key={item.id}>
-                  <ArchivePhoto>
-                    <ArchiveImage src={item.image} alt={item.title} />
-                  </ArchivePhoto>
-                  <ArchiveMeta>
-                    <ArchiveTitle>{item.title}</ArchiveTitle>
-                    <ArchiveCaption>
-                      {item.date} · {item.location}
-                    </ArchiveCaption>
-                  </ArchiveMeta>
-                </ArchiveCard>
-              ))}
-            </ArchiveGrid>
-          </ArchiveSection>
         </Container>
       </Page>
     </PageTransition>

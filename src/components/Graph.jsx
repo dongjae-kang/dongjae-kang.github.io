@@ -153,8 +153,6 @@ const mobileHiddenLabelIds = new Set([
   'upenn-mixer',
   'hyc-mixer',
   'columbia-ai-club',
-  'ces',
-  'stanford',
 ]);
 
 function hashCode(value) {
@@ -192,7 +190,7 @@ function wrapLabel(label, maxChars) {
   });
 
   if (current) lines.push(current);
-  return lines.slice(0, 2);
+  return lines.slice(0, 3);
 }
 
 function nodeVisual(node) {
@@ -220,19 +218,19 @@ function labelLayout(node, isMobile) {
   }
 
   const mobileMap = {
-    misinformation: { dx: 0, dy: -20, anchor: 'middle', baseline: 'baseline' },
-    'platform-governance': { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
-    'content-moderation': { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
-    'ai-policy': { dx: 0, dy: -20, anchor: 'middle', baseline: 'baseline' },
-    'participatory-governance': { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
+    misinformation: { dx: 0, dy: -24, anchor: 'middle', baseline: 'baseline' },
+    'platform-governance': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
+    'content-moderation': { dx: -20, dy: 4, anchor: 'end', baseline: 'middle' },
+    'ai-policy': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
+    'participatory-governance': { dx: -20, dy: 4, anchor: 'end', baseline: 'middle' },
   };
 
   const desktopMap = {
-    misinformation: { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
-    'platform-governance': { dx: 0, dy: -24, anchor: 'middle', baseline: 'baseline' },
-    'content-moderation': { dx: 0, dy: -24, anchor: 'middle', baseline: 'baseline' },
-    'ai-policy': { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
-    'participatory-governance': { dx: 0, dy: -22, anchor: 'middle', baseline: 'baseline' },
+    misinformation: { dx: 0, dy: -26, anchor: 'middle', baseline: 'baseline' },
+    'platform-governance': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
+    'content-moderation': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
+    'ai-policy': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
+    'participatory-governance': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
   };
 
   return (isMobile ? mobileMap : desktopMap)[node.id];

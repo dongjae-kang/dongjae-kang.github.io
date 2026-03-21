@@ -67,7 +67,19 @@ const Hero = styled.section`
     height: min(72vw, 860px);
     transform: translateX(-50%);
     background:
-      radial-gradient(circle at 48% 44%, rgba(154, 184, 158, 0.22) 0%, rgba(154, 184, 158, 0.1) 24%, rgba(196, 149, 106, 0.08) 48%, transparent 76%);
+      radial-gradient(circle at 48% 44%, rgba(74, 122, 94, 0.26) 0%, rgba(154, 184, 158, 0.14) 24%, rgba(196, 149, 106, 0.07) 48%, transparent 76%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 18% auto auto 50%;
+    width: min(70vw, 720px);
+    height: min(50vw, 520px);
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.1), transparent 72%);
     pointer-events: none;
     z-index: 0;
   }
@@ -118,7 +130,8 @@ const Name = styled.h1`
   letter-spacing: -0.02em;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    font-size: clamp(2.7rem, 14vw, 4.2rem);
+    font-size: clamp(2.55rem, 12.6vw, 3.9rem);
+    text-wrap: balance;
   }
 `;
 
@@ -156,6 +169,7 @@ const ScrollCue = styled.button`
 
 const Story = styled.div`
   padding: 24px 0 120px;
+  background: linear-gradient(180deg, rgba(74, 122, 94, 0.075), transparent 220px);
 `;
 
 const StoryInner = styled.div`
@@ -163,6 +177,47 @@ const StoryInner = styled.div`
   margin: 0 auto;
   display: grid;
   gap: 88px;
+`;
+
+const GuideGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-top: 12px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const GuideCard = styled(Link)`
+  display: grid;
+  gap: 8px;
+  padding: 16px 0 18px;
+  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.subpage.accent};
+    border-top-color: rgba(27, 61, 47, 0.34);
+  }
+`;
+
+const GuideTitle = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.55rem;
+  line-height: 1.08;
+  font-weight: 500;
+`;
+
+const GuideText = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.95rem;
+  line-height: 1.65;
 `;
 
 const NarrativeSection = styled.section`
@@ -184,14 +239,14 @@ const SectionNumber = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 0.86;
-  color: rgba(196, 149, 106, 0.35);
+  color: rgba(27, 61, 47, 0.18);
 `;
 
 const SectionEyebrow = styled.span`
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.subpage.muted};
+  color: ${({ theme }) => theme.colors.subpage.accent};
 `;
 
 const SectionTitle = styled.h2`
@@ -209,9 +264,13 @@ const SectionBody = styled.p`
 
 const ResearchGrid = styled.div`
   display: grid;
-  grid-template-columns: 0.78fr 1.22fr;
+  grid-template-columns: 0.76fr 1.24fr;
   gap: 40px;
   align-items: start;
+
+  > * {
+    min-width: 0;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -219,21 +278,21 @@ const ResearchGrid = styled.div`
 `;
 
 const ResearchList = styled.div`
+  position: relative;
   display: grid;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
 const ResearchRow = styled(Link)`
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr) auto 128px;
-  gap: 16px;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px 20px;
   padding: 18px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
   transition: ${({ theme }) => theme.transitions.hover};
 
   &:hover {
-    background: rgba(27, 61, 47, 0.03);
+    background: rgba(27, 61, 47, 0.04);
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -243,6 +302,7 @@ const ResearchRow = styled(Link)`
 `;
 
 const ResearchTitle = styled.h3`
+  min-width: 0;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.55rem;
   line-height: 1.08;
@@ -250,12 +310,9 @@ const ResearchTitle = styled.h3`
 `;
 
 const ResearchSummary = styled.p`
+  grid-column: 1 / -1;
   color: ${({ theme }) => theme.colors.subpage.muted};
   font-size: 0.98rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-column: 1 / -1;
-  }
 `;
 
 const ResearchYear = styled.span`
@@ -266,29 +323,34 @@ const ResearchYear = styled.span`
   text-transform: uppercase;
 `;
 
-const ResearchPreview = styled.div`
-  width: 120px;
+const ResearchRail = styled.div`
+  position: relative;
+  min-width: 0;
+`;
+
+const FloatingPreview = styled.div`
+  position: absolute;
+  top: ${({ $y }) => `${$y}px`};
+  left: ${({ $x }) => `${$x}px`};
+  width: 148px;
   aspect-ratio: 3 / 2;
-  justify-self: end;
   overflow: hidden;
   border-radius: 3px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  background: ${({ $hasImage }) => ($hasImage ? '#d8ddd8' : 'transparent')};
-  opacity: ${({ $hasImage }) => ($hasImage ? 0 : 0)};
-  transform: translateX(${({ $hasImage }) => ($hasImage ? '10px' : '0')});
-  transition: opacity 0.2s ease, transform 0.2s ease;
-
-  ${ResearchRow}:hover & {
-    opacity: ${({ $hasImage }) => ($hasImage ? 1 : 0)};
-    transform: translateX(0);
-  }
+  border: 1px solid rgba(27, 61, 47, 0.16);
+  background: #d8ddd8;
+  box-shadow: 0 12px 30px rgba(27, 61, 47, 0.12);
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transform: translate(18px, -50%);
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+  z-index: 2;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
   }
 `;
 
-const ResearchPreviewImage = styled.img`
+const PreviewImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -296,7 +358,7 @@ const ResearchPreviewImage = styled.img`
 
 const ViewAllLink = styled(Link)`
   width: fit-content;
-  color: ${({ theme }) => theme.colors.subpage.copper};
+  color: ${({ theme }) => theme.colors.subpage.accent};
   font-size: 0.88rem;
   letter-spacing: 0.06em;
   margin-top: 18px;
@@ -307,6 +369,10 @@ const LeadershipGrid = styled.div`
   grid-template-columns: 0.84fr 1.16fr;
   gap: 40px;
   align-items: start;
+
+  > * {
+    min-width: 0;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
@@ -324,9 +390,15 @@ const RoleRow = styled.div`
   gap: 12px 20px;
   padding: 18px 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 `;
 
 const RoleTitle = styled.h3`
+  min-width: 0;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.38rem;
   line-height: 1.08;
@@ -338,6 +410,10 @@ const RoleYear = styled.span`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.subpage.muted};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    justify-self: start;
+  }
 `;
 
 const RoleSummary = styled.p`
@@ -352,7 +428,7 @@ const LinkRow = styled.div`
   margin-top: 18px;
 
   a {
-    color: ${({ theme }) => theme.colors.subpage.copper};
+    color: ${({ theme }) => theme.colors.subpage.accent};
     font-size: 0.88rem;
     letter-spacing: 0.06em;
   }
@@ -378,7 +454,7 @@ const ActivityStrip = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(27, 61, 47, 0.16);
+    background: rgba(27, 61, 47, 0.22);
   }
 `;
 
@@ -455,12 +531,37 @@ const activityRailOrder = [
   'valedictorian',
 ];
 
+const siteGuide = [
+  {
+    title: 'About',
+    text: 'Profile, education, and the through-line connecting research with public work.',
+    to: '/about',
+  },
+  {
+    title: 'Research',
+    text: 'Core projects in misinformation, platform governance, and content moderation.',
+    to: '/research',
+  },
+  {
+    title: 'Coursework',
+    text: 'Selected papers and policy work from SIPA coursework, alongside the main projects.',
+    to: '/research',
+  },
+  {
+    title: 'Archive',
+    text: 'Lighter visits, campus scenes, and personal records kept separate from the main portfolio.',
+    to: '/archive',
+  },
+];
+
 function Home() {
   const storyRef = useRef(null);
+  const researchListRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [researchRef, researchVisible] = useFadeIn();
   const [leadershipRef, leadershipVisible] = useFadeIn();
   const [activitiesRef, activitiesVisible] = useFadeIn();
+  const [preview, setPreview] = useState({ visible: false, x: 0, y: 0, image: null, title: '' });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -483,6 +584,21 @@ function Home() {
   const activityStripItems = activityRailOrder
     .map((id) => activities.find((item) => item.id === id))
     .filter(Boolean);
+
+  const updatePreview = (event, item) => {
+    if (!item.thumbnail || !researchListRef.current || window.innerWidth < 1024) return;
+    const bounds = researchListRef.current.getBoundingClientRect();
+    const x = Math.min(bounds.width - 164, Math.max(16, event.clientX - bounds.left));
+    const y = Math.min(bounds.height - 92, Math.max(20, event.clientY - bounds.top));
+
+    setPreview({
+      visible: true,
+      x,
+      y,
+      image: item.thumbnail,
+      title: item.title,
+    });
+  };
 
   return (
     <PageTransition>
@@ -513,6 +629,15 @@ function Home() {
 
         <Story ref={storyRef}>
           <StoryInner>
+            <GuideGrid>
+              {siteGuide.map((item) => (
+                <GuideCard key={item.title} to={item.to}>
+                  <GuideTitle>{item.title}</GuideTitle>
+                  <GuideText>{item.text}</GuideText>
+                </GuideCard>
+              ))}
+            </GuideGrid>
+
             <NarrativeSection ref={researchRef} $visible={researchVisible}>
               <ResearchGrid>
                 <SectionHeader>
@@ -527,23 +652,32 @@ function Home() {
                   </SectionBody>
                 </SectionHeader>
 
-                <div>
+                <ResearchRail ref={researchListRef}>
                   <ResearchList>
                     {featuredResearch.map((item) => (
-                      <ResearchRow key={item.id} to={`/research/${item.id}`}>
+                      <ResearchRow
+                        key={item.id}
+                        to={`/research/${item.id}`}
+                        onMouseEnter={(event) => updatePreview(event, item)}
+                        onMouseMove={(event) => updatePreview(event, item)}
+                        onMouseLeave={() =>
+                          setPreview((current) => ({
+                            ...current,
+                            visible: false,
+                          }))
+                        }
+                      >
                         <ResearchTitle>{item.title}</ResearchTitle>
-                        <ResearchSummary>{item.summary}</ResearchSummary>
                         <ResearchYear>{item.year}</ResearchYear>
-                        <ResearchPreview $hasImage={!!item.thumbnail}>
-                          {item.thumbnail && (
-                            <ResearchPreviewImage src={item.thumbnail} alt={`${item.title} preview`} />
-                          )}
-                        </ResearchPreview>
+                        <ResearchSummary>{item.summary}</ResearchSummary>
                       </ResearchRow>
                     ))}
                   </ResearchList>
+                  <FloatingPreview $visible={preview.visible} $x={preview.x} $y={preview.y}>
+                    {preview.image && <PreviewImage src={preview.image} alt={`${preview.title} preview`} />}
+                  </FloatingPreview>
                   <ViewAllLink to="/research">View all research →</ViewAllLink>
-                </div>
+                </ResearchRail>
               </ResearchGrid>
             </NarrativeSection>
 

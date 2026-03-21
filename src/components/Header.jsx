@@ -63,6 +63,7 @@ const NavItem = styled(NavLink)`
   &.active,
   &:hover {
     opacity: 1;
+    color: ${({ theme }) => theme.colors.subpage.accent};
   }
 `;
 
@@ -96,6 +97,9 @@ function Header() {
           </NavItem>
           <NavItem to="/activities">
             Activities
+          </NavItem>
+          <NavItem to="/archive">
+            Archive
           </NavItem>
         </Nav>
       </HeaderInner>

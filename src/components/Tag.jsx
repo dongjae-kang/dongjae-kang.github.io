@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 const variants = {
   dark: css`
     color: ${({ theme }) => theme.colors.home.text};
-    border: 1px solid rgba(196, 149, 106, 0.25);
-    background: rgba(196, 149, 106, 0.08);
+    border: 1px solid rgba(45, 90, 61, 0.22);
+    background: rgba(45, 90, 61, 0.08);
   `,
   light: css`
     color: ${({ theme }) => theme.colors.subpage.text};
-    border: 1px solid rgba(196, 149, 106, 0.22);
-    background: rgba(196, 149, 106, 0.08);
+    border: 1px solid rgba(45, 90, 61, 0.16);
+    background: rgba(45, 90, 61, 0.06);
   `,
 };
 
