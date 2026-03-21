@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 const HeaderShell = styled.header`
   position: fixed;
@@ -55,13 +55,32 @@ const NavGroup = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  padding-bottom: 12px;
+  margin-bottom: -12px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 12px;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     position: static;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+    &::after {
+      display: none;
+    }
   }
 `;
 
 const NavItem = styled(NavLink)`
+  display: inline-flex;
+  align-items: center;
   font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -77,22 +96,30 @@ const NavItem = styled(NavLink)`
   }
 `;
 
+const Chevron = styled.span`
+  margin-left: 4px;
+  font-size: 0.6em;
+  opacity: 0.5;
+  transform: translateY(-1px);
+`;
+
 const Submenu = styled.div`
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% - 4px);
   right: 0;
   min-width: 220px;
-  padding: 12px 14px;
-  border: 1px solid rgba(43, 42, 42, 0.08);
+  padding: 8px 0;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 4px;
-  background: rgba(247, 247, 245, 0.98);
+  background: rgba(247, 247, 245, 0.92);
   backdrop-filter: blur(16px);
   display: grid;
-  gap: 8px;
+  gap: 0;
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(-4px);
   pointer-events: none;
-  transition: ${({ theme }) => theme.transitions.hover};
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: opacity 0.18s ease, transform 0.18s ease;
 
   ${NavGroup}:hover &,
   ${NavGroup}:focus-within & {
@@ -106,18 +133,23 @@ const Submenu = styled.div`
   }
 `;
 
-const SubmenuLink = styled(Link)`
+const SubmenuButton = styled.button`
   display: grid;
   gap: 2px;
-  padding: 2px 0;
+  width: 100%;
+  padding: 8px 20px;
+  text-align: left;
+  color: ${({ theme }) => theme.colors.subpage.text};
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.subpage.accent};
+    opacity: 1;
   }
 `;
 
 const SubmenuTitle = styled.span`
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 `;
@@ -140,13 +172,15 @@ const menus = [
     to: '/research',
     submenu: [
       {
-        label: 'Projects',
+        label: 'Main Research',
         to: '/research',
+        section: null,
         text: 'Core research projects in misinformation and platform governance.',
       },
       {
         label: 'Coursework',
-        to: '/research?section=coursework',
+        to: '/research',
+        section: 'coursework',
         text: 'Selected papers and course-based work kept under the same umbrella.',
       },
     ],
@@ -158,11 +192,13 @@ const menus = [
       {
         label: 'Activities',
         to: '/activities',
+        section: null,
         text: 'Talks, diplomacy, leadership, and public-facing work.',
       },
       {
         label: 'Archive',
-        to: '/activities?section=archive',
+        to: '/activities',
+        section: 'archive',
         text: 'Lighter visits and records kept inside Activities, not as a separate front door.',
       },
     ],
@@ -171,6 +207,7 @@ const menus = [
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -184,6 +221,24 @@ function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
 
+  const handleSubmenuNavigation = (item) => {
+    const target = item.section ? `${item.to}?section=${item.section}` : item.to;
+    navigate(target);
+
+    if (!item.section) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const id = item.section;
+      const sectionNode = document.getElementById(id);
+      sectionNode?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
   return (
     <HeaderShell>
       <HeaderInner $scrolled={scrolled}>
@@ -195,14 +250,19 @@ function Header() {
             <NavGroup key={item.label}>
               <NavItem to={item.to}>
                 {item.label}
+                {item.submenu && <Chevron>▾</Chevron>}
               </NavItem>
               {item.submenu && (
                 <Submenu>
                   {item.submenu.map((subitem) => (
-                    <SubmenuLink key={subitem.label} to={subitem.to}>
+                    <SubmenuButton
+                      key={subitem.label}
+                      type="button"
+                      onClick={() => handleSubmenuNavigation(subitem)}
+                    >
                       <SubmenuTitle>{subitem.label}</SubmenuTitle>
                       <SubmenuText>{subitem.text}</SubmenuText>
-                    </SubmenuLink>
+                    </SubmenuButton>
                   ))}
                 </Submenu>
               )}

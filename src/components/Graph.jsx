@@ -31,7 +31,7 @@ const GraphWrap = styled.div`
   height: min(52vh, 560px);
   min-height: 390px;
   margin: 0 auto;
-  overflow: clip;
+  overflow: visible;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     height: 44vh;
@@ -42,7 +42,7 @@ const GraphWrap = styled.div`
 const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: visible;
 
   .node-drift {
     animation: ${drift} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
@@ -108,9 +108,9 @@ const nodeStyles = {
   theme: {
     radius: 13.5,
     fill: COLORS.greenDark,
-    labelSize: 12,
+    labelSize: 14,
     labelWeight: 500,
-    labelOpacity: 0.9,
+    labelOpacity: 0.92,
   },
   researchMain: {
     radius: 9,
@@ -453,7 +453,10 @@ function Graph() {
     const labelGroups = driftGroup
       .append('text')
       .attr('fill', COLORS.text)
-      .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
+      .attr('font-family', (node) =>
+        node.type === 'theme' ? "'Cormorant Garamond', serif" : "'PP Neue Montreal', 'Inter', sans-serif"
+      )
+      .attr('font-style', (node) => (node.type === 'theme' ? 'italic' : 'normal'))
       .attr('font-size', (node) => `${nodeVisual(node).labelSize}px`)
       .attr('font-weight', (node) => nodeVisual(node).labelWeight)
       .attr('opacity', (node) =>

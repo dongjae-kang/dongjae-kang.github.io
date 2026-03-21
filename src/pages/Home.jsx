@@ -63,8 +63,8 @@ const Hero = styled.section`
     content: '';
     position: absolute;
     inset: 5% auto auto 50%;
-    width: min(88vw, 900px);
-    height: min(72vw, 860px);
+    width: min(94vw, 980px);
+    height: min(102vw, 1160px);
     transform: translateX(-50%);
     background:
       radial-gradient(circle at 48% 44%, rgba(74, 122, 94, 0.26) 0%, rgba(154, 184, 158, 0.14) 24%, rgba(196, 149, 106, 0.07) 48%, transparent 76%);
@@ -75,9 +75,9 @@ const Hero = styled.section`
   &::after {
     content: '';
     position: absolute;
-    inset: 18% auto auto 50%;
-    width: min(70vw, 720px);
-    height: min(50vw, 520px);
+    inset: 14% auto auto 50%;
+    width: min(78vw, 860px);
+    height: min(92vw, 980px);
     transform: translateX(-50%);
     background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.1), transparent 72%);
     pointer-events: none;
@@ -169,7 +169,6 @@ const ScrollCue = styled.button`
 
 const Story = styled.div`
   padding: 24px 0 120px;
-  background: linear-gradient(180deg, rgba(74, 122, 94, 0.075), transparent 220px);
 `;
 
 const StoryInner = styled.div`
@@ -179,54 +178,17 @@ const StoryInner = styled.div`
   gap: 88px;
 `;
 
-const GuideGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  padding-top: 12px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const GuideCard = styled(Link)`
-  display: grid;
-  gap: 8px;
-  padding: 16px 0 18px;
-  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  transition: ${({ theme }) => theme.transitions.hover};
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.subpage.accent};
-    border-top-color: rgba(27, 61, 47, 0.34);
-  }
-`;
-
-const GuideTitle = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.55rem;
-  line-height: 1.08;
-  font-weight: 500;
-`;
-
-const GuideText = styled.p`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.95rem;
-  line-height: 1.65;
-`;
-
 const NarrativeSection = styled.section`
   display: grid;
   gap: 28px;
   align-content: start;
-  padding-top: 28px;
-  border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  padding-top: 0;
   ${fadeUpStyles};
+
+  & + & {
+    padding-top: 28px;
+    border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  }
 `;
 
 const SectionHeader = styled.div`
@@ -531,24 +493,6 @@ const activityRailOrder = [
   'valedictorian',
 ];
 
-const siteGuide = [
-  {
-    title: 'About',
-    text: 'Profile, education, and the through-line connecting research with public work.',
-    to: '/about',
-  },
-  {
-    title: 'Research',
-    text: 'Core projects plus a smaller coursework layer for papers that matter but sit beside the main research.',
-    to: '/research',
-  },
-  {
-    title: 'Activities',
-    text: 'Public work first, with a smaller archive of lighter records kept inside the same section.',
-    to: '/activities',
-  },
-];
-
 function Home() {
   const storyRef = useRef(null);
   const researchListRef = useRef(null);
@@ -624,15 +568,6 @@ function Home() {
 
         <Story ref={storyRef}>
           <StoryInner>
-            <GuideGrid>
-              {siteGuide.map((item) => (
-                <GuideCard key={item.title} to={item.to}>
-                  <GuideTitle>{item.title}</GuideTitle>
-                  <GuideText>{item.text}</GuideText>
-                </GuideCard>
-              ))}
-            </GuideGrid>
-
             <NarrativeSection ref={researchRef} $visible={researchVisible}>
               <ResearchGrid>
                 <SectionHeader>
