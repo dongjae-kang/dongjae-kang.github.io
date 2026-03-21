@@ -356,8 +356,8 @@ function Graph() {
     if (!isMobile) {
       root
         .append('text')
-        .attr('x', size.width * 0.08)
-        .attr('y', size.height * 0.07)
+        .attr('x', size.width * 0.12)
+        .attr('y', size.height * 0.08)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
         .attr('font-family', "'Cormorant Garamond', serif")
         .attr('font-size', 42)
@@ -366,7 +366,7 @@ function Graph() {
 
       root
         .append('text')
-        .attr('x', size.width * 0.92)
+        .attr('x', size.width * 0.82)
         .attr('y', size.height * 0.07)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
         .attr('font-family', "'Cormorant Garamond', serif")
@@ -377,7 +377,7 @@ function Graph() {
 
       root
         .append('text')
-        .attr('x', size.width * 0.48)
+        .attr('x', size.width * 0.46)
         .attr('y', size.height * 0.06)
         .attr('fill', 'rgba(43, 42, 42, 0.12)')
         .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
@@ -400,7 +400,7 @@ function Graph() {
       .attr('stroke', COLORS.greenLight)
       .attr('stroke-width', 0.95)
       .attr('stroke-linecap', 'round')
-      .attr('opacity', 0.24);
+      .attr('opacity', 0.16);
 
     const flowSelection = flowLayer
       .selectAll('g')
