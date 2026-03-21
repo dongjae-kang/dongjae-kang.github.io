@@ -82,39 +82,39 @@ const primaryFlowPairs = new Map([
 
 const themeAuraPalette = {
   misinformation: {
-    center: 'rgba(45, 90, 61, 0.14)',
-    mid: 'rgba(45, 90, 61, 0.08)',
-    outer: 'rgba(45, 90, 61, 0.025)',
-    desktopRadius: 74,
-    mobileRadius: 56,
+    center: 'rgba(45, 90, 61, 0.2)',
+    mid: 'rgba(45, 90, 61, 0.11)',
+    outer: 'rgba(45, 90, 61, 0.03)',
+    desktopRadius: 82,
+    mobileRadius: 62,
   },
   'platform-governance': {
-    center: 'rgba(27, 61, 47, 0.13)',
-    mid: 'rgba(27, 61, 47, 0.075)',
-    outer: 'rgba(27, 61, 47, 0.022)',
-    desktopRadius: 74,
-    mobileRadius: 56,
+    center: 'rgba(27, 61, 47, 0.18)',
+    mid: 'rgba(27, 61, 47, 0.1)',
+    outer: 'rgba(27, 61, 47, 0.03)',
+    desktopRadius: 82,
+    mobileRadius: 62,
   },
   'content-moderation': {
-    center: 'rgba(74, 122, 94, 0.14)',
-    mid: 'rgba(74, 122, 94, 0.08)',
-    outer: 'rgba(74, 122, 94, 0.025)',
-    desktopRadius: 76,
-    mobileRadius: 58,
+    center: 'rgba(74, 122, 94, 0.2)',
+    mid: 'rgba(74, 122, 94, 0.11)',
+    outer: 'rgba(74, 122, 94, 0.032)',
+    desktopRadius: 84,
+    mobileRadius: 64,
   },
   'ai-policy': {
-    center: 'rgba(45, 90, 61, 0.12)',
-    mid: 'rgba(45, 90, 61, 0.07)',
-    outer: 'rgba(45, 90, 61, 0.022)',
-    desktopRadius: 72,
-    mobileRadius: 54,
+    center: 'rgba(45, 90, 61, 0.17)',
+    mid: 'rgba(45, 90, 61, 0.095)',
+    outer: 'rgba(45, 90, 61, 0.028)',
+    desktopRadius: 80,
+    mobileRadius: 60,
   },
   'participatory-governance': {
-    center: 'rgba(53, 97, 69, 0.14)',
-    mid: 'rgba(53, 97, 69, 0.08)',
-    outer: 'rgba(53, 97, 69, 0.025)',
-    desktopRadius: 78,
-    mobileRadius: 60,
+    center: 'rgba(53, 97, 69, 0.2)',
+    mid: 'rgba(53, 97, 69, 0.11)',
+    outer: 'rgba(53, 97, 69, 0.032)',
+    desktopRadius: 86,
+    mobileRadius: 66,
   },
 };
 
@@ -344,13 +344,26 @@ function Graph() {
     const root = svg.append('g');
     const defs = root.append('defs');
 
+    const themeAuraFilter = defs
+      .append('filter')
+      .attr('id', 'theme-aura-soften')
+      .attr('x', '-180%')
+      .attr('y', '-180%')
+      .attr('width', '460%')
+      .attr('height', '460%');
+
+    themeAuraFilter
+      .append('feGaussianBlur')
+      .attr('in', 'SourceGraphic')
+      .attr('stdDeviation', isMobile ? 6 : 8);
+
     const themeNodes = nodes.filter((node) => node.type === 'theme');
     themeNodes.forEach((node) => {
       const aura = themeAura(node, isMobile);
       const gradient = defs.append('radialGradient').attr('id', `theme-glow-${node.id}`);
       gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.center);
-      gradient.append('stop').attr('offset', '38%').attr('stop-color', aura.mid);
-      gradient.append('stop').attr('offset', '78%').attr('stop-color', aura.outer);
+      gradient.append('stop').attr('offset', '34%').attr('stop-color', aura.mid);
+      gradient.append('stop').attr('offset', '76%').attr('stop-color', aura.outer);
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
@@ -452,7 +465,8 @@ function Graph() {
       .append('circle')
       .attr('class', 'theme-aura')
       .attr('r', (node) => themeAura(node, isMobile).radius)
-      .attr('fill', (node) => `url(#theme-glow-${node.id})`);
+      .attr('fill', (node) => `url(#theme-glow-${node.id})`)
+      .attr('filter', 'url(#theme-aura-soften)');
 
     /* Main node circle */
     const nodeMainSelection = nodeGroup
@@ -537,8 +551,8 @@ function Graph() {
       });
 
       themeAuraSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.88;
-        return isConnected(activeNode, node) ? 1 : 0.12;
+        if (!activeNode) return 0.82;
+        return isConnected(activeNode, node) ? 0.96 : 0.12;
       });
 
       labelGroups.attr('opacity', (node) => {
