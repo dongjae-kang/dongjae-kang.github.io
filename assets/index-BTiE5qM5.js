@@ -107,11 +107,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   position: absolute;
   top: calc(100% - 4px);
   right: 0;
-  min-width: 220px;
+  min-width: 190px;
   padding: 8px 0;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(154, 184, 158, 0.16);
   border-radius: 4px;
-  background: rgba(247, 247, 245, 0.92);
+  background: rgba(27, 61, 47, 0.92);
   backdrop-filter: blur(16px);
   display: grid;
   gap: 0;
@@ -132,33 +132,27 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     display: none;
   }
 `,Pg=$.button`
-  display: grid;
-  gap: 2px;
+  display: block;
   width: 100%;
   padding: 8px 20px;
   text-align: left;
-  color: ${({theme:e})=>e.colors.subpage.text};
-  opacity: 0.6;
-  transition: opacity 0.15s ease;
+  color: rgba(247, 247, 245, 0.72);
+  opacity: 1;
+  transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    opacity: 1;
+    color: rgba(247, 247, 245, 1);
+    background: rgba(154, 184, 158, 0.08);
   }
 `,Fg=$.span`
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,Ig=$.span`
-  color: ${({theme:e})=>e.colors.subpage.muted};
-  font-size: 0.82rem;
-  line-height: 1.5;
-  letter-spacing: 0;
-  text-transform: none;
-`,Lg=[{label:`About`,to:`/about`},{label:`Research`,to:`/research`,submenu:[{label:`Main Research`,to:`/research`,section:null,text:`Core research projects in misinformation and platform governance.`},{label:`Coursework`,to:`/research`,section:`coursework`,text:`Selected papers and course-based work kept under the same umbrella.`}]},{label:`Activities`,to:`/activities`,submenu:[{label:`Activities`,to:`/activities`,section:null,text:`Talks, diplomacy, leadership, and public-facing work.`},{label:`Archive`,to:`/activities`,section:`archive`,text:`Lighter visits and records kept inside Activities, not as a separate front door.`}]}];function Rg(){let e=Bd(),t=Ud(),[n,r]=(0,S.useState)(!1);(0,S.useEffect)(()=>{let e=()=>{let e=window.scrollY;r(e>24)};return e(),window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[e.pathname]);let i=e=>{if(t(e.section?`${e.to}?section=${e.section}`:e.to),!e.section){requestAnimationFrame(()=>{window.scrollTo({top:0,behavior:`smooth`})});return}requestAnimationFrame(()=>{let t=e.section;document.getElementById(t)?.scrollIntoView({behavior:`smooth`,block:`start`})})};return(0,R.jsx)(Eg,{children:(0,R.jsxs)(Dg,{$scrolled:n,children:[(0,R.jsx)(Og,{to:`/`,children:`DONGJAE KANG`}),(0,R.jsx)(kg,{children:Lg.map(e=>(0,R.jsxs)(Ag,{children:[(0,R.jsxs)(jg,{to:e.to,children:[e.label,e.submenu&&(0,R.jsx)(Mg,{children:`▾`})]}),e.submenu&&(0,R.jsx)(Ng,{children:e.submenu.map(e=>(0,R.jsxs)(Pg,{type:`button`,onClick:()=>i(e),children:[(0,R.jsx)(Fg,{children:e.label}),(0,R.jsx)(Ig,{children:e.text})]},e.label))})]},e.label))})]})})}var zg=$.footer`
+`,Ig=[{label:`About`,to:`/about`},{label:`Research`,to:`/research`,submenu:[{label:`Main Research`,to:`/research`,section:null},{label:`Coursework & Papers`,to:`/research`,section:`coursework`}]},{label:`Activities`,to:`/activities`,submenu:[{label:`Main Activities`,to:`/activities`,section:null},{label:`Archive`,to:`/activities`,section:`archive`}]}];function Lg(){let e=Bd(),t=Ud(),[n,r]=(0,S.useState)(!1);(0,S.useEffect)(()=>{let e=()=>{let e=window.scrollY;r(e>24)};return e(),window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[e.pathname]);let i=e=>{if(t(e.section?`${e.to}?section=${e.section}`:e.to),!e.section){window.setTimeout(()=>{window.scrollTo({top:0,behavior:`smooth`})},40);return}window.setTimeout(()=>{let t=e.section;document.getElementById(t)?.scrollIntoView({behavior:`smooth`,block:`start`})},90)};return(0,R.jsx)(Eg,{children:(0,R.jsxs)(Dg,{$scrolled:n,children:[(0,R.jsx)(Og,{to:`/`,children:`DONGJAE KANG`}),(0,R.jsx)(kg,{children:Ig.map(e=>(0,R.jsxs)(Ag,{children:[(0,R.jsxs)(jg,{to:e.to,children:[e.label,e.submenu&&(0,R.jsx)(Mg,{children:`▾`})]}),e.submenu&&(0,R.jsx)(Ng,{children:e.submenu.map(e=>(0,R.jsx)(Pg,{type:`button`,onClick:()=>i(e),children:(0,R.jsx)(Fg,{children:e.label})},e.label))})]},e.label))})]})})}var Rg=$.footer`
   width: 100%;
   padding: 32px 24px 40px;
   background: transparent;
-`,Bg=$.div`
+`,zg=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, calc(100% - 16px));
   margin: 0 auto;
   display: flex;
@@ -175,11 +169,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     flex-direction: column;
     align-items: flex-start;
   }
-`,Vg=$.div`
+`,Bg=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-`,Hg=$.a`
+`,Vg=$.a`
   opacity: 0.82;
 
   &:hover {
@@ -187,7 +181,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     text-decoration: underline;
     color: ${({theme:e})=>e.colors.subpage.accent};
   }
-`;function Ug(){return(0,R.jsx)(zg,{children:(0,R.jsxs)(Bg,{children:[(0,R.jsxs)(Vg,{children:[(0,R.jsx)(Hg,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,R.jsx)(Hg,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`LinkedIn`}),(0,R.jsx)(Hg,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`GitHub`})]}),(0,R.jsx)(`span`,{children:new Date().getFullYear()})]})})}var Wg={color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0},Gg=S.createContext&&S.createContext(Wg),Kg=[`attr`,`size`,`title`];function qg(e,t){if(e==null)return{};var n,r,i=Jg(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)===-1&&{}.propertyIsEnumerable.call(e,n)&&(i[n]=e[n])}return i}function Jg(e,t){if(e==null)return{};var n={};for(var r in e)if({}.hasOwnProperty.call(e,r)){if(t.indexOf(r)!==-1)continue;n[r]=e[r]}return n}function Yg(){return Yg=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)({}).hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},Yg.apply(null,arguments)}function Xg(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)}return n}function Zg(e){for(var t=1;t<arguments.length;t++){var n=arguments[t]==null?{}:arguments[t];t%2?Xg(Object(n),!0).forEach(function(t){Qg(e,t,n[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):Xg(Object(n)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))})}return e}function Qg(e,t,n){return(t=$g(t))in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function $g(e){var t=e_(e,`string`);return typeof t==`symbol`?t:t+``}function e_(e,t){if(typeof e!=`object`||!e)return e;var n=e[Symbol.toPrimitive];if(n!==void 0){var r=n.call(e,t||`default`);if(typeof r!=`object`)return r;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(t===`string`?String:Number)(e)}function t_(e){return e&&e.map((e,t)=>S.createElement(e.tag,Zg({key:t},e.attr),t_(e.child)))}function n_(e){return t=>S.createElement(r_,Yg({attr:Zg({},e.attr)},t),t_(e.child))}function r_(e){var t=t=>{var{attr:n,size:r,title:i}=e,a=qg(e,Kg),o=r||t.size||`1em`,s;return t.className&&(s=t.className),e.className&&(s=(s?s+` `:``)+e.className),S.createElement(`svg`,Yg({stroke:`currentColor`,fill:`currentColor`,strokeWidth:`0`},t.attr,n,a,{className:s,style:Zg(Zg({color:e.color||t.color},t.style),e.style),height:o,width:o,xmlns:`http://www.w3.org/2000/svg`}),i&&S.createElement(`title`,null,i),e.children)};return Gg===void 0?t(Wg):S.createElement(Gg.Consumer,null,e=>t(e))}function i_(e){return n_({tag:`svg`,attr:{viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`},child:[{tag:`line`,attr:{x1:`12`,y1:`5`,x2:`12`,y2:`19`},child:[]},{tag:`polyline`,attr:{points:`19 12 12 19 5 12`},child:[]}]})(e)}var a_={value:()=>{}};function o_(){for(var e=0,t=arguments.length,n={},r;e<t;++e){if(!(r=arguments[e]+``)||r in n||/[\s.]/.test(r))throw Error(`illegal type: `+r);n[r]=[]}return new s_(n)}function s_(e){this._=e}function c_(e,t){return e.trim().split(/^|\s+/).map(function(e){var n=``,r=e.indexOf(`.`);if(r>=0&&(n=e.slice(r+1),e=e.slice(0,r)),e&&!t.hasOwnProperty(e))throw Error(`unknown type: `+e);return{type:e,name:n}})}s_.prototype=o_.prototype={constructor:s_,on:function(e,t){var n=this._,r=c_(e+``,n),i,a=-1,o=r.length;if(arguments.length<2){for(;++a<o;)if((i=(e=r[a]).type)&&(i=l_(n[i],e.name)))return i;return}if(t!=null&&typeof t!=`function`)throw Error(`invalid callback: `+t);for(;++a<o;)if(i=(e=r[a]).type)n[i]=u_(n[i],e.name,t);else if(t==null)for(i in n)n[i]=u_(n[i],e.name,null);return this},copy:function(){var e={},t=this._;for(var n in t)e[n]=t[n].slice();return new s_(e)},call:function(e,t){if((i=arguments.length-2)>0)for(var n=Array(i),r=0,i,a;r<i;++r)n[r]=arguments[r+2];if(!this._.hasOwnProperty(e))throw Error(`unknown type: `+e);for(a=this._[e],r=0,i=a.length;r<i;++r)a[r].value.apply(t,n)},apply:function(e,t,n){if(!this._.hasOwnProperty(e))throw Error(`unknown type: `+e);for(var r=this._[e],i=0,a=r.length;i<a;++i)r[i].value.apply(t,n)}};function l_(e,t){for(var n=0,r=e.length,i;n<r;++n)if((i=e[n]).name===t)return i.value}function u_(e,t,n){for(var r=0,i=e.length;r<i;++r)if(e[r].name===t){e[r]=a_,e=e.slice(0,r).concat(e.slice(r+1));break}return n!=null&&e.push({name:t,value:n}),e}var d_={svg:`http://www.w3.org/2000/svg`,xhtml:`http://www.w3.org/1999/xhtml`,xlink:`http://www.w3.org/1999/xlink`,xml:`http://www.w3.org/XML/1998/namespace`,xmlns:`http://www.w3.org/2000/xmlns/`};function f_(e){var t=e+=``,n=t.indexOf(`:`);return n>=0&&(t=e.slice(0,n))!==`xmlns`&&(e=e.slice(n+1)),d_.hasOwnProperty(t)?{space:d_[t],local:e}:e}function p_(e){return function(){var t=this.ownerDocument,n=this.namespaceURI;return n===`http://www.w3.org/1999/xhtml`&&t.documentElement.namespaceURI===`http://www.w3.org/1999/xhtml`?t.createElement(e):t.createElementNS(n,e)}}function m_(e){return function(){return this.ownerDocument.createElementNS(e.space,e.local)}}function h_(e){var t=f_(e);return(t.local?m_:p_)(t)}function g_(){}function __(e){return e==null?g_:function(){return this.querySelector(e)}}function v_(e){typeof e!=`function`&&(e=__(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=Array(o),c,l,u=0;u<o;++u)(c=a[u])&&(l=e.call(c,c.__data__,u,a))&&(`__data__`in c&&(l.__data__=c.__data__),s[u]=l);return new oy(r,this._parents)}function y_(e){return e==null?[]:Array.isArray(e)?e:Array.from(e)}function b_(){return[]}function x_(e){return e==null?b_:function(){return this.querySelectorAll(e)}}function S_(e){return function(){return y_(e.apply(this,arguments))}}function C_(e){e=typeof e==`function`?S_(e):x_(e);for(var t=this._groups,n=t.length,r=[],i=[],a=0;a<n;++a)for(var o=t[a],s=o.length,c,l=0;l<s;++l)(c=o[l])&&(r.push(e.call(c,c.__data__,l,o)),i.push(c));return new oy(r,i)}function w_(e){return function(){return this.matches(e)}}function T_(e){return function(t){return t.matches(e)}}var E_=Array.prototype.find;function D_(e){return function(){return E_.call(this.children,e)}}function O_(){return this.firstElementChild}function k_(e){return this.select(e==null?O_:D_(typeof e==`function`?e:T_(e)))}var A_=Array.prototype.filter;function j_(){return Array.from(this.children)}function M_(e){return function(){return A_.call(this.children,e)}}function N_(e){return this.selectAll(e==null?j_:M_(typeof e==`function`?e:T_(e)))}function P_(e){typeof e!=`function`&&(e=w_(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=[],c,l=0;l<o;++l)(c=a[l])&&e.call(c,c.__data__,l,a)&&s.push(c);return new oy(r,this._parents)}function F_(e){return Array(e.length)}function I_(){return new oy(this._enter||this._groups.map(F_),this._parents)}function L_(e,t){this.ownerDocument=e.ownerDocument,this.namespaceURI=e.namespaceURI,this._next=null,this._parent=e,this.__data__=t}L_.prototype={constructor:L_,appendChild:function(e){return this._parent.insertBefore(e,this._next)},insertBefore:function(e,t){return this._parent.insertBefore(e,t)},querySelector:function(e){return this._parent.querySelector(e)},querySelectorAll:function(e){return this._parent.querySelectorAll(e)}};function R_(e){return function(){return e}}function z_(e,t,n,r,i,a){for(var o=0,s,c=t.length,l=a.length;o<l;++o)(s=t[o])?(s.__data__=a[o],r[o]=s):n[o]=new L_(e,a[o]);for(;o<c;++o)(s=t[o])&&(i[o]=s)}function B_(e,t,n,r,i,a,o){var s,c,l=new Map,u=t.length,d=a.length,f=Array(u),p;for(s=0;s<u;++s)(c=t[s])&&(f[s]=p=o.call(c,c.__data__,s,t)+``,l.has(p)?i[s]=c:l.set(p,c));for(s=0;s<d;++s)p=o.call(e,a[s],s,a)+``,(c=l.get(p))?(r[s]=c,c.__data__=a[s],l.delete(p)):n[s]=new L_(e,a[s]);for(s=0;s<u;++s)(c=t[s])&&l.get(f[s])===c&&(i[s]=c)}function V_(e){return e.__data__}function H_(e,t){if(!arguments.length)return Array.from(this,V_);var n=t?B_:z_,r=this._parents,i=this._groups;typeof e!=`function`&&(e=R_(e));for(var a=i.length,o=Array(a),s=Array(a),c=Array(a),l=0;l<a;++l){var u=r[l],d=i[l],f=d.length,p=U_(e.call(u,u&&u.__data__,l,r)),m=p.length,h=s[l]=Array(m),g=o[l]=Array(m);n(u,d,h,g,c[l]=Array(f),p,t);for(var _=0,v=0,y,b;_<m;++_)if(y=h[_]){for(_>=v&&(v=_+1);!(b=g[v])&&++v<m;);y._next=b||null}}return o=new oy(o,r),o._enter=s,o._exit=c,o}function U_(e){return typeof e==`object`&&`length`in e?e:Array.from(e)}function W_(){return new oy(this._exit||this._groups.map(F_),this._parents)}function G_(e,t,n){var r=this.enter(),i=this,a=this.exit();return typeof e==`function`?(r=e(r),r&&=r.selection()):r=r.append(e+``),t!=null&&(i=t(i),i&&=i.selection()),n==null?a.remove():n(a),r&&i?r.merge(i).order():i}function K_(e){for(var t=e.selection?e.selection():e,n=this._groups,r=t._groups,i=n.length,a=r.length,o=Math.min(i,a),s=Array(i),c=0;c<o;++c)for(var l=n[c],u=r[c],d=l.length,f=s[c]=Array(d),p,m=0;m<d;++m)(p=l[m]||u[m])&&(f[m]=p);for(;c<i;++c)s[c]=n[c];return new oy(s,this._parents)}function q_(){for(var e=this._groups,t=-1,n=e.length;++t<n;)for(var r=e[t],i=r.length-1,a=r[i],o;--i>=0;)(o=r[i])&&(a&&o.compareDocumentPosition(a)^4&&a.parentNode.insertBefore(o,a),a=o);return this}function J_(e){e||=Y_;function t(t,n){return t&&n?e(t.__data__,n.__data__):!t-!n}for(var n=this._groups,r=n.length,i=Array(r),a=0;a<r;++a){for(var o=n[a],s=o.length,c=i[a]=Array(s),l,u=0;u<s;++u)(l=o[u])&&(c[u]=l);c.sort(t)}return new oy(i,this._parents).order()}function Y_(e,t){return e<t?-1:e>t?1:e>=t?0:NaN}function X_(){var e=arguments[0];return arguments[0]=this,e.apply(null,arguments),this}function Z_(){return Array.from(this)}function Q_(){for(var e=this._groups,t=0,n=e.length;t<n;++t)for(var r=e[t],i=0,a=r.length;i<a;++i){var o=r[i];if(o)return o}return null}function $_(){let e=0;for(let t of this)++e;return e}function ev(){return!this.node()}function tv(e){for(var t=this._groups,n=0,r=t.length;n<r;++n)for(var i=t[n],a=0,o=i.length,s;a<o;++a)(s=i[a])&&e.call(s,s.__data__,a,i);return this}function nv(e){return function(){this.removeAttribute(e)}}function rv(e){return function(){this.removeAttributeNS(e.space,e.local)}}function iv(e,t){return function(){this.setAttribute(e,t)}}function av(e,t){return function(){this.setAttributeNS(e.space,e.local,t)}}function ov(e,t){return function(){var n=t.apply(this,arguments);n==null?this.removeAttribute(e):this.setAttribute(e,n)}}function sv(e,t){return function(){var n=t.apply(this,arguments);n==null?this.removeAttributeNS(e.space,e.local):this.setAttributeNS(e.space,e.local,n)}}function cv(e,t){var n=f_(e);if(arguments.length<2){var r=this.node();return n.local?r.getAttributeNS(n.space,n.local):r.getAttribute(n)}return this.each((t==null?n.local?rv:nv:typeof t==`function`?n.local?sv:ov:n.local?av:iv)(n,t))}function lv(e){return e.ownerDocument&&e.ownerDocument.defaultView||e.document&&e||e.defaultView}function uv(e){return function(){this.style.removeProperty(e)}}function dv(e,t,n){return function(){this.style.setProperty(e,t,n)}}function fv(e,t,n){return function(){var r=t.apply(this,arguments);r==null?this.style.removeProperty(e):this.style.setProperty(e,r,n)}}function pv(e,t,n){return arguments.length>1?this.each((t==null?uv:typeof t==`function`?fv:dv)(e,t,n??``)):mv(this.node(),e)}function mv(e,t){return e.style.getPropertyValue(t)||lv(e).getComputedStyle(e,null).getPropertyValue(t)}function hv(e){return function(){delete this[e]}}function gv(e,t){return function(){this[e]=t}}function _v(e,t){return function(){var n=t.apply(this,arguments);n==null?delete this[e]:this[e]=n}}function vv(e,t){return arguments.length>1?this.each((t==null?hv:typeof t==`function`?_v:gv)(e,t)):this.node()[e]}function yv(e){return e.trim().split(/^|\s+/)}function bv(e){return e.classList||new xv(e)}function xv(e){this._node=e,this._names=yv(e.getAttribute(`class`)||``)}xv.prototype={add:function(e){this._names.indexOf(e)<0&&(this._names.push(e),this._node.setAttribute(`class`,this._names.join(` `)))},remove:function(e){var t=this._names.indexOf(e);t>=0&&(this._names.splice(t,1),this._node.setAttribute(`class`,this._names.join(` `)))},contains:function(e){return this._names.indexOf(e)>=0}};function Sv(e,t){for(var n=bv(e),r=-1,i=t.length;++r<i;)n.add(t[r])}function Cv(e,t){for(var n=bv(e),r=-1,i=t.length;++r<i;)n.remove(t[r])}function wv(e){return function(){Sv(this,e)}}function Tv(e){return function(){Cv(this,e)}}function Ev(e,t){return function(){(t.apply(this,arguments)?Sv:Cv)(this,e)}}function Dv(e,t){var n=yv(e+``);if(arguments.length<2){for(var r=bv(this.node()),i=-1,a=n.length;++i<a;)if(!r.contains(n[i]))return!1;return!0}return this.each((typeof t==`function`?Ev:t?wv:Tv)(n,t))}function Ov(){this.textContent=``}function kv(e){return function(){this.textContent=e}}function Av(e){return function(){this.textContent=e.apply(this,arguments)??``}}function jv(e){return arguments.length?this.each(e==null?Ov:(typeof e==`function`?Av:kv)(e)):this.node().textContent}function Mv(){this.innerHTML=``}function Nv(e){return function(){this.innerHTML=e}}function Pv(e){return function(){this.innerHTML=e.apply(this,arguments)??``}}function Fv(e){return arguments.length?this.each(e==null?Mv:(typeof e==`function`?Pv:Nv)(e)):this.node().innerHTML}function Iv(){this.nextSibling&&this.parentNode.appendChild(this)}function Lv(){return this.each(Iv)}function Rv(){this.previousSibling&&this.parentNode.insertBefore(this,this.parentNode.firstChild)}function zv(){return this.each(Rv)}function Bv(e){var t=typeof e==`function`?e:h_(e);return this.select(function(){return this.appendChild(t.apply(this,arguments))})}function Vv(){return null}function Hv(e,t){var n=typeof e==`function`?e:h_(e),r=t==null?Vv:typeof t==`function`?t:__(t);return this.select(function(){return this.insertBefore(n.apply(this,arguments),r.apply(this,arguments)||null)})}function Uv(){var e=this.parentNode;e&&e.removeChild(this)}function Wv(){return this.each(Uv)}function Gv(){var e=this.cloneNode(!1),t=this.parentNode;return t?t.insertBefore(e,this.nextSibling):e}function Kv(){var e=this.cloneNode(!0),t=this.parentNode;return t?t.insertBefore(e,this.nextSibling):e}function qv(e){return this.select(e?Kv:Gv)}function Jv(e){return arguments.length?this.property(`__data__`,e):this.node().__data__}function Yv(e){return function(t){e.call(this,t,this.__data__)}}function Xv(e){return e.trim().split(/^|\s+/).map(function(e){var t=``,n=e.indexOf(`.`);return n>=0&&(t=e.slice(n+1),e=e.slice(0,n)),{type:e,name:t}})}function Zv(e){return function(){var t=this.__on;if(t){for(var n=0,r=-1,i=t.length,a;n<i;++n)a=t[n],(!e.type||a.type===e.type)&&a.name===e.name?this.removeEventListener(a.type,a.listener,a.options):t[++r]=a;++r?t.length=r:delete this.__on}}}function Qv(e,t,n){return function(){var r=this.__on,i,a=Yv(t);if(r){for(var o=0,s=r.length;o<s;++o)if((i=r[o]).type===e.type&&i.name===e.name){this.removeEventListener(i.type,i.listener,i.options),this.addEventListener(i.type,i.listener=a,i.options=n),i.value=t;return}}this.addEventListener(e.type,a,n),i={type:e.type,name:e.name,value:t,listener:a,options:n},r?r.push(i):this.__on=[i]}}function $v(e,t,n){var r=Xv(e+``),i,a=r.length,o;if(arguments.length<2){var s=this.node().__on;if(s){for(var c=0,l=s.length,u;c<l;++c)for(i=0,u=s[c];i<a;++i)if((o=r[i]).type===u.type&&o.name===u.name)return u.value}return}for(s=t?Qv:Zv,i=0;i<a;++i)this.each(s(r[i],t,n));return this}function ey(e,t,n){var r=lv(e),i=r.CustomEvent;typeof i==`function`?i=new i(t,n):(i=r.document.createEvent(`Event`),n?(i.initEvent(t,n.bubbles,n.cancelable),i.detail=n.detail):i.initEvent(t,!1,!1)),e.dispatchEvent(i)}function ty(e,t){return function(){return ey(this,e,t)}}function ny(e,t){return function(){return ey(this,e,t.apply(this,arguments))}}function ry(e,t){return this.each((typeof t==`function`?ny:ty)(e,t))}function*iy(){for(var e=this._groups,t=0,n=e.length;t<n;++t)for(var r=e[t],i=0,a=r.length,o;i<a;++i)(o=r[i])&&(yield o)}var ay=[null];function oy(e,t){this._groups=e,this._parents=t}function sy(){return new oy([[document.documentElement]],ay)}function cy(){return this}oy.prototype=sy.prototype={constructor:oy,select:v_,selectAll:C_,selectChild:k_,selectChildren:N_,filter:P_,data:H_,enter:I_,exit:W_,join:G_,merge:K_,selection:cy,order:q_,sort:J_,call:X_,nodes:Z_,node:Q_,size:$_,empty:ev,each:tv,attr:cv,style:pv,property:vv,classed:Dv,text:jv,html:Fv,raise:Lv,lower:zv,append:Bv,insert:Hv,remove:Wv,clone:qv,datum:Jv,on:$v,dispatch:ry,[Symbol.iterator]:iy};function ly(e){return typeof e==`string`?new oy([[document.querySelector(e)]],[document.documentElement]):new oy([[e]],ay)}function uy(e){let t;for(;t=e.sourceEvent;)e=t;return e}function dy(e,t){if(e=uy(e),t===void 0&&(t=e.currentTarget),t){var n=t.ownerSVGElement||t;if(n.createSVGPoint){var r=n.createSVGPoint();return r.x=e.clientX,r.y=e.clientY,r=r.matrixTransform(t.getScreenCTM().inverse()),[r.x,r.y]}if(t.getBoundingClientRect){var i=t.getBoundingClientRect();return[e.clientX-i.left-t.clientLeft,e.clientY-i.top-t.clientTop]}}return[e.pageX,e.pageY]}var fy={passive:!1},py={capture:!0,passive:!1};function my(e){e.stopImmediatePropagation()}function hy(e){e.preventDefault(),e.stopImmediatePropagation()}function gy(e){var t=e.document.documentElement,n=ly(e).on(`dragstart.drag`,hy,py);`onselectstart`in t?n.on(`selectstart.drag`,hy,py):(t.__noselect=t.style.MozUserSelect,t.style.MozUserSelect=`none`)}function _y(e,t){var n=e.document.documentElement,r=ly(e).on(`dragstart.drag`,null);t&&(r.on(`click.drag`,hy,py),setTimeout(function(){r.on(`click.drag`,null)},0)),`onselectstart`in n?r.on(`selectstart.drag`,null):(n.style.MozUserSelect=n.__noselect,delete n.__noselect)}var vy=e=>()=>e;function yy(e,{sourceEvent:t,subject:n,target:r,identifier:i,active:a,x:o,y:s,dx:c,dy:l,dispatch:u}){Object.defineProperties(this,{type:{value:e,enumerable:!0,configurable:!0},sourceEvent:{value:t,enumerable:!0,configurable:!0},subject:{value:n,enumerable:!0,configurable:!0},target:{value:r,enumerable:!0,configurable:!0},identifier:{value:i,enumerable:!0,configurable:!0},active:{value:a,enumerable:!0,configurable:!0},x:{value:o,enumerable:!0,configurable:!0},y:{value:s,enumerable:!0,configurable:!0},dx:{value:c,enumerable:!0,configurable:!0},dy:{value:l,enumerable:!0,configurable:!0},_:{value:u}})}yy.prototype.on=function(){var e=this._.on.apply(this._,arguments);return e===this._?this:e};function by(e){return!e.ctrlKey&&!e.button}function xy(){return this.parentNode}function Sy(e,t){return t??{x:e.x,y:e.y}}function Cy(){return navigator.maxTouchPoints||`ontouchstart`in this}function wy(){var e=by,t=xy,n=Sy,r=Cy,i={},a=o_(`start`,`drag`,`end`),o=0,s,c,l,u,d=0;function f(e){e.on(`mousedown.drag`,p).filter(r).on(`touchstart.drag`,g).on(`touchmove.drag`,_,fy).on(`touchend.drag touchcancel.drag`,v).style(`touch-action`,`none`).style(`-webkit-tap-highlight-color`,`rgba(0,0,0,0)`)}function p(n,r){if(!(u||!e.call(this,n,r))){var i=y(this,t.call(this,n,r),n,r,`mouse`);i&&(ly(n.view).on(`mousemove.drag`,m,py).on(`mouseup.drag`,h,py),gy(n.view),my(n),l=!1,s=n.clientX,c=n.clientY,i(`start`,n))}}function m(e){if(hy(e),!l){var t=e.clientX-s,n=e.clientY-c;l=t*t+n*n>d}i.mouse(`drag`,e)}function h(e){ly(e.view).on(`mousemove.drag mouseup.drag`,null),_y(e.view,l),hy(e),i.mouse(`end`,e)}function g(n,r){if(e.call(this,n,r)){var i=n.changedTouches,a=t.call(this,n,r),o=i.length,s,c;for(s=0;s<o;++s)(c=y(this,a,n,r,i[s].identifier,i[s]))&&(my(n),c(`start`,n,i[s]))}}function _(e){var t=e.changedTouches,n=t.length,r,a;for(r=0;r<n;++r)(a=i[t[r].identifier])&&(hy(e),a(`drag`,e,t[r]))}function v(e){var t=e.changedTouches,n=t.length,r,a;for(u&&clearTimeout(u),u=setTimeout(function(){u=null},500),r=0;r<n;++r)(a=i[t[r].identifier])&&(my(e),a(`end`,e,t[r]))}function y(e,t,r,s,c,l){var u=a.copy(),d=dy(l||r,t),p,m,h;if((h=n.call(e,new yy(`beforestart`,{sourceEvent:r,target:f,identifier:c,active:o,x:d[0],y:d[1],dx:0,dy:0,dispatch:u}),s))!=null)return p=h.x-d[0]||0,m=h.y-d[1]||0,function n(r,a,l){var g=d,_;switch(r){case`start`:i[c]=n,_=o++;break;case`end`:delete i[c],--o;case`drag`:d=dy(l||a,t),_=o;break}u.call(r,e,new yy(r,{sourceEvent:a,subject:h,target:f,identifier:c,active:_,x:d[0]+p,y:d[1]+m,dx:d[0]-g[0],dy:d[1]-g[1],dispatch:u}),s)}}return f.filter=function(t){return arguments.length?(e=typeof t==`function`?t:vy(!!t),f):e},f.container=function(e){return arguments.length?(t=typeof e==`function`?e:vy(e),f):t},f.subject=function(e){return arguments.length?(n=typeof e==`function`?e:vy(e),f):n},f.touchable=function(e){return arguments.length?(r=typeof e==`function`?e:vy(!!e),f):r},f.on=function(){var e=a.on.apply(a,arguments);return e===a?f:e},f.clickDistance=function(e){return arguments.length?(d=(e=+e)*e,f):Math.sqrt(d)},f}function Ty(e,t,n){e.prototype=t.prototype=n,n.constructor=e}function Ey(e,t){var n=Object.create(e.prototype);for(var r in t)n[r]=t[r];return n}function Dy(){}var Oy=.7,ky=1/Oy,Ay=`\\s*([+-]?\\d+)\\s*`,jy=`\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*`,My=`\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*`,Ny=/^#([0-9a-f]{3,8})$/,Py=RegExp(`^rgb\\(${Ay},${Ay},${Ay}\\)$`),Fy=RegExp(`^rgb\\(${My},${My},${My}\\)$`),Iy=RegExp(`^rgba\\(${Ay},${Ay},${Ay},${jy}\\)$`),Ly=RegExp(`^rgba\\(${My},${My},${My},${jy}\\)$`),Ry=RegExp(`^hsl\\(${jy},${My},${My}\\)$`),zy=RegExp(`^hsla\\(${jy},${My},${My},${jy}\\)$`),By={aliceblue:15792383,antiquewhite:16444375,aqua:65535,aquamarine:8388564,azure:15794175,beige:16119260,bisque:16770244,black:0,blanchedalmond:16772045,blue:255,blueviolet:9055202,brown:10824234,burlywood:14596231,cadetblue:6266528,chartreuse:8388352,chocolate:13789470,coral:16744272,cornflowerblue:6591981,cornsilk:16775388,crimson:14423100,cyan:65535,darkblue:139,darkcyan:35723,darkgoldenrod:12092939,darkgray:11119017,darkgreen:25600,darkgrey:11119017,darkkhaki:12433259,darkmagenta:9109643,darkolivegreen:5597999,darkorange:16747520,darkorchid:10040012,darkred:9109504,darksalmon:15308410,darkseagreen:9419919,darkslateblue:4734347,darkslategray:3100495,darkslategrey:3100495,darkturquoise:52945,darkviolet:9699539,deeppink:16716947,deepskyblue:49151,dimgray:6908265,dimgrey:6908265,dodgerblue:2003199,firebrick:11674146,floralwhite:16775920,forestgreen:2263842,fuchsia:16711935,gainsboro:14474460,ghostwhite:16316671,gold:16766720,goldenrod:14329120,gray:8421504,green:32768,greenyellow:11403055,grey:8421504,honeydew:15794160,hotpink:16738740,indianred:13458524,indigo:4915330,ivory:16777200,khaki:15787660,lavender:15132410,lavenderblush:16773365,lawngreen:8190976,lemonchiffon:16775885,lightblue:11393254,lightcoral:15761536,lightcyan:14745599,lightgoldenrodyellow:16448210,lightgray:13882323,lightgreen:9498256,lightgrey:13882323,lightpink:16758465,lightsalmon:16752762,lightseagreen:2142890,lightskyblue:8900346,lightslategray:7833753,lightslategrey:7833753,lightsteelblue:11584734,lightyellow:16777184,lime:65280,limegreen:3329330,linen:16445670,magenta:16711935,maroon:8388608,mediumaquamarine:6737322,mediumblue:205,mediumorchid:12211667,mediumpurple:9662683,mediumseagreen:3978097,mediumslateblue:8087790,mediumspringgreen:64154,mediumturquoise:4772300,mediumvioletred:13047173,midnightblue:1644912,mintcream:16121850,mistyrose:16770273,moccasin:16770229,navajowhite:16768685,navy:128,oldlace:16643558,olive:8421376,olivedrab:7048739,orange:16753920,orangered:16729344,orchid:14315734,palegoldenrod:15657130,palegreen:10025880,paleturquoise:11529966,palevioletred:14381203,papayawhip:16773077,peachpuff:16767673,peru:13468991,pink:16761035,plum:14524637,powderblue:11591910,purple:8388736,rebeccapurple:6697881,red:16711680,rosybrown:12357519,royalblue:4286945,saddlebrown:9127187,salmon:16416882,sandybrown:16032864,seagreen:3050327,seashell:16774638,sienna:10506797,silver:12632256,skyblue:8900331,slateblue:6970061,slategray:7372944,slategrey:7372944,snow:16775930,springgreen:65407,steelblue:4620980,tan:13808780,teal:32896,thistle:14204888,tomato:16737095,turquoise:4251856,violet:15631086,wheat:16113331,white:16777215,whitesmoke:16119285,yellow:16776960,yellowgreen:10145074};Ty(Dy,Gy,{copy(e){return Object.assign(new this.constructor,this,e)},displayable(){return this.rgb().displayable()},hex:Vy,formatHex:Vy,formatHex8:Hy,formatHsl:Uy,formatRgb:Wy,toString:Wy});function Vy(){return this.rgb().formatHex()}function Hy(){return this.rgb().formatHex8()}function Uy(){return ib(this).formatHsl()}function Wy(){return this.rgb().formatRgb()}function Gy(e){var t,n;return e=(e+``).trim().toLowerCase(),(t=Ny.exec(e))?(n=t[1].length,t=parseInt(t[1],16),n===6?Ky(t):n===3?new Xy(t>>8&15|t>>4&240,t>>4&15|t&240,(t&15)<<4|t&15,1):n===8?qy(t>>24&255,t>>16&255,t>>8&255,(t&255)/255):n===4?qy(t>>12&15|t>>8&240,t>>8&15|t>>4&240,t>>4&15|t&240,((t&15)<<4|t&15)/255):null):(t=Py.exec(e))?new Xy(t[1],t[2],t[3],1):(t=Fy.exec(e))?new Xy(t[1]*255/100,t[2]*255/100,t[3]*255/100,1):(t=Iy.exec(e))?qy(t[1],t[2],t[3],t[4]):(t=Ly.exec(e))?qy(t[1]*255/100,t[2]*255/100,t[3]*255/100,t[4]):(t=Ry.exec(e))?rb(t[1],t[2]/100,t[3]/100,1):(t=zy.exec(e))?rb(t[1],t[2]/100,t[3]/100,t[4]):By.hasOwnProperty(e)?Ky(By[e]):e===`transparent`?new Xy(NaN,NaN,NaN,0):null}function Ky(e){return new Xy(e>>16&255,e>>8&255,e&255,1)}function qy(e,t,n,r){return r<=0&&(e=t=n=NaN),new Xy(e,t,n,r)}function Jy(e){return e instanceof Dy||(e=Gy(e)),e?(e=e.rgb(),new Xy(e.r,e.g,e.b,e.opacity)):new Xy}function Yy(e,t,n,r){return arguments.length===1?Jy(e):new Xy(e,t,n,r??1)}function Xy(e,t,n,r){this.r=+e,this.g=+t,this.b=+n,this.opacity=+r}Ty(Xy,Yy,Ey(Dy,{brighter(e){return e=e==null?ky:ky**+e,new Xy(this.r*e,this.g*e,this.b*e,this.opacity)},darker(e){return e=e==null?Oy:Oy**+e,new Xy(this.r*e,this.g*e,this.b*e,this.opacity)},rgb(){return this},clamp(){return new Xy(tb(this.r),tb(this.g),tb(this.b),eb(this.opacity))},displayable(){return-.5<=this.r&&this.r<255.5&&-.5<=this.g&&this.g<255.5&&-.5<=this.b&&this.b<255.5&&0<=this.opacity&&this.opacity<=1},hex:Zy,formatHex:Zy,formatHex8:Qy,formatRgb:$y,toString:$y}));function Zy(){return`#${nb(this.r)}${nb(this.g)}${nb(this.b)}`}function Qy(){return`#${nb(this.r)}${nb(this.g)}${nb(this.b)}${nb((isNaN(this.opacity)?1:this.opacity)*255)}`}function $y(){let e=eb(this.opacity);return`${e===1?`rgb(`:`rgba(`}${tb(this.r)}, ${tb(this.g)}, ${tb(this.b)}${e===1?`)`:`, ${e})`}`}function eb(e){return isNaN(e)?1:Math.max(0,Math.min(1,e))}function tb(e){return Math.max(0,Math.min(255,Math.round(e)||0))}function nb(e){return e=tb(e),(e<16?`0`:``)+e.toString(16)}function rb(e,t,n,r){return r<=0?e=t=n=NaN:n<=0||n>=1?e=t=NaN:t<=0&&(e=NaN),new ob(e,t,n,r)}function ib(e){if(e instanceof ob)return new ob(e.h,e.s,e.l,e.opacity);if(e instanceof Dy||(e=Gy(e)),!e)return new ob;if(e instanceof ob)return e;e=e.rgb();var t=e.r/255,n=e.g/255,r=e.b/255,i=Math.min(t,n,r),a=Math.max(t,n,r),o=NaN,s=a-i,c=(a+i)/2;return s?(o=t===a?(n-r)/s+(n<r)*6:n===a?(r-t)/s+2:(t-n)/s+4,s/=c<.5?a+i:2-a-i,o*=60):s=c>0&&c<1?0:o,new ob(o,s,c,e.opacity)}function ab(e,t,n,r){return arguments.length===1?ib(e):new ob(e,t,n,r??1)}function ob(e,t,n,r){this.h=+e,this.s=+t,this.l=+n,this.opacity=+r}Ty(ob,ab,Ey(Dy,{brighter(e){return e=e==null?ky:ky**+e,new ob(this.h,this.s,this.l*e,this.opacity)},darker(e){return e=e==null?Oy:Oy**+e,new ob(this.h,this.s,this.l*e,this.opacity)},rgb(){var e=this.h%360+(this.h<0)*360,t=isNaN(e)||isNaN(this.s)?0:this.s,n=this.l,r=n+(n<.5?n:1-n)*t,i=2*n-r;return new Xy(lb(e>=240?e-240:e+120,i,r),lb(e,i,r),lb(e<120?e+240:e-120,i,r),this.opacity)},clamp(){return new ob(sb(this.h),cb(this.s),cb(this.l),eb(this.opacity))},displayable(){return(0<=this.s&&this.s<=1||isNaN(this.s))&&0<=this.l&&this.l<=1&&0<=this.opacity&&this.opacity<=1},formatHsl(){let e=eb(this.opacity);return`${e===1?`hsl(`:`hsla(`}${sb(this.h)}, ${cb(this.s)*100}%, ${cb(this.l)*100}%${e===1?`)`:`, ${e})`}`}}));function sb(e){return e=(e||0)%360,e<0?e+360:e}function cb(e){return Math.max(0,Math.min(1,e||0))}function lb(e,t,n){return(e<60?t+(n-t)*e/60:e<180?n:e<240?t+(n-t)*(240-e)/60:t)*255}var ub=e=>()=>e;function db(e,t){return function(n){return e+n*t}}function fb(e,t,n){return e**=+n,t=t**+n-e,n=1/n,function(r){return(e+r*t)**+n}}function pb(e){return(e=+e)==1?mb:function(t,n){return n-t?fb(t,n,e):ub(isNaN(t)?n:t)}}function mb(e,t){var n=t-e;return n?db(e,n):ub(isNaN(e)?t:e)}var hb=(function e(t){var n=pb(t);function r(e,t){var r=n((e=Yy(e)).r,(t=Yy(t)).r),i=n(e.g,t.g),a=n(e.b,t.b),o=mb(e.opacity,t.opacity);return function(t){return e.r=r(t),e.g=i(t),e.b=a(t),e.opacity=o(t),e+``}}return r.gamma=e,r})(1);function gb(e,t){return e=+e,t=+t,function(n){return e*(1-n)+t*n}}var _b=/[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,vb=new RegExp(_b.source,`g`);function yb(e){return function(){return e}}function bb(e){return function(t){return e(t)+``}}function xb(e,t){var n=_b.lastIndex=vb.lastIndex=0,r,i,a,o=-1,s=[],c=[];for(e+=``,t+=``;(r=_b.exec(e))&&(i=vb.exec(t));)(a=i.index)>n&&(a=t.slice(n,a),s[o]?s[o]+=a:s[++o]=a),(r=r[0])===(i=i[0])?s[o]?s[o]+=i:s[++o]=i:(s[++o]=null,c.push({i:o,x:gb(r,i)})),n=vb.lastIndex;return n<t.length&&(a=t.slice(n),s[o]?s[o]+=a:s[++o]=a),s.length<2?c[0]?bb(c[0].x):yb(t):(t=c.length,function(e){for(var n=0,r;n<t;++n)s[(r=c[n]).i]=r.x(e);return s.join(``)})}var Sb=180/Math.PI,Cb={translateX:0,translateY:0,rotate:0,skewX:0,scaleX:1,scaleY:1};function wb(e,t,n,r,i,a){var o,s,c;return(o=Math.sqrt(e*e+t*t))&&(e/=o,t/=o),(c=e*n+t*r)&&(n-=e*c,r-=t*c),(s=Math.sqrt(n*n+r*r))&&(n/=s,r/=s,c/=s),e*r<t*n&&(e=-e,t=-t,c=-c,o=-o),{translateX:i,translateY:a,rotate:Math.atan2(t,e)*Sb,skewX:Math.atan(c)*Sb,scaleX:o,scaleY:s}}var Tb;function Eb(e){let t=new(typeof DOMMatrix==`function`?DOMMatrix:WebKitCSSMatrix)(e+``);return t.isIdentity?Cb:wb(t.a,t.b,t.c,t.d,t.e,t.f)}function Db(e){return e==null||(Tb||=document.createElementNS(`http://www.w3.org/2000/svg`,`g`),Tb.setAttribute(`transform`,e),!(e=Tb.transform.baseVal.consolidate()))?Cb:(e=e.matrix,wb(e.a,e.b,e.c,e.d,e.e,e.f))}function Ob(e,t,n,r){function i(e){return e.length?e.pop()+` `:``}function a(e,r,i,a,o,s){if(e!==i||r!==a){var c=o.push(`translate(`,null,t,null,n);s.push({i:c-4,x:gb(e,i)},{i:c-2,x:gb(r,a)})}else (i||a)&&o.push(`translate(`+i+t+a+n)}function o(e,t,n,a){e===t?t&&n.push(i(n)+`rotate(`+t+r):(e-t>180?t+=360:t-e>180&&(e+=360),a.push({i:n.push(i(n)+`rotate(`,null,r)-2,x:gb(e,t)}))}function s(e,t,n,a){e===t?t&&n.push(i(n)+`skewX(`+t+r):a.push({i:n.push(i(n)+`skewX(`,null,r)-2,x:gb(e,t)})}function c(e,t,n,r,a,o){if(e!==n||t!==r){var s=a.push(i(a)+`scale(`,null,`,`,null,`)`);o.push({i:s-4,x:gb(e,n)},{i:s-2,x:gb(t,r)})}else (n!==1||r!==1)&&a.push(i(a)+`scale(`+n+`,`+r+`)`)}return function(t,n){var r=[],i=[];return t=e(t),n=e(n),a(t.translateX,t.translateY,n.translateX,n.translateY,r,i),o(t.rotate,n.rotate,r,i),s(t.skewX,n.skewX,r,i),c(t.scaleX,t.scaleY,n.scaleX,n.scaleY,r,i),t=n=null,function(e){for(var t=-1,n=i.length,a;++t<n;)r[(a=i[t]).i]=a.x(e);return r.join(``)}}}var kb=Ob(Eb,`px, `,`px)`,`deg)`),Ab=Ob(Db,`, `,`)`,`)`),jb=0,Mb=0,Nb=0,Pb=1e3,Fb,Ib,Lb=0,Rb=0,zb=0,Bb=typeof performance==`object`&&performance.now?performance:Date,Vb=typeof window==`object`&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(e){setTimeout(e,17)};function Hb(){return Rb||=(Vb(Ub),Bb.now()+zb)}function Ub(){Rb=0}function Wb(){this._call=this._time=this._next=null}Wb.prototype=Gb.prototype={constructor:Wb,restart:function(e,t,n){if(typeof e!=`function`)throw TypeError(`callback is not a function`);n=(n==null?Hb():+n)+(t==null?0:+t),!this._next&&Ib!==this&&(Ib?Ib._next=this:Fb=this,Ib=this),this._call=e,this._time=n,Xb()},stop:function(){this._call&&(this._call=null,this._time=1/0,Xb())}};function Gb(e,t,n){var r=new Wb;return r.restart(e,t,n),r}function Kb(){Hb(),++jb;for(var e=Fb,t;e;)(t=Rb-e._time)>=0&&e._call.call(void 0,t),e=e._next;--jb}function qb(){Rb=(Lb=Bb.now())+zb,jb=Mb=0;try{Kb()}finally{jb=0,Yb(),Rb=0}}function Jb(){var e=Bb.now(),t=e-Lb;t>Pb&&(zb-=t,Lb=e)}function Yb(){for(var e,t=Fb,n,r=1/0;t;)t._call?(r>t._time&&(r=t._time),e=t,t=t._next):(n=t._next,t._next=null,t=e?e._next=n:Fb=n);Ib=e,Xb(r)}function Xb(e){jb||(Mb&&=clearTimeout(Mb),e-Rb>24?(e<1/0&&(Mb=setTimeout(qb,e-Bb.now()-zb)),Nb&&=clearInterval(Nb)):(Nb||=(Lb=Bb.now(),setInterval(Jb,Pb)),jb=1,Vb(qb)))}function Zb(e,t,n){var r=new Wb;return t=t==null?0:+t,r.restart(n=>{r.stop(),e(n+t)},t,n),r}var Qb=o_(`start`,`end`,`cancel`,`interrupt`),$b=[];function ex(e,t,n,r,i,a){var o=e.__transition;if(!o)e.__transition={};else if(n in o)return;ix(e,n,{name:t,index:r,group:i,on:Qb,tween:$b,time:a.time,delay:a.delay,duration:a.duration,ease:a.ease,timer:null,state:0})}function tx(e,t){var n=rx(e,t);if(n.state>0)throw Error(`too late; already scheduled`);return n}function nx(e,t){var n=rx(e,t);if(n.state>3)throw Error(`too late; already running`);return n}function rx(e,t){var n=e.__transition;if(!n||!(n=n[t]))throw Error(`transition not found`);return n}function ix(e,t,n){var r=e.__transition,i;r[t]=n,n.timer=Gb(a,0,n.time);function a(e){n.state=1,n.timer.restart(o,n.delay,n.time),n.delay<=e&&o(e-n.delay)}function o(a){var l,u,d,f;if(n.state!==1)return c();for(l in r)if(f=r[l],f.name===n.name){if(f.state===3)return Zb(o);f.state===4?(f.state=6,f.timer.stop(),f.on.call(`interrupt`,e,e.__data__,f.index,f.group),delete r[l]):+l<t&&(f.state=6,f.timer.stop(),f.on.call(`cancel`,e,e.__data__,f.index,f.group),delete r[l])}if(Zb(function(){n.state===3&&(n.state=4,n.timer.restart(s,n.delay,n.time),s(a))}),n.state=2,n.on.call(`start`,e,e.__data__,n.index,n.group),n.state===2){for(n.state=3,i=Array(d=n.tween.length),l=0,u=-1;l<d;++l)(f=n.tween[l].value.call(e,e.__data__,n.index,n.group))&&(i[++u]=f);i.length=u+1}}function s(t){for(var r=t<n.duration?n.ease.call(null,t/n.duration):(n.timer.restart(c),n.state=5,1),a=-1,o=i.length;++a<o;)i[a].call(e,r);n.state===5&&(n.on.call(`end`,e,e.__data__,n.index,n.group),c())}function c(){for(var i in n.state=6,n.timer.stop(),delete r[t],r)return;delete e.__transition}}function ax(e,t){var n=e.__transition,r,i,a=!0,o;if(n){for(o in t=t==null?null:t+``,n){if((r=n[o]).name!==t){a=!1;continue}i=r.state>2&&r.state<5,r.state=6,r.timer.stop(),r.on.call(i?`interrupt`:`cancel`,e,e.__data__,r.index,r.group),delete n[o]}a&&delete e.__transition}}function ox(e){return this.each(function(){ax(this,e)})}function sx(e,t){var n,r;return function(){var i=nx(this,e),a=i.tween;if(a!==n){r=n=a;for(var o=0,s=r.length;o<s;++o)if(r[o].name===t){r=r.slice(),r.splice(o,1);break}}i.tween=r}}function cx(e,t,n){var r,i;if(typeof n!=`function`)throw Error();return function(){var a=nx(this,e),o=a.tween;if(o!==r){i=(r=o).slice();for(var s={name:t,value:n},c=0,l=i.length;c<l;++c)if(i[c].name===t){i[c]=s;break}c===l&&i.push(s)}a.tween=i}}function lx(e,t){var n=this._id;if(e+=``,arguments.length<2){for(var r=rx(this.node(),n).tween,i=0,a=r.length,o;i<a;++i)if((o=r[i]).name===e)return o.value;return null}return this.each((t==null?sx:cx)(n,e,t))}function ux(e,t,n){var r=e._id;return e.each(function(){var e=nx(this,r);(e.value||={})[t]=n.apply(this,arguments)}),function(e){return rx(e,r).value[t]}}function dx(e,t){var n;return(typeof t==`number`?gb:t instanceof Gy?hb:(n=Gy(t))?(t=n,hb):xb)(e,t)}function fx(e){return function(){this.removeAttribute(e)}}function px(e){return function(){this.removeAttributeNS(e.space,e.local)}}function mx(e,t,n){var r,i=n+``,a;return function(){var o=this.getAttribute(e);return o===i?null:o===r?a:a=t(r=o,n)}}function hx(e,t,n){var r,i=n+``,a;return function(){var o=this.getAttributeNS(e.space,e.local);return o===i?null:o===r?a:a=t(r=o,n)}}function gx(e,t,n){var r,i,a;return function(){var o,s=n(this),c;return s==null?void this.removeAttribute(e):(o=this.getAttribute(e),c=s+``,o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s)))}}function _x(e,t,n){var r,i,a;return function(){var o,s=n(this),c;return s==null?void this.removeAttributeNS(e.space,e.local):(o=this.getAttributeNS(e.space,e.local),c=s+``,o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s)))}}function vx(e,t){var n=f_(e),r=n===`transform`?Ab:dx;return this.attrTween(e,typeof t==`function`?(n.local?_x:gx)(n,r,ux(this,`attr.`+e,t)):t==null?(n.local?px:fx)(n):(n.local?hx:mx)(n,r,t))}function yx(e,t){return function(n){this.setAttribute(e,t.call(this,n))}}function bx(e,t){return function(n){this.setAttributeNS(e.space,e.local,t.call(this,n))}}function xx(e,t){var n,r;function i(){var i=t.apply(this,arguments);return i!==r&&(n=(r=i)&&bx(e,i)),n}return i._value=t,i}function Sx(e,t){var n,r;function i(){var i=t.apply(this,arguments);return i!==r&&(n=(r=i)&&yx(e,i)),n}return i._value=t,i}function Cx(e,t){var n=`attr.`+e;if(arguments.length<2)return(n=this.tween(n))&&n._value;if(t==null)return this.tween(n,null);if(typeof t!=`function`)throw Error();var r=f_(e);return this.tween(n,(r.local?xx:Sx)(r,t))}function wx(e,t){return function(){tx(this,e).delay=+t.apply(this,arguments)}}function Tx(e,t){return t=+t,function(){tx(this,e).delay=t}}function Ex(e){var t=this._id;return arguments.length?this.each((typeof e==`function`?wx:Tx)(t,e)):rx(this.node(),t).delay}function Dx(e,t){return function(){nx(this,e).duration=+t.apply(this,arguments)}}function Ox(e,t){return t=+t,function(){nx(this,e).duration=t}}function kx(e){var t=this._id;return arguments.length?this.each((typeof e==`function`?Dx:Ox)(t,e)):rx(this.node(),t).duration}function Ax(e,t){if(typeof t!=`function`)throw Error();return function(){nx(this,e).ease=t}}function jx(e){var t=this._id;return arguments.length?this.each(Ax(t,e)):rx(this.node(),t).ease}function Mx(e,t){return function(){var n=t.apply(this,arguments);if(typeof n!=`function`)throw Error();nx(this,e).ease=n}}function Nx(e){if(typeof e!=`function`)throw Error();return this.each(Mx(this._id,e))}function Px(e){typeof e!=`function`&&(e=w_(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=[],c,l=0;l<o;++l)(c=a[l])&&e.call(c,c.__data__,l,a)&&s.push(c);return new lS(r,this._parents,this._name,this._id)}function Fx(e){if(e._id!==this._id)throw Error();for(var t=this._groups,n=e._groups,r=t.length,i=n.length,a=Math.min(r,i),o=Array(r),s=0;s<a;++s)for(var c=t[s],l=n[s],u=c.length,d=o[s]=Array(u),f,p=0;p<u;++p)(f=c[p]||l[p])&&(d[p]=f);for(;s<r;++s)o[s]=t[s];return new lS(o,this._parents,this._name,this._id)}function Ix(e){return(e+``).trim().split(/^|\s+/).every(function(e){var t=e.indexOf(`.`);return t>=0&&(e=e.slice(0,t)),!e||e===`start`})}function Lx(e,t,n){var r,i,a=Ix(t)?tx:nx;return function(){var o=a(this,e),s=o.on;s!==r&&(i=(r=s).copy()).on(t,n),o.on=i}}function Rx(e,t){var n=this._id;return arguments.length<2?rx(this.node(),n).on.on(e):this.each(Lx(n,e,t))}function zx(e){return function(){var t=this.parentNode;for(var n in this.__transition)if(+n!==e)return;t&&t.removeChild(this)}}function Bx(){return this.on(`end.remove`,zx(this._id))}function Vx(e){var t=this._name,n=this._id;typeof e!=`function`&&(e=__(e));for(var r=this._groups,i=r.length,a=Array(i),o=0;o<i;++o)for(var s=r[o],c=s.length,l=a[o]=Array(c),u,d,f=0;f<c;++f)(u=s[f])&&(d=e.call(u,u.__data__,f,s))&&(`__data__`in u&&(d.__data__=u.__data__),l[f]=d,ex(l[f],t,n,f,l,rx(u,n)));return new lS(a,this._parents,t,n)}function Hx(e){var t=this._name,n=this._id;typeof e!=`function`&&(e=x_(e));for(var r=this._groups,i=r.length,a=[],o=[],s=0;s<i;++s)for(var c=r[s],l=c.length,u,d=0;d<l;++d)if(u=c[d]){for(var f=e.call(u,u.__data__,d,c),p,m=rx(u,n),h=0,g=f.length;h<g;++h)(p=f[h])&&ex(p,t,n,h,f,m);a.push(f),o.push(u)}return new lS(a,o,t,n)}var Ux=sy.prototype.constructor;function Wx(){return new Ux(this._groups,this._parents)}function Gx(e,t){var n,r,i;return function(){var a=mv(this,e),o=(this.style.removeProperty(e),mv(this,e));return a===o?null:a===n&&o===r?i:i=t(n=a,r=o)}}function Kx(e){return function(){this.style.removeProperty(e)}}function qx(e,t,n){var r,i=n+``,a;return function(){var o=mv(this,e);return o===i?null:o===r?a:a=t(r=o,n)}}function Jx(e,t,n){var r,i,a;return function(){var o=mv(this,e),s=n(this),c=s+``;return s??(c=s=(this.style.removeProperty(e),mv(this,e))),o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s))}}function Yx(e,t){var n,r,i,a=`style.`+t,o=`end.`+a,s;return function(){var c=nx(this,e),l=c.on,u=c.value[a]==null?s||=Kx(t):void 0;(l!==n||i!==u)&&(r=(n=l).copy()).on(o,i=u),c.on=r}}function Xx(e,t,n){var r=(e+=``)==`transform`?kb:dx;return t==null?this.styleTween(e,Gx(e,r)).on(`end.style.`+e,Kx(e)):typeof t==`function`?this.styleTween(e,Jx(e,r,ux(this,`style.`+e,t))).each(Yx(this._id,e)):this.styleTween(e,qx(e,r,t),n).on(`end.style.`+e,null)}function Zx(e,t,n){return function(r){this.style.setProperty(e,t.call(this,r),n)}}function Qx(e,t,n){var r,i;function a(){var a=t.apply(this,arguments);return a!==i&&(r=(i=a)&&Zx(e,a,n)),r}return a._value=t,a}function $x(e,t,n){var r=`style.`+(e+=``);if(arguments.length<2)return(r=this.tween(r))&&r._value;if(t==null)return this.tween(r,null);if(typeof t!=`function`)throw Error();return this.tween(r,Qx(e,t,n??``))}function eS(e){return function(){this.textContent=e}}function tS(e){return function(){this.textContent=e(this)??``}}function nS(e){return this.tween(`text`,typeof e==`function`?tS(ux(this,`text`,e)):eS(e==null?``:e+``))}function rS(e){return function(t){this.textContent=e.call(this,t)}}function iS(e){var t,n;function r(){var r=e.apply(this,arguments);return r!==n&&(t=(n=r)&&rS(r)),t}return r._value=e,r}function aS(e){var t=`text`;if(arguments.length<1)return(t=this.tween(t))&&t._value;if(e==null)return this.tween(t,null);if(typeof e!=`function`)throw Error();return this.tween(t,iS(e))}function oS(){for(var e=this._name,t=this._id,n=dS(),r=this._groups,i=r.length,a=0;a<i;++a)for(var o=r[a],s=o.length,c,l=0;l<s;++l)if(c=o[l]){var u=rx(c,t);ex(c,e,n,l,o,{time:u.time+u.delay+u.duration,delay:0,duration:u.duration,ease:u.ease})}return new lS(r,this._parents,e,n)}function sS(){var e,t,n=this,r=n._id,i=n.size();return new Promise(function(a,o){var s={value:o},c={value:function(){--i===0&&a()}};n.each(function(){var n=nx(this,r),i=n.on;i!==e&&(t=(e=i).copy(),t._.cancel.push(s),t._.interrupt.push(s),t._.end.push(c)),n.on=t}),i===0&&a()})}var cS=0;function lS(e,t,n,r){this._groups=e,this._parents=t,this._name=n,this._id=r}function uS(e){return sy().transition(e)}function dS(){return++cS}var fS=sy.prototype;lS.prototype=uS.prototype={constructor:lS,select:Vx,selectAll:Hx,selectChild:fS.selectChild,selectChildren:fS.selectChildren,filter:Px,merge:Fx,selection:Wx,transition:oS,call:fS.call,nodes:fS.nodes,node:fS.node,size:fS.size,empty:fS.empty,each:fS.each,on:Rx,attr:vx,attrTween:Cx,style:Xx,styleTween:$x,text:nS,textTween:aS,remove:Bx,tween:lx,delay:Ex,duration:kx,ease:jx,easeVarying:Nx,end:sS,[Symbol.iterator]:fS[Symbol.iterator]};function pS(e){return((e*=2)<=1?e*e*e:(e-=2)*e*e+2)/2}var mS={time:null,delay:0,duration:250,ease:pS};function hS(e,t){for(var n;!(n=e.__transition)||!(n=n[t]);)if(!(e=e.parentNode))throw Error(`transition ${t} not found`);return n}function gS(e){var t,n;e instanceof lS?(t=e._id,e=e._name):(t=dS(),(n=mS).time=Hb(),e=e==null?null:e+``);for(var r=this._groups,i=r.length,a=0;a<i;++a)for(var o=r[a],s=o.length,c,l=0;l<s;++l)(c=o[l])&&ex(c,e,t,l,o,n||hS(c,t));return new lS(r,this._parents,e,t)}sy.prototype.interrupt=ox,sy.prototype.transition=gS;var{abs:_S,max:vS,min:yS}=Math;[`w`,`e`].map(bS),[`n`,`s`].map(bS),[`n`,`w`,`e`,`s`,`nw`,`ne`,`sw`,`se`].map(bS);function bS(e){return{type:e}}function xS(e,t,n){this.k=e,this.x=t,this.y=n}xS.prototype={constructor:xS,scale:function(e){return e===1?this:new xS(this.k*e,this.x,this.y)},translate:function(e,t){return e===0&t===0?this:new xS(this.k,this.x+this.k*e,this.y+this.k*t)},apply:function(e){return[e[0]*this.k+this.x,e[1]*this.k+this.y]},applyX:function(e){return e*this.k+this.x},applyY:function(e){return e*this.k+this.y},invert:function(e){return[(e[0]-this.x)/this.k,(e[1]-this.y)/this.k]},invertX:function(e){return(e-this.x)/this.k},invertY:function(e){return(e-this.y)/this.k},rescaleX:function(e){return e.copy().domain(e.range().map(this.invertX,this).map(e.invert,e))},rescaleY:function(e){return e.copy().domain(e.range().map(this.invertY,this).map(e.invert,e))},toString:function(){return`translate(`+this.x+`,`+this.y+`) scale(`+this.k+`)`}};var SS=new xS(1,0,0);CS.prototype=xS.prototype;function CS(e){for(;!e.__zoom;)if(!(e=e.parentNode))return SS;return e.__zoom}var wS={nodes:[{id:`crisisnews`,label:`CrisisNews`,type:`research`,importance:`main`,url:`/research/crisisnews`,desktop:{x:.14,y:.18},mobile:{x:.12,y:.16}},{id:`prism`,label:`PRISM`,type:`research`,importance:`main`,url:`/research/prism`,desktop:{x:.24,y:.32},mobile:{x:.2,y:.31}},{id:`beyond-removal`,label:`Beyond Removal`,type:`research`,importance:`support`,url:`/research/beyond-removal`,desktop:{x:.18,y:.58},mobile:{x:.14,y:.56}},{id:`multi-agent-sim`,label:`Multi-Agent Sim`,type:`research`,importance:`support`,url:`/research/multi-agent-sim`,desktop:{x:.28,y:.79},mobile:{x:.21,y:.78}},{id:`misinformation`,label:`Misinformation`,type:`theme`,desktop:{x:.5,y:.12},mobile:{x:.5,y:.11}},{id:`platform-governance`,label:`Platform Governance`,type:`theme`,desktop:{x:.56,y:.3},mobile:{x:.6,y:.3}},{id:`content-moderation`,label:`Content Moderation`,type:`theme`,desktop:{x:.48,y:.48},mobile:{x:.47,y:.48}},{id:`ai-policy`,label:`AI Policy`,type:`theme`,desktop:{x:.56,y:.65},mobile:{x:.6,y:.67}},{id:`participatory-governance`,label:`Participatory Governance`,type:`theme`,desktop:{x:.49,y:.82},mobile:{x:.47,y:.85}},{id:`chi-2025`,label:`CHI 2025`,type:`engagement`,importance:`major`,url:`/activities/chi-2025`,desktop:{x:.7,y:.18},mobile:{x:.78,y:.16}},{id:`un-ga-hlw`,label:`UN GA HLW`,type:`engagement`,importance:`major`,url:`/activities/un-ga-hlw`,desktop:{x:.84,y:.27},mobile:{x:.9,y:.26}},{id:`un-youth-forum`,label:`UN Youth Forum`,type:`engagement`,importance:`major`,url:`/activities/un-youth-forum`,desktop:{x:.69,y:.41},mobile:{x:.77,y:.4}},{id:`student-council`,label:`Student Council`,type:`engagement`,importance:`major`,url:`/activities/student-council`,desktop:{x:.84,y:.52},mobile:{x:.89,y:.54}},{id:`valedictorian`,label:`Valedictorian`,type:`engagement`,importance:`major`,url:`/activities/valedictorian`,desktop:{x:.69,y:.64},mobile:{x:.76,y:.62}},{id:`kgsa-career`,label:`KGSA Career`,type:`engagement`,importance:`major`,url:`/activities/kgsa-career`,desktop:{x:.77,y:.76},mobile:{x:.82,y:.74}},{id:`upenn-mixer`,label:`UPenn Mixer`,type:`engagement`,importance:`major`,url:`/activities/upenn-mixer`,desktop:{x:.91,y:.76},mobile:{x:.92,y:.78}},{id:`hyc-mixer`,label:`HYC Mixer`,type:`engagement`,importance:`minor`,url:`/activities/hyc-mixer`,desktop:{x:.64,y:.86},mobile:{x:.7,y:.84}},{id:`columbia-ai-club`,label:`Columbia AI Club`,type:`engagement`,importance:`minor`,url:`/activities/columbia-ai-club`,desktop:{x:.84,y:.91},mobile:{x:.87,y:.9}},{id:`kaist`,label:`KAIST`,type:`institution`,desktop:{x:.24,y:.95},mobile:{x:.25,y:.95}},{id:`columbia-sipa`,label:`Columbia SIPA`,type:`institution`,desktop:{x:.78,y:.95},mobile:{x:.72,y:.95}}],edges:[{source:`crisisnews`,target:`misinformation`},{source:`crisisnews`,target:`platform-governance`},{source:`crisisnews`,target:`kaist`},{source:`prism`,target:`misinformation`},{source:`prism`,target:`platform-governance`},{source:`prism`,target:`columbia-sipa`},{source:`beyond-removal`,target:`content-moderation`},{source:`beyond-removal`,target:`platform-governance`},{source:`multi-agent-sim`,target:`misinformation`},{source:`multi-agent-sim`,target:`ai-policy`},{source:`misinformation`,target:`platform-governance`},{source:`platform-governance`,target:`content-moderation`},{source:`content-moderation`,target:`ai-policy`},{source:`ai-policy`,target:`participatory-governance`},{source:`chi-2025`,target:`misinformation`},{source:`chi-2025`,target:`platform-governance`},{source:`un-ga-hlw`,target:`platform-governance`},{source:`un-ga-hlw`,target:`columbia-sipa`},{source:`un-youth-forum`,target:`platform-governance`},{source:`un-youth-forum`,target:`ai-policy`},{source:`un-youth-forum`,target:`columbia-sipa`},{source:`student-council`,target:`participatory-governance`},{source:`student-council`,target:`platform-governance`},{source:`student-council`,target:`kaist`},{source:`valedictorian`,target:`kaist`},{source:`valedictorian`,target:`participatory-governance`},{source:`kgsa-career`,target:`columbia-sipa`},{source:`kgsa-career`,target:`ai-policy`},{source:`upenn-mixer`,target:`columbia-sipa`},{source:`upenn-mixer`,target:`participatory-governance`},{source:`hyc-mixer`,target:`columbia-sipa`},{source:`hyc-mixer`,target:`participatory-governance`},{source:`columbia-ai-club`,target:`columbia-sipa`},{source:`columbia-ai-club`,target:`ai-policy`}]},TS=Tg`
+`;function Hg(){return(0,R.jsx)(Rg,{children:(0,R.jsxs)(zg,{children:[(0,R.jsxs)(Bg,{children:[(0,R.jsx)(Vg,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,R.jsx)(Vg,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`LinkedIn`}),(0,R.jsx)(Vg,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`GitHub`})]}),(0,R.jsx)(`span`,{children:new Date().getFullYear()})]})})}var Ug={color:void 0,size:void 0,className:void 0,style:void 0,attr:void 0},Wg=S.createContext&&S.createContext(Ug),Gg=[`attr`,`size`,`title`];function Kg(e,t){if(e==null)return{};var n,r,i=qg(e,t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)===-1&&{}.propertyIsEnumerable.call(e,n)&&(i[n]=e[n])}return i}function qg(e,t){if(e==null)return{};var n={};for(var r in e)if({}.hasOwnProperty.call(e,r)){if(t.indexOf(r)!==-1)continue;n[r]=e[r]}return n}function Jg(){return Jg=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)({}).hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},Jg.apply(null,arguments)}function Yg(e,t){var n=Object.keys(e);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(e);t&&(r=r.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),n.push.apply(n,r)}return n}function Xg(e){for(var t=1;t<arguments.length;t++){var n=arguments[t]==null?{}:arguments[t];t%2?Yg(Object(n),!0).forEach(function(t){Zg(e,t,n[t])}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):Yg(Object(n)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))})}return e}function Zg(e,t,n){return(t=Qg(t))in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function Qg(e){var t=$g(e,`string`);return typeof t==`symbol`?t:t+``}function $g(e,t){if(typeof e!=`object`||!e)return e;var n=e[Symbol.toPrimitive];if(n!==void 0){var r=n.call(e,t||`default`);if(typeof r!=`object`)return r;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(t===`string`?String:Number)(e)}function e_(e){return e&&e.map((e,t)=>S.createElement(e.tag,Xg({key:t},e.attr),e_(e.child)))}function t_(e){return t=>S.createElement(n_,Jg({attr:Xg({},e.attr)},t),e_(e.child))}function n_(e){var t=t=>{var{attr:n,size:r,title:i}=e,a=Kg(e,Gg),o=r||t.size||`1em`,s;return t.className&&(s=t.className),e.className&&(s=(s?s+` `:``)+e.className),S.createElement(`svg`,Jg({stroke:`currentColor`,fill:`currentColor`,strokeWidth:`0`},t.attr,n,a,{className:s,style:Xg(Xg({color:e.color||t.color},t.style),e.style),height:o,width:o,xmlns:`http://www.w3.org/2000/svg`}),i&&S.createElement(`title`,null,i),e.children)};return Wg===void 0?t(Ug):S.createElement(Wg.Consumer,null,e=>t(e))}function r_(e){return t_({tag:`svg`,attr:{viewBox:`0 0 24 24`,fill:`none`,stroke:`currentColor`,strokeWidth:`2`,strokeLinecap:`round`,strokeLinejoin:`round`},child:[{tag:`line`,attr:{x1:`12`,y1:`5`,x2:`12`,y2:`19`},child:[]},{tag:`polyline`,attr:{points:`19 12 12 19 5 12`},child:[]}]})(e)}var i_={value:()=>{}};function a_(){for(var e=0,t=arguments.length,n={},r;e<t;++e){if(!(r=arguments[e]+``)||r in n||/[\s.]/.test(r))throw Error(`illegal type: `+r);n[r]=[]}return new o_(n)}function o_(e){this._=e}function s_(e,t){return e.trim().split(/^|\s+/).map(function(e){var n=``,r=e.indexOf(`.`);if(r>=0&&(n=e.slice(r+1),e=e.slice(0,r)),e&&!t.hasOwnProperty(e))throw Error(`unknown type: `+e);return{type:e,name:n}})}o_.prototype=a_.prototype={constructor:o_,on:function(e,t){var n=this._,r=s_(e+``,n),i,a=-1,o=r.length;if(arguments.length<2){for(;++a<o;)if((i=(e=r[a]).type)&&(i=c_(n[i],e.name)))return i;return}if(t!=null&&typeof t!=`function`)throw Error(`invalid callback: `+t);for(;++a<o;)if(i=(e=r[a]).type)n[i]=l_(n[i],e.name,t);else if(t==null)for(i in n)n[i]=l_(n[i],e.name,null);return this},copy:function(){var e={},t=this._;for(var n in t)e[n]=t[n].slice();return new o_(e)},call:function(e,t){if((i=arguments.length-2)>0)for(var n=Array(i),r=0,i,a;r<i;++r)n[r]=arguments[r+2];if(!this._.hasOwnProperty(e))throw Error(`unknown type: `+e);for(a=this._[e],r=0,i=a.length;r<i;++r)a[r].value.apply(t,n)},apply:function(e,t,n){if(!this._.hasOwnProperty(e))throw Error(`unknown type: `+e);for(var r=this._[e],i=0,a=r.length;i<a;++i)r[i].value.apply(t,n)}};function c_(e,t){for(var n=0,r=e.length,i;n<r;++n)if((i=e[n]).name===t)return i.value}function l_(e,t,n){for(var r=0,i=e.length;r<i;++r)if(e[r].name===t){e[r]=i_,e=e.slice(0,r).concat(e.slice(r+1));break}return n!=null&&e.push({name:t,value:n}),e}var u_={svg:`http://www.w3.org/2000/svg`,xhtml:`http://www.w3.org/1999/xhtml`,xlink:`http://www.w3.org/1999/xlink`,xml:`http://www.w3.org/XML/1998/namespace`,xmlns:`http://www.w3.org/2000/xmlns/`};function d_(e){var t=e+=``,n=t.indexOf(`:`);return n>=0&&(t=e.slice(0,n))!==`xmlns`&&(e=e.slice(n+1)),u_.hasOwnProperty(t)?{space:u_[t],local:e}:e}function f_(e){return function(){var t=this.ownerDocument,n=this.namespaceURI;return n===`http://www.w3.org/1999/xhtml`&&t.documentElement.namespaceURI===`http://www.w3.org/1999/xhtml`?t.createElement(e):t.createElementNS(n,e)}}function p_(e){return function(){return this.ownerDocument.createElementNS(e.space,e.local)}}function m_(e){var t=d_(e);return(t.local?p_:f_)(t)}function h_(){}function g_(e){return e==null?h_:function(){return this.querySelector(e)}}function __(e){typeof e!=`function`&&(e=g_(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=Array(o),c,l,u=0;u<o;++u)(c=a[u])&&(l=e.call(c,c.__data__,u,a))&&(`__data__`in c&&(l.__data__=c.__data__),s[u]=l);return new ay(r,this._parents)}function v_(e){return e==null?[]:Array.isArray(e)?e:Array.from(e)}function y_(){return[]}function b_(e){return e==null?y_:function(){return this.querySelectorAll(e)}}function x_(e){return function(){return v_(e.apply(this,arguments))}}function S_(e){e=typeof e==`function`?x_(e):b_(e);for(var t=this._groups,n=t.length,r=[],i=[],a=0;a<n;++a)for(var o=t[a],s=o.length,c,l=0;l<s;++l)(c=o[l])&&(r.push(e.call(c,c.__data__,l,o)),i.push(c));return new ay(r,i)}function C_(e){return function(){return this.matches(e)}}function w_(e){return function(t){return t.matches(e)}}var T_=Array.prototype.find;function E_(e){return function(){return T_.call(this.children,e)}}function D_(){return this.firstElementChild}function O_(e){return this.select(e==null?D_:E_(typeof e==`function`?e:w_(e)))}var k_=Array.prototype.filter;function A_(){return Array.from(this.children)}function j_(e){return function(){return k_.call(this.children,e)}}function M_(e){return this.selectAll(e==null?A_:j_(typeof e==`function`?e:w_(e)))}function N_(e){typeof e!=`function`&&(e=C_(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=[],c,l=0;l<o;++l)(c=a[l])&&e.call(c,c.__data__,l,a)&&s.push(c);return new ay(r,this._parents)}function P_(e){return Array(e.length)}function F_(){return new ay(this._enter||this._groups.map(P_),this._parents)}function I_(e,t){this.ownerDocument=e.ownerDocument,this.namespaceURI=e.namespaceURI,this._next=null,this._parent=e,this.__data__=t}I_.prototype={constructor:I_,appendChild:function(e){return this._parent.insertBefore(e,this._next)},insertBefore:function(e,t){return this._parent.insertBefore(e,t)},querySelector:function(e){return this._parent.querySelector(e)},querySelectorAll:function(e){return this._parent.querySelectorAll(e)}};function L_(e){return function(){return e}}function R_(e,t,n,r,i,a){for(var o=0,s,c=t.length,l=a.length;o<l;++o)(s=t[o])?(s.__data__=a[o],r[o]=s):n[o]=new I_(e,a[o]);for(;o<c;++o)(s=t[o])&&(i[o]=s)}function z_(e,t,n,r,i,a,o){var s,c,l=new Map,u=t.length,d=a.length,f=Array(u),p;for(s=0;s<u;++s)(c=t[s])&&(f[s]=p=o.call(c,c.__data__,s,t)+``,l.has(p)?i[s]=c:l.set(p,c));for(s=0;s<d;++s)p=o.call(e,a[s],s,a)+``,(c=l.get(p))?(r[s]=c,c.__data__=a[s],l.delete(p)):n[s]=new I_(e,a[s]);for(s=0;s<u;++s)(c=t[s])&&l.get(f[s])===c&&(i[s]=c)}function B_(e){return e.__data__}function V_(e,t){if(!arguments.length)return Array.from(this,B_);var n=t?z_:R_,r=this._parents,i=this._groups;typeof e!=`function`&&(e=L_(e));for(var a=i.length,o=Array(a),s=Array(a),c=Array(a),l=0;l<a;++l){var u=r[l],d=i[l],f=d.length,p=H_(e.call(u,u&&u.__data__,l,r)),m=p.length,h=s[l]=Array(m),g=o[l]=Array(m);n(u,d,h,g,c[l]=Array(f),p,t);for(var _=0,v=0,y,b;_<m;++_)if(y=h[_]){for(_>=v&&(v=_+1);!(b=g[v])&&++v<m;);y._next=b||null}}return o=new ay(o,r),o._enter=s,o._exit=c,o}function H_(e){return typeof e==`object`&&`length`in e?e:Array.from(e)}function U_(){return new ay(this._exit||this._groups.map(P_),this._parents)}function W_(e,t,n){var r=this.enter(),i=this,a=this.exit();return typeof e==`function`?(r=e(r),r&&=r.selection()):r=r.append(e+``),t!=null&&(i=t(i),i&&=i.selection()),n==null?a.remove():n(a),r&&i?r.merge(i).order():i}function G_(e){for(var t=e.selection?e.selection():e,n=this._groups,r=t._groups,i=n.length,a=r.length,o=Math.min(i,a),s=Array(i),c=0;c<o;++c)for(var l=n[c],u=r[c],d=l.length,f=s[c]=Array(d),p,m=0;m<d;++m)(p=l[m]||u[m])&&(f[m]=p);for(;c<i;++c)s[c]=n[c];return new ay(s,this._parents)}function K_(){for(var e=this._groups,t=-1,n=e.length;++t<n;)for(var r=e[t],i=r.length-1,a=r[i],o;--i>=0;)(o=r[i])&&(a&&o.compareDocumentPosition(a)^4&&a.parentNode.insertBefore(o,a),a=o);return this}function q_(e){e||=J_;function t(t,n){return t&&n?e(t.__data__,n.__data__):!t-!n}for(var n=this._groups,r=n.length,i=Array(r),a=0;a<r;++a){for(var o=n[a],s=o.length,c=i[a]=Array(s),l,u=0;u<s;++u)(l=o[u])&&(c[u]=l);c.sort(t)}return new ay(i,this._parents).order()}function J_(e,t){return e<t?-1:e>t?1:e>=t?0:NaN}function Y_(){var e=arguments[0];return arguments[0]=this,e.apply(null,arguments),this}function X_(){return Array.from(this)}function Z_(){for(var e=this._groups,t=0,n=e.length;t<n;++t)for(var r=e[t],i=0,a=r.length;i<a;++i){var o=r[i];if(o)return o}return null}function Q_(){let e=0;for(let t of this)++e;return e}function $_(){return!this.node()}function ev(e){for(var t=this._groups,n=0,r=t.length;n<r;++n)for(var i=t[n],a=0,o=i.length,s;a<o;++a)(s=i[a])&&e.call(s,s.__data__,a,i);return this}function tv(e){return function(){this.removeAttribute(e)}}function nv(e){return function(){this.removeAttributeNS(e.space,e.local)}}function rv(e,t){return function(){this.setAttribute(e,t)}}function iv(e,t){return function(){this.setAttributeNS(e.space,e.local,t)}}function av(e,t){return function(){var n=t.apply(this,arguments);n==null?this.removeAttribute(e):this.setAttribute(e,n)}}function ov(e,t){return function(){var n=t.apply(this,arguments);n==null?this.removeAttributeNS(e.space,e.local):this.setAttributeNS(e.space,e.local,n)}}function sv(e,t){var n=d_(e);if(arguments.length<2){var r=this.node();return n.local?r.getAttributeNS(n.space,n.local):r.getAttribute(n)}return this.each((t==null?n.local?nv:tv:typeof t==`function`?n.local?ov:av:n.local?iv:rv)(n,t))}function cv(e){return e.ownerDocument&&e.ownerDocument.defaultView||e.document&&e||e.defaultView}function lv(e){return function(){this.style.removeProperty(e)}}function uv(e,t,n){return function(){this.style.setProperty(e,t,n)}}function dv(e,t,n){return function(){var r=t.apply(this,arguments);r==null?this.style.removeProperty(e):this.style.setProperty(e,r,n)}}function fv(e,t,n){return arguments.length>1?this.each((t==null?lv:typeof t==`function`?dv:uv)(e,t,n??``)):pv(this.node(),e)}function pv(e,t){return e.style.getPropertyValue(t)||cv(e).getComputedStyle(e,null).getPropertyValue(t)}function mv(e){return function(){delete this[e]}}function hv(e,t){return function(){this[e]=t}}function gv(e,t){return function(){var n=t.apply(this,arguments);n==null?delete this[e]:this[e]=n}}function _v(e,t){return arguments.length>1?this.each((t==null?mv:typeof t==`function`?gv:hv)(e,t)):this.node()[e]}function vv(e){return e.trim().split(/^|\s+/)}function yv(e){return e.classList||new bv(e)}function bv(e){this._node=e,this._names=vv(e.getAttribute(`class`)||``)}bv.prototype={add:function(e){this._names.indexOf(e)<0&&(this._names.push(e),this._node.setAttribute(`class`,this._names.join(` `)))},remove:function(e){var t=this._names.indexOf(e);t>=0&&(this._names.splice(t,1),this._node.setAttribute(`class`,this._names.join(` `)))},contains:function(e){return this._names.indexOf(e)>=0}};function xv(e,t){for(var n=yv(e),r=-1,i=t.length;++r<i;)n.add(t[r])}function Sv(e,t){for(var n=yv(e),r=-1,i=t.length;++r<i;)n.remove(t[r])}function Cv(e){return function(){xv(this,e)}}function wv(e){return function(){Sv(this,e)}}function Tv(e,t){return function(){(t.apply(this,arguments)?xv:Sv)(this,e)}}function Ev(e,t){var n=vv(e+``);if(arguments.length<2){for(var r=yv(this.node()),i=-1,a=n.length;++i<a;)if(!r.contains(n[i]))return!1;return!0}return this.each((typeof t==`function`?Tv:t?Cv:wv)(n,t))}function Dv(){this.textContent=``}function Ov(e){return function(){this.textContent=e}}function kv(e){return function(){this.textContent=e.apply(this,arguments)??``}}function Av(e){return arguments.length?this.each(e==null?Dv:(typeof e==`function`?kv:Ov)(e)):this.node().textContent}function jv(){this.innerHTML=``}function Mv(e){return function(){this.innerHTML=e}}function Nv(e){return function(){this.innerHTML=e.apply(this,arguments)??``}}function Pv(e){return arguments.length?this.each(e==null?jv:(typeof e==`function`?Nv:Mv)(e)):this.node().innerHTML}function Fv(){this.nextSibling&&this.parentNode.appendChild(this)}function Iv(){return this.each(Fv)}function Lv(){this.previousSibling&&this.parentNode.insertBefore(this,this.parentNode.firstChild)}function Rv(){return this.each(Lv)}function zv(e){var t=typeof e==`function`?e:m_(e);return this.select(function(){return this.appendChild(t.apply(this,arguments))})}function Bv(){return null}function Vv(e,t){var n=typeof e==`function`?e:m_(e),r=t==null?Bv:typeof t==`function`?t:g_(t);return this.select(function(){return this.insertBefore(n.apply(this,arguments),r.apply(this,arguments)||null)})}function Hv(){var e=this.parentNode;e&&e.removeChild(this)}function Uv(){return this.each(Hv)}function Wv(){var e=this.cloneNode(!1),t=this.parentNode;return t?t.insertBefore(e,this.nextSibling):e}function Gv(){var e=this.cloneNode(!0),t=this.parentNode;return t?t.insertBefore(e,this.nextSibling):e}function Kv(e){return this.select(e?Gv:Wv)}function qv(e){return arguments.length?this.property(`__data__`,e):this.node().__data__}function Jv(e){return function(t){e.call(this,t,this.__data__)}}function Yv(e){return e.trim().split(/^|\s+/).map(function(e){var t=``,n=e.indexOf(`.`);return n>=0&&(t=e.slice(n+1),e=e.slice(0,n)),{type:e,name:t}})}function Xv(e){return function(){var t=this.__on;if(t){for(var n=0,r=-1,i=t.length,a;n<i;++n)a=t[n],(!e.type||a.type===e.type)&&a.name===e.name?this.removeEventListener(a.type,a.listener,a.options):t[++r]=a;++r?t.length=r:delete this.__on}}}function Zv(e,t,n){return function(){var r=this.__on,i,a=Jv(t);if(r){for(var o=0,s=r.length;o<s;++o)if((i=r[o]).type===e.type&&i.name===e.name){this.removeEventListener(i.type,i.listener,i.options),this.addEventListener(i.type,i.listener=a,i.options=n),i.value=t;return}}this.addEventListener(e.type,a,n),i={type:e.type,name:e.name,value:t,listener:a,options:n},r?r.push(i):this.__on=[i]}}function Qv(e,t,n){var r=Yv(e+``),i,a=r.length,o;if(arguments.length<2){var s=this.node().__on;if(s){for(var c=0,l=s.length,u;c<l;++c)for(i=0,u=s[c];i<a;++i)if((o=r[i]).type===u.type&&o.name===u.name)return u.value}return}for(s=t?Zv:Xv,i=0;i<a;++i)this.each(s(r[i],t,n));return this}function $v(e,t,n){var r=cv(e),i=r.CustomEvent;typeof i==`function`?i=new i(t,n):(i=r.document.createEvent(`Event`),n?(i.initEvent(t,n.bubbles,n.cancelable),i.detail=n.detail):i.initEvent(t,!1,!1)),e.dispatchEvent(i)}function ey(e,t){return function(){return $v(this,e,t)}}function ty(e,t){return function(){return $v(this,e,t.apply(this,arguments))}}function ny(e,t){return this.each((typeof t==`function`?ty:ey)(e,t))}function*ry(){for(var e=this._groups,t=0,n=e.length;t<n;++t)for(var r=e[t],i=0,a=r.length,o;i<a;++i)(o=r[i])&&(yield o)}var iy=[null];function ay(e,t){this._groups=e,this._parents=t}function oy(){return new ay([[document.documentElement]],iy)}function sy(){return this}ay.prototype=oy.prototype={constructor:ay,select:__,selectAll:S_,selectChild:O_,selectChildren:M_,filter:N_,data:V_,enter:F_,exit:U_,join:W_,merge:G_,selection:sy,order:K_,sort:q_,call:Y_,nodes:X_,node:Z_,size:Q_,empty:$_,each:ev,attr:sv,style:fv,property:_v,classed:Ev,text:Av,html:Pv,raise:Iv,lower:Rv,append:zv,insert:Vv,remove:Uv,clone:Kv,datum:qv,on:Qv,dispatch:ny,[Symbol.iterator]:ry};function cy(e){return typeof e==`string`?new ay([[document.querySelector(e)]],[document.documentElement]):new ay([[e]],iy)}function ly(e){let t;for(;t=e.sourceEvent;)e=t;return e}function uy(e,t){if(e=ly(e),t===void 0&&(t=e.currentTarget),t){var n=t.ownerSVGElement||t;if(n.createSVGPoint){var r=n.createSVGPoint();return r.x=e.clientX,r.y=e.clientY,r=r.matrixTransform(t.getScreenCTM().inverse()),[r.x,r.y]}if(t.getBoundingClientRect){var i=t.getBoundingClientRect();return[e.clientX-i.left-t.clientLeft,e.clientY-i.top-t.clientTop]}}return[e.pageX,e.pageY]}var dy={passive:!1},fy={capture:!0,passive:!1};function py(e){e.stopImmediatePropagation()}function my(e){e.preventDefault(),e.stopImmediatePropagation()}function hy(e){var t=e.document.documentElement,n=cy(e).on(`dragstart.drag`,my,fy);`onselectstart`in t?n.on(`selectstart.drag`,my,fy):(t.__noselect=t.style.MozUserSelect,t.style.MozUserSelect=`none`)}function gy(e,t){var n=e.document.documentElement,r=cy(e).on(`dragstart.drag`,null);t&&(r.on(`click.drag`,my,fy),setTimeout(function(){r.on(`click.drag`,null)},0)),`onselectstart`in n?r.on(`selectstart.drag`,null):(n.style.MozUserSelect=n.__noselect,delete n.__noselect)}var _y=e=>()=>e;function vy(e,{sourceEvent:t,subject:n,target:r,identifier:i,active:a,x:o,y:s,dx:c,dy:l,dispatch:u}){Object.defineProperties(this,{type:{value:e,enumerable:!0,configurable:!0},sourceEvent:{value:t,enumerable:!0,configurable:!0},subject:{value:n,enumerable:!0,configurable:!0},target:{value:r,enumerable:!0,configurable:!0},identifier:{value:i,enumerable:!0,configurable:!0},active:{value:a,enumerable:!0,configurable:!0},x:{value:o,enumerable:!0,configurable:!0},y:{value:s,enumerable:!0,configurable:!0},dx:{value:c,enumerable:!0,configurable:!0},dy:{value:l,enumerable:!0,configurable:!0},_:{value:u}})}vy.prototype.on=function(){var e=this._.on.apply(this._,arguments);return e===this._?this:e};function yy(e){return!e.ctrlKey&&!e.button}function by(){return this.parentNode}function xy(e,t){return t??{x:e.x,y:e.y}}function Sy(){return navigator.maxTouchPoints||`ontouchstart`in this}function Cy(){var e=yy,t=by,n=xy,r=Sy,i={},a=a_(`start`,`drag`,`end`),o=0,s,c,l,u,d=0;function f(e){e.on(`mousedown.drag`,p).filter(r).on(`touchstart.drag`,g).on(`touchmove.drag`,_,dy).on(`touchend.drag touchcancel.drag`,v).style(`touch-action`,`none`).style(`-webkit-tap-highlight-color`,`rgba(0,0,0,0)`)}function p(n,r){if(!(u||!e.call(this,n,r))){var i=y(this,t.call(this,n,r),n,r,`mouse`);i&&(cy(n.view).on(`mousemove.drag`,m,fy).on(`mouseup.drag`,h,fy),hy(n.view),py(n),l=!1,s=n.clientX,c=n.clientY,i(`start`,n))}}function m(e){if(my(e),!l){var t=e.clientX-s,n=e.clientY-c;l=t*t+n*n>d}i.mouse(`drag`,e)}function h(e){cy(e.view).on(`mousemove.drag mouseup.drag`,null),gy(e.view,l),my(e),i.mouse(`end`,e)}function g(n,r){if(e.call(this,n,r)){var i=n.changedTouches,a=t.call(this,n,r),o=i.length,s,c;for(s=0;s<o;++s)(c=y(this,a,n,r,i[s].identifier,i[s]))&&(py(n),c(`start`,n,i[s]))}}function _(e){var t=e.changedTouches,n=t.length,r,a;for(r=0;r<n;++r)(a=i[t[r].identifier])&&(my(e),a(`drag`,e,t[r]))}function v(e){var t=e.changedTouches,n=t.length,r,a;for(u&&clearTimeout(u),u=setTimeout(function(){u=null},500),r=0;r<n;++r)(a=i[t[r].identifier])&&(py(e),a(`end`,e,t[r]))}function y(e,t,r,s,c,l){var u=a.copy(),d=uy(l||r,t),p,m,h;if((h=n.call(e,new vy(`beforestart`,{sourceEvent:r,target:f,identifier:c,active:o,x:d[0],y:d[1],dx:0,dy:0,dispatch:u}),s))!=null)return p=h.x-d[0]||0,m=h.y-d[1]||0,function n(r,a,l){var g=d,_;switch(r){case`start`:i[c]=n,_=o++;break;case`end`:delete i[c],--o;case`drag`:d=uy(l||a,t),_=o;break}u.call(r,e,new vy(r,{sourceEvent:a,subject:h,target:f,identifier:c,active:_,x:d[0]+p,y:d[1]+m,dx:d[0]-g[0],dy:d[1]-g[1],dispatch:u}),s)}}return f.filter=function(t){return arguments.length?(e=typeof t==`function`?t:_y(!!t),f):e},f.container=function(e){return arguments.length?(t=typeof e==`function`?e:_y(e),f):t},f.subject=function(e){return arguments.length?(n=typeof e==`function`?e:_y(e),f):n},f.touchable=function(e){return arguments.length?(r=typeof e==`function`?e:_y(!!e),f):r},f.on=function(){var e=a.on.apply(a,arguments);return e===a?f:e},f.clickDistance=function(e){return arguments.length?(d=(e=+e)*e,f):Math.sqrt(d)},f}function wy(e,t,n){e.prototype=t.prototype=n,n.constructor=e}function Ty(e,t){var n=Object.create(e.prototype);for(var r in t)n[r]=t[r];return n}function Ey(){}var Dy=.7,Oy=1/Dy,ky=`\\s*([+-]?\\d+)\\s*`,Ay=`\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)\\s*`,jy=`\\s*([+-]?(?:\\d*\\.)?\\d+(?:[eE][+-]?\\d+)?)%\\s*`,My=/^#([0-9a-f]{3,8})$/,Ny=RegExp(`^rgb\\(${ky},${ky},${ky}\\)$`),Py=RegExp(`^rgb\\(${jy},${jy},${jy}\\)$`),Fy=RegExp(`^rgba\\(${ky},${ky},${ky},${Ay}\\)$`),Iy=RegExp(`^rgba\\(${jy},${jy},${jy},${Ay}\\)$`),Ly=RegExp(`^hsl\\(${Ay},${jy},${jy}\\)$`),Ry=RegExp(`^hsla\\(${Ay},${jy},${jy},${Ay}\\)$`),zy={aliceblue:15792383,antiquewhite:16444375,aqua:65535,aquamarine:8388564,azure:15794175,beige:16119260,bisque:16770244,black:0,blanchedalmond:16772045,blue:255,blueviolet:9055202,brown:10824234,burlywood:14596231,cadetblue:6266528,chartreuse:8388352,chocolate:13789470,coral:16744272,cornflowerblue:6591981,cornsilk:16775388,crimson:14423100,cyan:65535,darkblue:139,darkcyan:35723,darkgoldenrod:12092939,darkgray:11119017,darkgreen:25600,darkgrey:11119017,darkkhaki:12433259,darkmagenta:9109643,darkolivegreen:5597999,darkorange:16747520,darkorchid:10040012,darkred:9109504,darksalmon:15308410,darkseagreen:9419919,darkslateblue:4734347,darkslategray:3100495,darkslategrey:3100495,darkturquoise:52945,darkviolet:9699539,deeppink:16716947,deepskyblue:49151,dimgray:6908265,dimgrey:6908265,dodgerblue:2003199,firebrick:11674146,floralwhite:16775920,forestgreen:2263842,fuchsia:16711935,gainsboro:14474460,ghostwhite:16316671,gold:16766720,goldenrod:14329120,gray:8421504,green:32768,greenyellow:11403055,grey:8421504,honeydew:15794160,hotpink:16738740,indianred:13458524,indigo:4915330,ivory:16777200,khaki:15787660,lavender:15132410,lavenderblush:16773365,lawngreen:8190976,lemonchiffon:16775885,lightblue:11393254,lightcoral:15761536,lightcyan:14745599,lightgoldenrodyellow:16448210,lightgray:13882323,lightgreen:9498256,lightgrey:13882323,lightpink:16758465,lightsalmon:16752762,lightseagreen:2142890,lightskyblue:8900346,lightslategray:7833753,lightslategrey:7833753,lightsteelblue:11584734,lightyellow:16777184,lime:65280,limegreen:3329330,linen:16445670,magenta:16711935,maroon:8388608,mediumaquamarine:6737322,mediumblue:205,mediumorchid:12211667,mediumpurple:9662683,mediumseagreen:3978097,mediumslateblue:8087790,mediumspringgreen:64154,mediumturquoise:4772300,mediumvioletred:13047173,midnightblue:1644912,mintcream:16121850,mistyrose:16770273,moccasin:16770229,navajowhite:16768685,navy:128,oldlace:16643558,olive:8421376,olivedrab:7048739,orange:16753920,orangered:16729344,orchid:14315734,palegoldenrod:15657130,palegreen:10025880,paleturquoise:11529966,palevioletred:14381203,papayawhip:16773077,peachpuff:16767673,peru:13468991,pink:16761035,plum:14524637,powderblue:11591910,purple:8388736,rebeccapurple:6697881,red:16711680,rosybrown:12357519,royalblue:4286945,saddlebrown:9127187,salmon:16416882,sandybrown:16032864,seagreen:3050327,seashell:16774638,sienna:10506797,silver:12632256,skyblue:8900331,slateblue:6970061,slategray:7372944,slategrey:7372944,snow:16775930,springgreen:65407,steelblue:4620980,tan:13808780,teal:32896,thistle:14204888,tomato:16737095,turquoise:4251856,violet:15631086,wheat:16113331,white:16777215,whitesmoke:16119285,yellow:16776960,yellowgreen:10145074};wy(Ey,Wy,{copy(e){return Object.assign(new this.constructor,this,e)},displayable(){return this.rgb().displayable()},hex:By,formatHex:By,formatHex8:Vy,formatHsl:Hy,formatRgb:Uy,toString:Uy});function By(){return this.rgb().formatHex()}function Vy(){return this.rgb().formatHex8()}function Hy(){return rb(this).formatHsl()}function Uy(){return this.rgb().formatRgb()}function Wy(e){var t,n;return e=(e+``).trim().toLowerCase(),(t=My.exec(e))?(n=t[1].length,t=parseInt(t[1],16),n===6?Gy(t):n===3?new Yy(t>>8&15|t>>4&240,t>>4&15|t&240,(t&15)<<4|t&15,1):n===8?Ky(t>>24&255,t>>16&255,t>>8&255,(t&255)/255):n===4?Ky(t>>12&15|t>>8&240,t>>8&15|t>>4&240,t>>4&15|t&240,((t&15)<<4|t&15)/255):null):(t=Ny.exec(e))?new Yy(t[1],t[2],t[3],1):(t=Py.exec(e))?new Yy(t[1]*255/100,t[2]*255/100,t[3]*255/100,1):(t=Fy.exec(e))?Ky(t[1],t[2],t[3],t[4]):(t=Iy.exec(e))?Ky(t[1]*255/100,t[2]*255/100,t[3]*255/100,t[4]):(t=Ly.exec(e))?nb(t[1],t[2]/100,t[3]/100,1):(t=Ry.exec(e))?nb(t[1],t[2]/100,t[3]/100,t[4]):zy.hasOwnProperty(e)?Gy(zy[e]):e===`transparent`?new Yy(NaN,NaN,NaN,0):null}function Gy(e){return new Yy(e>>16&255,e>>8&255,e&255,1)}function Ky(e,t,n,r){return r<=0&&(e=t=n=NaN),new Yy(e,t,n,r)}function qy(e){return e instanceof Ey||(e=Wy(e)),e?(e=e.rgb(),new Yy(e.r,e.g,e.b,e.opacity)):new Yy}function Jy(e,t,n,r){return arguments.length===1?qy(e):new Yy(e,t,n,r??1)}function Yy(e,t,n,r){this.r=+e,this.g=+t,this.b=+n,this.opacity=+r}wy(Yy,Jy,Ty(Ey,{brighter(e){return e=e==null?Oy:Oy**+e,new Yy(this.r*e,this.g*e,this.b*e,this.opacity)},darker(e){return e=e==null?Dy:Dy**+e,new Yy(this.r*e,this.g*e,this.b*e,this.opacity)},rgb(){return this},clamp(){return new Yy(eb(this.r),eb(this.g),eb(this.b),$y(this.opacity))},displayable(){return-.5<=this.r&&this.r<255.5&&-.5<=this.g&&this.g<255.5&&-.5<=this.b&&this.b<255.5&&0<=this.opacity&&this.opacity<=1},hex:Xy,formatHex:Xy,formatHex8:Zy,formatRgb:Qy,toString:Qy}));function Xy(){return`#${tb(this.r)}${tb(this.g)}${tb(this.b)}`}function Zy(){return`#${tb(this.r)}${tb(this.g)}${tb(this.b)}${tb((isNaN(this.opacity)?1:this.opacity)*255)}`}function Qy(){let e=$y(this.opacity);return`${e===1?`rgb(`:`rgba(`}${eb(this.r)}, ${eb(this.g)}, ${eb(this.b)}${e===1?`)`:`, ${e})`}`}function $y(e){return isNaN(e)?1:Math.max(0,Math.min(1,e))}function eb(e){return Math.max(0,Math.min(255,Math.round(e)||0))}function tb(e){return e=eb(e),(e<16?`0`:``)+e.toString(16)}function nb(e,t,n,r){return r<=0?e=t=n=NaN:n<=0||n>=1?e=t=NaN:t<=0&&(e=NaN),new ab(e,t,n,r)}function rb(e){if(e instanceof ab)return new ab(e.h,e.s,e.l,e.opacity);if(e instanceof Ey||(e=Wy(e)),!e)return new ab;if(e instanceof ab)return e;e=e.rgb();var t=e.r/255,n=e.g/255,r=e.b/255,i=Math.min(t,n,r),a=Math.max(t,n,r),o=NaN,s=a-i,c=(a+i)/2;return s?(o=t===a?(n-r)/s+(n<r)*6:n===a?(r-t)/s+2:(t-n)/s+4,s/=c<.5?a+i:2-a-i,o*=60):s=c>0&&c<1?0:o,new ab(o,s,c,e.opacity)}function ib(e,t,n,r){return arguments.length===1?rb(e):new ab(e,t,n,r??1)}function ab(e,t,n,r){this.h=+e,this.s=+t,this.l=+n,this.opacity=+r}wy(ab,ib,Ty(Ey,{brighter(e){return e=e==null?Oy:Oy**+e,new ab(this.h,this.s,this.l*e,this.opacity)},darker(e){return e=e==null?Dy:Dy**+e,new ab(this.h,this.s,this.l*e,this.opacity)},rgb(){var e=this.h%360+(this.h<0)*360,t=isNaN(e)||isNaN(this.s)?0:this.s,n=this.l,r=n+(n<.5?n:1-n)*t,i=2*n-r;return new Yy(cb(e>=240?e-240:e+120,i,r),cb(e,i,r),cb(e<120?e+240:e-120,i,r),this.opacity)},clamp(){return new ab(ob(this.h),sb(this.s),sb(this.l),$y(this.opacity))},displayable(){return(0<=this.s&&this.s<=1||isNaN(this.s))&&0<=this.l&&this.l<=1&&0<=this.opacity&&this.opacity<=1},formatHsl(){let e=$y(this.opacity);return`${e===1?`hsl(`:`hsla(`}${ob(this.h)}, ${sb(this.s)*100}%, ${sb(this.l)*100}%${e===1?`)`:`, ${e})`}`}}));function ob(e){return e=(e||0)%360,e<0?e+360:e}function sb(e){return Math.max(0,Math.min(1,e||0))}function cb(e,t,n){return(e<60?t+(n-t)*e/60:e<180?n:e<240?t+(n-t)*(240-e)/60:t)*255}var lb=e=>()=>e;function ub(e,t){return function(n){return e+n*t}}function db(e,t,n){return e**=+n,t=t**+n-e,n=1/n,function(r){return(e+r*t)**+n}}function fb(e){return(e=+e)==1?pb:function(t,n){return n-t?db(t,n,e):lb(isNaN(t)?n:t)}}function pb(e,t){var n=t-e;return n?ub(e,n):lb(isNaN(e)?t:e)}var mb=(function e(t){var n=fb(t);function r(e,t){var r=n((e=Jy(e)).r,(t=Jy(t)).r),i=n(e.g,t.g),a=n(e.b,t.b),o=pb(e.opacity,t.opacity);return function(t){return e.r=r(t),e.g=i(t),e.b=a(t),e.opacity=o(t),e+``}}return r.gamma=e,r})(1);function hb(e,t){return e=+e,t=+t,function(n){return e*(1-n)+t*n}}var gb=/[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,_b=new RegExp(gb.source,`g`);function vb(e){return function(){return e}}function yb(e){return function(t){return e(t)+``}}function bb(e,t){var n=gb.lastIndex=_b.lastIndex=0,r,i,a,o=-1,s=[],c=[];for(e+=``,t+=``;(r=gb.exec(e))&&(i=_b.exec(t));)(a=i.index)>n&&(a=t.slice(n,a),s[o]?s[o]+=a:s[++o]=a),(r=r[0])===(i=i[0])?s[o]?s[o]+=i:s[++o]=i:(s[++o]=null,c.push({i:o,x:hb(r,i)})),n=_b.lastIndex;return n<t.length&&(a=t.slice(n),s[o]?s[o]+=a:s[++o]=a),s.length<2?c[0]?yb(c[0].x):vb(t):(t=c.length,function(e){for(var n=0,r;n<t;++n)s[(r=c[n]).i]=r.x(e);return s.join(``)})}var xb=180/Math.PI,Sb={translateX:0,translateY:0,rotate:0,skewX:0,scaleX:1,scaleY:1};function Cb(e,t,n,r,i,a){var o,s,c;return(o=Math.sqrt(e*e+t*t))&&(e/=o,t/=o),(c=e*n+t*r)&&(n-=e*c,r-=t*c),(s=Math.sqrt(n*n+r*r))&&(n/=s,r/=s,c/=s),e*r<t*n&&(e=-e,t=-t,c=-c,o=-o),{translateX:i,translateY:a,rotate:Math.atan2(t,e)*xb,skewX:Math.atan(c)*xb,scaleX:o,scaleY:s}}var wb;function Tb(e){let t=new(typeof DOMMatrix==`function`?DOMMatrix:WebKitCSSMatrix)(e+``);return t.isIdentity?Sb:Cb(t.a,t.b,t.c,t.d,t.e,t.f)}function Eb(e){return e==null||(wb||=document.createElementNS(`http://www.w3.org/2000/svg`,`g`),wb.setAttribute(`transform`,e),!(e=wb.transform.baseVal.consolidate()))?Sb:(e=e.matrix,Cb(e.a,e.b,e.c,e.d,e.e,e.f))}function Db(e,t,n,r){function i(e){return e.length?e.pop()+` `:``}function a(e,r,i,a,o,s){if(e!==i||r!==a){var c=o.push(`translate(`,null,t,null,n);s.push({i:c-4,x:hb(e,i)},{i:c-2,x:hb(r,a)})}else (i||a)&&o.push(`translate(`+i+t+a+n)}function o(e,t,n,a){e===t?t&&n.push(i(n)+`rotate(`+t+r):(e-t>180?t+=360:t-e>180&&(e+=360),a.push({i:n.push(i(n)+`rotate(`,null,r)-2,x:hb(e,t)}))}function s(e,t,n,a){e===t?t&&n.push(i(n)+`skewX(`+t+r):a.push({i:n.push(i(n)+`skewX(`,null,r)-2,x:hb(e,t)})}function c(e,t,n,r,a,o){if(e!==n||t!==r){var s=a.push(i(a)+`scale(`,null,`,`,null,`)`);o.push({i:s-4,x:hb(e,n)},{i:s-2,x:hb(t,r)})}else (n!==1||r!==1)&&a.push(i(a)+`scale(`+n+`,`+r+`)`)}return function(t,n){var r=[],i=[];return t=e(t),n=e(n),a(t.translateX,t.translateY,n.translateX,n.translateY,r,i),o(t.rotate,n.rotate,r,i),s(t.skewX,n.skewX,r,i),c(t.scaleX,t.scaleY,n.scaleX,n.scaleY,r,i),t=n=null,function(e){for(var t=-1,n=i.length,a;++t<n;)r[(a=i[t]).i]=a.x(e);return r.join(``)}}}var Ob=Db(Tb,`px, `,`px)`,`deg)`),kb=Db(Eb,`, `,`)`,`)`),Ab=0,jb=0,Mb=0,Nb=1e3,Pb,Fb,Ib=0,Lb=0,Rb=0,zb=typeof performance==`object`&&performance.now?performance:Date,Bb=typeof window==`object`&&window.requestAnimationFrame?window.requestAnimationFrame.bind(window):function(e){setTimeout(e,17)};function Vb(){return Lb||=(Bb(Hb),zb.now()+Rb)}function Hb(){Lb=0}function Ub(){this._call=this._time=this._next=null}Ub.prototype=Wb.prototype={constructor:Ub,restart:function(e,t,n){if(typeof e!=`function`)throw TypeError(`callback is not a function`);n=(n==null?Vb():+n)+(t==null?0:+t),!this._next&&Fb!==this&&(Fb?Fb._next=this:Pb=this,Fb=this),this._call=e,this._time=n,Yb()},stop:function(){this._call&&(this._call=null,this._time=1/0,Yb())}};function Wb(e,t,n){var r=new Ub;return r.restart(e,t,n),r}function Gb(){Vb(),++Ab;for(var e=Pb,t;e;)(t=Lb-e._time)>=0&&e._call.call(void 0,t),e=e._next;--Ab}function Kb(){Lb=(Ib=zb.now())+Rb,Ab=jb=0;try{Gb()}finally{Ab=0,Jb(),Lb=0}}function qb(){var e=zb.now(),t=e-Ib;t>Nb&&(Rb-=t,Ib=e)}function Jb(){for(var e,t=Pb,n,r=1/0;t;)t._call?(r>t._time&&(r=t._time),e=t,t=t._next):(n=t._next,t._next=null,t=e?e._next=n:Pb=n);Fb=e,Yb(r)}function Yb(e){Ab||(jb&&=clearTimeout(jb),e-Lb>24?(e<1/0&&(jb=setTimeout(Kb,e-zb.now()-Rb)),Mb&&=clearInterval(Mb)):(Mb||=(Ib=zb.now(),setInterval(qb,Nb)),Ab=1,Bb(Kb)))}function Xb(e,t,n){var r=new Ub;return t=t==null?0:+t,r.restart(n=>{r.stop(),e(n+t)},t,n),r}var Zb=a_(`start`,`end`,`cancel`,`interrupt`),Qb=[];function $b(e,t,n,r,i,a){var o=e.__transition;if(!o)e.__transition={};else if(n in o)return;rx(e,n,{name:t,index:r,group:i,on:Zb,tween:Qb,time:a.time,delay:a.delay,duration:a.duration,ease:a.ease,timer:null,state:0})}function ex(e,t){var n=nx(e,t);if(n.state>0)throw Error(`too late; already scheduled`);return n}function tx(e,t){var n=nx(e,t);if(n.state>3)throw Error(`too late; already running`);return n}function nx(e,t){var n=e.__transition;if(!n||!(n=n[t]))throw Error(`transition not found`);return n}function rx(e,t,n){var r=e.__transition,i;r[t]=n,n.timer=Wb(a,0,n.time);function a(e){n.state=1,n.timer.restart(o,n.delay,n.time),n.delay<=e&&o(e-n.delay)}function o(a){var l,u,d,f;if(n.state!==1)return c();for(l in r)if(f=r[l],f.name===n.name){if(f.state===3)return Xb(o);f.state===4?(f.state=6,f.timer.stop(),f.on.call(`interrupt`,e,e.__data__,f.index,f.group),delete r[l]):+l<t&&(f.state=6,f.timer.stop(),f.on.call(`cancel`,e,e.__data__,f.index,f.group),delete r[l])}if(Xb(function(){n.state===3&&(n.state=4,n.timer.restart(s,n.delay,n.time),s(a))}),n.state=2,n.on.call(`start`,e,e.__data__,n.index,n.group),n.state===2){for(n.state=3,i=Array(d=n.tween.length),l=0,u=-1;l<d;++l)(f=n.tween[l].value.call(e,e.__data__,n.index,n.group))&&(i[++u]=f);i.length=u+1}}function s(t){for(var r=t<n.duration?n.ease.call(null,t/n.duration):(n.timer.restart(c),n.state=5,1),a=-1,o=i.length;++a<o;)i[a].call(e,r);n.state===5&&(n.on.call(`end`,e,e.__data__,n.index,n.group),c())}function c(){for(var i in n.state=6,n.timer.stop(),delete r[t],r)return;delete e.__transition}}function ix(e,t){var n=e.__transition,r,i,a=!0,o;if(n){for(o in t=t==null?null:t+``,n){if((r=n[o]).name!==t){a=!1;continue}i=r.state>2&&r.state<5,r.state=6,r.timer.stop(),r.on.call(i?`interrupt`:`cancel`,e,e.__data__,r.index,r.group),delete n[o]}a&&delete e.__transition}}function ax(e){return this.each(function(){ix(this,e)})}function ox(e,t){var n,r;return function(){var i=tx(this,e),a=i.tween;if(a!==n){r=n=a;for(var o=0,s=r.length;o<s;++o)if(r[o].name===t){r=r.slice(),r.splice(o,1);break}}i.tween=r}}function sx(e,t,n){var r,i;if(typeof n!=`function`)throw Error();return function(){var a=tx(this,e),o=a.tween;if(o!==r){i=(r=o).slice();for(var s={name:t,value:n},c=0,l=i.length;c<l;++c)if(i[c].name===t){i[c]=s;break}c===l&&i.push(s)}a.tween=i}}function cx(e,t){var n=this._id;if(e+=``,arguments.length<2){for(var r=nx(this.node(),n).tween,i=0,a=r.length,o;i<a;++i)if((o=r[i]).name===e)return o.value;return null}return this.each((t==null?ox:sx)(n,e,t))}function lx(e,t,n){var r=e._id;return e.each(function(){var e=tx(this,r);(e.value||={})[t]=n.apply(this,arguments)}),function(e){return nx(e,r).value[t]}}function ux(e,t){var n;return(typeof t==`number`?hb:t instanceof Wy?mb:(n=Wy(t))?(t=n,mb):bb)(e,t)}function dx(e){return function(){this.removeAttribute(e)}}function fx(e){return function(){this.removeAttributeNS(e.space,e.local)}}function px(e,t,n){var r,i=n+``,a;return function(){var o=this.getAttribute(e);return o===i?null:o===r?a:a=t(r=o,n)}}function mx(e,t,n){var r,i=n+``,a;return function(){var o=this.getAttributeNS(e.space,e.local);return o===i?null:o===r?a:a=t(r=o,n)}}function hx(e,t,n){var r,i,a;return function(){var o,s=n(this),c;return s==null?void this.removeAttribute(e):(o=this.getAttribute(e),c=s+``,o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s)))}}function gx(e,t,n){var r,i,a;return function(){var o,s=n(this),c;return s==null?void this.removeAttributeNS(e.space,e.local):(o=this.getAttributeNS(e.space,e.local),c=s+``,o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s)))}}function _x(e,t){var n=d_(e),r=n===`transform`?kb:ux;return this.attrTween(e,typeof t==`function`?(n.local?gx:hx)(n,r,lx(this,`attr.`+e,t)):t==null?(n.local?fx:dx)(n):(n.local?mx:px)(n,r,t))}function vx(e,t){return function(n){this.setAttribute(e,t.call(this,n))}}function yx(e,t){return function(n){this.setAttributeNS(e.space,e.local,t.call(this,n))}}function bx(e,t){var n,r;function i(){var i=t.apply(this,arguments);return i!==r&&(n=(r=i)&&yx(e,i)),n}return i._value=t,i}function xx(e,t){var n,r;function i(){var i=t.apply(this,arguments);return i!==r&&(n=(r=i)&&vx(e,i)),n}return i._value=t,i}function Sx(e,t){var n=`attr.`+e;if(arguments.length<2)return(n=this.tween(n))&&n._value;if(t==null)return this.tween(n,null);if(typeof t!=`function`)throw Error();var r=d_(e);return this.tween(n,(r.local?bx:xx)(r,t))}function Cx(e,t){return function(){ex(this,e).delay=+t.apply(this,arguments)}}function wx(e,t){return t=+t,function(){ex(this,e).delay=t}}function Tx(e){var t=this._id;return arguments.length?this.each((typeof e==`function`?Cx:wx)(t,e)):nx(this.node(),t).delay}function Ex(e,t){return function(){tx(this,e).duration=+t.apply(this,arguments)}}function Dx(e,t){return t=+t,function(){tx(this,e).duration=t}}function Ox(e){var t=this._id;return arguments.length?this.each((typeof e==`function`?Ex:Dx)(t,e)):nx(this.node(),t).duration}function kx(e,t){if(typeof t!=`function`)throw Error();return function(){tx(this,e).ease=t}}function Ax(e){var t=this._id;return arguments.length?this.each(kx(t,e)):nx(this.node(),t).ease}function jx(e,t){return function(){var n=t.apply(this,arguments);if(typeof n!=`function`)throw Error();tx(this,e).ease=n}}function Mx(e){if(typeof e!=`function`)throw Error();return this.each(jx(this._id,e))}function Nx(e){typeof e!=`function`&&(e=C_(e));for(var t=this._groups,n=t.length,r=Array(n),i=0;i<n;++i)for(var a=t[i],o=a.length,s=r[i]=[],c,l=0;l<o;++l)(c=a[l])&&e.call(c,c.__data__,l,a)&&s.push(c);return new cS(r,this._parents,this._name,this._id)}function Px(e){if(e._id!==this._id)throw Error();for(var t=this._groups,n=e._groups,r=t.length,i=n.length,a=Math.min(r,i),o=Array(r),s=0;s<a;++s)for(var c=t[s],l=n[s],u=c.length,d=o[s]=Array(u),f,p=0;p<u;++p)(f=c[p]||l[p])&&(d[p]=f);for(;s<r;++s)o[s]=t[s];return new cS(o,this._parents,this._name,this._id)}function Fx(e){return(e+``).trim().split(/^|\s+/).every(function(e){var t=e.indexOf(`.`);return t>=0&&(e=e.slice(0,t)),!e||e===`start`})}function Ix(e,t,n){var r,i,a=Fx(t)?ex:tx;return function(){var o=a(this,e),s=o.on;s!==r&&(i=(r=s).copy()).on(t,n),o.on=i}}function Lx(e,t){var n=this._id;return arguments.length<2?nx(this.node(),n).on.on(e):this.each(Ix(n,e,t))}function Rx(e){return function(){var t=this.parentNode;for(var n in this.__transition)if(+n!==e)return;t&&t.removeChild(this)}}function zx(){return this.on(`end.remove`,Rx(this._id))}function Bx(e){var t=this._name,n=this._id;typeof e!=`function`&&(e=g_(e));for(var r=this._groups,i=r.length,a=Array(i),o=0;o<i;++o)for(var s=r[o],c=s.length,l=a[o]=Array(c),u,d,f=0;f<c;++f)(u=s[f])&&(d=e.call(u,u.__data__,f,s))&&(`__data__`in u&&(d.__data__=u.__data__),l[f]=d,$b(l[f],t,n,f,l,nx(u,n)));return new cS(a,this._parents,t,n)}function Vx(e){var t=this._name,n=this._id;typeof e!=`function`&&(e=b_(e));for(var r=this._groups,i=r.length,a=[],o=[],s=0;s<i;++s)for(var c=r[s],l=c.length,u,d=0;d<l;++d)if(u=c[d]){for(var f=e.call(u,u.__data__,d,c),p,m=nx(u,n),h=0,g=f.length;h<g;++h)(p=f[h])&&$b(p,t,n,h,f,m);a.push(f),o.push(u)}return new cS(a,o,t,n)}var Hx=oy.prototype.constructor;function Ux(){return new Hx(this._groups,this._parents)}function Wx(e,t){var n,r,i;return function(){var a=pv(this,e),o=(this.style.removeProperty(e),pv(this,e));return a===o?null:a===n&&o===r?i:i=t(n=a,r=o)}}function Gx(e){return function(){this.style.removeProperty(e)}}function Kx(e,t,n){var r,i=n+``,a;return function(){var o=pv(this,e);return o===i?null:o===r?a:a=t(r=o,n)}}function qx(e,t,n){var r,i,a;return function(){var o=pv(this,e),s=n(this),c=s+``;return s??(c=s=(this.style.removeProperty(e),pv(this,e))),o===c?null:o===r&&c===i?a:(i=c,a=t(r=o,s))}}function Jx(e,t){var n,r,i,a=`style.`+t,o=`end.`+a,s;return function(){var c=tx(this,e),l=c.on,u=c.value[a]==null?s||=Gx(t):void 0;(l!==n||i!==u)&&(r=(n=l).copy()).on(o,i=u),c.on=r}}function Yx(e,t,n){var r=(e+=``)==`transform`?Ob:ux;return t==null?this.styleTween(e,Wx(e,r)).on(`end.style.`+e,Gx(e)):typeof t==`function`?this.styleTween(e,qx(e,r,lx(this,`style.`+e,t))).each(Jx(this._id,e)):this.styleTween(e,Kx(e,r,t),n).on(`end.style.`+e,null)}function Xx(e,t,n){return function(r){this.style.setProperty(e,t.call(this,r),n)}}function Zx(e,t,n){var r,i;function a(){var a=t.apply(this,arguments);return a!==i&&(r=(i=a)&&Xx(e,a,n)),r}return a._value=t,a}function Qx(e,t,n){var r=`style.`+(e+=``);if(arguments.length<2)return(r=this.tween(r))&&r._value;if(t==null)return this.tween(r,null);if(typeof t!=`function`)throw Error();return this.tween(r,Zx(e,t,n??``))}function $x(e){return function(){this.textContent=e}}function eS(e){return function(){this.textContent=e(this)??``}}function tS(e){return this.tween(`text`,typeof e==`function`?eS(lx(this,`text`,e)):$x(e==null?``:e+``))}function nS(e){return function(t){this.textContent=e.call(this,t)}}function rS(e){var t,n;function r(){var r=e.apply(this,arguments);return r!==n&&(t=(n=r)&&nS(r)),t}return r._value=e,r}function iS(e){var t=`text`;if(arguments.length<1)return(t=this.tween(t))&&t._value;if(e==null)return this.tween(t,null);if(typeof e!=`function`)throw Error();return this.tween(t,rS(e))}function aS(){for(var e=this._name,t=this._id,n=uS(),r=this._groups,i=r.length,a=0;a<i;++a)for(var o=r[a],s=o.length,c,l=0;l<s;++l)if(c=o[l]){var u=nx(c,t);$b(c,e,n,l,o,{time:u.time+u.delay+u.duration,delay:0,duration:u.duration,ease:u.ease})}return new cS(r,this._parents,e,n)}function oS(){var e,t,n=this,r=n._id,i=n.size();return new Promise(function(a,o){var s={value:o},c={value:function(){--i===0&&a()}};n.each(function(){var n=tx(this,r),i=n.on;i!==e&&(t=(e=i).copy(),t._.cancel.push(s),t._.interrupt.push(s),t._.end.push(c)),n.on=t}),i===0&&a()})}var sS=0;function cS(e,t,n,r){this._groups=e,this._parents=t,this._name=n,this._id=r}function lS(e){return oy().transition(e)}function uS(){return++sS}var dS=oy.prototype;cS.prototype=lS.prototype={constructor:cS,select:Bx,selectAll:Vx,selectChild:dS.selectChild,selectChildren:dS.selectChildren,filter:Nx,merge:Px,selection:Ux,transition:aS,call:dS.call,nodes:dS.nodes,node:dS.node,size:dS.size,empty:dS.empty,each:dS.each,on:Lx,attr:_x,attrTween:Sx,style:Yx,styleTween:Qx,text:tS,textTween:iS,remove:zx,tween:cx,delay:Tx,duration:Ox,ease:Ax,easeVarying:Mx,end:oS,[Symbol.iterator]:dS[Symbol.iterator]};function fS(e){return((e*=2)<=1?e*e*e:(e-=2)*e*e+2)/2}var pS={time:null,delay:0,duration:250,ease:fS};function mS(e,t){for(var n;!(n=e.__transition)||!(n=n[t]);)if(!(e=e.parentNode))throw Error(`transition ${t} not found`);return n}function hS(e){var t,n;e instanceof cS?(t=e._id,e=e._name):(t=uS(),(n=pS).time=Vb(),e=e==null?null:e+``);for(var r=this._groups,i=r.length,a=0;a<i;++a)for(var o=r[a],s=o.length,c,l=0;l<s;++l)(c=o[l])&&$b(c,e,t,l,o,n||mS(c,t));return new cS(r,this._parents,e,t)}oy.prototype.interrupt=ax,oy.prototype.transition=hS;var{abs:gS,max:_S,min:vS}=Math;[`w`,`e`].map(yS),[`n`,`s`].map(yS),[`n`,`w`,`e`,`s`,`nw`,`ne`,`sw`,`se`].map(yS);function yS(e){return{type:e}}function bS(e,t,n){this.k=e,this.x=t,this.y=n}bS.prototype={constructor:bS,scale:function(e){return e===1?this:new bS(this.k*e,this.x,this.y)},translate:function(e,t){return e===0&t===0?this:new bS(this.k,this.x+this.k*e,this.y+this.k*t)},apply:function(e){return[e[0]*this.k+this.x,e[1]*this.k+this.y]},applyX:function(e){return e*this.k+this.x},applyY:function(e){return e*this.k+this.y},invert:function(e){return[(e[0]-this.x)/this.k,(e[1]-this.y)/this.k]},invertX:function(e){return(e-this.x)/this.k},invertY:function(e){return(e-this.y)/this.k},rescaleX:function(e){return e.copy().domain(e.range().map(this.invertX,this).map(e.invert,e))},rescaleY:function(e){return e.copy().domain(e.range().map(this.invertY,this).map(e.invert,e))},toString:function(){return`translate(`+this.x+`,`+this.y+`) scale(`+this.k+`)`}};var xS=new bS(1,0,0);SS.prototype=bS.prototype;function SS(e){for(;!e.__zoom;)if(!(e=e.parentNode))return xS;return e.__zoom}var CS={nodes:[{id:`crisisnews`,label:`CrisisNews`,type:`research`,importance:`main`,url:`/research/crisisnews`,desktop:{x:.14,y:.18},mobile:{x:.12,y:.16}},{id:`prism`,label:`PRISM`,type:`research`,importance:`main`,url:`/research/prism`,desktop:{x:.24,y:.32},mobile:{x:.2,y:.31}},{id:`beyond-removal`,label:`Beyond Removal`,type:`research`,importance:`support`,url:`/research/beyond-removal`,desktop:{x:.18,y:.58},mobile:{x:.14,y:.56}},{id:`multi-agent-sim`,label:`Multi-Agent Sim`,type:`research`,importance:`support`,url:`/research/multi-agent-sim`,desktop:{x:.28,y:.79},mobile:{x:.21,y:.78}},{id:`misinformation`,label:`Misinformation`,type:`theme`,desktop:{x:.5,y:.12},mobile:{x:.5,y:.11}},{id:`platform-governance`,label:`Platform Governance`,type:`theme`,desktop:{x:.56,y:.3},mobile:{x:.6,y:.3}},{id:`content-moderation`,label:`Content Moderation`,type:`theme`,desktop:{x:.48,y:.48},mobile:{x:.47,y:.48}},{id:`ai-policy`,label:`AI Policy`,type:`theme`,desktop:{x:.56,y:.65},mobile:{x:.6,y:.67}},{id:`participatory-governance`,label:`Participatory Governance`,type:`theme`,desktop:{x:.49,y:.82},mobile:{x:.47,y:.85}},{id:`chi-2025`,label:`CHI 2025`,type:`engagement`,importance:`major`,url:`/activities/chi-2025`,desktop:{x:.7,y:.18},mobile:{x:.78,y:.16}},{id:`un-ga-hlw`,label:`UN GA HLW`,type:`engagement`,importance:`major`,url:`/activities/un-ga-hlw`,desktop:{x:.84,y:.27},mobile:{x:.9,y:.26}},{id:`un-youth-forum`,label:`UN Youth Forum`,type:`engagement`,importance:`major`,url:`/activities/un-youth-forum`,desktop:{x:.69,y:.41},mobile:{x:.77,y:.4}},{id:`student-council`,label:`Student Council`,type:`engagement`,importance:`major`,url:`/activities/student-council`,desktop:{x:.84,y:.52},mobile:{x:.89,y:.54}},{id:`valedictorian`,label:`Valedictorian`,type:`engagement`,importance:`major`,url:`/activities/valedictorian`,desktop:{x:.69,y:.64},mobile:{x:.76,y:.62}},{id:`kgsa-career`,label:`KGSA Career`,type:`engagement`,importance:`major`,url:`/activities/kgsa-career`,desktop:{x:.77,y:.76},mobile:{x:.82,y:.74}},{id:`upenn-mixer`,label:`UPenn Mixer`,type:`engagement`,importance:`major`,url:`/activities/upenn-mixer`,desktop:{x:.91,y:.76},mobile:{x:.92,y:.78}},{id:`hyc-mixer`,label:`HYC Mixer`,type:`engagement`,importance:`minor`,url:`/activities/hyc-mixer`,desktop:{x:.64,y:.86},mobile:{x:.7,y:.84}},{id:`columbia-ai-club`,label:`Columbia AI Club`,type:`engagement`,importance:`minor`,url:`/activities/columbia-ai-club`,desktop:{x:.84,y:.91},mobile:{x:.87,y:.9}},{id:`kaist`,label:`KAIST`,type:`institution`,desktop:{x:.24,y:.95},mobile:{x:.25,y:.95}},{id:`columbia-sipa`,label:`Columbia SIPA`,type:`institution`,desktop:{x:.78,y:.95},mobile:{x:.72,y:.95}}],edges:[{source:`crisisnews`,target:`misinformation`},{source:`crisisnews`,target:`platform-governance`},{source:`crisisnews`,target:`kaist`},{source:`prism`,target:`misinformation`},{source:`prism`,target:`platform-governance`},{source:`prism`,target:`columbia-sipa`},{source:`beyond-removal`,target:`content-moderation`},{source:`beyond-removal`,target:`platform-governance`},{source:`multi-agent-sim`,target:`misinformation`},{source:`multi-agent-sim`,target:`ai-policy`},{source:`misinformation`,target:`platform-governance`},{source:`platform-governance`,target:`content-moderation`},{source:`content-moderation`,target:`ai-policy`},{source:`ai-policy`,target:`participatory-governance`},{source:`chi-2025`,target:`misinformation`},{source:`chi-2025`,target:`platform-governance`},{source:`un-ga-hlw`,target:`platform-governance`},{source:`un-ga-hlw`,target:`columbia-sipa`},{source:`un-youth-forum`,target:`platform-governance`},{source:`un-youth-forum`,target:`ai-policy`},{source:`un-youth-forum`,target:`columbia-sipa`},{source:`student-council`,target:`participatory-governance`},{source:`student-council`,target:`platform-governance`},{source:`student-council`,target:`kaist`},{source:`valedictorian`,target:`kaist`},{source:`valedictorian`,target:`participatory-governance`},{source:`kgsa-career`,target:`columbia-sipa`},{source:`kgsa-career`,target:`ai-policy`},{source:`upenn-mixer`,target:`columbia-sipa`},{source:`upenn-mixer`,target:`participatory-governance`},{source:`hyc-mixer`,target:`columbia-sipa`},{source:`hyc-mixer`,target:`participatory-governance`},{source:`columbia-ai-club`,target:`columbia-sipa`},{source:`columbia-ai-club`,target:`ai-policy`}]},wS=Tg`
   0%, 100% {
     transform: translate(0px, 0px);
   }
@@ -195,7 +189,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   50% {
     transform: translate(var(--drift-x), var(--drift-y));
   }
-`,ES=Tg`
+`,TS=Tg`
   0%, 100% {
     transform: scale(1);
   }
@@ -203,7 +197,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   50% {
     transform: scale(1.05);
   }
-`,DS=$.div`
+`,ES=$.div`
   position: relative;
   width: 100%;
   max-width: ${({theme:e})=>e.layout.graphMax};
@@ -216,23 +210,23 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     height: 44vh;
     min-height: 330px;
   }
-`,OS=$.svg`
+`,DS=$.svg`
   width: 100%;
   height: 100%;
   overflow: visible;
 
   .node-drift {
-    animation: ${TS} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
+    animation: ${wS} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
     transform-box: fill-box;
     transform-origin: center;
   }
 
   .theme-pulse {
-    animation: ${ES} var(--pulse-duration) ease-in-out var(--pulse-delay) infinite;
+    animation: ${TS} var(--pulse-duration) ease-in-out var(--pulse-delay) infinite;
     transform-box: fill-box;
     transform-origin: center;
   }
-`,kS=$.div`
+`,OS=$.div`
   position: absolute;
   top: ${({$y:e})=>`${e}px`};
   left: ${({$x:e})=>`${e}px`};
@@ -247,7 +241,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   white-space: nowrap;
   opacity: ${({$visible:e})=>e?1:0};
   transition: opacity 0.16s ease;
-`,AS={greenDark:`#1B3D2F`,greenMid:`#2D5A3D`,greenLight:`#4A7A5E`,greenPale:`#9AB89E`,copper:`#C4956A`,text:`#2B2A2A`,muted:`#6B6560`,institution:`rgba(154, 149, 144, 0.8)`},jS=new Map([[`crisisnews|misinformation`,{delay:`0s`,duration:`5.3s`}],[`prism|platform-governance`,{delay:`1.1s`,duration:`5.8s`}],[`beyond-removal|content-moderation`,{delay:`2.4s`,duration:`4.9s`}],[`multi-agent-sim|ai-policy`,{delay:`0.8s`,duration:`5.5s`}],[`student-council|participatory-governance`,{delay:`1.9s`,duration:`5.4s`}],[`chi-2025|misinformation`,{delay:`2.8s`,duration:`4.7s`}],[`un-ga-hlw|platform-governance`,{delay:`0.4s`,duration:`5.6s`}],[`un-youth-forum|ai-policy`,{delay:`1.6s`,duration:`5.1s`}]]),MS=[`rgba(45, 90, 61, 0.18)`,`rgba(27, 61, 47, 0.15)`,`rgba(196, 149, 106, 0.13)`,`rgba(74, 122, 94, 0.13)`,`rgba(196, 149, 106, 0.11)`],NS={theme:{radius:13.5,fill:AS.greenDark,labelSize:14,labelWeight:500,labelOpacity:.92},researchMain:{radius:9,fill:AS.greenMid,labelSize:11,labelWeight:400,labelOpacity:.82},researchSupport:{radius:7.5,fill:AS.greenMid,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMajor:{radius:8,fill:AS.copper,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMinor:{radius:5.6,fill:`rgba(196, 149, 106, 0.65)`,labelSize:9.5,labelWeight:400,labelOpacity:.62},institution:{radius:5,fill:AS.institution,labelSize:9,labelWeight:400,labelOpacity:.5}},PS=new Set([`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`columbia-ai-club`]);function FS(e){return[...e].reduce((e,t)=>e*31+t.charCodeAt(0)|0,0)}function IS(e){let t=Math.abs(FS(e)),n=t%5-2||1,r=Math.floor(t/5)%5-2||-1;return{driftX:`${n*.9}px`,driftY:`${r*.9}px`,driftDuration:`${8+t%6}s`,driftDelay:`${-(t%9)}s`,pulseDuration:`${5+t%3}s`,pulseDelay:`${-(t%5)}s`}}function LS(e,t){let n=e.split(` `),r=[],i=``;return n.forEach(e=>{let n=i?`${i} ${e}`:e;n.length>t&&i?(r.push(i),i=e):i=n}),i&&r.push(i),r.slice(0,3)}function RS(e){return e.type===`theme`?NS.theme:e.type===`research`?e.importance===`main`?NS.researchMain:NS.researchSupport:e.type===`engagement`?e.importance===`minor`?NS.engagementMinor:NS.engagementMajor:NS.institution}function zS(e,t){return e.type===`research`?{dx:15,dy:4,anchor:`start`,baseline:`middle`}:e.type===`engagement`?{dx:-15,dy:4,anchor:`end`,baseline:`middle`}:e.type===`institution`?{dx:0,dy:18,anchor:`middle`,baseline:`hanging`}:(t?{misinformation:{dx:0,dy:-24,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-20,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-20,dy:4,anchor:`end`,baseline:`middle`}}:{misinformation:{dx:0,dy:-26,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-24,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-24,dy:4,anchor:`end`,baseline:`middle`}})[e.id]}function BS(e,t,n,r){let i=r?10:24,a=r?10:18,o=t-i*2,s=n-a*2,c=e.nodes.map(e=>{let t=e[r?`mobile`:`desktop`];return{...e,x:i+o*t.x,y:a+s*t.y,motion:IS(e.id)}}),l=new Map(c.map(e=>[e.id,e])),u=e.edges.map(e=>({source:l.get(e.source),target:l.get(e.target)})),d=new Map(c.map(e=>[e.id,new Set([e.id])]));return u.forEach(e=>{d.get(e.source.id)?.add(e.target.id),d.get(e.target.id)?.add(e.source.id)}),{nodes:c,edges:u,adjacency:d}}function VS(e){return`${e.source.id}|${e.target.id}`}function HS(e){let t=e.target.x-e.source.x,n=e.target.y-e.source.y,r=Math.hypot(t,n)||1,i=-n/r,a=t/r,o=(e.source.x+e.target.x)/2,s=(e.source.y+e.target.y)/2,c=FS(VS(e))%2==0?1:-1,l=Math.min(28,r*.12)*c,u=o+i*l,d=s+a*l;return`M${e.source.x},${e.source.y} Q${u},${d} ${e.target.x},${e.target.y}`}function US(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=Ud(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:wS.nodes.map(e=>({...e})),edges:wS.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let{nodes:i,edges:a,adjacency:l}=BS(c,r.width,r.height,s),u=ly(e.current);u.selectAll(`*`).remove();let d=u.append(`g`),f=d.append(`defs`);MS.forEach((e,t)=>{let n=f.append(`radialGradient`).attr(`id`,`theme-glow-${t}`);n.append(`stop`).attr(`offset`,`0%`).attr(`stop-color`,e),n.append(`stop`).attr(`offset`,`100%`).attr(`stop-color`,`rgba(255,255,255,0)`)});let p=i.filter(e=>e.type===`theme`);d.append(`g`).selectAll(`circle`).data(p).join(`circle`).attr(`cx`,e=>e.x).attr(`cy`,e=>e.y).attr(`r`,s?66:88).attr(`fill`,(e,t)=>`url(#theme-glow-${t%MS.length})`),s||(d.append(`text`).attr(`x`,r.width*.1).attr(`y`,r.height*.12).attr(`fill`,`rgba(43, 42, 42, 0.14)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).text(`Research`),d.append(`text`).attr(`x`,r.width*.79).attr(`y`,r.height*.12).attr(`fill`,`rgba(196, 149, 106, 0.2)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).attr(`text-anchor`,`end`).text(`Engagement`),d.append(`text`).attr(`x`,r.width*.5).attr(`y`,r.height*.08).attr(`fill`,`rgba(43, 42, 42, 0.12)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,10).attr(`letter-spacing`,`0.16em`).attr(`text-anchor`,`middle`).text(`THEMES`));let m=d.append(`g`),h=d.append(`g`),g=d.append(`g`),_=m.selectAll(`path`).data(a).join(`path`).attr(`d`,HS).attr(`fill`,`none`).attr(`stroke`,AS.greenLight).attr(`stroke-width`,.95).attr(`stroke-linecap`,`round`).attr(`opacity`,.24),v=h.selectAll(`g`).data(a.filter(e=>jS.has(VS(e)))).join(`g`).attr(`opacity`,1);v.append(`circle`).attr(`r`,1.8).attr(`fill`,AS.greenPale).attr(`opacity`,0).each(function(e){let t=jS.get(VS(e)),n=ly(this);n.append(`animateMotion`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`).attr(`path`,HS(e)),n.append(`animate`).attr(`attributeName`,`opacity`).attr(`values`,`0;0.45;0.45;0`).attr(`keyTimes`,`0;0.08;0.92;1`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`)});let y=g.selectAll(`g.node`).data(i).join(`g`).attr(`class`,`node`).attr(`transform`,e=>`translate(${e.x}, ${e.y})`).style(`cursor`,e=>e.url?`pointer`:`grab`),b=y.append(`g`).attr(`class`,`node-drift`).style(`--drift-x`,e=>e.motion.driftX).style(`--drift-y`,e=>e.motion.driftY).style(`--drift-duration`,e=>e.motion.driftDuration).style(`--drift-delay`,e=>e.motion.driftDelay);b.append(`circle`).attr(`class`,e=>e.type===`theme`?`theme-pulse`:null).style(`--pulse-duration`,e=>e.motion.pulseDuration).style(`--pulse-delay`,e=>e.motion.pulseDelay).attr(`r`,e=>RS(e).radius).attr(`fill`,e=>RS(e).fill).attr(`stroke`,`rgba(247, 247, 245, 0.92)`).attr(`stroke-width`,e=>e.type===`institution`?1:1.2);let x=b.append(`text`).attr(`fill`,AS.text).attr(`font-family`,e=>e.type===`theme`?`'Cormorant Garamond', serif`:`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-style`,e=>e.type===`theme`?`italic`:`normal`).attr(`font-size`,e=>`${RS(e).labelSize}px`).attr(`font-weight`,e=>RS(e).labelWeight).attr(`opacity`,e=>s&&PS.has(e.id)?0:RS(e).labelOpacity).attr(`text-anchor`,e=>zS(e,s).anchor).attr(`dominant-baseline`,e=>zS(e,s).baseline).attr(`x`,e=>zS(e,s).dx).attr(`y`,e=>zS(e,s).dy);x.selectAll(`tspan`).data(e=>LS(e.label,s?16:18)).join(`tspan`).attr(`x`,function(){return ly(this.parentNode).attr(`x`)}).attr(`dy`,(e,t)=>t===0?0:`1.15em`).text(e=>e);let S=(e,t)=>l.get(e.id)?.has(t.id);function C(){y.attr(`transform`,e=>`translate(${e.x}, ${e.y})`),_.attr(`d`,HS),v.selectAll(`circle`).each(function(e){ly(this).select(`animateMotion`).attr(`path`,HS(e))})}function w(e){_.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?.48:.06:.22),v.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?1:.1:1),b.select(`circle`).attr(`opacity`,t=>e?S(e,t)?1:.25:1),x.attr(`opacity`,t=>e?s&&PS.has(t.id)?0:S(e,t)?.96:.22:s&&PS.has(t.id)?0:RS(t).labelOpacity)}let ee=wy().on(`start`,function(){ly(this).style(`cursor`,`grabbing`)}).on(`drag`,function(e,t){t.x=Math.max(24,Math.min(r.width-24,e.x)),t.y=Math.max(24,Math.min(r.height-24,e.y)),C(),o(n=>({...n,visible:!0,x:e.x,y:e.y,label:t.label}))}).on(`end`,function(e,t){ly(this).style(`cursor`,t.url?`pointer`:`grab`),o(e=>({...e,visible:!1}))});y.on(`mouseenter`,function(e,t){w(t),o({visible:!0,x:t.x,y:t.y,label:t.label})}).on(`mousemove`,function(e,n){let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})}).on(`mouseleave`,function(){w(null),o(e=>({...e,visible:!1}))}).on(`click`,(e,t)=>{t.url&&n(t.url)}).call(ee),C(),w(null)},[c,s,n,r.height,r.width]),(0,R.jsxs)(DS,{ref:t,children:[(0,R.jsx)(OS,{ref:e,viewBox:`0 0 ${r.width||1e3} ${r.height||560}`,children:(0,R.jsx)(`title`,{children:`Dongjae Kang semantic map`})}),(0,R.jsx)(kS,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var WS=Ou.div,GS={initial:{opacity:0,y:20},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-20,transition:{duration:.4,ease:`easeIn`}}};function KS({children:e}){return(0,R.jsx)(WS,{variants:GS,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var qS=`/assets/crisisnews-thumbnail-BYtxTvwG.png`,JS=`/assets/prism-thumbnail-BSMB3k5z.png`,YS=`/assets/multi-agent-sim-workflow-D4FMYsKp.png`,XS=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,summary:`A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.`,description:`At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.`,collaborators:[`Jeanne Choi`,`Prof. Joseph Seering`],tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:qS,gallery:[qS]},{id:`prism`,title:`PRISM`,year:`2025`,summary:`A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.`,description:`PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.`,collaborators:[`Columbia SIPA project team`,`Prototype implemented independently`],tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:JS,gallery:[JS]},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,summary:`A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.`,description:`Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.`,collaborators:[`Columbia SIPA Trust & Safety course`],tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null,gallery:[]},{id:`multi-agent-sim`,title:`Multi-Agent Simulation`,year:`2026`,summary:`A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.`,description:`This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.`,collaborators:[`Columbia SIPA Ethics of Media course`],tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:YS,gallery:[YS,`/assets/multi-agent-sim-method-Dhay_e8C.png`]}],ZS=`/assets/ces-foundry-B74FjpOQ.jpeg`,QS=`/assets/hyc-mixer-presenting-BdEhYOXT.jpeg`,$S=`/assets/kgsa-career-poster-B7wQ7cK3.jpg`,eC=`/assets/kgsa-career-room-NhlrWB42.jpg`,tC=`/assets/kaist-podium-DkP3TL19.jpeg`,nC=`/assets/upenn-mixer-group-B13IMclc.jpeg`,rC=`/assets/kgsa-career-room-NhlrWB42.jpg`,iC=`/assets/upenn-mixer-stage-B99hHFNL.jpeg`,aC=`/assets/valedictorian-gown-K-Raxk8w.jpeg`,oC=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,location:`Daejeon`,summary:`Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.`,description:`Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea. The speech is available publicly and is embedded on this site.`,tags:[`Leadership`,`KAIST`],links:[{label:`Video`,url:`https://www.youtube.com/watch?v=U7m4LpyHffk`}],media:{cover:aC,youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[aC]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Respondent`,date:`Apr 2026`,location:`United Nations Headquarters, New York`,summary:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.`,description:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],links:[],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,location:`New York`,summary:`Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.`,description:`During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar.`,tags:[`UN`,`Diplomacy`],links:[],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,summary:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,description:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,tags:[`Technology`,`Industry`],links:[],media:{cover:ZS,photos:[ZS]}},{id:`stanford`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,summary:`Visited Stanford University.`,description:`Visited Stanford University.`,tags:[`Academia`],links:[],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:`Jan 2026`,location:`New York`,summary:`Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.`,description:`Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. He led the program for a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:QS,photos:[QS]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:`Nov 15, 2025`,location:`Philadelphia`,summary:`Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.`,description:`At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:nC,photos:[nC,rC,iC]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,location:`KAIST`,summary:`Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.`,description:`As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries instead of choosing confrontation. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.`,tags:[`Leadership`,`Policy`,`KAIST`],links:[{label:`JoongAng Ilbo`,url:`https://www.joongang.co.kr/article/25215586`},{label:`KAIST Herald`,url:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`}],media:{cover:tC,photos:[tC]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,location:`Yokohama`,summary:`Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.`,description:`Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.`,tags:[`Research`,`Speaking`,`HCI`],links:[{label:`Related Research`,url:`/research/crisisnews`}],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 28, 2026`,location:`Columbia University`,summary:`Organized and MC'd a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,description:`As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event featured speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,tags:[`Leadership`,`Community`],links:[],media:{cover:$S,photos:[$S,eC]}},{id:`columbia-ai-club`,title:`Columbia AI Club at SIPA`,date:`2025-Present`,location:`New York`,summary:`Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.`,description:`Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role includes helping build the club's research programming and institutional structure.`,tags:[`Leadership`,`AI`,`Columbia SIPA`],links:[],media:{photos:[]}}];function sC(e=.15){let[t,n]=(0,S.useState)(null),[r,i]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{if(!t)return;let n=new IntersectionObserver(([e])=>{e.isIntersecting&&i(!0)},{threshold:e});return n.observe(t),()=>n.disconnect()},[t,e]),[n,r]}var cC=Tg`
+`,kS={greenDark:`#1B3D2F`,greenMid:`#2D5A3D`,greenLight:`#4A7A5E`,greenPale:`#9AB89E`,copper:`#C4956A`,text:`#2B2A2A`,muted:`#6B6560`,institution:`rgba(154, 149, 144, 0.8)`},AS=new Map([[`crisisnews|misinformation`,{delay:`0s`,duration:`5.3s`}],[`prism|platform-governance`,{delay:`1.1s`,duration:`5.8s`}],[`beyond-removal|content-moderation`,{delay:`2.4s`,duration:`4.9s`}],[`multi-agent-sim|ai-policy`,{delay:`0.8s`,duration:`5.5s`}],[`student-council|participatory-governance`,{delay:`1.9s`,duration:`5.4s`}],[`chi-2025|misinformation`,{delay:`2.8s`,duration:`4.7s`}],[`un-ga-hlw|platform-governance`,{delay:`0.4s`,duration:`5.6s`}],[`un-youth-forum|ai-policy`,{delay:`1.6s`,duration:`5.1s`}]]),jS=[`rgba(45, 90, 61, 0.18)`,`rgba(27, 61, 47, 0.15)`,`rgba(196, 149, 106, 0.13)`,`rgba(74, 122, 94, 0.13)`,`rgba(196, 149, 106, 0.11)`],MS={theme:{radius:13.5,fill:kS.greenDark,labelSize:12.4,labelWeight:500,labelOpacity:.92},researchMain:{radius:9,fill:kS.greenMid,labelSize:11,labelWeight:400,labelOpacity:.82},researchSupport:{radius:7.5,fill:kS.greenMid,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMajor:{radius:8,fill:kS.copper,labelSize:10.5,labelWeight:400,labelOpacity:.76},engagementMinor:{radius:5.6,fill:`rgba(196, 149, 106, 0.65)`,labelSize:9.5,labelWeight:400,labelOpacity:.62},institution:{radius:5,fill:kS.institution,labelSize:9,labelWeight:400,labelOpacity:.5}},NS=new Set([`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`columbia-ai-club`]);function PS(e){return[...e].reduce((e,t)=>e*31+t.charCodeAt(0)|0,0)}function FS(e){let t=Math.abs(PS(e)),n=t%5-2||1,r=Math.floor(t/5)%5-2||-1;return{driftX:`${n*.9}px`,driftY:`${r*.9}px`,driftDuration:`${8+t%6}s`,driftDelay:`${-(t%9)}s`,pulseDuration:`${5+t%3}s`,pulseDelay:`${-(t%5)}s`}}function IS(e,t){let n=e.split(` `),r=[],i=``;return n.forEach(e=>{let n=i?`${i} ${e}`:e;n.length>t&&i?(r.push(i),i=e):i=n}),i&&r.push(i),r.slice(0,3)}function LS(e){return e.type===`theme`?MS.theme:e.type===`research`?e.importance===`main`?MS.researchMain:MS.researchSupport:e.type===`engagement`?e.importance===`minor`?MS.engagementMinor:MS.engagementMajor:MS.institution}function RS(e,t){return e.type===`research`?{dx:15,dy:4,anchor:`start`,baseline:`middle`}:e.type===`engagement`?{dx:-15,dy:4,anchor:`end`,baseline:`middle`}:e.type===`institution`?{dx:0,dy:18,anchor:`middle`,baseline:`hanging`}:(t?{misinformation:{dx:0,dy:-24,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-20,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:20,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-20,dy:4,anchor:`end`,baseline:`middle`}}:{misinformation:{dx:0,dy:-26,anchor:`middle`,baseline:`baseline`},"platform-governance":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"content-moderation":{dx:-24,dy:4,anchor:`end`,baseline:`middle`},"ai-policy":{dx:24,dy:4,anchor:`start`,baseline:`middle`},"participatory-governance":{dx:-24,dy:4,anchor:`end`,baseline:`middle`}})[e.id]}function zS(e,t,n,r){let i=r?10:24,a=r?10:18,o=t-i*2,s=n-a*2,c=e.nodes.map(e=>{let t=e[r?`mobile`:`desktop`];return{...e,x:i+o*t.x,y:a+s*t.y,motion:FS(e.id)}}),l=new Map(c.map(e=>[e.id,e])),u=e.edges.map(e=>({source:l.get(e.source),target:l.get(e.target)})),d=new Map(c.map(e=>[e.id,new Set([e.id])]));return u.forEach(e=>{d.get(e.source.id)?.add(e.target.id),d.get(e.target.id)?.add(e.source.id)}),{nodes:c,edges:u,adjacency:d}}function BS(e){return`${e.source.id}|${e.target.id}`}function VS(e){let t=e.target.x-e.source.x,n=e.target.y-e.source.y,r=Math.hypot(t,n)||1,i=-n/r,a=t/r,o=(e.source.x+e.target.x)/2,s=(e.source.y+e.target.y)/2,c=PS(BS(e))%2==0?1:-1,l=Math.min(28,r*.12)*c,u=o+i*l,d=s+a*l;return`M${e.source.x},${e.source.y} Q${u},${d} ${e.target.x},${e.target.y}`}function HS(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),n=Ud(),[r,i]=(0,S.useState)({width:0,height:0}),[a,o]=(0,S.useState)({visible:!1,x:0,y:0,label:``}),s=r.width>0&&r.width<768,c=(0,S.useMemo)(()=>({nodes:CS.nodes.map(e=>({...e})),edges:CS.edges.map(e=>({...e}))}),[]);return(0,S.useEffect)(()=>{if(!t.current)return;let e=new ResizeObserver(([e])=>{let{width:t,height:n}=e.contentRect;i({width:t,height:n})});return e.observe(t.current),()=>e.disconnect()},[]),(0,S.useEffect)(()=>{if(!e.current||!r.width||!r.height)return;let{nodes:i,edges:a,adjacency:l}=zS(c,r.width,r.height,s),u=cy(e.current);u.selectAll(`*`).remove();let d=u.append(`g`),f=d.append(`defs`);jS.forEach((e,t)=>{let n=f.append(`radialGradient`).attr(`id`,`theme-glow-${t}`);n.append(`stop`).attr(`offset`,`0%`).attr(`stop-color`,e),n.append(`stop`).attr(`offset`,`100%`).attr(`stop-color`,`rgba(255,255,255,0)`)});let p=i.filter(e=>e.type===`theme`);d.append(`g`).selectAll(`circle`).data(p).join(`circle`).attr(`cx`,e=>e.x).attr(`cy`,e=>e.y).attr(`r`,s?66:88).attr(`fill`,(e,t)=>`url(#theme-glow-${t%jS.length})`),s||(d.append(`text`).attr(`x`,r.width*.1).attr(`y`,r.height*.12).attr(`fill`,`rgba(43, 42, 42, 0.14)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).text(`Research`),d.append(`text`).attr(`x`,r.width*.79).attr(`y`,r.height*.12).attr(`fill`,`rgba(196, 149, 106, 0.2)`).attr(`font-family`,`'Cormorant Garamond', serif`).attr(`font-size`,36).attr(`font-weight`,500).attr(`text-anchor`,`end`).text(`Engagement`),d.append(`text`).attr(`x`,r.width*.5).attr(`y`,r.height*.08).attr(`fill`,`rgba(43, 42, 42, 0.12)`).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,10).attr(`letter-spacing`,`0.16em`).attr(`text-anchor`,`middle`).text(`THEMES`));let m=d.append(`g`),h=d.append(`g`),g=d.append(`g`),_=m.selectAll(`path`).data(a).join(`path`).attr(`d`,VS).attr(`fill`,`none`).attr(`stroke`,kS.greenLight).attr(`stroke-width`,.95).attr(`stroke-linecap`,`round`).attr(`opacity`,.24),v=h.selectAll(`g`).data(a.filter(e=>AS.has(BS(e)))).join(`g`).attr(`opacity`,1);v.append(`circle`).attr(`r`,1.8).attr(`fill`,kS.greenPale).attr(`opacity`,0).each(function(e){let t=AS.get(BS(e)),n=cy(this);n.append(`animateMotion`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`).attr(`path`,VS(e)),n.append(`animate`).attr(`attributeName`,`opacity`).attr(`values`,`0;0.45;0.45;0`).attr(`keyTimes`,`0;0.08;0.92;1`).attr(`dur`,t.duration).attr(`begin`,t.delay).attr(`repeatCount`,`indefinite`)});let y=g.selectAll(`g.node`).data(i).join(`g`).attr(`class`,`node`).attr(`transform`,e=>`translate(${e.x}, ${e.y})`).style(`cursor`,e=>e.url?`pointer`:`grab`),b=y.append(`g`).attr(`class`,`node-drift`).style(`--drift-x`,e=>e.motion.driftX).style(`--drift-y`,e=>e.motion.driftY).style(`--drift-duration`,e=>e.motion.driftDuration).style(`--drift-delay`,e=>e.motion.driftDelay);b.append(`circle`).attr(`class`,e=>e.type===`theme`?`theme-pulse`:null).style(`--pulse-duration`,e=>e.motion.pulseDuration).style(`--pulse-delay`,e=>e.motion.pulseDelay).attr(`r`,e=>LS(e).radius).attr(`fill`,e=>LS(e).fill).attr(`stroke`,`rgba(247, 247, 245, 0.92)`).attr(`stroke-width`,e=>e.type===`institution`?1:1.2);let x=b.append(`text`).attr(`fill`,kS.text).attr(`font-family`,`'PP Neue Montreal', 'Inter', sans-serif`).attr(`font-size`,e=>`${LS(e).labelSize}px`).attr(`font-weight`,e=>LS(e).labelWeight).attr(`letter-spacing`,e=>e.type===`theme`?`0.01em`:null).attr(`paint-order`,e=>e.type===`theme`?`stroke fill`:null).attr(`stroke`,e=>e.type===`theme`?`rgba(247, 247, 245, 0.94)`:`none`).attr(`stroke-width`,e=>e.type===`theme`?4.5:0).attr(`stroke-linejoin`,`round`).attr(`opacity`,e=>s&&NS.has(e.id)?0:LS(e).labelOpacity).attr(`text-anchor`,e=>RS(e,s).anchor).attr(`dominant-baseline`,e=>RS(e,s).baseline).attr(`x`,e=>RS(e,s).dx).attr(`y`,e=>RS(e,s).dy);x.selectAll(`tspan`).data(e=>IS(e.label,s?16:18)).join(`tspan`).attr(`x`,function(){return cy(this.parentNode).attr(`x`)}).attr(`dy`,(e,t)=>t===0?0:`1.15em`).text(e=>e);let S=(e,t)=>l.get(e.id)?.has(t.id);function C(){y.attr(`transform`,e=>`translate(${e.x}, ${e.y})`),_.attr(`d`,VS),v.selectAll(`circle`).each(function(e){cy(this).select(`animateMotion`).attr(`path`,VS(e))})}function w(e){_.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?.48:.06:.22),v.attr(`opacity`,t=>e?t.source.id===e.id||t.target.id===e.id?1:.1:1),b.select(`circle`).attr(`opacity`,t=>e?S(e,t)?1:.25:1),x.attr(`opacity`,t=>e?s&&NS.has(t.id)?0:S(e,t)?.96:.22:s&&NS.has(t.id)?0:LS(t).labelOpacity)}let ee=Cy().on(`start`,function(){cy(this).style(`cursor`,`grabbing`)}).on(`drag`,function(e,t){t.x=Math.max(24,Math.min(r.width-24,e.x)),t.y=Math.max(24,Math.min(r.height-24,e.y)),C(),o(n=>({...n,visible:!0,x:e.x,y:e.y,label:t.label}))}).on(`end`,function(e,t){cy(this).style(`cursor`,t.url?`pointer`:`grab`),o(e=>({...e,visible:!1}))});y.on(`mouseenter`,function(e,t){w(t),o({visible:!0,x:t.x,y:t.y,label:t.label})}).on(`mousemove`,function(e,n){let r=t.current?.getBoundingClientRect();r&&o({visible:!0,x:e.clientX-r.left,y:e.clientY-r.top,label:n.label})}).on(`mouseleave`,function(){w(null),o(e=>({...e,visible:!1}))}).on(`click`,(e,t)=>{t.url&&n(t.url)}).call(ee),C(),w(null)},[c,s,n,r.height,r.width]),(0,R.jsxs)(ES,{ref:t,children:[(0,R.jsx)(DS,{ref:e,viewBox:`0 0 ${r.width||1e3} ${r.height||560}`,children:(0,R.jsx)(`title`,{children:`Dongjae Kang semantic map`})}),(0,R.jsx)(OS,{$visible:a.visible,$x:a.x,$y:a.y,children:a.label})]})}var US=Ou.div,WS={initial:{opacity:0,y:20},animate:{opacity:1,y:0,transition:{duration:.6,ease:`easeOut`}},exit:{opacity:0,y:-20,transition:{duration:.4,ease:`easeIn`}}};function GS({children:e}){return(0,R.jsx)(US,{variants:WS,initial:`initial`,animate:`animate`,exit:`exit`,children:e})}var KS=`/assets/crisisnews-thumbnail-BYtxTvwG.png`,qS=`/assets/prism-thumbnail-BSMB3k5z.png`,JS=`/assets/multi-agent-sim-workflow-D4FMYsKp.png`,YS=[{id:`crisisnews`,title:`CrisisNews`,year:`2024-2025`,summary:`A 20-year dataset of 93,250 news articles used to study how social media crises spread and escalate.`,description:`At KAIST's Collaborative Social Technologies Lab, Kang co-first authored CrisisNews with Jeanne Choi under the supervision of Joseph Seering. The project built a dataset of 93,250 news articles and structured crisis records covering two decades of social media incidents. One finding was that ordinary users, rather than influencers or bots, accounted for most misinformation propagation across the cases analyzed. Kang presented the work as sole presenter at the ACM CHI 2025 Workshop in Yokohama. The dataset and browsing interface were released publicly for further research.`,collaborators:[`Jeanne Choi`,`Prof. Joseph Seering`],tags:[`Misinformation`,`Platform Governance`,`Data Analysis`],links:[{label:`arXiv`,url:`https://arxiv.org/abs/2510.12243`},{label:`Website`,url:`https://crisis-news.netlify.app`}],thumbnail:KS,gallery:[KS]},{id:`prism`,title:`PRISM`,year:`2025`,summary:`A multi-perspective news platform that traces how a story moves across sources, timelines, and fact-checking references.`,description:`PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.`,collaborators:[`Columbia SIPA project team`,`Prototype implemented independently`],tags:[`Misinformation`,`Platform Design`,`HCI`],links:[{label:`Demo`,url:`https://tpi-emerging-tech.netlify.app`}],thumbnail:qS,gallery:[qS]},{id:`beyond-removal`,title:`Beyond Removal`,year:`2026`,summary:`A term paper that maps crisis cases to Goldman's moderation remedies framework and asks what platforms do besides removal.`,description:`Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.`,collaborators:[`Columbia SIPA Trust & Safety course`],tags:[`Content Moderation`,`Platform Governance`],links:[],thumbnail:null,gallery:[]},{id:`multi-agent-sim`,title:`Multi-Agent Simulation`,year:`2026`,summary:`A Python agent-based model comparing AI fact-check labels with accuracy nudges in repeated information-sharing environments.`,description:`This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.`,collaborators:[`Columbia SIPA Ethics of Media course`],tags:[`Misinformation`,`AI`,`Simulation`],links:[],thumbnail:JS,gallery:[JS,`/assets/multi-agent-sim-method-Dhay_e8C.png`]}],XS=`/assets/ces-foundry-B74FjpOQ.jpeg`,ZS=`/assets/hyc-mixer-presenting-BdEhYOXT.jpeg`,QS=`/assets/kgsa-career-poster-B7wQ7cK3.jpg`,$S=`/assets/kgsa-career-room-NhlrWB42.jpg`,eC=`/assets/kaist-podium-DkP3TL19.jpeg`,tC=`/assets/upenn-mixer-group-B13IMclc.jpeg`,nC=`/assets/kgsa-career-room-NhlrWB42.jpg`,rC=`/assets/upenn-mixer-stage-B99hHFNL.jpeg`,iC=`/assets/valedictorian-gown-K-Raxk8w.jpeg`,aC=[{id:`valedictorian`,title:`KAIST Valedictorian`,date:`Feb 2026`,location:`Daejeon`,summary:`Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.`,description:`Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea. The speech is available publicly and is embedded on this site.`,tags:[`Leadership`,`KAIST`],links:[{label:`Video`,url:`https://www.youtube.com/watch?v=U7m4LpyHffk`}],media:{cover:iC,youtube:`https://www.youtube.com/watch?v=U7m4LpyHffk`,youtubeNote:`Speech starts at 1:15:02`,photos:[iC]}},{id:`un-youth-forum`,title:`UN ECOSOC Youth Forum - SDG 9 Respondent`,date:`Apr 2026`,location:`United Nations Headquarters, New York`,summary:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.`,description:`Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.`,tags:[`UN`,`Platform Governance`,`Speaking`],links:[],media:{photos:[]}},{id:`un-ga-hlw`,title:`UN General Assembly High-Level Week`,date:`Sep 2025`,location:`New York`,summary:`Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.`,description:`During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations. The role involved supporting diplomatic event operations during one of the busiest weeks of the UN calendar.`,tags:[`UN`,`Diplomacy`],links:[],media:{photos:[]}},{id:`ces`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,summary:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,description:`Visited CES, exploring developments in AI hardware, autonomous systems, and consumer technology.`,tags:[`Technology`,`Industry`],links:[],media:{cover:XS,photos:[XS]}},{id:`stanford`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,summary:`Visited Stanford University.`,description:`Visited Stanford University.`,tags:[`Academia`],links:[],media:{photos:[]}},{id:`hyc-mixer`,title:`Harvard-Yale-Columbia Korean Student Mixer - MC`,date:`Jan 2026`,location:`New York`,summary:`Served as main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.`,description:`Kang served as the main MC for a tri-school mixer connecting Korean students from Harvard, Yale, and Columbia. He led the program for a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:ZS,photos:[ZS]}},{id:`upenn-mixer`,title:`5-School Mixer at UPenn - MC`,date:`Nov 15, 2025`,location:`Philadelphia`,summary:`Served as main MC for a five-school mixer at Penn attended by roughly 200 Korean students.`,description:`At the University of Pennsylvania, Kang served as the main MC for a five-school mixer bringing together Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers. He led the program in a room of roughly 200 attendees.`,tags:[`Leadership`,`Community`],links:[],media:{cover:tC,photos:[tC,nC,rC]}},{id:`student-council`,title:`KAIST Student Council President`,date:`2022-2023`,location:`KAIST`,summary:`Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.`,description:`As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries instead of choosing confrontation. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.`,tags:[`Leadership`,`Policy`,`KAIST`],links:[{label:`JoongAng Ilbo`,url:`https://www.joongang.co.kr/article/25215586`},{label:`KAIST Herald`,url:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`}],media:{cover:eC,photos:[eC]}},{id:`chi-2025`,title:`CHI 2025 Workshop Presentation - Yokohama`,date:`Apr 2025`,location:`Yokohama`,summary:`Presented CrisisNews as sole presenter at the ACM CHI 2025 Workshop in Yokohama, Japan.`,description:`Kang presented the CrisisNews project at the ACM CHI 2025 Workshop in Yokohama as the sole presenter. The presentation shared findings from two decades of social media crisis patterns with an HCI audience interested in platforms, online harm, and public communication.`,tags:[`Research`,`Speaking`,`HCI`],links:[{label:`Related Research`,url:`/research/crisisnews`}],media:{photos:[]}},{id:`kgsa-career`,title:`KGSA Career Event - Organizer & MC`,date:`Mar 28, 2026`,location:`Columbia University`,summary:`Organized and MC'd a KGSA career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,description:`As Career Chair of the Korean Graduate Student Association at Columbia, Kang organized and emceed a career event with five speakers working across technology, law, finance, and the United Nations. The event featured speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.`,tags:[`Leadership`,`Community`],links:[],media:{cover:QS,photos:[QS,$S]}},{id:`columbia-ai-club`,title:`Columbia AI Club at SIPA`,date:`2025-Present`,location:`New York`,summary:`Founding board member and Vice President of Research Lab for the Columbia AI Club at SIPA.`,description:`Kang is a founding board member of the Columbia AI Club at SIPA and serves as Vice President of Research Lab. The role includes helping build the club's research programming and institutional structure.`,tags:[`Leadership`,`AI`,`Columbia SIPA`],links:[],media:{photos:[]}}];function oC(e=.15){let[t,n]=(0,S.useState)(null),[r,i]=(0,S.useState)(!1);return(0,S.useEffect)(()=>{if(!t)return;let n=new IntersectionObserver(([e])=>{e.isIntersecting&&i(!0)},{threshold:e});return n.observe(t),()=>n.disconnect()},[t,e]),[n,r]}var sC=Tg`
   0%, 100% {
     transform: translateY(0);
   }
@@ -255,17 +249,19 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   50% {
     transform: translateY(7px);
   }
-`,lC=bg`
+`,cC=bg`
   opacity: ${({$visible:e})=>e?1:0};
   transform: translateY(${({$visible:e})=>e?`0`:`18px`});
   transition:
     opacity 0.75s ease,
     transform 0.75s ease;
-`,uC=$.main`
+`,lC=$.main`
+  position: relative;
   min-height: 100vh;
   background: ${({theme:e})=>e.colors.subpage.background};
   color: ${({theme:e})=>e.colors.subpage.text};
-`,dC=$.section`
+  overflow-x: hidden;
+`,uC=$.section`
   position: relative;
   min-height: 100vh;
   padding: 108px 0 44px;
@@ -300,7 +296,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     padding: 96px 0 36px;
   }
-`,fC=$.div`
+`,dC=$.div`
   position: relative;
   z-index: 1;
   width: min(${({theme:e})=>e.layout.contentMax}, calc(100% - 32px));
@@ -309,7 +305,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   justify-items: center;
   gap: 16px;
   text-align: center;
-`,pC=$.div`
+`,fC=$.div`
   display: none;
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
@@ -318,7 +314,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     justify-content: center;
     gap: 8px;
   }
-`,mC=$.span`
+`,pC=$.span`
   padding: 6px 10px;
   border: 1px solid rgba(27, 61, 47, 0.12);
   border-radius: 4px;
@@ -327,7 +323,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.muted};
   background: rgba(247, 247, 245, 0.8);
-`,hC=$.h1`
+`,mC=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(3rem, 5.1vw, 4.95rem);
   font-weight: 600;
@@ -338,7 +334,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     font-size: clamp(2.55rem, 12.6vw, 3.9rem);
     text-wrap: balance;
   }
-`,gC=$.p`
+`,hC=$.p`
   max-width: 1020px;
   font-size: clamp(1rem, 1.2vw, 1.12rem);
   color: ${({theme:e})=>e.colors.subpage.muted};
@@ -352,7 +348,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     font-size: 1rem;
     white-space: normal;
   }
-`,_C=$.button`
+`,gC=$.button`
   display: grid;
   gap: 8px;
   justify-items: center;
@@ -364,50 +360,61 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   svg {
     font-size: 1.05rem;
-    animation: ${({$stopped:e})=>e?`none`:bg`${cC} 2.5s ease-in-out infinite`};
+    animation: ${({$stopped:e})=>e?`none`:bg`${sC} 2.5s ease-in-out infinite`};
   }
-`,vC=$.div`
+`,_C=$.div`
   padding: 24px 0 120px;
-`,yC=$.div`
+`,vC=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
-  gap: 88px;
-`,bC=$.section`
+  gap: 0;
+`,yC=$.section`
   display: grid;
   gap: 28px;
-  align-content: start;
-  padding-top: 0;
-  ${lC};
+  align-content: center;
+  min-height: calc(100vh - 112px);
+  padding: 12px 0;
+  ${cC};
 
   & + & {
     padding-top: 28px;
     border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
   }
-`,xC=$.div`
+
+  @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
+    min-height: auto;
+    align-content: start;
+    padding: 0;
+
+    & + & {
+      padding-top: 28px;
+    }
+  }
+`,bC=$.div`
   display: grid;
   gap: 12px;
   max-width: 44rem;
-`,SC=$.span`
+`,xC=$.span`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(3rem, 6vw, 5rem);
   line-height: 0.86;
   color: rgba(27, 61, 47, 0.18);
-`,CC=$.span`
+`,SC=$.span`
   font-size: 0.78rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`,wC=$.h2`
+`,CC=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2.2rem, 4vw, 3.4rem);
   font-weight: 600;
   line-height: 1.08;
-`,TC=$.p`
+`,wC=$.p`
   font-size: 1.12rem;
   line-height: 1.75;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,EC=$.div`
+`,TC=$.div`
   display: grid;
   grid-template-columns: 0.76fr 1.24fr;
   gap: 40px;
@@ -420,11 +427,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
-`,DC=$.div`
+`,EC=$.div`
   position: relative;
   display: grid;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,OC=$(sp)`
+`,DC=$(sp)`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px 20px;
@@ -440,30 +447,30 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     grid-template-columns: minmax(0, 1fr) auto;
     row-gap: 8px;
   }
-`,kC=$.h3`
+`,OC=$.h3`
   min-width: 0;
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.55rem;
   line-height: 1.08;
   font-weight: 500;
-`,AC=$.p`
+`,kC=$.p`
   grid-column: 1 / -1;
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.98rem;
-`,jC=$.span`
+`,AC=$.span`
   justify-self: end;
   font-size: 0.84rem;
   color: ${({theme:e})=>e.colors.subpage.muted};
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,MC=$.div`
+`,jC=$.div`
   position: relative;
   min-width: 0;
-`,NC=$.div`
-  position: absolute;
+`,MC=$.div`
+  position: fixed;
   top: ${({$y:e})=>`${e}px`};
   left: ${({$x:e})=>`${e}px`};
-  width: 148px;
+  width: 164px;
   aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 3px;
@@ -471,25 +478,24 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background: #d8ddd8;
   box-shadow: 0 12px 30px rgba(27, 61, 47, 0.12);
   opacity: ${({$visible:e})=>e?1:0};
-  transform: translate(18px, -50%);
   pointer-events: none;
   transition: opacity 0.16s ease;
-  z-index: 2;
+  z-index: 40;
 
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     display: none;
   }
-`,PC=$.img`
+`,NC=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,FC=$(sp)`
+`,PC=$(sp)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.accent};
   font-size: 0.88rem;
   letter-spacing: 0.06em;
   margin-top: 18px;
-`,IC=$.div`
+`,FC=$.div`
   display: grid;
   grid-template-columns: 0.84fr 1.16fr;
   gap: 40px;
@@ -502,10 +508,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
-`,LC=$.div`
+`,IC=$.div`
   display: grid;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,RC=$.div`
+`,LC=$.div`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 12px 20px;
@@ -516,13 +522,13 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     grid-template-columns: 1fr;
     gap: 8px;
   }
-`,zC=$.h3`
+`,RC=$.h3`
   min-width: 0;
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.38rem;
   line-height: 1.08;
   font-weight: 500;
-`,BC=$.span`
+`,zC=$.span`
   font-size: 0.84rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -531,10 +537,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     justify-self: start;
   }
-`,VC=$.p`
+`,BC=$.p`
   grid-column: 1 / -1;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,HC=$.div`
+`,VC=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
@@ -545,11 +551,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     font-size: 0.88rem;
     letter-spacing: 0.06em;
   }
-`,UC=$.div`
+`,HC=$.div`
   display: grid;
   gap: 12px;
   max-width: 46rem;
-`,WC=$.div`
+`,UC=$.div`
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: minmax(220px, 260px);
@@ -565,11 +571,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   &::-webkit-scrollbar-thumb {
     background: rgba(27, 61, 47, 0.22);
   }
-`,GC=$(sp)`
+`,WC=$(sp)`
   display: grid;
   gap: 10px;
   scroll-snap-align: start;
-`,KC=$.div`
+`,GC=$.div`
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -586,11 +592,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,qC=$.img`
+`,KC=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,JC=$.span`
+`,qC=$.span`
   position: absolute;
   left: 12px;
   bottom: 12px;
@@ -599,30 +605,30 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #f7f7f5;
-`,YC=$.div`
+`,JC=$.div`
   display: grid;
   gap: 4px;
-`,XC=$.h3`
+`,YC=$.h3`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.45rem;
   line-height: 1.08;
   font-weight: 500;
-`,ZC=$.span`
+`,XC=$.span`
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.84rem;
-`,QC=[`crisisnews`,`prism`,`beyond-removal`,`multi-agent-sim`],$C=[`chi-2025`,`un-ga-hlw`,`un-youth-forum`,`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`valedictorian`];function ew(){let e=(0,S.useRef)(null),t=(0,S.useRef)(null),[n,r]=(0,S.useState)(!1),[i,a]=sC(),[o,s]=sC(),[c,l]=sC(),[u,d]=(0,S.useState)({visible:!1,x:0,y:0,image:null,title:``});(0,S.useEffect)(()=>{let e=()=>{window.scrollY>100&&r(!0)};return window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[]);let f=QC.map(e=>XS.find(t=>t.id===e)).filter(Boolean),p=[oC.find(e=>e.id===`student-council`),oC.find(e=>e.id===`columbia-ai-club`)].filter(Boolean),m=$C.map(e=>oC.find(t=>t.id===e)).filter(Boolean),h=(e,n)=>{if(!n.thumbnail||!t.current||window.innerWidth<1024)return;let r=t.current.getBoundingClientRect();d({visible:!0,x:Math.min(r.width-164,Math.max(16,e.clientX-r.left)),y:Math.min(r.height-92,Math.max(20,e.clientY-r.top)),image:n.thumbnail,title:n.title})};return(0,R.jsx)(KS,{children:(0,R.jsxs)(uC,{children:[(0,R.jsx)(dC,{children:(0,R.jsxs)(fC,{children:[(0,R.jsx)(US,{}),(0,R.jsxs)(pC,{children:[(0,R.jsx)(mC,{children:`Research`}),(0,R.jsx)(mC,{children:`Themes`}),(0,R.jsx)(mC,{children:`Engagement`})]}),(0,R.jsx)(hC,{children:`Dongjae (Jack) Kang`}),(0,R.jsx)(gC,{children:`Studying misinformation, platform governance, and the systems that shape what people believe.`}),(0,R.jsxs)(_C,{type:`button`,$stopped:n,onClick:()=>e.current?.scrollIntoView({behavior:`smooth`}),children:[(0,R.jsx)(`span`,{children:`Scroll to explore`}),(0,R.jsx)(i_,{})]})]})}),(0,R.jsx)(vC,{ref:e,children:(0,R.jsxs)(yC,{children:[(0,R.jsx)(bC,{ref:i,$visible:a,children:(0,R.jsxs)(EC,{children:[(0,R.jsxs)(xC,{children:[(0,R.jsx)(SC,{children:`01`}),(0,R.jsx)(CC,{children:`Research`}),(0,R.jsx)(wC,{children:`How platforms shape what people believe.`}),(0,R.jsx)(TC,{children:`He studies misinformation, platform governance, and content moderation across both empirical research and interface design. The work ranges from a dataset of 93,250 news articles to prototype systems for comparing how the same story moves across sources.`})]}),(0,R.jsxs)(MC,{ref:t,children:[(0,R.jsx)(DC,{children:f.map(e=>(0,R.jsxs)(OC,{to:`/research/${e.id}`,onMouseEnter:t=>h(t,e),onMouseMove:t=>h(t,e),onMouseLeave:()=>d(e=>({...e,visible:!1})),children:[(0,R.jsx)(kC,{children:e.title}),(0,R.jsx)(jC,{children:e.year}),(0,R.jsx)(AC,{children:e.summary})]},e.id))}),(0,R.jsx)(NC,{$visible:u.visible,$x:u.x,$y:u.y,children:u.image&&(0,R.jsx)(PC,{src:u.image,alt:`${u.title} preview`})}),(0,R.jsx)(FC,{to:`/research`,children:`View all research →`})]})]})}),(0,R.jsx)(bC,{ref:o,$visible:s,children:(0,R.jsxs)(IC,{children:[(0,R.jsxs)(xC,{children:[(0,R.jsx)(SC,{children:`02`}),(0,R.jsx)(CC,{children:`Leadership`}),(0,R.jsx)(wC,{children:`Research is one line of work. Institutions are another.`}),(0,R.jsx)(TC,{children:`As President of KAIST's Undergraduate Student Council, he rebuilt an organization inactive for three years. When Korea announced a 16% R&D budget cut, he coordinated dialogue across universities, the National Assembly, and government ministries. The method was not confrontation for its own sake. It was dialogue, patience, and enough credibility to keep people at the table.`})]}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(LC,{children:p.map(e=>(0,R.jsxs)(RC,{children:[(0,R.jsx)(zC,{children:e.title}),(0,R.jsx)(BC,{children:e.date}),(0,R.jsx)(VC,{children:e.summary})]},e.id))}),(0,R.jsxs)(HC,{children:[(0,R.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`JoongAng Ilbo column →`}),(0,R.jsx)(`a`,{href:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`,target:`_blank`,rel:`noopener noreferrer`,children:`KAIST Herald →`})]})]})]})}),(0,R.jsxs)(bC,{ref:c,$visible:l,children:[(0,R.jsxs)(UC,{children:[(0,R.jsx)(SC,{children:`03`}),(0,R.jsx)(CC,{children:`Selected Activities`}),(0,R.jsx)(wC,{children:`From Yokohama to the General Assembly.`}),(0,R.jsx)(TC,{children:`He presented misinformation research at ACM CHI in Yokohama, supported diplomatic operations during the UN General Assembly High-Level Week, and organized networking events for 200+ students across Ivy League campuses. The settings differ. The pattern is the same.`})]}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(WC,{children:m.map(e=>{let t=e.media?.cover||e.media?.photos?.[0];return(0,R.jsxs)(GC,{to:`/activities/${e.id}`,children:[(0,R.jsxs)(KC,{$hasImage:!!t,children:[t&&(0,R.jsx)(qC,{src:t,alt:`${e.title} preview`}),(0,R.jsx)(JC,{children:e.location})]}),(0,R.jsxs)(YC,{children:[(0,R.jsx)(XC,{children:e.title}),(0,R.jsx)(ZC,{children:e.date})]})]},e.id)})}),(0,R.jsx)(FC,{to:`/activities`,children:`View all activities →`})]})]})]})})]})})}var tw=`/assets/profile-square-C1RNx-Re.jpg`,nw=`/assets/profile-full-D33NEozT.jpg`,rw=$.main`
+`,ZC=[`crisisnews`,`prism`,`beyond-removal`,`multi-agent-sim`],QC=[`chi-2025`,`un-ga-hlw`,`un-youth-forum`,`kgsa-career`,`upenn-mixer`,`hyc-mixer`,`valedictorian`];function $C(){let e=(0,S.useRef)(null),[t,n]=(0,S.useState)(!1),[r,i]=oC(),[a,o]=oC(),[s,c]=oC(),[l,u]=(0,S.useState)({visible:!1,x:0,y:0,image:null,title:``});(0,S.useEffect)(()=>{let e=()=>{window.scrollY>100&&n(!0)};return window.addEventListener(`scroll`,e),()=>window.removeEventListener(`scroll`,e)},[]);let d=ZC.map(e=>YS.find(t=>t.id===e)).filter(Boolean),f=[aC.find(e=>e.id===`student-council`),aC.find(e=>e.id===`columbia-ai-club`)].filter(Boolean),p=QC.map(e=>aC.find(t=>t.id===e)).filter(Boolean),m=(e,t)=>{if(!t.thumbnail||window.innerWidth<1024)return;let n=e.clientX+22,r=e.clientY-110/2;n+164>window.innerWidth-20&&(n=e.clientX-164-22),r=Math.min(window.innerHeight-110-20,Math.max(20,r)),u({visible:!0,x:n,y:r,image:t.thumbnail,title:t.title})};return(0,R.jsx)(GS,{children:(0,R.jsxs)(lC,{children:[(0,R.jsx)(uC,{children:(0,R.jsxs)(dC,{children:[(0,R.jsx)(HS,{}),(0,R.jsxs)(fC,{children:[(0,R.jsx)(pC,{children:`Research`}),(0,R.jsx)(pC,{children:`Themes`}),(0,R.jsx)(pC,{children:`Engagement`})]}),(0,R.jsx)(mC,{children:`Dongjae (Jack) Kang`}),(0,R.jsx)(hC,{children:`Studying misinformation, platform governance, and the systems that shape what people believe.`}),(0,R.jsxs)(gC,{type:`button`,$stopped:t,onClick:()=>e.current?.scrollIntoView({behavior:`smooth`}),children:[(0,R.jsx)(`span`,{children:`Scroll to explore`}),(0,R.jsx)(r_,{})]})]})}),(0,R.jsx)(_C,{ref:e,children:(0,R.jsxs)(vC,{children:[(0,R.jsx)(yC,{ref:r,$visible:i,children:(0,R.jsxs)(TC,{children:[(0,R.jsxs)(bC,{children:[(0,R.jsx)(xC,{children:`01`}),(0,R.jsx)(SC,{children:`Research`}),(0,R.jsx)(CC,{children:`How platforms shape what people believe.`}),(0,R.jsx)(wC,{children:`He studies misinformation, platform governance, and content moderation across both empirical research and interface design. The work ranges from a dataset of 93,250 news articles to prototype systems for comparing how the same story moves across sources.`})]}),(0,R.jsxs)(jC,{children:[(0,R.jsx)(EC,{children:d.map(e=>(0,R.jsxs)(DC,{to:`/research/${e.id}`,onMouseEnter:t=>m(t,e),onMouseMove:t=>m(t,e),onMouseLeave:()=>u(e=>({...e,visible:!1})),children:[(0,R.jsx)(OC,{children:e.title}),(0,R.jsx)(AC,{children:e.year}),(0,R.jsx)(kC,{children:e.summary})]},e.id))}),(0,R.jsx)(MC,{$visible:l.visible,$x:l.x,$y:l.y,children:l.image&&(0,R.jsx)(NC,{src:l.image,alt:`${l.title} preview`})}),(0,R.jsx)(PC,{to:`/research`,children:`View all research →`})]})]})}),(0,R.jsx)(yC,{ref:a,$visible:o,children:(0,R.jsxs)(FC,{children:[(0,R.jsxs)(bC,{children:[(0,R.jsx)(xC,{children:`02`}),(0,R.jsx)(SC,{children:`Leadership`}),(0,R.jsx)(CC,{children:`Research is one line of work. Institutions are another.`}),(0,R.jsx)(wC,{children:`As President of KAIST's Undergraduate Student Council, he rebuilt an organization inactive for three years. When Korea announced a 16% R&D budget cut, he coordinated dialogue across universities, the National Assembly, and government ministries. The method was not confrontation for its own sake. It was dialogue, patience, and enough credibility to keep people at the table.`})]}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(IC,{children:f.map(e=>(0,R.jsxs)(LC,{children:[(0,R.jsx)(RC,{children:e.title}),(0,R.jsx)(zC,{children:e.date}),(0,R.jsx)(BC,{children:e.summary})]},e.id))}),(0,R.jsxs)(VC,{children:[(0,R.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`JoongAng Ilbo column →`}),(0,R.jsx)(`a`,{href:`https://herald.kaist.ac.kr/news/articleView.html?idxno=20910`,target:`_blank`,rel:`noopener noreferrer`,children:`KAIST Herald →`})]})]})]})}),(0,R.jsxs)(yC,{ref:s,$visible:c,children:[(0,R.jsxs)(HC,{children:[(0,R.jsx)(xC,{children:`03`}),(0,R.jsx)(SC,{children:`Selected Activities`}),(0,R.jsx)(CC,{children:`From Yokohama to the General Assembly.`}),(0,R.jsx)(wC,{children:`He presented misinformation research at ACM CHI in Yokohama, supported diplomatic operations during the UN General Assembly High-Level Week, and organized networking events for 200+ students across Ivy League campuses. The settings differ. The pattern is the same.`})]}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(UC,{children:p.map(e=>{let t=e.media?.cover||e.media?.photos?.[0];return(0,R.jsxs)(WC,{to:`/activities/${e.id}`,children:[(0,R.jsxs)(GC,{$hasImage:!!t,children:[t&&(0,R.jsx)(KC,{src:t,alt:`${e.title} preview`}),(0,R.jsx)(qC,{children:e.location})]}),(0,R.jsxs)(JC,{children:[(0,R.jsx)(YC,{children:e.title}),(0,R.jsx)(XC,{children:e.date})]})]},e.id)})}),(0,R.jsx)(PC,{to:`/activities`,children:`View all activities →`})]})]})]})})]})})}var ew=`/assets/profile-square-C1RNx-Re.jpg`,tw=`/assets/profile-full-D33NEozT.jpg`,nw=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
   background: ${({theme:e})=>e.colors.subpage.background};
-`,iw=$.div`
+`,rw=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
-`,aw=$.h1`
+`,iw=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   letter-spacing: 0.02em;
   margin-bottom: 40px;
-`,ow=$.section`
+`,aw=$.section`
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
   gap: 32px;
@@ -631,10 +637,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,sw=$.div`
+`,ow=$.div`
   display: grid;
   gap: 14px;
-`,cw=$.div`
+`,sw=$.div`
   width: 220px;
   height: 220px;
   border-radius: 4px;
@@ -646,7 +652,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     width: 160px;
     height: 160px;
   }
-`,lw=$.div`
+`,cw=$.div`
   width: 220px;
   aspect-ratio: 4 / 5;
   border-radius: 4px;
@@ -657,11 +663,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     display: none;
   }
-`,uw=$.img`
+`,lw=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,dw=$.div`
+`,uw=$.div`
   display: grid;
   gap: 24px;
   max-width: ${({theme:e})=>e.layout.textMax};
@@ -677,21 +683,21 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     text-decoration-thickness: 1px;
     text-underline-offset: 0.16em;
   }
-`,fw=$.hr`
+`,dw=$.hr`
   margin: 48px 0 28px;
   border: 0;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,pw=$.section`
+`,fw=$.section`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   color: ${({theme:e})=>e.colors.subpage.copper};
-`,mw=$.a`
+`,pw=$.a`
   width: fit-content;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
-`;function hw(){return(0,R.jsx)(KS,{children:(0,R.jsx)(rw,{children:(0,R.jsxs)(iw,{children:[(0,R.jsx)(aw,{children:`About`}),(0,R.jsxs)(ow,{children:[(0,R.jsxs)(sw,{children:[(0,R.jsx)(cw,{"aria-label":`Dongjae Kang profile photo`,children:(0,R.jsx)(uw,{src:tw,alt:`Dongjae (Jack) Kang`})}),(0,R.jsx)(lw,{"aria-label":`Dongjae Kang full portrait`,children:(0,R.jsx)(uw,{src:nw,alt:`Dongjae (Jack) Kang portrait`})})]}),(0,R.jsxs)(dw,{children:[(0,R.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,R.jsx)(sp,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,R.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,R.jsx)(sp,{to:`/research/crisisnews`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,R.jsx)(sp,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,R.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,R.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,R.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,R.jsx)(fw,{}),(0,R.jsxs)(pw,{children:[(0,R.jsx)(mw,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,R.jsx)(mw,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`linkedin.com/in/jackkang3780`}),(0,R.jsx)(mw,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`github.com/dongjae-kang`})]})]})})})}var gw={dark:bg`
+`;function mw(){return(0,R.jsx)(GS,{children:(0,R.jsx)(nw,{children:(0,R.jsxs)(rw,{children:[(0,R.jsx)(iw,{children:`About`}),(0,R.jsxs)(aw,{children:[(0,R.jsxs)(ow,{children:[(0,R.jsx)(sw,{"aria-label":`Dongjae Kang profile photo`,children:(0,R.jsx)(lw,{src:ew,alt:`Dongjae (Jack) Kang`})}),(0,R.jsx)(cw,{"aria-label":`Dongjae Kang full portrait`,children:(0,R.jsx)(lw,{src:tw,alt:`Dongjae (Jack) Kang portrait`})})]}),(0,R.jsxs)(uw,{children:[(0,R.jsxs)(`p`,{children:[`Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST, with a double major in Business and a minor in Science and Technology Policy. He graduated as KAIST's `,(0,R.jsx)(sp,{to:`/activities/valedictorian`,children:`Valedictorian`}),`, delivering the commencement address at a ceremony attended by the President of Korea.`]}),(0,R.jsxs)(`p`,{children:[`At KAIST's Collaborative Social Technologies Lab (2024-2025), he co-authored a study analyzing two decades of social media crisis patterns, and presented the work at the `,(0,R.jsx)(sp,{to:`/research/crisisnews`,children:`ACM CHI 2025 Workshop`}),` in Yokohama. At Columbia, he led a team building `,(0,R.jsx)(sp,{to:`/research/prism`,children:`PRISM`}),`, a platform that visualizes how news stories spread across different sources, and is currently researching content moderation remedies and AI-driven misinformation dynamics.`]}),(0,R.jsxs)(`p`,{children:[`As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt the organization after three years of inactivity and coordinated dialogue among universities nationwide, the National Assembly, and government ministries on Korea's R&D budget policy. This led to an invitation to write`,` `,(0,R.jsx)(`a`,{href:`https://www.joongang.co.kr/article/25215586`,target:`_blank`,rel:`noopener noreferrer`,children:`a column`}),` `,`in one of Korea's leading newspapers. He has served on participatory governance committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic operations during the UN General Assembly High-Level Week in 2025, and is a founding board member of the Columbia AI Club at SIPA.`]}),(0,R.jsx)(`p`,{children:`His research interests include platform governance, misinformation, and content moderation. He aims to study how platforms shape society and how policy can guide them responsibly, and put that research into practice.`})]})]}),(0,R.jsx)(dw,{}),(0,R.jsxs)(fw,{children:[(0,R.jsx)(pw,{href:`mailto:dk3500@columbia.edu`,children:`dk3500@columbia.edu`}),(0,R.jsx)(pw,{href:`https://linkedin.com/in/jackkang3780`,target:`_blank`,rel:`noopener noreferrer`,children:`linkedin.com/in/jackkang3780`}),(0,R.jsx)(pw,{href:`https://github.com/dongjae-kang`,target:`_blank`,rel:`noopener noreferrer`,children:`github.com/dongjae-kang`})]})]})})})}var hw={dark:bg`
     color: ${({theme:e})=>e.colors.home.text};
     border: 1px solid rgba(45, 90, 61, 0.22);
     background: rgba(45, 90, 61, 0.08);
@@ -699,7 +705,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.text};
     border: 1px solid rgba(45, 90, 61, 0.16);
     background: rgba(45, 90, 61, 0.06);
-  `},_w=$.span`
+  `},gw=$.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -711,30 +717,30 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: ${({theme:e})=>e.transitions.hover};
-  ${({$variant:e=`light`})=>gw[e]};
-`,vw=[{id:`jungnang-housing`,title:`Revitalizing Jungnang-gu`,course:`Housing Policy and the City`,year:`Fall 2025`,summary:`A housing policy paper proposing a demand-driven inclusive housing strategy for Seoul's Jungnang-gu.`,file:`/assets/jungnang-housing-strategy-D17Ym1_B.pdf`},{id:`chronic-absenteeism`,title:`Reducing Chronic Absenteeism in Washington, D.C.`,course:`Urban Policy Research Project`,year:`2025`,summary:`A policy proposal for mayoral action built around family engagement, early warning systems, community hubs, health services, and accountability.`,file:`/assets/chronic-absenteeism-dc-i9dhpjf-.pdf`}],yw=$.main`
+  ${({$variant:e=`light`})=>hw[e]};
+`,_w=[{id:`jungnang-housing`,title:`Revitalizing Jungnang-gu`,course:`Housing Policy and the City`,year:`Fall 2025`,summary:`A housing policy paper proposing a demand-driven inclusive housing strategy for Seoul's Jungnang-gu.`,file:`/assets/jungnang-housing-strategy-D17Ym1_B.pdf`},{id:`chronic-absenteeism`,title:`Reducing Chronic Absenteeism in Washington, D.C.`,course:`Urban Policy Research Project`,year:`2025`,summary:`A policy proposal for mayoral action built around family engagement, early warning systems, community hubs, health services, and accountability.`,file:`/assets/chronic-absenteeism-dc-i9dhpjf-.pdf`}],vw=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,bw=$.div`
+`,yw=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, 100%);
   margin: 0 auto;
-`,xw=$.h1`
+`,bw=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,Sw=$.p`
+`,xw=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 32px;
   font-size: 1.04rem;
   padding-bottom: 24px;
   border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,Cw=$.div`
+`,Sw=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 28px;
-`,ww=$(sp)`
+`,Cw=$(sp)`
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -742,7 +748,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   border-bottom: 1px solid
     ${({$active:e})=>e?`rgba(27, 61, 47, 0.36)`:`rgba(43, 42, 42, 0.08)`};
   padding-bottom: 6px;
-`,Tw=$.div`
+`,ww=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
@@ -750,24 +756,25 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,Ew=$.section`
+`,Tw=$.section`
   display: grid;
   gap: 20px;
   margin-top: 56px;
   padding-top: 24px;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,Dw=$.h2`
+  scroll-margin-top: 108px;
+`,Ew=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 600;
-`,Ow=$.p`
+`,Dw=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,kw=$.div`
+`,Ow=$.div`
   display: grid;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,Aw=$.a`
+`,kw=$.a`
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 10px 20px;
@@ -778,25 +785,25 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   &:hover {
     background: rgba(27, 61, 47, 0.04);
   }
-`,jw=$.h3`
+`,Aw=$.h3`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.45rem;
   line-height: 1.08;
   font-weight: 500;
-`,Mw=$.span`
+`,jw=$.span`
   justify-self: end;
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.84rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,Nw=$.span`
+`,Mw=$.span`
   color: ${({theme:e})=>e.colors.subpage.accent};
   font-size: 0.84rem;
   letter-spacing: 0.06em;
-`,Pw=$.p`
+`,Nw=$.p`
   grid-column: 1 / -1;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Fw=$(sp)`
+`,Pw=$(sp)`
   display: grid;
   gap: 18px;
   padding: 24px;
@@ -810,7 +817,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: ${({theme:e})=>e.colors.subpage.accent};
     background: rgba(27, 61, 47, 0.04);
   }
-`,Iw=$.div`
+`,Fw=$.div`
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 3px;
@@ -820,54 +827,54 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   align-items: center;
   justify-content: center;
   padding: 16px;
-`,Lw=$.img`
+`,Iw=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,Rw=$.div`
+`,Lw=$.div`
   display: grid;
   gap: 4px;
   text-align: center;
   justify-items: center;
-`,zw=$.span`
+`,Rw=$.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.accent};
-`,Bw=$.span`
+`,zw=$.span`
   max-width: 26ch;
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,Vw=$.div`
+`,Bw=$.div`
   display: grid;
   gap: 6px;
-`,Hw=$.h2`
+`,Vw=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 500;
-`,Uw=$.p`
+`,Hw=$.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Ww=$.p`
+`,Uw=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,Gw=$.div`
+`,Ww=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`;function Kw(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{r===`coursework`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[r]),(0,R.jsx)(KS,{children:(0,R.jsx)(yw,{children:(0,R.jsxs)(bw,{children:[(0,R.jsx)(xw,{children:`Research`}),(0,R.jsx)(Sw,{children:`Core research projects in misinformation and platform governance, followed by a smaller selection of coursework papers in urban policy and public problem-solving.`}),(0,R.jsxs)(Cw,{children:[(0,R.jsx)(ww,{to:`/research`,$active:!r,children:`Projects`}),(0,R.jsx)(ww,{to:`/research?section=coursework`,$active:r===`coursework`,children:`Coursework & Papers`})]}),(0,R.jsx)(Tw,{ref:t,children:XS.map(e=>(0,R.jsxs)(Fw,{to:`/research/${e.id}`,children:[(0,R.jsx)(Iw,{children:e.thumbnail?(0,R.jsx)(Lw,{src:e.thumbnail,alt:`${e.title} preview`}):(0,R.jsxs)(Rw,{children:[(0,R.jsx)(zw,{children:`Research Archive`}),(0,R.jsx)(Bw,{children:`Project image coming soon.`})]})}),(0,R.jsxs)(Vw,{children:[(0,R.jsx)(Hw,{children:e.title}),(0,R.jsx)(Uw,{children:e.year})]}),(0,R.jsx)(Ww,{children:e.summary}),(0,R.jsx)(Gw,{children:e.tags.map(e=>(0,R.jsx)(_w,{children:e},e))})]},e.id))}),(0,R.jsxs)(Ew,{id:`coursework`,ref:n,children:[(0,R.jsx)(Dw,{children:`Selected Coursework & Papers`}),(0,R.jsx)(Ow,{children:`Course-based work in urban policy and public problem-solving, included here because it extends the same questions into a different format.`}),(0,R.jsx)(kw,{children:vw.map(e=>(0,R.jsxs)(Aw,{href:e.file,target:`_blank`,rel:`noopener noreferrer`,children:[(0,R.jsx)(jw,{children:e.title}),(0,R.jsx)(Mw,{children:e.year}),(0,R.jsx)(Nw,{children:e.course}),(0,R.jsx)(Pw,{children:e.summary})]},e.id))})]})]})})})}var qw=$.main`
+`;function Gw(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{r===`coursework`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[r]),(0,R.jsx)(GS,{children:(0,R.jsx)(vw,{children:(0,R.jsxs)(yw,{children:[(0,R.jsx)(bw,{children:`Research`}),(0,R.jsx)(xw,{children:`Core research projects in misinformation and platform governance, followed by a smaller selection of coursework papers in urban policy and public problem-solving.`}),(0,R.jsxs)(Sw,{children:[(0,R.jsx)(Cw,{to:`/research`,$active:!r,children:`Projects`}),(0,R.jsx)(Cw,{to:`/research?section=coursework`,$active:r===`coursework`,children:`Coursework & Papers`})]}),(0,R.jsx)(ww,{ref:t,children:YS.map(e=>(0,R.jsxs)(Pw,{to:`/research/${e.id}`,children:[(0,R.jsx)(Fw,{children:e.thumbnail?(0,R.jsx)(Iw,{src:e.thumbnail,alt:`${e.title} preview`}):(0,R.jsxs)(Lw,{children:[(0,R.jsx)(Rw,{children:`Research Archive`}),(0,R.jsx)(zw,{children:`Project image coming soon.`})]})}),(0,R.jsxs)(Bw,{children:[(0,R.jsx)(Vw,{children:e.title}),(0,R.jsx)(Hw,{children:e.year})]}),(0,R.jsx)(Uw,{children:e.summary}),(0,R.jsx)(Ww,{children:e.tags.map(e=>(0,R.jsx)(gw,{children:e},e))})]},e.id))}),(0,R.jsxs)(Tw,{id:`coursework`,ref:n,children:[(0,R.jsx)(Ew,{children:`Selected Coursework & Papers`}),(0,R.jsx)(Dw,{children:`Course-based work in urban policy and public problem-solving, included here because it extends the same questions into a different format.`}),(0,R.jsx)(Ow,{children:_w.map(e=>(0,R.jsxs)(kw,{href:e.file,target:`_blank`,rel:`noopener noreferrer`,children:[(0,R.jsx)(Aw,{children:e.title}),(0,R.jsx)(jw,{children:e.year}),(0,R.jsx)(Mw,{children:e.course}),(0,R.jsx)(Nw,{children:e.summary})]},e.id))})]})]})})})}var Kw=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,Jw=$.div`
+`,qw=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,Yw=$(sp)`
+`,Jw=$(sp)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.copper};
-`,Xw=$.div`
+`,Yw=$.div`
   aspect-ratio: 16 / 9;
   border-radius: 4px;
   background: #f0ede8;
@@ -878,12 +885,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding: ${({$hasImage:e})=>e?`0`:`20px`};
   border: 1px solid rgba(61, 90, 62, 0.12);
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,Zw=$.img`
+`,Xw=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 3px;
-`,Qw=$.span`
+`,Zw=$.span`
   display: inline-flex;
   align-items: center;
   min-height: 1.1rem;
@@ -893,22 +900,22 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,$w=$.span`
+`,Qw=$.span`
   max-width: 30ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,eT=$.div`
+`,$w=$.div`
   display: grid;
   gap: 8px;
-`,tT=$.h1`
+`,eT=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   font-weight: 500;
   line-height: 1.05;
-`,nT=$.p`
+`,tT=$.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,rT=$.p`
+`,nT=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,iT=$.div`
+`,rT=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
@@ -916,20 +923,20 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,aT=$.div`
+`,iT=$.div`
   display: grid;
   gap: 10px;
   padding: 18px;
   border-radius: 4px;
   border: 1px solid ${({theme:e})=>e.colors.subpage.border};
   background: #fdfcfa;
-`,oT=$.p`
+`,aT=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,sT=$.div`
+`,oT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,cT=$.div`
+`,sT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -938,10 +945,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.copper};
     font-weight: 400;
   }
-`,lT=$.section`
+`,cT=$.section`
   display: grid;
   gap: 14px;
-`,uT=$.div`
+`,lT=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -949,23 +956,23 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,dT=$.img`
+`,uT=$.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
-`;function fT(){let{id:e}=Gd(),t=XS.find(t=>t.id===e);return t?(0,R.jsx)(KS,{children:(0,R.jsx)(qw,{children:(0,R.jsxs)(Jw,{children:[(0,R.jsx)(Yw,{to:`/research`,children:`Back to Research`}),(0,R.jsx)(Xw,{$hasImage:!!t.thumbnail,children:t.thumbnail?(0,R.jsx)(Zw,{src:t.thumbnail,alt:`${t.title} visual`}):(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)(Qw,{children:`Research Visual`}),(0,R.jsx)($w,{children:`Project image, paper figure, or product screenshot to be added.`})]})}),(0,R.jsxs)(eT,{children:[(0,R.jsx)(tT,{children:t.title}),(0,R.jsx)(nT,{children:t.year})]}),(0,R.jsx)(rT,{children:t.description}),(0,R.jsxs)(iT,{children:[(0,R.jsxs)(aT,{children:[(0,R.jsx)(Qw,{children:`Collaborators`}),(0,R.jsx)(oT,{children:t.collaborators.join(` · `)})]}),(0,R.jsxs)(aT,{children:[(0,R.jsx)(Qw,{children:`Tags`}),(0,R.jsx)(sT,{children:t.tags.map(e=>(0,R.jsx)(_w,{children:e},e))})]})]}),t.gallery?.length>1&&(0,R.jsxs)(lT,{children:[(0,R.jsx)(Qw,{children:`Gallery`}),(0,R.jsx)(uT,{children:t.gallery.slice(1).map((e,n)=>(0,R.jsx)(dT,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),t.links.length>0&&(0,R.jsxs)(lT,{children:[(0,R.jsx)(Qw,{children:`Links`}),(0,R.jsx)(cT,{children:t.links.map(e=>(0,R.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})]})})}):(0,R.jsx)(KS,{children:(0,R.jsx)(qw,{children:(0,R.jsxs)(Jw,{children:[(0,R.jsx)(Yw,{to:`/research`,children:`Back to Research`}),(0,R.jsx)(tT,{children:`Project not found`})]})})})}var pT=[{id:`stanford-visit`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,image:null},{id:`ces-visit`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,image:ZS},{id:`campus-portrait`,title:`Campus portrait`,date:`KAIST years`,location:`Daejeon`,image:aC},{id:`winter-pond`,title:`Winter pond`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-winter-pond-4oMEs2_D.jpeg`},{id:`evening-shuttle`,title:`Evening shuttle`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-evening-shuttle-DzODv5vf.jpeg`}],mT=[`un-youth-forum`,`kgsa-career`,`valedictorian`,`hyc-mixer`,`upenn-mixer`,`un-ga-hlw`,`chi-2025`,`student-council`,`columbia-ai-club`],hT=$.main`
+`;function dT(){let{id:e}=Gd(),t=YS.find(t=>t.id===e);return t?(0,R.jsx)(GS,{children:(0,R.jsx)(Kw,{children:(0,R.jsxs)(qw,{children:[(0,R.jsx)(Jw,{to:`/research`,children:`Back to Research`}),(0,R.jsx)(Yw,{$hasImage:!!t.thumbnail,children:t.thumbnail?(0,R.jsx)(Xw,{src:t.thumbnail,alt:`${t.title} visual`}):(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)(Zw,{children:`Research Visual`}),(0,R.jsx)(Qw,{children:`Project image, paper figure, or product screenshot to be added.`})]})}),(0,R.jsxs)($w,{children:[(0,R.jsx)(eT,{children:t.title}),(0,R.jsx)(tT,{children:t.year})]}),(0,R.jsx)(nT,{children:t.description}),(0,R.jsxs)(rT,{children:[(0,R.jsxs)(iT,{children:[(0,R.jsx)(Zw,{children:`Collaborators`}),(0,R.jsx)(aT,{children:t.collaborators.join(` · `)})]}),(0,R.jsxs)(iT,{children:[(0,R.jsx)(Zw,{children:`Tags`}),(0,R.jsx)(oT,{children:t.tags.map(e=>(0,R.jsx)(gw,{children:e},e))})]})]}),t.gallery?.length>1&&(0,R.jsxs)(cT,{children:[(0,R.jsx)(Zw,{children:`Gallery`}),(0,R.jsx)(lT,{children:t.gallery.slice(1).map((e,n)=>(0,R.jsx)(uT,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),t.links.length>0&&(0,R.jsxs)(cT,{children:[(0,R.jsx)(Zw,{children:`Links`}),(0,R.jsx)(sT,{children:t.links.map(e=>(0,R.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url))})]})]})})}):(0,R.jsx)(GS,{children:(0,R.jsx)(Kw,{children:(0,R.jsxs)(qw,{children:[(0,R.jsx)(Jw,{to:`/research`,children:`Back to Research`}),(0,R.jsx)(eT,{children:`Project not found`})]})})})}var fT=[{id:`stanford-visit`,title:`Stanford Visit`,date:`2025`,location:`Stanford`,image:null},{id:`ces-visit`,title:`CES Visit`,date:`Jan 2026`,location:`Las Vegas`,image:XS},{id:`campus-portrait`,title:`Campus portrait`,date:`KAIST years`,location:`Daejeon`,image:iC},{id:`winter-pond`,title:`Winter pond`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-winter-pond-4oMEs2_D.jpeg`},{id:`evening-shuttle`,title:`Evening shuttle`,date:`KAIST years`,location:`Daejeon`,image:`/assets/kaist-evening-shuttle-DzODv5vf.jpeg`}],pT=[`un-youth-forum`,`kgsa-career`,`valedictorian`,`hyc-mixer`,`upenn-mixer`,`un-ga-hlw`,`chi-2025`,`student-council`,`columbia-ai-club`],mT=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,gT=$.div`
+`,hT=$.div`
   width: min(${({theme:e})=>e.layout.contentMax}, 100%);
   margin: 0 auto;
-`,_T=$.h1`
+`,gT=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: ${({theme:e})=>e.fontSizes.h1};
   margin-bottom: 16px;
-`,vT=$.div`
+`,_T=$.div`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 32px;
@@ -973,12 +980,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding-bottom: 24px;
   border-bottom: 1px solid ${({theme:e})=>e.colors.subpage.border};
 
-`,yT=$.div`
+`,vT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 28px;
-`,bT=$(sp)`
+`,yT=$(sp)`
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -986,7 +993,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   border-bottom: 1px solid
     ${({$active:e})=>e?`rgba(27, 61, 47, 0.36)`:`rgba(43, 42, 42, 0.08)`};
   padding-bottom: 6px;
-`,xT=$.div`
+`,bT=$.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -998,21 +1005,22 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,ST=$.section`
+`,xT=$.section`
   margin-top: 56px;
   padding-top: 28px;
   border-top: 1px solid ${({theme:e})=>e.colors.subpage.border};
-`,CT=$.h2`
+  scroll-margin-top: 108px;
+`,ST=$.h2`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
   font-weight: 600;
   margin-bottom: 10px;
-`,wT=$.p`
+`,CT=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
   margin-bottom: 24px;
-`,TT=$(sp)`
+`,wT=$(sp)`
   display: grid;
   gap: 16px;
   padding: 20px;
@@ -1026,7 +1034,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: ${({theme:e})=>e.colors.subpage.accent};
     background: rgba(27, 61, 47, 0.04);
   }
-`,ET=$.div`
+`,TT=$.div`
   position: relative;
   aspect-ratio: 3 / 2;
   overflow: hidden;
@@ -1047,44 +1055,44 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,DT=$.img`
+`,ET=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,OT=$.div`
+`,DT=$.div`
   display: grid;
   gap: 4px;
   text-align: center;
   justify-items: center;
-`,kT=$.span`
+`,OT=$.span`
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(247, 247, 245, 0.72);
-`,AT=$.span`
+`,kT=$.span`
   max-width: 14ch;
   color: rgba(247, 247, 245, 0.9);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,jT=$.span`
+`,AT=$.span`
   max-width: 24ch;
   color: rgba(247, 247, 245, 0.62);
   font-size: 0.74rem;
-`,MT=$.h2`
+`,jT=$.h2`
   font-size: 1.8rem;
   font-family: ${({theme:e})=>e.fonts.heading};
   font-weight: 500;
   line-height: 1.08;
-`,NT=$.p`
+`,MT=$.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,PT=$.p`
+`,NT=$.p`
   color: ${({theme:e})=>e.colors.subpage.text};
-`,FT=$.div`
+`,PT=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,IT=$.div`
+`,FT=$.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
@@ -1096,10 +1104,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,LT=$.article`
+`,IT=$.article`
   display: grid;
   gap: 12px;
-`,RT=$.div`
+`,LT=$.div`
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -1116,11 +1124,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     mix-blend-mode: multiply;
     pointer-events: none;
   }
-`,zT=$.img`
+`,RT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-`,BT=$.div`
+`,zT=$.div`
   position: absolute;
   inset: 0;
   display: grid;
@@ -1131,29 +1139,29 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`,VT=$.div`
+`,BT=$.div`
   display: grid;
   gap: 2px;
-`,HT=$.h3`
+`,VT=$.h3`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: 1.5rem;
   line-height: 1.08;
   font-weight: 500;
-`,UT=$.span`
+`,HT=$.span`
   color: ${({theme:e})=>e.colors.subpage.muted};
   font-size: 0.84rem;
-`;function WT(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new Set(mT),i=[...mT.map(e=>oC.find(t=>t.id===e)).filter(Boolean),...oC.filter(e=>!r.has(e.id)&&![`ces`,`stanford`].includes(e.id))],a=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{a===`archive`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[a]),(0,R.jsx)(KS,{children:(0,R.jsx)(hT,{children:(0,R.jsxs)(gT,{children:[(0,R.jsx)(_T,{children:`Activities`}),(0,R.jsx)(vT,{children:`Talks, diplomacy, student leadership, and community-building across research and public life. Lighter records stay below as a smaller archive, not as a separate front page.`}),(0,R.jsxs)(yT,{children:[(0,R.jsx)(bT,{to:`/activities`,$active:!a,children:`Activities`}),(0,R.jsx)(bT,{to:`/activities?section=archive`,$active:a===`archive`,children:`Archive`})]}),(0,R.jsx)(xT,{ref:t,children:i.map(e=>(0,R.jsxs)(TT,{to:`/activities/${e.id}`,children:[(0,R.jsx)(ET,{$hasImage:!!(e.media?.cover||e.media?.photos?.[0]),children:e.media?.cover||e.media?.photos?.[0]?(0,R.jsx)(DT,{src:e.media?.cover||e.media?.photos?.[0],alt:`${e.title} preview`}):(0,R.jsxs)(OT,{children:[(0,R.jsx)(kT,{children:e.date}),(0,R.jsx)(AT,{children:e.title}),(0,R.jsx)(jT,{children:`Photos coming soon.`})]})}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(MT,{children:e.title}),(0,R.jsx)(NT,{children:e.date})]}),(0,R.jsx)(PT,{children:e.summary}),(0,R.jsx)(FT,{children:e.tags.map(e=>(0,R.jsx)(_w,{children:e},e))})]},e.id))}),(0,R.jsxs)(ST,{ref:n,id:`archive`,children:[(0,R.jsx)(CT,{children:`Archive`}),(0,R.jsx)(wT,{children:`A smaller visual record of visits, campus scenes, and lighter intervals that belong on the site, but not at the same level as the main professional work.`}),(0,R.jsx)(IT,{children:pT.map(e=>(0,R.jsxs)(LT,{children:[(0,R.jsx)(RT,{$hasImage:!!e.image,children:e.image?(0,R.jsx)(zT,{src:e.image,alt:e.title}):(0,R.jsx)(BT,{children:e.title})}),(0,R.jsxs)(VT,{children:[(0,R.jsx)(HT,{children:e.title}),(0,R.jsxs)(UT,{children:[e.date,` · `,e.location]})]})]},e.id))})]})]})})})}var GT=$.main`
+`;function UT(){let e=Bd(),t=(0,S.useRef)(null),n=(0,S.useRef)(null),r=new Set(pT),i=[...pT.map(e=>aC.find(t=>t.id===e)).filter(Boolean),...aC.filter(e=>!r.has(e.id)&&![`ces`,`stanford`].includes(e.id))],a=new URLSearchParams(e.search).get(`section`);return(0,S.useEffect)(()=>{a===`archive`&&n.current?.scrollIntoView({behavior:`smooth`,block:`start`})},[a]),(0,R.jsx)(GS,{children:(0,R.jsx)(mT,{children:(0,R.jsxs)(hT,{children:[(0,R.jsx)(gT,{children:`Activities`}),(0,R.jsx)(_T,{children:`Talks, diplomacy, student leadership, and community-building across research and public life. Lighter records stay below as a smaller archive, not as a separate front page.`}),(0,R.jsxs)(vT,{children:[(0,R.jsx)(yT,{to:`/activities`,$active:!a,children:`Activities`}),(0,R.jsx)(yT,{to:`/activities?section=archive`,$active:a===`archive`,children:`Archive`})]}),(0,R.jsx)(bT,{ref:t,children:i.map(e=>(0,R.jsxs)(wT,{to:`/activities/${e.id}`,children:[(0,R.jsx)(TT,{$hasImage:!!(e.media?.cover||e.media?.photos?.[0]),children:e.media?.cover||e.media?.photos?.[0]?(0,R.jsx)(ET,{src:e.media?.cover||e.media?.photos?.[0],alt:`${e.title} preview`}):(0,R.jsxs)(DT,{children:[(0,R.jsx)(OT,{children:e.date}),(0,R.jsx)(kT,{children:e.title}),(0,R.jsx)(AT,{children:`Photos coming soon.`})]})}),(0,R.jsxs)(`div`,{children:[(0,R.jsx)(jT,{children:e.title}),(0,R.jsx)(MT,{children:e.date})]}),(0,R.jsx)(NT,{children:e.summary}),(0,R.jsx)(PT,{children:e.tags.map(e=>(0,R.jsx)(gw,{children:e},e))})]},e.id))}),(0,R.jsxs)(xT,{ref:n,id:`archive`,children:[(0,R.jsx)(ST,{children:`Archive`}),(0,R.jsx)(CT,{children:`A smaller visual record of visits, campus scenes, and lighter intervals that belong on the site, but not at the same level as the main professional work.`}),(0,R.jsx)(FT,{children:fT.map(e=>(0,R.jsxs)(IT,{children:[(0,R.jsx)(LT,{$hasImage:!!e.image,children:e.image?(0,R.jsx)(RT,{src:e.image,alt:e.title}):(0,R.jsx)(zT,{children:e.title})}),(0,R.jsxs)(BT,{children:[(0,R.jsx)(VT,{children:e.title}),(0,R.jsxs)(HT,{children:[e.date,` · `,e.location]})]})]},e.id))})]})]})})})}var WT=$.main`
   min-height: 100vh;
   padding: 140px 24px 80px;
-`,KT=$.div`
+`,GT=$.div`
   width: min(${({theme:e})=>e.layout.pageMax}, 100%);
   margin: 0 auto;
   display: grid;
   gap: 28px;
-`,qT=$(sp)`
+`,KT=$(sp)`
   width: fit-content;
   color: ${({theme:e})=>e.colors.subpage.copper};
-`,JT=$.div`
+`,qT=$.div`
   aspect-ratio: 3 / 2;
   border-radius: 4px;
   background: #f0ede8;
@@ -1164,24 +1172,24 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   justify-content: flex-end;
   gap: 8px;
   padding: ${({$hasImage:e})=>e?`0`:`20px`};
-`,YT=$.img`
+`,JT=$.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 3px;
-`,XT=$.div`
+`,YT=$.div`
   display: grid;
   gap: 8px;
-`,ZT=$.h1`
+`,XT=$.h1`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   line-height: 1.05;
   font-weight: 500;
-`,QT=$.p`
+`,ZT=$.p`
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,$T=$.p`
+`,QT=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
-`,eE=$.span`
+`,$T=$.span`
   display: inline-flex;
   align-items: center;
   min-height: 1.1rem;
@@ -1191,20 +1199,20 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,tE=$.span`
+`,eE=$.span`
   max-width: 30ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,nE=$.span`
+`,tE=$.span`
   font-family: ${({theme:e})=>e.fonts.heading};
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.05;
   max-width: 14ch;
   color: ${({theme:e})=>e.colors.subpage.text};
-`,rE=$.div`
+`,nE=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`,iE=$.div`
+`,rE=$.div`
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -1214,10 +1222,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     color: ${({theme:e})=>e.colors.subpage.copper};
     font-weight: 400;
   }
-`,aE=$.section`
+`,iE=$.section`
   display: grid;
   gap: 14px;
-`,oE=$.div`
+`,aE=$.div`
   display: grid;
   gap: 12px;
 
@@ -1227,10 +1235,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border: 0;
     border-radius: 4px;
   }
-`,sE=$.p`
+`,oE=$.p`
   max-width: ${({theme:e})=>e.layout.textMax};
   color: ${({theme:e})=>e.colors.subpage.muted};
-`,cE=$.div`
+`,sE=$.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -1238,13 +1246,13 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   @media (max-width: ${({theme:e})=>e.breakpoints.mobile}) {
     grid-template-columns: 1fr;
   }
-`,lE=$.img`
+`,cE=$.img`
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
-`;function uE(){let{id:e}=Gd(),t=oC.find(t=>t.id===e);return t?(0,R.jsx)(KS,{children:(0,R.jsx)(GT,{children:(0,R.jsxs)(KT,{children:[(0,R.jsx)(qT,{to:`/activities`,children:`Back to Activities`}),(0,R.jsx)(JT,{$hasImage:!!(t.media?.cover||t.media?.photos?.[0]),children:t.media?.cover||t.media?.photos?.[0]?(0,R.jsx)(YT,{src:t.media?.cover||t.media?.photos?.[0],alt:`${t.title} visual`}):(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)(eE,{children:t.date}),(0,R.jsx)(nE,{children:t.title}),(0,R.jsx)(tE,{children:`Photos coming soon.`})]})}),(0,R.jsxs)(XT,{children:[(0,R.jsx)(ZT,{children:t.title}),(0,R.jsx)(QT,{children:t.date})]}),(0,R.jsx)($T,{children:t.description}),(0,R.jsx)(rE,{children:t.tags.map(e=>(0,R.jsx)(_w,{children:e},e))}),t.links?.length>0&&(0,R.jsxs)(aE,{children:[(0,R.jsx)(eE,{children:`Links`}),(0,R.jsx)(iE,{children:t.links.map(e=>/^https?:\/\//.test(e.url)?(0,R.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url):(0,R.jsx)(sp,{to:e.url,children:e.label},e.url))})]}),t.id===`valedictorian`&&(0,R.jsxs)(aE,{children:[(0,R.jsx)(eE,{children:`Video`}),(0,R.jsxs)(oE,{children:[(0,R.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,R.jsx)(`p`,{children:`Speech starts at 1:15:02`})]})]}),t.media?.photos?.length>1&&(0,R.jsxs)(aE,{children:[(0,R.jsx)(eE,{children:`Gallery`}),(0,R.jsx)(cE,{children:t.media.photos.slice(1).map((e,n)=>(0,R.jsx)(lE,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),!t.media?.photos?.length&&t.id!==`valedictorian`&&(0,R.jsx)(sE,{children:`Photos coming soon.`})]})})}):(0,R.jsx)(KS,{children:(0,R.jsx)(GT,{children:(0,R.jsxs)(KT,{children:[(0,R.jsx)(qT,{to:`/activities`,children:`Back to Activities`}),(0,R.jsx)(ZT,{children:`Activity not found`})]})})})}var dE=wg`
+`;function lE(){let{id:e}=Gd(),t=aC.find(t=>t.id===e);return t?(0,R.jsx)(GS,{children:(0,R.jsx)(WT,{children:(0,R.jsxs)(GT,{children:[(0,R.jsx)(KT,{to:`/activities`,children:`Back to Activities`}),(0,R.jsx)(qT,{$hasImage:!!(t.media?.cover||t.media?.photos?.[0]),children:t.media?.cover||t.media?.photos?.[0]?(0,R.jsx)(JT,{src:t.media?.cover||t.media?.photos?.[0],alt:`${t.title} visual`}):(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)($T,{children:t.date}),(0,R.jsx)(tE,{children:t.title}),(0,R.jsx)(eE,{children:`Photos coming soon.`})]})}),(0,R.jsxs)(YT,{children:[(0,R.jsx)(XT,{children:t.title}),(0,R.jsx)(ZT,{children:t.date})]}),(0,R.jsx)(QT,{children:t.description}),(0,R.jsx)(nE,{children:t.tags.map(e=>(0,R.jsx)(gw,{children:e},e))}),t.links?.length>0&&(0,R.jsxs)(iE,{children:[(0,R.jsx)($T,{children:`Links`}),(0,R.jsx)(rE,{children:t.links.map(e=>/^https?:\/\//.test(e.url)?(0,R.jsx)(`a`,{href:e.url,target:`_blank`,rel:`noopener noreferrer`,children:e.label},e.url):(0,R.jsx)(sp,{to:e.url,children:e.label},e.url))})]}),t.id===`valedictorian`&&(0,R.jsxs)(iE,{children:[(0,R.jsx)($T,{children:`Video`}),(0,R.jsxs)(aE,{children:[(0,R.jsx)(`iframe`,{src:`https://www.youtube.com/embed/U7m4LpyHffk?start=4502`,title:`KAIST Valedictorian speech`,allow:`accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture`,allowFullScreen:!0}),(0,R.jsx)(`p`,{children:`Speech starts at 1:15:02`})]})]}),t.media?.photos?.length>1&&(0,R.jsxs)(iE,{children:[(0,R.jsx)($T,{children:`Gallery`}),(0,R.jsx)(sE,{children:t.media.photos.slice(1).map((e,n)=>(0,R.jsx)(cE,{src:e,alt:`${t.title} archive ${n+2}`},e))})]}),!t.media?.photos?.length&&t.id!==`valedictorian`&&(0,R.jsx)(oE,{children:`Photos coming soon.`})]})})}):(0,R.jsx)(GS,{children:(0,R.jsx)(WT,{children:(0,R.jsxs)(GT,{children:[(0,R.jsx)(KT,{to:`/activities`,children:`Back to Activities`}),(0,R.jsx)(XT,{children:`Activity not found`})]})})})}var uE=wg`
   * {
     margin: 0;
     padding: 0;
@@ -1307,4 +1315,4 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   ::selection {
     background: rgba(154, 184, 158, 0.32);
   }
-`,fE={colors:{copper:`#C4956A`,home:{base:`#F7F7F5`,text:`#2B2A2A`,forest:`#1B3D2F`,leather:`#5C3D2E`,olive:`#4A7A5E`,hover:`#2D5A3D`,leadership:`#9AB89E`,institution:`#9A9590`,copper:`#C4956A`},light:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`},subpage:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`}},fonts:{heading:`'Cormorant Garamond', serif`,body:`'PP Neue Montreal', 'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.78rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,contentMax:`1100px`,graphMax:`1100px`,radius:`4px`,pillRadius:`4px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function pE(){let e=Bd();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)(Rg,{}),(0,R.jsx)(Ic,{mode:`wait`,children:(0,R.jsxs)(vf,{location:e,children:[(0,R.jsx)(gf,{path:`/`,element:(0,R.jsx)(ew,{})}),(0,R.jsx)(gf,{path:`/about`,element:(0,R.jsx)(hw,{})}),(0,R.jsx)(gf,{path:`/research`,element:(0,R.jsx)(Kw,{})}),(0,R.jsx)(gf,{path:`/research/:id`,element:(0,R.jsx)(fT,{})}),(0,R.jsx)(gf,{path:`/activities`,element:(0,R.jsx)(WT,{})}),(0,R.jsx)(gf,{path:`/activities/:id`,element:(0,R.jsx)(uE,{})})]},e.pathname)}),(0,R.jsx)(Ug,{})]})}function mE(){return(0,R.jsxs)(hg,{theme:fE,children:[(0,R.jsx)(dE,{}),(0,R.jsx)(ip,{children:(0,R.jsx)(pE,{})})]})}(0,Tp.createRoot)(document.getElementById(`root`)).render((0,R.jsx)(S.StrictMode,{children:(0,R.jsx)(mE,{})}));
+`,dE={colors:{copper:`#C4956A`,home:{base:`#F7F7F5`,text:`#2B2A2A`,forest:`#1B3D2F`,leather:`#5C3D2E`,olive:`#4A7A5E`,hover:`#2D5A3D`,leadership:`#9AB89E`,institution:`#9A9590`,copper:`#C4956A`},light:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`},subpage:{background:`#F7F7F5`,text:`#2B2A2A`,accent:`#2D5A3D`,copper:`#C4956A`,border:`#DBD7D0`,muted:`#6B6560`,placeholder:`#ECE8E1`,cardShadow:`rgba(37, 32, 27, 0.08)`}},fonts:{heading:`'Cormorant Garamond', serif`,body:`'PP Neue Montreal', 'Inter', sans-serif`},fontSizes:{base:`16px`,h1:`2.5rem`,h2:`1.8rem`,h3:`1.3rem`,body:`1rem`,small:`0.78rem`},lineHeights:{body:1.7,heading:1.2},spacing:{xs:`8px`,sm:`16px`,md:`24px`,lg:`32px`,xl:`48px`,xxl:`64px`,section:`80px`,sectionMobile:`48px`},layout:{textMax:`680px`,pageMax:`900px`,contentMax:`1100px`,graphMax:`1100px`,radius:`4px`,pillRadius:`4px`,headerHeight:`88px`},breakpoints:{mobile:`768px`,tablet:`1024px`},transitions:{hover:`opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease`,page:{duration:.6,ease:`easeOut`}}};function fE(){let e=Bd();return(0,S.useEffect)(()=>{window.scrollTo(0,0)},[e.pathname]),(0,R.jsxs)(R.Fragment,{children:[(0,R.jsx)(Lg,{}),(0,R.jsx)(Ic,{mode:`wait`,children:(0,R.jsxs)(vf,{location:e,children:[(0,R.jsx)(gf,{path:`/`,element:(0,R.jsx)($C,{})}),(0,R.jsx)(gf,{path:`/about`,element:(0,R.jsx)(mw,{})}),(0,R.jsx)(gf,{path:`/research`,element:(0,R.jsx)(Gw,{})}),(0,R.jsx)(gf,{path:`/research/:id`,element:(0,R.jsx)(dT,{})}),(0,R.jsx)(gf,{path:`/activities`,element:(0,R.jsx)(UT,{})}),(0,R.jsx)(gf,{path:`/activities/:id`,element:(0,R.jsx)(lE,{})})]},e.pathname)}),(0,R.jsx)(Hg,{})]})}function pE(){return(0,R.jsxs)(hg,{theme:dE,children:[(0,R.jsx)(uE,{}),(0,R.jsx)(ip,{children:(0,R.jsx)(fE,{})})]})}(0,Tp.createRoot)(document.getElementById(`root`)).render((0,R.jsx)(S.StrictMode,{children:(0,R.jsx)(pE,{})}));
