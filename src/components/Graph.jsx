@@ -342,17 +342,6 @@ function Graph() {
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
-    const themeNodes = nodes.filter((node) => node.type === 'theme');
-    root
-      .append('g')
-      .selectAll('circle')
-      .data(themeNodes)
-      .join('circle')
-      .attr('cx', (node) => node.x)
-      .attr('cy', (node) => node.y)
-      .attr('r', isMobile ? 66 : 88)
-      .attr('fill', (_, index) => `url(#theme-glow-${index % themeGlowPalette.length})`);
-
     if (!isMobile) {
       root
         .append('text')
@@ -450,7 +439,7 @@ function Graph() {
       .style('--drift-duration', (node) => node.motion.driftDuration)
       .style('--drift-delay', (node) => node.motion.driftDelay);
 
-    /* Theme node soft glow — radial gradient fading outward from node */
+    /* Theme node soft glow — now attached to the node group so drag + drift move it together */
     const themeGlowFilter = defs
       .append('filter')
       .attr('id', 'node-glow')
@@ -458,19 +447,28 @@ function Graph() {
       .attr('y', '-100%')
       .attr('width', '300%')
       .attr('height', '300%');
-    themeGlowFilter.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', isMobile ? 6 : 9);
+    themeGlowFilter.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', isMobile ? 10 : 16);
 
-    driftGroup
+    const themeAuraSelection = driftGroup
       .filter((node) => node.type === 'theme')
       .append('circle')
+      .attr('class', 'theme-aura')
+      .attr('r', isMobile ? 48 : 62)
+      .attr('fill', (_, index) => themeGlowPalette[index % themeGlowPalette.length])
+      .attr('filter', 'url(#node-glow)');
+
+    const themeCoreGlowSelection = driftGroup
+      .filter((node) => node.type === 'theme')
+      .append('circle')
+      .attr('class', 'theme-core-glow')
       .attr('r', (node) => nodeVisual(node).radius + 6)
-      .attr('fill', 'rgba(45, 90, 61, 0.25)')
+      .attr('fill', 'rgba(45, 90, 61, 0.22)')
       .attr('filter', 'url(#node-glow)');
 
     /* Main node circle */
-    driftGroup
+    const nodeMainSelection = driftGroup
       .append('circle')
-      .attr('class', (node) => (node.type === 'theme' ? 'theme-pulse' : null))
+      .attr('class', (node) => (node.type === 'theme' ? 'node-main theme-pulse' : 'node-main'))
       .style('--pulse-duration', (node) => node.motion.pulseDuration)
       .style('--pulse-delay', (node) => node.motion.pulseDelay)
       .attr('r', (node) => nodeVisual(node).radius)
@@ -545,9 +543,19 @@ function Graph() {
         return edge.source.id === activeNode.id || edge.target.id === activeNode.id ? 1 : 0.05;
       });
 
-      driftGroup.select('circle').attr('opacity', (node) => {
+      nodeMainSelection.attr('opacity', (node) => {
         if (!activeNode) return 1;
         return isConnected(activeNode, node) ? 1 : 0.15;
+      });
+
+      themeCoreGlowSelection.attr('opacity', (node) => {
+        if (!activeNode) return 1;
+        return isConnected(activeNode, node) ? 1 : 0.14;
+      });
+
+      themeAuraSelection.attr('opacity', (node) => {
+        if (!activeNode) return 0.82;
+        return isConnected(activeNode, node) ? 0.92 : 0.08;
       });
 
       labelGroups.attr('opacity', (node) => {
