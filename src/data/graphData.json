@@ -6,8 +6,8 @@
       "type": "research",
       "importance": "main",
       "url": "/research/crisisnews",
-      "desktop": { "x": 0.14, "y": 0.18 },
-      "mobile": { "x": 0.12, "y": 0.16 }
+      "desktop": { "x": 0.10, "y": 0.18 },
+      "mobile": { "x": 0.09, "y": 0.16 }
     },
     {
       "id": "prism",
@@ -15,8 +15,8 @@
       "type": "research",
       "importance": "main",
       "url": "/research/prism",
-      "desktop": { "x": 0.24, "y": 0.32 },
-      "mobile": { "x": 0.20, "y": 0.31 }
+      "desktop": { "x": 0.20, "y": 0.32 },
+      "mobile": { "x": 0.17, "y": 0.31 }
     },
     {
       "id": "beyond-removal",
@@ -24,8 +24,8 @@
       "type": "research",
       "importance": "support",
       "url": "/research/beyond-removal",
-      "desktop": { "x": 0.18, "y": 0.58 },
-      "mobile": { "x": 0.14, "y": 0.56 }
+      "desktop": { "x": 0.14, "y": 0.58 },
+      "mobile": { "x": 0.11, "y": 0.56 }
     },
     {
       "id": "multi-agent-sim",
@@ -33,8 +33,8 @@
       "type": "research",
       "importance": "support",
       "url": "/research/multi-agent-sim",
-      "desktop": { "x": 0.28, "y": 0.79 },
-      "mobile": { "x": 0.21, "y": 0.78 }
+      "desktop": { "x": 0.24, "y": 0.79 },
+      "mobile": { "x": 0.18, "y": 0.78 }
     },
     {
       "id": "misinformation",
@@ -77,8 +77,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/chi-2025",
-      "desktop": { "x": 0.70, "y": 0.18 },
-      "mobile": { "x": 0.78, "y": 0.16 }
+      "desktop": { "x": 0.75, "y": 0.18 },
+      "mobile": { "x": 0.82, "y": 0.16 }
     },
     {
       "id": "un-ga-hlw",
@@ -86,8 +86,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-ga-hlw",
-      "desktop": { "x": 0.84, "y": 0.27 },
-      "mobile": { "x": 0.90, "y": 0.26 }
+      "desktop": { "x": 0.89, "y": 0.27 },
+      "mobile": { "x": 0.93, "y": 0.26 }
     },
     {
       "id": "un-youth-forum",
@@ -95,8 +95,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-youth-forum",
-      "desktop": { "x": 0.72, "y": 0.44 },
-      "mobile": { "x": 0.80, "y": 0.43 }
+      "desktop": { "x": 0.77, "y": 0.46 },
+      "mobile": { "x": 0.84, "y": 0.44 }
     },
     {
       "id": "student-council",
@@ -104,8 +104,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/student-council",
-      "desktop": { "x": 0.84, "y": 0.52 },
-      "mobile": { "x": 0.89, "y": 0.54 }
+      "desktop": { "x": 0.89, "y": 0.52 },
+      "mobile": { "x": 0.93, "y": 0.54 }
     },
     {
       "id": "valedictorian",
@@ -113,8 +113,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/valedictorian",
-      "desktop": { "x": 0.72, "y": 0.60 },
-      "mobile": { "x": 0.79, "y": 0.58 }
+      "desktop": { "x": 0.77, "y": 0.58 },
+      "mobile": { "x": 0.84, "y": 0.57 }
     },
     {
       "id": "kgsa-career",
@@ -122,8 +122,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/kgsa-career",
-      "desktop": { "x": 0.77, "y": 0.76 },
-      "mobile": { "x": 0.82, "y": 0.74 }
+      "desktop": { "x": 0.82, "y": 0.76 },
+      "mobile": { "x": 0.86, "y": 0.74 }
     },
     {
       "id": "upenn-mixer",
@@ -131,8 +131,8 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/upenn-mixer",
-      "desktop": { "x": 0.91, "y": 0.76 },
-      "mobile": { "x": 0.92, "y": 0.78 }
+      "desktop": { "x": 0.96, "y": 0.76 },
+      "mobile": { "x": 0.96, "y": 0.78 }
     },
     {
       "id": "hyc-mixer",
@@ -140,8 +140,8 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/hyc-mixer",
-      "desktop": { "x": 0.64, "y": 0.86 },
-      "mobile": { "x": 0.70, "y": 0.84 }
+      "desktop": { "x": 0.69, "y": 0.86 },
+      "mobile": { "x": 0.74, "y": 0.84 }
     },
     {
       "id": "columbia-ai-club",
@@ -149,8 +149,8 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/columbia-ai-club",
-      "desktop": { "x": 0.84, "y": 0.91 },
-      "mobile": { "x": 0.87, "y": 0.90 }
+      "desktop": { "x": 0.89, "y": 0.91 },
+      "mobile": { "x": 0.91, "y": 0.90 }
     },
     {
       "id": "kaist",
@@ -163,8 +163,8 @@
       "id": "columbia-sipa",
       "label": "Columbia SIPA",
       "type": "institution",
-      "desktop": { "x": 0.78, "y": 0.95 },
-      "mobile": { "x": 0.72, "y": 0.95 }
+      "desktop": { "x": 0.83, "y": 0.95 },
+      "mobile": { "x": 0.77, "y": 0.95 }
     }
   ],
   "edges": [

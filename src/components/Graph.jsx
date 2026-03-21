@@ -4,23 +4,13 @@ import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import graphData from '../data/graphData.json';
 
-const drift = keyframes`
-  0%, 100% {
-    transform: translate(0px, 0px);
-  }
-
-  50% {
-    transform: translate(var(--drift-x), var(--drift-y));
-  }
-`;
-
 const pulse = keyframes`
   0%, 100% {
     transform: scale(1);
   }
 
   50% {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 `;
 
@@ -43,12 +33,6 @@ const StyledSvg = styled.svg`
   width: 100%;
   height: 100%;
   overflow: visible;
-
-  .node-drift {
-    animation: ${drift} var(--drift-duration) ease-in-out var(--drift-delay) infinite;
-    transform-box: fill-box;
-    transform-origin: center;
-  }
 
   .theme-pulse {
     animation: ${pulse} var(--pulse-duration) ease-in-out var(--pulse-delay) infinite;
@@ -96,13 +80,13 @@ const primaryFlowPairs = new Map([
   ['un-youth-forum|ai-policy', { delay: '1.6s', duration: '5.1s' }],
 ]);
 
-const themeGlowPalette = [
-  'rgba(45, 90, 61, 0.18)',
-  'rgba(27, 61, 47, 0.15)',
-  'rgba(196, 149, 106, 0.13)',
-  'rgba(74, 122, 94, 0.13)',
-  'rgba(196, 149, 106, 0.11)',
-];
+const themeAuraPalette = {
+  misinformation: { color: 'rgba(45, 90, 61, 0.22)', desktopRadius: 74, mobileRadius: 54 },
+  'platform-governance': { color: 'rgba(27, 61, 47, 0.2)', desktopRadius: 74, mobileRadius: 54 },
+  'content-moderation': { color: 'rgba(74, 122, 94, 0.3)', desktopRadius: 84, mobileRadius: 62 },
+  'ai-policy': { color: 'rgba(45, 90, 61, 0.18)', desktopRadius: 72, mobileRadius: 52 },
+  'participatory-governance': { color: 'rgba(53, 97, 69, 0.3)', desktopRadius: 86, mobileRadius: 64 },
+};
 
 const nodeStyles = {
   theme: {
@@ -162,15 +146,9 @@ function hashCode(value) {
 
 function motionConfig(id) {
   const hash = Math.abs(hashCode(id));
-  const driftX = ((hash % 5) - 2) || 1;
-  const driftY = ((Math.floor(hash / 5) % 5) - 2) || -1;
 
   return {
-    driftX: `${driftX * 0.9}px`,
-    driftY: `${driftY * 0.9}px`,
-    driftDuration: `${8 + (hash % 6)}s`,
-    driftDelay: `${-(hash % 9)}s`,
-    pulseDuration: `${5 + (hash % 3)}s`,
+    pulseDuration: `${6 + (hash % 3)}s`,
     pulseDelay: `${-(hash % 5)}s`,
   };
 }
@@ -288,6 +266,14 @@ function edgePath(edge) {
   return `M${edge.source.x},${edge.source.y} Q${controlX},${controlY} ${edge.target.x},${edge.target.y}`;
 }
 
+function themeAura(node, isMobile) {
+  const config = themeAuraPalette[node.id];
+  return {
+    color: config?.color || 'rgba(45, 90, 61, 0.2)',
+    radius: isMobile ? config?.mobileRadius || 54 : config?.desktopRadius || 74,
+  };
+}
+
 function Graph() {
   const svgRef = useRef(null);
   const wrapRef = useRef(null);
@@ -326,19 +312,12 @@ function Graph() {
     const root = svg.append('g');
     const defs = root.append('defs');
 
-    const haloFilter = defs
-      .append('filter')
-      .attr('id', 'theme-label-halo')
-      .attr('x', '-60%')
-      .attr('y', '-60%')
-      .attr('width', '220%')
-      .attr('height', '220%');
-
-    haloFilter.append('feGaussianBlur').attr('stdDeviation', isMobile ? 3.6 : 5.4);
-
-    themeGlowPalette.forEach((color, index) => {
-      const gradient = defs.append('radialGradient').attr('id', `theme-glow-${index}`);
-      gradient.append('stop').attr('offset', '0%').attr('stop-color', color);
+    const themeNodes = nodes.filter((node) => node.type === 'theme');
+    themeNodes.forEach((node) => {
+      const aura = themeAura(node, isMobile);
+      const gradient = defs.append('radialGradient').attr('id', `theme-glow-${node.id}`);
+      gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.color);
+      gradient.append('stop').attr('offset', '62%').attr('stop-color', aura.color);
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
@@ -431,42 +410,19 @@ function Graph() {
       .attr('transform', (node) => `translate(${node.x}, ${node.y})`)
       .style('cursor', (node) => (node.url ? 'pointer' : 'grab'));
 
-    const driftGroup = nodeSelection
+    const nodeGroup = nodeSelection
       .append('g')
-      .attr('class', 'node-drift')
-      .style('--drift-x', (node) => node.motion.driftX)
-      .style('--drift-y', (node) => node.motion.driftY)
-      .style('--drift-duration', (node) => node.motion.driftDuration)
-      .style('--drift-delay', (node) => node.motion.driftDelay);
+      .attr('class', 'node-group');
 
-    /* Theme node soft glow — now attached to the node group so drag + drift move it together */
-    const themeGlowFilter = defs
-      .append('filter')
-      .attr('id', 'node-glow')
-      .attr('x', '-100%')
-      .attr('y', '-100%')
-      .attr('width', '300%')
-      .attr('height', '300%');
-    themeGlowFilter.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', isMobile ? 10 : 16);
-
-    const themeAuraSelection = driftGroup
+    const themeAuraSelection = nodeGroup
       .filter((node) => node.type === 'theme')
       .append('circle')
       .attr('class', 'theme-aura')
-      .attr('r', isMobile ? 48 : 62)
-      .attr('fill', (_, index) => themeGlowPalette[index % themeGlowPalette.length])
-      .attr('filter', 'url(#node-glow)');
-
-    const themeCoreGlowSelection = driftGroup
-      .filter((node) => node.type === 'theme')
-      .append('circle')
-      .attr('class', 'theme-core-glow')
-      .attr('r', (node) => nodeVisual(node).radius + 6)
-      .attr('fill', 'rgba(45, 90, 61, 0.22)')
-      .attr('filter', 'url(#node-glow)');
+      .attr('r', (node) => themeAura(node, isMobile).radius)
+      .attr('fill', (node) => `url(#theme-glow-${node.id})`);
 
     /* Main node circle */
-    const nodeMainSelection = driftGroup
+    const nodeMainSelection = nodeGroup
       .append('circle')
       .attr('class', (node) => (node.type === 'theme' ? 'node-main theme-pulse' : 'node-main'))
       .style('--pulse-duration', (node) => node.motion.pulseDuration)
@@ -476,21 +432,20 @@ function Graph() {
       .attr('stroke', (node) => node.type === 'theme' ? 'none' : 'rgba(247, 247, 245, 0.7)')
       .attr('stroke-width', (node) => (node.type === 'institution' ? 0.8 : 1));
 
-    const labelHalos = driftGroup
+    const labelShadowSelection = nodeGroup
       .filter((node) => node.type === 'theme')
       .append('text')
-      .attr('fill', 'rgba(45, 90, 61, 0.28)')
-      .attr('filter', 'url(#theme-label-halo)')
+      .attr('fill', 'rgba(247, 247, 245, 0.78)')
       .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
-      .attr('font-size', (node) => `${nodeVisual(node).labelSize + 0.35}px`)
+      .attr('font-size', (node) => `${nodeVisual(node).labelSize}px`)
       .attr('font-weight', 500)
-      .attr('opacity', 0.72)
+      .attr('opacity', 0.62)
       .attr('text-anchor', (node) => labelLayout(node, isMobile).anchor)
       .attr('dominant-baseline', (node) => labelLayout(node, isMobile).baseline)
       .attr('x', (node) => labelLayout(node, isMobile).dx)
-      .attr('y', (node) => labelLayout(node, isMobile).dy);
+      .attr('y', (node) => labelLayout(node, isMobile).dy + 0.8);
 
-    const labelGroups = driftGroup
+    const labelGroups = nodeGroup
       .append('text')
       .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
       .attr('font-size', (node) => `${nodeVisual(node).labelSize}px`)
@@ -519,7 +474,7 @@ function Graph() {
         .text((line) => line);
     }
 
-    appendWrappedLines(labelHalos);
+    appendWrappedLines(labelShadowSelection);
     appendWrappedLines(labelGroups);
 
     const isConnected = (source, target) => adjacency.get(source.id)?.has(target.id);
@@ -548,14 +503,9 @@ function Graph() {
         return isConnected(activeNode, node) ? 1 : 0.15;
       });
 
-      themeCoreGlowSelection.attr('opacity', (node) => {
-        if (!activeNode) return 1;
-        return isConnected(activeNode, node) ? 1 : 0.14;
-      });
-
       themeAuraSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.82;
-        return isConnected(activeNode, node) ? 0.92 : 0.08;
+        if (!activeNode) return 0.88;
+        return isConnected(activeNode, node) ? 1 : 0.12;
       });
 
       labelGroups.attr('opacity', (node) => {
@@ -566,9 +516,9 @@ function Graph() {
         return isConnected(activeNode, node) ? 0.96 : 0.12;
       });
 
-      labelHalos.attr('opacity', (node) => {
-        if (!activeNode) return 0.72;
-        return isConnected(activeNode, node) ? 0.76 : 0.16;
+      labelShadowSelection.attr('opacity', (node) => {
+        if (!activeNode) return 0.62;
+        return isConnected(activeNode, node) ? 0.68 : 0.12;
       });
     }
 
@@ -601,17 +551,6 @@ function Graph() {
           visible: true,
           x: node.x,
           y: node.y,
-          label: node.label,
-        });
-      })
-      .on('mousemove', function onMove(event, node) {
-        const bounds = wrapRef.current?.getBoundingClientRect();
-        if (!bounds) return;
-
-        setTooltip({
-          visible: true,
-          x: event.clientX - bounds.left,
-          y: event.clientY - bounds.top,
           label: node.label,
         });
       })
