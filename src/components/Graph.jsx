@@ -83,9 +83,9 @@ const primaryFlowPairs = new Map([
 const themeAuraPalette = {
   misinformation: { color: 'rgba(45, 90, 61, 0.22)', desktopRadius: 74, mobileRadius: 54 },
   'platform-governance': { color: 'rgba(27, 61, 47, 0.2)', desktopRadius: 74, mobileRadius: 54 },
-  'content-moderation': { color: 'rgba(74, 122, 94, 0.3)', desktopRadius: 84, mobileRadius: 62 },
+  'content-moderation': { color: 'rgba(74, 122, 94, 0.22)', desktopRadius: 76, mobileRadius: 56 },
   'ai-policy': { color: 'rgba(45, 90, 61, 0.18)', desktopRadius: 72, mobileRadius: 52 },
-  'participatory-governance': { color: 'rgba(53, 97, 69, 0.3)', desktopRadius: 86, mobileRadius: 64 },
+  'participatory-governance': { color: 'rgba(53, 97, 69, 0.22)', desktopRadius: 78, mobileRadius: 58 },
 };
 
 const nodeStyles = {
@@ -317,7 +317,7 @@ function Graph() {
       const aura = themeAura(node, isMobile);
       const gradient = defs.append('radialGradient').attr('id', `theme-glow-${node.id}`);
       gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.color);
-      gradient.append('stop').attr('offset', '62%').attr('stop-color', aura.color);
+      gradient.append('stop').attr('offset', '50%').attr('stop-color', aura.color);
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
