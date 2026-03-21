@@ -120,6 +120,7 @@ const Submenu = styled.div`
   pointer-events: none;
   box-shadow: 0 8px 24px rgba(27, 61, 47, 0.16);
   transition: opacity 0.18s ease, transform 0.18s ease;
+  overflow: visible;
 
   ${NavGroup}:hover &,
   ${NavGroup}:focus-within & {
@@ -131,6 +132,10 @@ const Submenu = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
   }
+`;
+
+const SubmenuItem = styled.div`
+  position: relative;
 `;
 
 const SubmenuButton = styled.button`
@@ -154,6 +159,36 @@ const SubmenuTitle = styled.span`
   text-transform: uppercase;
 `;
 
+const SubmenuHint = styled.div`
+  position: absolute;
+  top: -4px;
+  left: calc(100% + 10px);
+  width: 220px;
+  padding: 12px 14px;
+  border: 1px solid rgba(74, 122, 94, 0.24);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(24, 57, 44, 0.96), rgba(30, 70, 52, 0.92));
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 28px rgba(27, 61, 47, 0.16);
+  color: rgba(247, 247, 245, 0.78);
+  font-size: 0.76rem;
+  line-height: 1.55;
+  opacity: 0;
+  transform: translateX(-4px);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+
+  ${SubmenuItem}:hover &,
+  ${SubmenuItem}:focus-within & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
 const menus = [
   {
     label: 'About',
@@ -167,11 +202,13 @@ const menus = [
         label: 'Main Research',
         to: '/research',
         section: null,
+        description: 'Core projects in misinformation, platform governance, and content moderation.',
       },
       {
         label: 'Coursework & Papers',
         to: '/research',
         section: 'coursework',
+        description: 'Selected papers from SIPA coursework and adjacent academic work.',
       },
     ],
   },
@@ -183,11 +220,13 @@ const menus = [
         label: 'Main Activities',
         to: '/activities',
         section: null,
+        description: 'Public-facing work across research, diplomacy, and community leadership.',
       },
       {
         label: 'Archive',
         to: '/activities',
         section: 'archive',
+        description: 'A lighter record of visits, performances, and life around New York.',
       },
     ],
   },
@@ -243,13 +282,12 @@ function Header() {
               {item.submenu && (
                 <Submenu>
                   {item.submenu.map((subitem) => (
-                    <SubmenuButton
-                      key={subitem.label}
-                      type="button"
-                      onClick={() => handleSubmenuNavigation(subitem)}
-                    >
-                      <SubmenuTitle>{subitem.label}</SubmenuTitle>
-                    </SubmenuButton>
+                    <SubmenuItem key={subitem.label}>
+                      <SubmenuButton type="button" onClick={() => handleSubmenuNavigation(subitem)}>
+                        <SubmenuTitle>{subitem.label}</SubmenuTitle>
+                      </SubmenuButton>
+                      <SubmenuHint>{subitem.description}</SubmenuHint>
+                    </SubmenuItem>
                   ))}
                 </Submenu>
               )}

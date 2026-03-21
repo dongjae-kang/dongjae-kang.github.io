@@ -64,12 +64,16 @@ const Hero = styled.section`
   &::before {
     content: '';
     position: absolute;
-    inset: 4% auto auto 50%;
-    width: min(94vw, 980px);
-    height: min(118vw, 1320px);
-    transform: translateX(-50%);
+    top: 50%;
+    left: 50%;
+    width: min(900px, 88vw);
+    height: min(720px, 74vw);
+    transform: translate(-50%, -54%);
     background:
-      radial-gradient(circle at 48% 44%, rgba(74, 122, 94, 0.26) 0%, rgba(154, 184, 158, 0.14) 24%, rgba(196, 149, 106, 0.07) 48%, transparent 76%);
+      radial-gradient(ellipse at 30% 40%, rgba(27, 61, 47, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 35%, rgba(196, 149, 106, 0.08) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 60%, rgba(74, 122, 94, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 45% 45%, rgba(154, 184, 158, 0.06) 0%, transparent 55%);
     pointer-events: none;
     z-index: 0;
   }
@@ -77,11 +81,12 @@ const Hero = styled.section`
   &::after {
     content: '';
     position: absolute;
-    inset: 12% auto auto 50%;
-    width: min(82vw, 900px);
-    height: min(108vw, 1160px);
-    transform: translateX(-50%);
-    background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.1), transparent 72%);
+    top: 50%;
+    left: 50%;
+    width: min(760px, 74vw);
+    height: min(620px, 66vw);
+    transform: translate(-50%, -52%);
+    background: radial-gradient(circle at 52% 48%, rgba(27, 61, 47, 0.08), transparent 72%);
     pointer-events: none;
     z-index: 0;
   }
@@ -94,7 +99,8 @@ const Hero = styled.section`
 const HeroInner = styled.div`
   position: relative;
   z-index: 1;
-  width: min(920px, calc(100% - 48px));
+  width: calc(100% - 48px);
+  max-width: 1060px;
   margin: 0 auto;
   display: grid;
   justify-items: center;
@@ -174,7 +180,8 @@ const Story = styled.div`
 `;
 
 const StoryInner = styled.div`
-  width: min(920px, calc(100% - 48px));
+  width: calc(100% - 48px);
+  max-width: 920px;
   margin: 0 auto;
   display: grid;
   gap: 0;
@@ -182,9 +189,9 @@ const StoryInner = styled.div`
 
 const NarrativeSection = styled.section`
   display: grid;
-  gap: 30px;
+  gap: 36px;
   align-content: center;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 120px);
   padding: 72px 0;
   ${fadeUpStyles};
 
@@ -206,7 +213,8 @@ const NarrativeSection = styled.section`
 const SectionHeader = styled.div`
   display: grid;
   gap: 0;
-  max-width: 520px;
+  min-width: 0;
+  max-width: 460px;
 `;
 
 const SectionLead = styled.div`
@@ -232,30 +240,41 @@ const SectionEyebrow = styled.span`
 
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  max-width: 520px;
+  max-width: 460px;
   margin-bottom: 20px;
-  font-size: clamp(2rem, 3vw, 2.95rem);
+  font-size: clamp(2rem, 2.9vw, 3.1rem);
   font-weight: 600;
   line-height: 1.08;
+  overflow-wrap: anywhere;
 `;
 
 const SectionBody = styled.p`
-  max-width: 520px;
-  font-size: 1rem;
+  max-width: 460px;
+  font-size: 0.98rem;
   line-height: 1.75;
   color: ${({ theme }) => theme.colors.subpage.muted};
+  overflow-wrap: anywhere;
 `;
 
 const ResearchGrid = styled.div`
   display: grid;
-  gap: 0;
+  grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+  gap: 48px;
   align-items: start;
+
+  > * {
+    min-width: 0;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 `;
 
 const ResearchList = styled.div`
   position: relative;
   display: grid;
-  margin-top: 32px;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 
@@ -281,7 +300,7 @@ const ResearchRow = styled(Link)`
 const ResearchTitle = styled.h3`
   min-width: 0;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   line-height: 1.15;
   font-weight: 600;
   overflow-wrap: anywhere;
@@ -347,13 +366,22 @@ const ViewAllLink = styled(Link)`
 
 const LeadershipGrid = styled.div`
   display: grid;
-  gap: 0;
+  grid-template-columns: minmax(0, 0.48fr) minmax(0, 0.52fr);
+  gap: 48px;
   align-items: start;
+
+  > * {
+    min-width: 0;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
 `;
 
 const RoleList = styled.div`
   display: grid;
-  margin-top: 28px;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
 `;
 

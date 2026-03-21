@@ -26,9 +26,9 @@ const pulse = keyframes`
 
 const GraphWrap = styled.div`
   position: relative;
-  width: min(680px, 88vw);
-  height: min(52vh, 480px);
-  min-height: 360px;
+  width: min(960px, calc(100vw - 64px));
+  height: min(54vh, 520px);
+  min-height: 390px;
   margin: 0 auto;
   overflow: visible;
 
