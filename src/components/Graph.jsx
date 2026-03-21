@@ -108,7 +108,7 @@ const nodeStyles = {
   theme: {
     radius: 13.5,
     fill: COLORS.greenDark,
-    labelSize: 14,
+    labelSize: 12.4,
     labelWeight: 500,
     labelOpacity: 0.92,
   },
@@ -453,12 +453,14 @@ function Graph() {
     const labelGroups = driftGroup
       .append('text')
       .attr('fill', COLORS.text)
-      .attr('font-family', (node) =>
-        node.type === 'theme' ? "'Cormorant Garamond', serif" : "'PP Neue Montreal', 'Inter', sans-serif"
-      )
-      .attr('font-style', (node) => (node.type === 'theme' ? 'italic' : 'normal'))
+      .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
       .attr('font-size', (node) => `${nodeVisual(node).labelSize}px`)
       .attr('font-weight', (node) => nodeVisual(node).labelWeight)
+      .attr('letter-spacing', (node) => (node.type === 'theme' ? '0.01em' : null))
+      .attr('paint-order', (node) => (node.type === 'theme' ? 'stroke fill' : null))
+      .attr('stroke', (node) => (node.type === 'theme' ? 'rgba(247, 247, 245, 0.94)' : 'none'))
+      .attr('stroke-width', (node) => (node.type === 'theme' ? 4.5 : 0))
+      .attr('stroke-linejoin', 'round')
       .attr('opacity', (node) =>
         isMobile && mobileHiddenLabelIds.has(node.id)
           ? 0

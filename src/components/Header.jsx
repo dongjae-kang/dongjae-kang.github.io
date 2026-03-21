@@ -107,11 +107,11 @@ const Submenu = styled.div`
   position: absolute;
   top: calc(100% - 4px);
   right: 0;
-  min-width: 220px;
+  min-width: 190px;
   padding: 8px 0;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(154, 184, 158, 0.16);
   border-radius: 4px;
-  background: rgba(247, 247, 245, 0.92);
+  background: rgba(27, 61, 47, 0.92);
   backdrop-filter: blur(16px);
   display: grid;
   gap: 0;
@@ -134,17 +134,17 @@ const Submenu = styled.div`
 `;
 
 const SubmenuButton = styled.button`
-  display: grid;
-  gap: 2px;
+  display: block;
   width: 100%;
   padding: 8px 20px;
   text-align: left;
-  color: ${({ theme }) => theme.colors.subpage.text};
-  opacity: 0.6;
-  transition: opacity 0.15s ease;
+  color: rgba(247, 247, 245, 0.72);
+  opacity: 1;
+  transition: background 0.15s ease, color 0.15s ease;
 
   &:hover {
-    opacity: 1;
+    color: rgba(247, 247, 245, 1);
+    background: rgba(154, 184, 158, 0.08);
   }
 `;
 
@@ -152,14 +152,6 @@ const SubmenuTitle = styled.span`
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-`;
-
-const SubmenuText = styled.span`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.82rem;
-  line-height: 1.5;
-  letter-spacing: 0;
-  text-transform: none;
 `;
 
 const menus = [
@@ -175,13 +167,11 @@ const menus = [
         label: 'Main Research',
         to: '/research',
         section: null,
-        text: 'Core research projects in misinformation and platform governance.',
       },
       {
-        label: 'Coursework',
+        label: 'Coursework & Papers',
         to: '/research',
         section: 'coursework',
-        text: 'Selected papers and course-based work kept under the same umbrella.',
       },
     ],
   },
@@ -190,16 +180,14 @@ const menus = [
     to: '/activities',
     submenu: [
       {
-        label: 'Activities',
+        label: 'Main Activities',
         to: '/activities',
         section: null,
-        text: 'Talks, diplomacy, leadership, and public-facing work.',
       },
       {
         label: 'Archive',
         to: '/activities',
         section: 'archive',
-        text: 'Lighter visits and records kept inside Activities, not as a separate front door.',
       },
     ],
   },
@@ -226,17 +214,17 @@ function Header() {
     navigate(target);
 
     if (!item.section) {
-      requestAnimationFrame(() => {
+      window.setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+      }, 40);
       return;
     }
 
-    requestAnimationFrame(() => {
+    window.setTimeout(() => {
       const id = item.section;
       const sectionNode = document.getElementById(id);
       sectionNode?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    }, 90);
   };
 
   return (
@@ -261,7 +249,6 @@ function Header() {
                       onClick={() => handleSubmenuNavigation(subitem)}
                     >
                       <SubmenuTitle>{subitem.label}</SubmenuTitle>
-                      <SubmenuText>{subitem.text}</SubmenuText>
                     </SubmenuButton>
                   ))}
                 </Submenu>

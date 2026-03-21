@@ -47,9 +47,11 @@ const fadeUpStyles = css`
 `;
 
 const Page = styled.main`
+  position: relative;
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.subpage.background};
   color: ${({ theme }) => theme.colors.subpage.text};
+  overflow-x: hidden;
 `;
 
 const Hero = styled.section`
@@ -175,19 +177,30 @@ const StoryInner = styled.div`
   width: min(${({ theme }) => theme.layout.contentMax}, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
-  gap: 88px;
+  gap: 0;
 `;
 
 const NarrativeSection = styled.section`
   display: grid;
   gap: 28px;
-  align-content: start;
-  padding-top: 0;
+  align-content: center;
+  min-height: calc(100vh - 112px);
+  padding: 12px 0;
   ${fadeUpStyles};
 
   & + & {
     padding-top: 28px;
     border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    min-height: auto;
+    align-content: start;
+    padding: 0;
+
+    & + & {
+      padding-top: 28px;
+    }
   }
 `;
 
@@ -291,10 +304,10 @@ const ResearchRail = styled.div`
 `;
 
 const FloatingPreview = styled.div`
-  position: absolute;
+  position: fixed;
   top: ${({ $y }) => `${$y}px`};
   left: ${({ $x }) => `${$x}px`};
-  width: 148px;
+  width: 164px;
   aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 3px;
@@ -302,10 +315,9 @@ const FloatingPreview = styled.div`
   background: #d8ddd8;
   box-shadow: 0 12px 30px rgba(27, 61, 47, 0.12);
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transform: translate(18px, -50%);
   pointer-events: none;
   transition: opacity 0.16s ease;
-  z-index: 2;
+  z-index: 40;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     display: none;
@@ -495,7 +507,6 @@ const activityRailOrder = [
 
 function Home() {
   const storyRef = useRef(null);
-  const researchListRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [researchRef, researchVisible] = useFadeIn();
   const [leadershipRef, leadershipVisible] = useFadeIn();
@@ -525,10 +536,17 @@ function Home() {
     .filter(Boolean);
 
   const updatePreview = (event, item) => {
-    if (!item.thumbnail || !researchListRef.current || window.innerWidth < 1024) return;
-    const bounds = researchListRef.current.getBoundingClientRect();
-    const x = Math.min(bounds.width - 164, Math.max(16, event.clientX - bounds.left));
-    const y = Math.min(bounds.height - 92, Math.max(20, event.clientY - bounds.top));
+    if (!item.thumbnail || window.innerWidth < 1024) return;
+    const previewWidth = 164;
+    const previewHeight = 110;
+    let x = event.clientX + 22;
+    let y = event.clientY - previewHeight / 2;
+
+    if (x + previewWidth > window.innerWidth - 20) {
+      x = event.clientX - previewWidth - 22;
+    }
+
+    y = Math.min(window.innerHeight - previewHeight - 20, Math.max(20, y));
 
     setPreview({
       visible: true,
@@ -582,7 +600,7 @@ function Home() {
                   </SectionBody>
                 </SectionHeader>
 
-                <ResearchRail ref={researchListRef}>
+                <ResearchRail>
                   <ResearchList>
                     {featuredResearch.map((item) => (
                       <ResearchRow

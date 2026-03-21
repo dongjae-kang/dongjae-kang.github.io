@@ -66,6 +66,7 @@ const Section = styled.section`
   margin-top: 56px;
   padding-top: 24px;
   border-top: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  scroll-margin-top: 108px;
 `;
 
 const SectionTitle = styled.h2`
