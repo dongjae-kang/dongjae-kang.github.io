@@ -207,6 +207,22 @@ const TagList = styled.div`
   gap: 10px;
 `;
 
+const AssetRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+`;
+
+const AssetItem = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+`;
+
 const CourseworkGrid = styled(Grid)`
   margin-top: 8px;
 `;
@@ -335,6 +351,13 @@ function Research() {
                 </CardHeader>
 
                 <Summary>{item.summary}</Summary>
+                {item.materials?.length > 0 && (
+                  <AssetRow>
+                    {item.materials.map((material) => (
+                      <AssetItem key={`${item.id}-${material.label}`}>{material.label}</AssetItem>
+                    ))}
+                  </AssetRow>
+                )}
                 <TagList>
                   {item.tags.map((tag) => (
                     <Tag key={tag}>{tag}</Tag>

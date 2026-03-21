@@ -78,6 +78,14 @@ const Description = styled.p`
   max-width: ${({ theme }) => theme.layout.textMax};
 `;
 
+const Highlights = styled.ul`
+  display: grid;
+  gap: 10px;
+  padding-left: 18px;
+  max-width: ${({ theme }) => theme.layout.textMax};
+  color: ${({ theme }) => theme.colors.subpage.text};
+`;
+
 const MetaGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -141,6 +149,52 @@ const GalleryImage = styled.img`
   border: 1px solid rgba(61, 90, 62, 0.14);
 `;
 
+const GalleryCard = styled.figure`
+  display: grid;
+  gap: 8px;
+  margin: 0;
+`;
+
+const GalleryCaption = styled.figcaption`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.84rem;
+`;
+
+const MaterialGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const MaterialCard = styled.div`
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  background: #fdfcfa;
+`;
+
+const MaterialTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+`;
+
+const MaterialNote = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+`;
+
+const MaterialLink = styled.a`
+  width: fit-content;
+  color: ${({ theme }) => theme.colors.subpage.copper};
+`;
+
 function ResearchDetail() {
   const { id } = useParams();
   const item = research.find((entry) => entry.id === id);
@@ -164,9 +218,12 @@ function ResearchDetail() {
         <Container>
           <Back to="/research">Back to Research</Back>
 
-          <Thumbnail $hasImage={!!item.thumbnail}>
-            {item.thumbnail ? (
-              <ThumbnailImage src={item.thumbnail} alt={`${item.title} visual`} />
+          <Thumbnail $hasImage={!!(item.heroMedia?.src || item.thumbnail)}>
+            {item.heroMedia?.src || item.thumbnail ? (
+              <ThumbnailImage
+                src={item.heroMedia?.src || item.thumbnail}
+                alt={item.heroMedia?.alt || `${item.title} visual`}
+              />
             ) : (
               <>
                 <SectionLabel>Research Visual</SectionLabel>
@@ -181,6 +238,17 @@ function ResearchDetail() {
           </TitleBlock>
 
           <Description>{item.description}</Description>
+
+          {item.highlights?.length > 0 && (
+            <DetailSection>
+              <SectionLabel>Highlights</SectionLabel>
+              <Highlights>
+                {item.highlights.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </Highlights>
+            </DetailSection>
+          )}
 
           <MetaGrid>
             <MetaBlock>
@@ -197,12 +265,34 @@ function ResearchDetail() {
             </MetaBlock>
           </MetaGrid>
 
-          {item.gallery?.length > 1 && (
+          {item.materials?.length > 0 && (
+            <DetailSection>
+              <SectionLabel>Materials</SectionLabel>
+              <MaterialGrid>
+                {item.materials.map((material) => (
+                  <MaterialCard key={`${item.id}-${material.label}`}>
+                    <MaterialTitle>{material.label}</MaterialTitle>
+                    <MaterialNote>{material.note}</MaterialNote>
+                    {material.url && (
+                      <MaterialLink href={material.url} target="_blank" rel="noopener noreferrer">
+                        Open
+                      </MaterialLink>
+                    )}
+                  </MaterialCard>
+                ))}
+              </MaterialGrid>
+            </DetailSection>
+          )}
+
+          {item.gallery?.length > 0 && (
             <DetailSection>
               <SectionLabel>Gallery</SectionLabel>
               <Gallery>
-                {item.gallery.slice(1).map((image, index) => (
-                  <GalleryImage key={image} src={image} alt={`${item.title} archive ${index + 2}`} />
+                {item.gallery.map((image, index) => (
+                  <GalleryCard key={`${item.title}-${index}`}>
+                    <GalleryImage src={image.src} alt={image.alt || `${item.title} archive ${index + 1}`} />
+                    {image.caption && <GalleryCaption>{image.caption}</GalleryCaption>}
+                  </GalleryCard>
                 ))}
               </Gallery>
             </DetailSection>

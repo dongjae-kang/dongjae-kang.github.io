@@ -19,13 +19,43 @@ export const research = [
       'Prof. Joseph Seering',
     ],
     tags: ['Misinformation', 'Platform Governance', 'Dataset', 'Trust & Safety'],
+    highlights: [
+      '93,250 articles from 31 international news sources',
+      'Incidents spanning 2004 to 2023',
+      '1,354 articles manually annotated across four dimensions',
+    ],
+    heroMedia: {
+      src: crisisnewsDemo,
+      alt: 'CrisisNews interactive browser demo',
+      label: 'Interactive Browser',
+    },
+    materials: [
+      {
+        label: 'Dataset Browser',
+        note: 'Interactive browsing tool for the released dataset.',
+        url: 'https://crisis-news.netlify.app',
+      },
+      {
+        label: 'arXiv Paper',
+        note: 'Full paper describing the dataset and core findings.',
+        url: 'https://arxiv.org/abs/2510.12243',
+      },
+      {
+        label: 'CHI 2025 Workshop',
+        note: 'News Futures workshop page for the Yokohama presentation.',
+        url: 'https://sites.google.com/view/newsfutures/home',
+      },
+    ],
     links: [
       { label: 'arXiv', url: 'https://arxiv.org/abs/2510.12243' },
       { label: 'Dataset', url: 'https://crisis-news.netlify.app' },
       { label: 'CHI 2025 Workshop', url: 'https://sites.google.com/view/newsfutures/home' },
     ],
     thumbnail: crisisnewsThumbnail,
-    gallery: [crisisnewsThumbnail, crisisnewsDemo],
+    gallery: [
+      { src: crisisnewsThumbnail, alt: 'CrisisNews dataset overview', caption: 'Dataset overview' },
+      { src: crisisnewsDemo, alt: 'CrisisNews browser demo', caption: 'Public browser demo' },
+    ],
   },
   {
     id: 'prism',
@@ -37,9 +67,36 @@ export const research = [
       'PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments.',
     collaborators: ['Columbia SIPA project team', 'Prototype implemented independently'],
     tags: ['Misinformation', 'Platform Design', 'HCI'],
-    links: [{ label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' }],
+    highlights: [
+      'Maps framing differences across multiple outlets',
+      'Combines source comparison, timeline view, and fact-check references',
+      'Working prototype implemented and deployed by Kang',
+    ],
+    heroMedia: {
+      src: prismThumbnail,
+      alt: 'PRISM product interface preview',
+      label: 'Prototype Preview',
+    },
+    materials: [
+      {
+        label: 'Live Demo',
+        note: 'Deployed prototype showing how the platform works end to end.',
+        url: 'https://tpi-emerging-tech.netlify.app',
+      },
+      {
+        label: 'Course Pitch Deck',
+        note: 'Related coursework deliverable covering literature, product logic, and model.',
+        url: '/assets/papers/prism-pitch.pdf',
+      },
+    ],
+    links: [
+      { label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' },
+      { label: 'Pitch Deck', url: '/assets/papers/prism-pitch.pdf' },
+    ],
     thumbnail: prismThumbnail,
-    gallery: [prismThumbnail],
+    gallery: [
+      { src: prismThumbnail, alt: 'PRISM interface mockup', caption: 'Prototype interface' },
+    ],
   },
   {
     id: 'beyond-removal',
@@ -51,6 +108,17 @@ export const research = [
       "Beyond Removal is a Spring 2026 Trust & Safety paper built on the CrisisNews dataset. It maps documented platform responses during crisis events onto Goldman's framework for content moderation remedies. The project focuses on the gap between blunt takedown logic and more graduated interventions such as friction, labeling, and distribution changes. It asks which remedies platforms actually use, where those responses fall short, and what more proportionate governance could look like.",
     collaborators: ['Columbia SIPA Trust & Safety course'],
     tags: ['Content Moderation', 'Platform Governance'],
+    highlights: [
+      'Built directly on CrisisNews case material',
+      'Uses Goldman’s remedies framework to classify interventions',
+      'Focuses on measures beyond removal and takedown',
+    ],
+    materials: [
+      {
+        label: 'Working Paper',
+        note: 'Course paper. Public file not yet attached to the site.',
+      },
+    ],
     links: [],
     thumbnail: null,
     gallery: [],
@@ -65,8 +133,31 @@ export const research = [
       'This Spring 2026 Ethics of Media project uses a Python multi-agent simulation to compare AI fact-check labels with accuracy nudges. The model tests how different intervention designs affect sharing behavior across heterogeneous agents over repeated rounds. Its central result is that nudges prompting people to think independently outperform labels that outsource judgment to the system. The project combines a policy question with a simple computational model rather than treating the two as separate problems.',
     collaborators: ['Columbia SIPA Ethics of Media course'],
     tags: ['Misinformation', 'AI', 'Simulation'],
+    highlights: [
+      'Python agent-based model for repeated sharing environments',
+      'Compares AI fact-check labels against accuracy nudges',
+      'Finds that nudges outperform labels that replace human judgment',
+    ],
+    heroMedia: {
+      src: multiAgentSimWorkflow,
+      alt: 'Multi-agent simulation workflow',
+      label: 'Workflow',
+    },
+    materials: [
+      {
+        label: 'Workflow Figure',
+        note: 'System workflow used to explain the simulation design.',
+      },
+      {
+        label: 'Method Figure',
+        note: 'Supporting diagram for the agent setup and intervention logic.',
+      },
+    ],
     links: [],
     thumbnail: multiAgentSimWorkflow,
-    gallery: [multiAgentSimWorkflow, multiAgentSimMethod],
+    gallery: [
+      { src: multiAgentSimWorkflow, alt: 'Multi-agent simulation workflow', caption: 'Workflow overview' },
+      { src: multiAgentSimMethod, alt: 'Multi-agent simulation method figure', caption: 'Method figure' },
+    ],
   },
 ];
