@@ -82,34 +82,39 @@ const primaryFlowPairs = new Map([
 
 const themeAuraPalette = {
   misinformation: {
-    aura: 'rgba(45, 90, 61, 0.12)',
-    core: 'rgba(45, 90, 61, 0.16)',
-    desktopRadius: 34,
-    mobileRadius: 28,
+    center: 'rgba(45, 90, 61, 0.14)',
+    mid: 'rgba(45, 90, 61, 0.08)',
+    outer: 'rgba(45, 90, 61, 0.025)',
+    desktopRadius: 74,
+    mobileRadius: 56,
   },
   'platform-governance': {
-    aura: 'rgba(27, 61, 47, 0.1)',
-    core: 'rgba(27, 61, 47, 0.14)',
-    desktopRadius: 34,
-    mobileRadius: 28,
+    center: 'rgba(27, 61, 47, 0.13)',
+    mid: 'rgba(27, 61, 47, 0.075)',
+    outer: 'rgba(27, 61, 47, 0.022)',
+    desktopRadius: 74,
+    mobileRadius: 56,
   },
   'content-moderation': {
-    aura: 'rgba(74, 122, 94, 0.11)',
-    core: 'rgba(74, 122, 94, 0.15)',
-    desktopRadius: 36,
-    mobileRadius: 29,
+    center: 'rgba(74, 122, 94, 0.14)',
+    mid: 'rgba(74, 122, 94, 0.08)',
+    outer: 'rgba(74, 122, 94, 0.025)',
+    desktopRadius: 76,
+    mobileRadius: 58,
   },
   'ai-policy': {
-    aura: 'rgba(45, 90, 61, 0.1)',
-    core: 'rgba(45, 90, 61, 0.14)',
-    desktopRadius: 33,
-    mobileRadius: 27,
+    center: 'rgba(45, 90, 61, 0.12)',
+    mid: 'rgba(45, 90, 61, 0.07)',
+    outer: 'rgba(45, 90, 61, 0.022)',
+    desktopRadius: 72,
+    mobileRadius: 54,
   },
   'participatory-governance': {
-    aura: 'rgba(53, 97, 69, 0.11)',
-    core: 'rgba(53, 97, 69, 0.15)',
-    desktopRadius: 37,
-    mobileRadius: 30,
+    center: 'rgba(53, 97, 69, 0.14)',
+    mid: 'rgba(53, 97, 69, 0.08)',
+    outer: 'rgba(53, 97, 69, 0.025)',
+    desktopRadius: 78,
+    mobileRadius: 60,
   },
 };
 
@@ -294,9 +299,10 @@ function edgePath(edge) {
 function themeAura(node, isMobile) {
   const config = themeAuraPalette[node.id];
   return {
-    aura: config?.aura || 'rgba(45, 90, 61, 0.11)',
-    core: config?.core || 'rgba(45, 90, 61, 0.15)',
-    radius: isMobile ? config?.mobileRadius || 28 : config?.desktopRadius || 34,
+    center: config?.center || 'rgba(45, 90, 61, 0.13)',
+    mid: config?.mid || 'rgba(45, 90, 61, 0.07)',
+    outer: config?.outer || 'rgba(45, 90, 61, 0.02)',
+    radius: isMobile ? config?.mobileRadius || 56 : config?.desktopRadius || 74,
   };
 }
 
@@ -338,25 +344,13 @@ function Graph() {
     const root = svg.append('g');
     const defs = root.append('defs');
 
-    const themeGlowFilter = defs
-      .append('filter')
-      .attr('id', 'theme-node-glow')
-      .attr('x', '-220%')
-      .attr('y', '-220%')
-      .attr('width', '540%')
-      .attr('height', '540%');
-
-    themeGlowFilter
-      .append('feGaussianBlur')
-      .attr('in', 'SourceGraphic')
-      .attr('stdDeviation', isMobile ? 10 : 14);
-
     const themeNodes = nodes.filter((node) => node.type === 'theme');
     themeNodes.forEach((node) => {
       const aura = themeAura(node, isMobile);
       const gradient = defs.append('radialGradient').attr('id', `theme-glow-${node.id}`);
-      gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.core);
-      gradient.append('stop').attr('offset', '48%').attr('stop-color', aura.aura);
+      gradient.append('stop').attr('offset', '0%').attr('stop-color', aura.center);
+      gradient.append('stop').attr('offset', '38%').attr('stop-color', aura.mid);
+      gradient.append('stop').attr('offset', '78%').attr('stop-color', aura.outer);
       gradient.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(255,255,255,0)');
     });
 
@@ -458,16 +452,7 @@ function Graph() {
       .append('circle')
       .attr('class', 'theme-aura')
       .attr('r', (node) => themeAura(node, isMobile).radius)
-      .attr('fill', (node) => `url(#theme-glow-${node.id})`)
-      .attr('filter', 'url(#theme-node-glow)');
-
-    const themeCoreGlowSelection = nodeGroup
-      .filter((node) => node.type === 'theme')
-      .append('circle')
-      .attr('class', 'theme-core-glow')
-      .attr('r', (node) => nodeVisual(node).radius + (isMobile ? 6 : 8))
-      .attr('fill', (node) => themeAura(node, isMobile).core)
-      .attr('filter', 'url(#theme-node-glow)');
+      .attr('fill', (node) => `url(#theme-glow-${node.id})`);
 
     /* Main node circle */
     const nodeMainSelection = nodeGroup
@@ -551,14 +536,9 @@ function Graph() {
         return isConnected(activeNode, node) ? 1 : 0.15;
       });
 
-      themeCoreGlowSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.72;
-        return isConnected(activeNode, node) ? 0.86 : 0.08;
-      });
-
       themeAuraSelection.attr('opacity', (node) => {
-        if (!activeNode) return 0.5;
-        return isConnected(activeNode, node) ? 0.66 : 0.06;
+        if (!activeNode) return 0.88;
+        return isConnected(activeNode, node) ? 1 : 0.12;
       });
 
       labelGroups.attr('opacity', (node) => {
