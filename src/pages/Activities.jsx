@@ -6,19 +6,10 @@ import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import Lightbox from '../components/Lightbox';
 import { activities } from '../data/activities';
-import { archive } from '../data/archive';
 
-const featuredOrder = [
-  'un-youth-forum',
-  'kgsa-career',
-  'valedictorian',
-  'hyc-mixer',
-  'upenn-mixer',
-  'un-ga-hlw',
-  'chi-2025',
-  'student-council',
-  'columbia-ai-club',
-];
+const tier1 = activities.filter((a) => a.tier === 1);
+const tier2 = activities.filter((a) => a.tier === 2);
+const tier3 = activities.filter((a) => a.tier === 3);
 
 const Page = styled.main`
   min-height: 100vh;
@@ -43,7 +34,6 @@ const Intro = styled.div`
   font-size: 1.04rem;
   padding-bottom: 24px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
-
 `;
 
 const SectionNav = styled.div`
@@ -53,10 +43,11 @@ const SectionNav = styled.div`
   margin-bottom: 28px;
 `;
 
-const SectionNavLink = styled(Link)`
+const SectionNavLink = styled.a`
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
   color: ${({ $active, theme }) =>
     $active ? theme.colors.subpage.accent : theme.colors.subpage.muted};
   border-bottom: 1px solid
@@ -100,6 +91,7 @@ const SectionText = styled.p`
   margin-bottom: 24px;
 `;
 
+/* ─── TIER 1: Full cards ─── */
 const Card = styled(Link)`
   display: grid;
   gap: 16px;
@@ -170,12 +162,6 @@ const PhotoTitle = styled.span`
   text-transform: uppercase;
 `;
 
-const PhotoText = styled.span`
-  max-width: 24ch;
-  color: rgba(247, 247, 245, 0.62);
-  font-size: 0.74rem;
-`;
-
 const CardTitle = styled.h2`
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.heading};
@@ -197,28 +183,108 @@ const TagList = styled.div`
   gap: 10px;
 `;
 
-const ArchiveGrid = styled.div`
+/* ─── TIER 2: Medium cards ─── */
+const Tier2Card = styled.article`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 14px;
+  padding: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 4px;
+  background: #fdfcfa;
+`;
+
+const Tier2Photo = styled.div`
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
+  background:
+    ${({ $hasImage }) =>
+      $hasImage
+        ? '#d9dfd9'
+        : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')};
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+`;
+
+const Tier2Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const Tier2Title = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.5rem;
+  line-height: 1.08;
+  font-weight: 500;
+`;
+
+const Tier2Meta = styled.span`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.84rem;
+`;
+
+const Tier2Summary = styled.p`
+  color: ${({ theme }) => theme.colors.subpage.text};
+  font-size: 0.92rem;
+  line-height: 1.5;
+`;
+
+const Tier2Link = styled.a`
+  color: ${({ theme }) => theme.colors.subpage.copper};
+  font-size: 0.82rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  width: fit-content;
+`;
+
+const PhotoCount = styled.span`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.52);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  z-index: 1;
+`;
+
+/* ─── TIER 3: Photo-focused ─── */
+const Tier3Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 `;
 
-const ArchiveCard = styled.article`
+const Tier3Card = styled.article`
   display: grid;
-  gap: 12px;
+  gap: 8px;
 `;
 
-const ArchivePhoto = styled.div`
+const Tier3Photo = styled.div`
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   overflow: hidden;
   border-radius: 3px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
@@ -241,18 +307,16 @@ const ArchivePhoto = styled.div`
 
   ${({ $clickable }) =>
     $clickable &&
-    `&:hover {
-      transform: scale(1.02);
-    }`};
+    `&:hover { transform: scale(1.03); }`};
 `;
 
-const ArchiveImage = styled.img`
+const Tier3Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
 
-const ArchivePlaceholder = styled.div`
+const Tier3Placeholder = styled.div`
   position: absolute;
   inset: 0;
   display: grid;
@@ -265,62 +329,40 @@ const ArchivePlaceholder = styled.div`
   text-transform: uppercase;
 `;
 
-const ArchiveMeta = styled.div`
-  display: grid;
-  gap: 2px;
-`;
-
-const ArchiveTitle = styled.h3`
+const Tier3Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.5rem;
-  line-height: 1.08;
+  font-size: 1.1rem;
+  line-height: 1.15;
   font-weight: 500;
 `;
 
-const ArchiveCaption = styled.span`
+const Tier3Meta = styled.span`
   color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.84rem;
-`;
-
-const ArchiveDescription = styled.p`
-  color: ${({ theme }) => theme.colors.subpage.text};
-  font-size: 0.88rem;
-  line-height: 1.5;
-  margin-top: 4px;
-`;
-
-const ArchiveLink = styled.a`
-  color: ${({ theme }) => theme.colors.subpage.copper};
-  font-size: 0.82rem;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-  margin-top: 2px;
-  width: fit-content;
-`;
-
-const PhotoCount = styled.span`
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  padding: 3px 8px;
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.52);
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  z-index: 1;
+  font-size: 0.78rem;
 `;
 
 function Activities() {
   const location = useLocation();
-  const activitiesRef = useRef(null);
-  const archiveRef = useRef(null);
+  const tier1Ref = useRef(null);
+  const tier2Ref = useRef(null);
+  const tier3Ref = useRef(null);
   const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0 });
-  const visibleIds = new Set(featuredOrder);
+
+  const section = new URLSearchParams(location.search).get('section');
+
+  useEffect(() => {
+    if (section === 'community') {
+      tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (section === 'life') {
+      tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [section]);
 
   const openLightbox = useCallback((images, index = 0) => {
-    setLightbox({ open: true, images, index });
+    const normalized = images.map((img) =>
+      typeof img === 'string' ? { src: img } : img
+    );
+    setLightbox({ open: true, images: normalized, index });
   }, []);
 
   const closeLightbox = useCallback(() => {
@@ -340,19 +382,12 @@ function Activities() {
       index: (prev.index + 1) % prev.images.length,
     }));
   }, []);
-  const orderedActivities = [
-    ...featuredOrder
-      .map((id) => activities.find((item) => item.id === id))
-      .filter(Boolean),
-    ...activities.filter((item) => !visibleIds.has(item.id) && !['ces', 'stanford'].includes(item.id)),
-  ];
-  const section = new URLSearchParams(location.search).get('section');
 
-  useEffect(() => {
-    if (section === 'archive') {
-      archiveRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [section]);
+  const getCover = (item) => item.media?.cover || item.media?.photos?.[0]?.src || item.media?.photos?.[0];
+  const getPhotoCount = (item) => {
+    const photos = item.media?.photos || [];
+    return photos.length;
+  };
 
   return (
     <PageTransition>
@@ -360,97 +395,157 @@ function Activities() {
         <Container>
           <Title>Activities</Title>
           <Intro>
-            Talks, diplomacy, student leadership, and community-building across research and
-            public life. Lighter records stay below as a smaller archive, not as a separate front
-            page.
+            Talks, research presentations, diplomacy, student leadership, and community events.
           </Intro>
 
           <SectionNav>
-            <SectionNavLink to="/activities" $active={!section}>
+            <SectionNavLink
+              $active={!section}
+              onClick={() => tier1Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
               Activities
             </SectionNavLink>
-            <SectionNavLink to="/activities?section=archive" $active={section === 'archive'}>
-              Archive
+            <SectionNavLink
+              $active={section === 'community'}
+              onClick={() => tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              Community & Events
+            </SectionNavLink>
+            <SectionNavLink
+              $active={section === 'life'}
+              onClick={() => tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              Off the Clock
             </SectionNavLink>
           </SectionNav>
 
-          <Grid ref={activitiesRef}>
-            {orderedActivities.map((item) => (
-              <Card key={item.id} to={`/activities/${item.id}`}>
-                <Photo $hasImage={!!(item.media?.cover || item.media?.photos?.[0])}>
-                  {item.media?.cover || item.media?.photos?.[0] ? (
-                    <PhotoImage
-                      src={item.media?.cover || item.media?.photos?.[0]}
-                      alt={`${item.title} preview`}
-                    />
-                  ) : (
-                    <Placeholder>
-                      <PhotoKicker>{item.date}</PhotoKicker>
-                      <PhotoTitle>{item.title}</PhotoTitle>
-                      <PhotoText>Photos coming soon.</PhotoText>
-                    </Placeholder>
-                  )}
-                </Photo>
-
-                <div>
-                  <CardTitle>{item.title}</CardTitle>
-                  <DateText>{item.date}</DateText>
-                </div>
-
-                <Summary>{item.summary}</Summary>
-                <TagList>
-                  {item.tags.map((tag) => (
-                    <Tag key={tag}>{tag}</Tag>
-                  ))}
-                </TagList>
-              </Card>
-            ))}
+          {/* ─── TIER 1 ─── */}
+          <Grid ref={tier1Ref}>
+            {tier1.map((item) => {
+              const cover = getCover(item);
+              return (
+                <Card key={item.id} to={`/activities/${item.id}`}>
+                  <Photo $hasImage={!!cover}>
+                    {cover ? (
+                      <PhotoImage src={cover} alt={`${item.title} preview`} />
+                    ) : (
+                      <Placeholder>
+                        <PhotoKicker>{item.date}</PhotoKicker>
+                        <PhotoTitle>{item.title}</PhotoTitle>
+                      </Placeholder>
+                    )}
+                  </Photo>
+                  <div>
+                    <CardTitle>{item.title}</CardTitle>
+                    <DateText>{item.date}</DateText>
+                  </div>
+                  <Summary>{item.summary}</Summary>
+                  <TagList>
+                    {item.tags.map((tag) => (
+                      <Tag key={tag}>{tag}</Tag>
+                    ))}
+                  </TagList>
+                </Card>
+              );
+            })}
           </Grid>
 
-          <Section ref={archiveRef} id="archive">
-            <SectionTitle>Archive</SectionTitle>
+          {/* ─── TIER 2 ─── */}
+          <Section ref={tier2Ref} id="community">
+            <SectionTitle>Community & Events</SectionTitle>
             <SectionText>
-              Concerts, golf, campus moments, and other scenes from life in New York and beyond.
+              Event organizing, community leadership, and professional networks.
             </SectionText>
 
-            <ArchiveGrid>
-              {archive.map((item) => {
-                const coverSrc = item.photos?.[0]?.src || null;
-                const hasPhotos = item.photos?.length > 0;
+            <Grid>
+              {tier2.map((item) => {
+                const cover = getCover(item);
+                const photoCount = getPhotoCount(item);
                 return (
-                  <ArchiveCard key={item.id}>
-                    <ArchivePhoto
-                      $hasImage={!!coverSrc}
-                      $clickable={hasPhotos}
-                      onClick={() => hasPhotos && openLightbox(item.photos, 0)}
+                  <Tier2Card key={item.id}>
+                    <Tier2Photo
+                      $hasImage={!!cover}
+                      $clickable={photoCount > 0}
+                      onClick={() =>
+                        photoCount > 0 &&
+                        openLightbox(
+                          item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)),
+                          0
+                        )
+                      }
                     >
-                      {coverSrc ? (
-                        <ArchiveImage src={coverSrc} alt={item.title} />
+                      {cover ? (
+                        <Tier2Image src={cover} alt={item.title} />
                       ) : (
-                        <ArchivePlaceholder>{item.title}</ArchivePlaceholder>
+                        <Placeholder>
+                          <PhotoKicker>{item.date}</PhotoKicker>
+                          <PhotoTitle>{item.title}</PhotoTitle>
+                        </Placeholder>
                       )}
-                      {item.photos?.length > 1 && (
-                        <PhotoCount>{item.photos.length} photos</PhotoCount>
-                      )}
-                    </ArchivePhoto>
-                    <ArchiveMeta>
-                      <ArchiveTitle>{item.title}</ArchiveTitle>
-                      <ArchiveCaption>
-                        {item.date} · {item.location}
-                      </ArchiveCaption>
-                      {item.description && (
-                        <ArchiveDescription>{item.description}</ArchiveDescription>
-                      )}
-                      {item.link && (
-                        <ArchiveLink href={item.link.url} target="_blank" rel="noopener noreferrer">
-                          {item.link.label}
-                        </ArchiveLink>
-                      )}
-                    </ArchiveMeta>
-                  </ArchiveCard>
+                      {photoCount > 1 && <PhotoCount>{photoCount} photos</PhotoCount>}
+                    </Tier2Photo>
+                    <div>
+                      <Tier2Title>{item.title}</Tier2Title>
+                      <Tier2Meta>{item.date} · {item.location}</Tier2Meta>
+                    </div>
+                    {item.summary && <Tier2Summary>{item.summary}</Tier2Summary>}
+                    {item.links?.length > 0 &&
+                      item.links.map((link) => (
+                        <Tier2Link
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.label}
+                        </Tier2Link>
+                      ))}
+                  </Tier2Card>
                 );
               })}
-            </ArchiveGrid>
+            </Grid>
+          </Section>
+
+          {/* ─── TIER 3 ─── */}
+          <Section ref={tier3Ref} id="life">
+            <SectionTitle>Off the Clock</SectionTitle>
+            <SectionText>
+              Concerts, sports, campus moments, and other scenes from life in New York and beyond.
+            </SectionText>
+
+            <Tier3Grid>
+              {tier3.map((item) => {
+                const cover = getCover(item);
+                const photos = item.media?.photos || [];
+                const hasPhotos = photos.length > 0;
+                return (
+                  <Tier3Card key={item.id}>
+                    <Tier3Photo
+                      $hasImage={!!cover}
+                      $clickable={hasPhotos}
+                      onClick={() =>
+                        hasPhotos &&
+                        openLightbox(
+                          photos.map((p) => (typeof p === 'string' ? { src: p } : p)),
+                          0
+                        )
+                      }
+                    >
+                      {cover ? (
+                        <Tier3Image src={cover} alt={item.title} />
+                      ) : (
+                        <Tier3Placeholder>{item.title}</Tier3Placeholder>
+                      )}
+                      {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
+                    </Tier3Photo>
+                    <div>
+                      <Tier3Title>{item.title}</Tier3Title>
+                      <Tier3Meta>{item.date} · {item.location}</Tier3Meta>
+                    </div>
+                  </Tier3Card>
+                );
+              })}
+            </Tier3Grid>
           </Section>
         </Container>
 

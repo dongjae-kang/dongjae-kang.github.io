@@ -217,16 +217,22 @@ const menus = [
     to: '/activities',
     submenu: [
       {
-        label: 'Main Activities',
+        label: 'Activities',
         to: '/activities',
         section: null,
-        description: 'Public-facing work across research, diplomacy, and community leadership.',
+        description: 'Research presentations, diplomacy, and student leadership.',
       },
       {
-        label: 'Archive',
+        label: 'Community & Events',
         to: '/activities',
-        section: 'archive',
-        description: 'A lighter record of visits, performances, and life around New York.',
+        section: 'community',
+        description: 'Event organizing, mixers, and professional networks.',
+      },
+      {
+        label: 'Off the Clock',
+        to: '/activities',
+        section: 'life',
+        description: 'Concerts, sports, and campus moments.',
       },
     ],
   },
