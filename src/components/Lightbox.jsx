@@ -26,6 +26,12 @@ const Image = styled.img`
   border-radius: 4px;
 `;
 
+const Video = styled.video`
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 4px;
+`;
+
 const NavButton = styled.button`
   position: fixed;
   top: 50%;
@@ -122,6 +128,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
   const current = images[index];
   const src = typeof current === 'string' ? current : current?.src;
   const caption = typeof current === 'string' ? null : current?.caption;
+  const isVideo = typeof current !== 'string' && current?.type === 'video';
 
   return (
     <Overlay onClick={onClose}>
@@ -132,7 +139,11 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       )}
 
       <ImageContainer onClick={(e) => e.stopPropagation()}>
-        <Image src={src} alt={caption || `Image ${index + 1}`} />
+        {isVideo ? (
+          <Video src={src} controls autoPlay muted playsInline />
+        ) : (
+          <Image src={src} alt={caption || `Image ${index + 1}`} />
+        )}
       </ImageContainer>
 
       {images.length > 1 && onNext && (
