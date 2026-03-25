@@ -176,9 +176,24 @@ const Contacts = styled.div`
   gap: 10px;
   flex-wrap: nowrap;
   margin-top: 8px;
+  justify-content: flex-end;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     gap: 8px;
+    justify-content: flex-start;
+  }
+`;
+
+const ContactLabel = styled.span`
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const ContactLabelMobile = styled.span`
+  display: none;
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: inline;
   }
 `;
 
@@ -210,7 +225,7 @@ const journey = [
   {
     category: 'Education',
     items: [
-      { role: 'Master of Public Administration', org: 'Columbia University, School of International and Public Affairs (SIPA)', detail: 'Concentration: Technology, Policy, and Innovation', period: '2025 - Present' },
+      { role: 'Master of Public Administration', org: 'Columbia University, School of International and Public Affairs (SIPA)', detail: 'Concentration: Technology Policy and Innovation', period: '2025 - Present' },
       { role: 'Bachelor of Science in Industrial and Systems Engineering', org: 'Korea Advanced Institute of Science and Technology (KAIST)', detail: 'Double Major: Business and Technology Management\nMinor: Science and Technology Policy', period: '2018 - 2025' },
     ],
   },
@@ -319,7 +334,8 @@ function About() {
             <Contacts>
               <ContactButton href="mailto:dk3500@columbia.edu">
                 <FiMail />
-                dk3500@columbia.edu
+                <ContactLabel>dk3500@columbia.edu</ContactLabel>
+                <ContactLabelMobile>Mail</ContactLabelMobile>
               </ContactButton>
               <ContactButton
                 href="https://linkedin.com/in/jackkang3780"
