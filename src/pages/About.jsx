@@ -144,11 +144,13 @@ const TimelineOrg = styled.p`
 
 const TimelineDetail = styled.div`
   display: grid;
-  gap: 2px;
-  margin-top: 4px;
-  font-size: 0.82rem;
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  opacity: 0.8;
+  gap: 3px;
+  margin-top: 6px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(27, 61, 47, 0.15);
+  font-size: 0.86rem;
+  color: ${({ theme }) => theme.colors.subpage.text};
+  line-height: 1.4;
 `;
 
 const TimelinePeriod = styled.span`
@@ -185,12 +187,12 @@ const ContactButton = styled.a`
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  border: 1px solid rgba(27, 61, 47, 0.2);
+  border: 1px solid rgba(27, 61, 47, 0.85);
   border-radius: 4px;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.subpage.accent};
-  background: rgba(27, 61, 47, 0.04);
+  color: #f7f7f5;
+  background: rgba(27, 61, 47, 0.85);
   transition: ${({ theme }) => theme.transitions.hover};
   white-space: nowrap;
 
@@ -200,8 +202,7 @@ const ContactButton = styled.a`
   }
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.subpage.accent};
-    background: rgba(27, 61, 47, 0.08);
+    background: rgba(27, 61, 47, 1);
   }
 `;
 
@@ -210,7 +211,7 @@ const journey = [
     category: 'Education',
     items: [
       { role: 'Master of Public Administration', org: 'Columbia University, School of International and Public Affairs (SIPA)', detail: 'Concentration: Technology, Policy, and Innovation', period: '2025 - Present' },
-      { role: 'Bachelor of Science in Industrial and Systems Engineering', org: 'KAIST (Korea Advanced Institute of Science and Technology)', detail: 'Double Major: Business and Technology Management\nMinor: Science and Technology Policy', period: '2018 - 2025' },
+      { role: 'Bachelor of Science in Industrial and Systems Engineering', org: 'Korea Advanced Institute of Science and Technology (KAIST)', detail: 'Double Major: Business and Technology Management\nMinor: Science and Technology Policy', period: '2018 - 2025' },
     ],
   },
   {
