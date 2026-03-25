@@ -24,7 +24,7 @@ const Back = styled(Link)`
 
 const Photo = styled.div`
   aspect-ratio: ${({ $portrait }) => ($portrait ? 'auto' : '3 / 2')};
-  max-width: ${({ $portrait }) => ($portrait ? '360px' : 'none')};
+  max-width: ${({ $portrait }) => ($portrait ? '280px' : 'none')};
   border-radius: 4px;
   background: #f0ede8;
   border: 1px solid rgba(61, 90, 62, 0.12);

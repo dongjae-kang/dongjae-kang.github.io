@@ -95,6 +95,7 @@ const Card = styled(Link)`
 
 const Photo = styled.div`
   position: relative;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 3px;
   background: ${({ $hasImage }) => $hasImage ? '#d9dfd9' : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
@@ -107,6 +108,8 @@ const Photo = styled.div`
 
 const PhotoImage = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 `;
 
