@@ -169,35 +169,39 @@ const TimelineCategory = styled.h3`
 `;
 
 /* ─── CONTACTS ─── */
-const Contacts = styled.section`
+const Contacts = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 8px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    gap: 8px;
+  }
 `;
 
 const ContactButton = styled.a`
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  border-radius: 100px;
-  font-size: 0.88rem;
-  letter-spacing: 0.03em;
-  color: ${({ theme }) => theme.colors.subpage.text};
-  background: #fdfcfa;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid rgba(27, 61, 47, 0.2);
+  border-radius: 4px;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.colors.subpage.accent};
+  background: rgba(27, 61, 47, 0.04);
   transition: ${({ theme }) => theme.transitions.hover};
+  white-space: nowrap;
 
   svg {
     flex-shrink: 0;
-    font-size: 1.1rem;
-    color: ${({ theme }) => theme.colors.subpage.copper};
+    font-size: 0.95rem;
   }
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.subpage.accent};
-    background: rgba(27, 61, 47, 0.04);
+    background: rgba(27, 61, 47, 0.08);
   }
 `;
 
