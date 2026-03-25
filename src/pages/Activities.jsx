@@ -292,33 +292,6 @@ const Tier3Meta = styled.span`
   font-size: 0.78rem;
 `;
 
-/* ─── NY Phil program info ─── */
-const ProgramInfo = styled.div`
-  display: grid;
-  gap: 4px;
-  margin-top: 4px;
-`;
-
-const ProgramPiece = styled.span`
-  color: ${({ theme }) => theme.colors.subpage.text};
-  font-size: 0.78rem;
-  line-height: 1.4;
-`;
-
-const ProgramArtist = styled.span`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.72rem;
-`;
-
-const ProgramLink = styled.a`
-  color: ${({ theme }) => theme.colors.subpage.copper};
-  font-size: 0.72rem;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-  width: fit-content;
-  margin-top: 2px;
-`;
 
 function Activities() {
   const location = useLocation();
@@ -451,7 +424,20 @@ function Activities() {
                         <Tier3Photo
                           $hasImage={!!cover}
                           $clickable={hasPhotos}
-                          onClick={() => hasPhotos && openLightbox(photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0)}
+                          onClick={() => {
+                            if (!hasPhotos) return;
+                            const isPhil = key === 'nyphil';
+                            const enriched = photos.map((p) => {
+                              const base = typeof p === 'string' ? { src: p } : { ...p };
+                              if (isPhil && item.program) {
+                                const programText = item.program.pieces.join(' / ') +
+                                  ' — ' + item.program.artists.map((a) => `${a.name} (${a.role})`).join(', ');
+                                base.caption = base.caption ? `${base.caption}\n${programText}` : programText;
+                              }
+                              return base;
+                            });
+                            openLightbox(enriched, 0);
+                          }}
                         >
                           {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
                             <Tier3Placeholder>{item.title}</Tier3Placeholder>
@@ -460,23 +446,10 @@ function Activities() {
                         </Tier3Photo>
                         <div>
                           <Tier3Title>{item.title}</Tier3Title>
-                          <Tier3Meta>{item.date} · {item.location}</Tier3Meta>
+                          <Tier3Meta>
+                            {[item.date, item.location].filter(Boolean).join(' · ')}
+                          </Tier3Meta>
                         </div>
-                        {isNyphil && item.program && (
-                          <ProgramInfo>
-                            {item.program.pieces.map((piece) => (
-                              <ProgramPiece key={piece}>{piece}</ProgramPiece>
-                            ))}
-                            {item.program.artists.map((artist) => (
-                              <ProgramArtist key={artist.name}>{artist.name}, {artist.role}</ProgramArtist>
-                            ))}
-                            {item.link && (
-                              <ProgramLink href={item.link} target="_blank" rel="noopener noreferrer">
-                                Program details
-                              </ProgramLink>
-                            )}
-                          </ProgramInfo>
-                        )}
                       </Tier3Card>
                     );
                   })}

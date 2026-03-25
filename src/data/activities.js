@@ -119,6 +119,7 @@ export const activities = [
     links: [{ label: 'Video', url: 'https://www.youtube.com/watch?v=U7m4LpyHffk' }],
     media: {
       cover: valedictorianCeremony,
+      portrait: true,
       youtube: 'https://www.youtube.com/watch?v=U7m4LpyHffk',
       youtubeNote: 'Speech starts at 1:15:02',
       photos: [valedictorianCeremony, valedictorianGown],
@@ -353,7 +354,10 @@ export const offTheClock = {
           ],
         },
         link: null,
-        media: { photos: [] },
+        media: {
+          cover: nyphil1,
+          photos: [{ src: nyphil1, caption: 'David Geffen Hall' }],
+        },
       },
       {
         id: 'nyphil-shaham',
@@ -372,10 +376,7 @@ export const offTheClock = {
           ],
         },
         link: 'https://www.nyphil.org/concerts-tickets/2526/gil-shaham-plays-mozart/',
-        media: {
-          cover: nyphil1,
-          photos: [{ src: nyphil1, caption: 'Gil Shaham' }],
-        },
+        media: { photos: [] },
       },
       {
         id: 'nyphil-dudamel-yunchan',
@@ -458,8 +459,8 @@ export const offTheClock = {
       {
         id: 'las-vegas-visit',
         title: 'Las Vegas',
-        date: 'Jan 8-9, 2026',
-        location: 'Las Vegas, NV',
+        date: '',
+        location: 'Nevada',
         media: {
           cover: vegas1120,
           photos: [
@@ -475,8 +476,8 @@ export const offTheClock = {
       {
         id: 'la-visit',
         title: 'Los Angeles',
-        date: 'Jan 10-12, 2026',
-        location: 'Los Angeles, CA',
+        date: '',
+        location: 'California',
         media: {
           cover: la1693,
           photos: [
@@ -497,8 +498,8 @@ export const offTheClock = {
       {
         id: 'sf-visit',
         title: 'San Francisco',
-        date: 'Jan 13-14, 2026',
-        location: 'San Francisco, CA',
+        date: '',
+        location: 'California',
         media: {
           cover: sf1940,
           photos: [
@@ -514,8 +515,8 @@ export const offTheClock = {
       {
         id: 'stanford-visit',
         title: 'Stanford',
-        date: 'Jan 14-15, 2026',
-        location: 'Stanford / Palo Alto, CA',
+        date: '',
+        location: 'Palo Alto, California',
         media: {
           cover: stanford2162,
           photos: [
@@ -529,7 +530,7 @@ export const offTheClock = {
       {
         id: 'intrepid-museum',
         title: 'Intrepid Museum',
-        date: 'Fall 2025',
+        date: '',
         location: 'New York',
         media: {
           cover: intrepidSimulator,

@@ -227,13 +227,20 @@ const CourseworkGrid = styled(Grid)`
   margin-top: 8px;
 `;
 
-const CourseworkCard = styled.article`
+const CourseworkCard = styled(Link)`
   display: grid;
   gap: 18px;
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
   background: #fdfcfa;
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: ${({ theme }) => theme.colors.subpage.accent};
+    background: rgba(27, 61, 47, 0.04);
+  }
 `;
 
 const CourseworkVisual = styled.div`
@@ -398,7 +405,7 @@ function Research() {
 
             <CourseworkGrid>
               {coursework.map((item) => (
-                <CourseworkCard key={item.id} style={activeTag && !matchesTag(item) ? { opacity: 0.35 } : {}}>
+                <CourseworkCard key={item.id} to={`/research/${item.id}`} style={activeTag && !matchesTag(item) ? { opacity: 0.35, pointerEvents: 'none' } : {}}>
                   <CourseworkVisual>
                     {item.thumbnail ? (
                       <CourseworkImage src={item.thumbnail} alt={`${item.title} preview`} />
@@ -411,9 +418,7 @@ function Research() {
                   </CourseworkVisual>
 
                   <CourseworkHeader>
-                    <CourseworkTitleLink to={`/research/${item.id}`}>
-                      <CourseworkTitle>{item.title}</CourseworkTitle>
-                    </CourseworkTitleLink>
+                    <CourseworkTitle>{item.title}</CourseworkTitle>
                     <CourseworkSubtitle>{item.subtitle}</CourseworkSubtitle>
                   </CourseworkHeader>
 
@@ -440,26 +445,13 @@ function Research() {
                     </AssetRow>
                   )}
 
-                  <CourseworkActions>
-                    <CourseworkAction as={Link} to={`/research/${item.id}`}>
-                      Details
-                    </CourseworkAction>
-                    {item.pdf && (
-                      <CourseworkAction href={item.pdf} target="_blank" rel="noopener noreferrer">
-                        View PDF
-                      </CourseworkAction>
-                    )}
+                  <AssetRow>
+                    {item.pdf && <AssetItem>PDF</AssetItem>}
                     {item.pdfs?.map((pdf) => (
-                      <CourseworkAction key={pdf.file} href={pdf.file} target="_blank" rel="noopener noreferrer">
-                        {pdf.label}
-                      </CourseworkAction>
+                      <AssetItem key={pdf.file}>{pdf.label}</AssetItem>
                     ))}
-                    {item.liveDemo && (
-                      <CourseworkAction href={item.liveDemo} target="_blank" rel="noopener noreferrer">
-                        Live Demo
-                      </CourseworkAction>
-                    )}
-                  </CourseworkActions>
+                    {item.liveDemo && <AssetItem>Live Demo</AssetItem>}
+                  </AssetRow>
                 </CourseworkCard>
               ))}
             </CourseworkGrid>

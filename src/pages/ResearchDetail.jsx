@@ -260,19 +260,27 @@ function ResearchDetail() {
         <Container>
           <Back to="/research">Back to Research</Back>
 
-          <Thumbnail $hasImage={!!(item.heroMedia?.src || item.thumbnail)}>
-            {item.heroMedia?.src || item.thumbnail ? (
-              <ThumbnailImage
-                src={item.heroMedia?.src || item.thumbnail}
-                alt={item.heroMedia?.alt || `${item.title} visual`}
-              />
-            ) : (
-              <>
-                <SectionLabel>Research Visual</SectionLabel>
-                <MediaNote>Project image, paper figure, or product screenshot to be added.</MediaNote>
-              </>
-            )}
-          </Thumbnail>
+          {/* PRISM: show live demo as hero instead of static thumbnail */}
+          {(item.id === 'prism' || item.id === 'prism-product-pitch') && item.liveDemo ? (
+            <DetailSection>
+              <SectionLabel>Live Demo</SectionLabel>
+              <PhoneFrame url={item.liveDemo} title={`${item.title} prototype`} />
+            </DetailSection>
+          ) : (
+            <Thumbnail $hasImage={!!(item.heroMedia?.src || item.thumbnail)}>
+              {item.heroMedia?.src || item.thumbnail ? (
+                <ThumbnailImage
+                  src={item.heroMedia?.src || item.thumbnail}
+                  alt={item.heroMedia?.alt || `${item.title} visual`}
+                />
+              ) : (
+                <>
+                  <SectionLabel>Research Visual</SectionLabel>
+                  <MediaNote>Project image, paper figure, or product screenshot to be added.</MediaNote>
+                </>
+              )}
+            </Thumbnail>
+          )}
 
           <TitleBlock>
             <Title>{item.title}</Title>
@@ -334,13 +342,7 @@ function ResearchDetail() {
             </DetailSection>
           )}
 
-          {/* PRISM live demo in iPhone frame */}
-          {(item.id === 'prism' || item.id === 'prism-product-pitch') && item.liveDemo && (
-            <DetailSection>
-              <SectionLabel>Live Demo</SectionLabel>
-              <PhoneFrame url={item.liveDemo} title={`${item.title} prototype`} />
-            </DetailSection>
-          )}
+          {/* PRISM live demo already rendered as hero above */}
 
           {/* Inline PDF viewer for coursework papers */}
           {isCoursework && item.pdf && (

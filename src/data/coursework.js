@@ -1,5 +1,6 @@
 import housingThumbnail from '../assets/images/research/housing-thumbnail.png';
 import vinesightThumbnail from '../assets/images/research/vinesight-thumbnail.png';
+import housingAppendixMap from '../assets/images/research/figures/housing-appendix-map.png';
 import housingDemographicTable from '../assets/images/research/figures/housing-demographic-table.png';
 import housingImplementationTimeline from '../assets/images/research/figures/housing-implementation-timeline.png';
 import vinesightCoreValues from '../assets/images/research/figures/vinesight-core-values.png';
@@ -31,8 +32,8 @@ export const coursework = [
     ],
     heroMedia: {
       src: housingThumbnail,
-      alt: 'Housing strategy appendix map for Jungnang-gu',
-      label: 'Appendix Map',
+      alt: 'Cover page of the Jungnang-gu housing strategy paper',
+      label: 'Final Paper',
     },
     materials: [
       {
@@ -47,18 +48,23 @@ export const coursework = [
     gallery: [
       {
         src: housingThumbnail,
-        alt: 'Map from the Jungnang-gu housing paper appendix',
-        caption: 'Appendix map from the final paper',
+        alt: 'Cover page of the Jungnang-gu housing strategy paper',
+        caption: 'Final paper cover',
+      },
+      {
+        src: housingAppendixMap,
+        alt: 'Appendix map showing Jungnang-gu location in Seoul',
+        caption: 'Appendix A: Location and geography',
       },
       {
         src: housingDemographicTable,
-        alt: 'Demographic comparison table from the Jungnang-gu housing paper',
-        caption: 'Demographic comparison table',
+        alt: 'Demographic indicators and mixed-income housing unit mix tables',
+        caption: 'Demographic table and housing unit mix',
       },
       {
         src: housingImplementationTimeline,
-        alt: 'Implementation timeline from the Jungnang-gu housing paper',
-        caption: 'Ten-year implementation timeline',
+        alt: 'Ten-year phased implementation schedule and evaluation framework',
+        caption: 'Implementation timeline and evaluation framework',
       },
     ],
     links: [],

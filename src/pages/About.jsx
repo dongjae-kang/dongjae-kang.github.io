@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { FiMail, FiLinkedin, FiGithub } from 'react-icons/fi';
 import PageTransition from '../components/PageTransition';
 import profileSquare from '../assets/images/profile-square.jpg';
 import profileFull from '../assets/images/profile-full.jpg';
@@ -162,15 +163,33 @@ const TimelineCategory = styled.h3`
 const Contacts = styled.section`
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  color: ${({ theme }) => theme.colors.subpage.copper};
+  gap: 14px;
+  justify-content: center;
 `;
 
-const ContactLink = styled.a`
-  width: fit-content;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
+const ContactButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 100px;
+  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  color: ${({ theme }) => theme.colors.subpage.text};
+  background: #fdfcfa;
+  transition: ${({ theme }) => theme.transitions.hover};
+
+  svg {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    color: ${({ theme }) => theme.colors.subpage.copper};
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.subpage.accent};
+    background: rgba(27, 61, 47, 0.04);
+  }
 `;
 
 const journey = [
@@ -178,7 +197,9 @@ const journey = [
     category: 'Education',
     items: [
       { role: 'MPA, Technology, Policy and Innovation', org: 'Columbia University, School of International and Public Affairs (SIPA)', period: '2025 - Present' },
-      { role: 'BS Industrial and Systems Engineering', org: 'KAIST (double major: Business and Technology Management; minor: Science and Technology Policy)', period: '2018 - 2025' },
+      { role: 'BS Industrial and Systems Engineering', org: 'KAIST, Major', period: '2018 - 2025' },
+      { role: 'Business and Technology Management', org: 'KAIST, Double Major', period: '2018 - 2025' },
+      { role: 'Science and Technology Policy', org: 'KAIST, Minor', period: '2018 - 2025' },
     ],
   },
   {
@@ -307,21 +328,26 @@ function About() {
           <Divider />
 
           <Contacts>
-            <ContactLink href="mailto:dk3500@columbia.edu">dk3500@columbia.edu</ContactLink>
-            <ContactLink
+            <ContactButton href="mailto:dk3500@columbia.edu">
+              <FiMail />
+              dk3500@columbia.edu
+            </ContactButton>
+            <ContactButton
               href="https://linkedin.com/in/jackkang3780"
               target="_blank"
               rel="noopener noreferrer"
             >
-              linkedin.com/in/jackkang3780
-            </ContactLink>
-            <ContactLink
+              <FiLinkedin />
+              LinkedIn
+            </ContactButton>
+            <ContactButton
               href="https://github.com/dongjae-kang"
               target="_blank"
               rel="noopener noreferrer"
             >
-              github.com/dongjae-kang
-            </ContactLink>
+              <FiGithub />
+              GitHub
+            </ContactButton>
           </Contacts>
         </Container>
       </Page>

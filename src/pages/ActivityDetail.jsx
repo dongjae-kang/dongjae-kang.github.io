@@ -23,7 +23,8 @@ const Back = styled(Link)`
 `;
 
 const Photo = styled.div`
-  aspect-ratio: 3 / 2;
+  aspect-ratio: ${({ $portrait }) => ($portrait ? 'auto' : '3 / 2')};
+  max-width: ${({ $portrait }) => ($portrait ? '360px' : 'none')};
   border-radius: 4px;
   background: #f0ede8;
   border: 1px solid rgba(61, 90, 62, 0.12);
@@ -33,12 +34,13 @@ const Photo = styled.div`
   justify-content: flex-end;
   gap: 8px;
   padding: ${({ $hasImage }) => ($hasImage ? '0' : '20px')};
+  overflow: hidden;
 `;
 
 const PhotoImage = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: ${({ $portrait }) => ($portrait ? 'auto' : '100%')};
+  object-fit: ${({ $portrait }) => ($portrait ? 'contain' : 'cover')};
   border-radius: 3px;
 `;
 
@@ -168,11 +170,12 @@ function ActivityDetail() {
         <Container>
           <Back to="/activities">Back to Activities</Back>
 
-          <Photo $hasImage={!!(item.media?.cover || item.media?.photos?.[0])}>
+          <Photo $hasImage={!!(item.media?.cover || item.media?.photos?.[0])} $portrait={!!item.media?.portrait}>
             {item.media?.cover || item.media?.photos?.[0] ? (
               <PhotoImage
                 src={item.media?.cover || item.media?.photos?.[0]}
                 alt={`${item.title} visual`}
+                $portrait={!!item.media?.portrait}
               />
             ) : (
               <>
