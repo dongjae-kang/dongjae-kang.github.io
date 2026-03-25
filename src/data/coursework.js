@@ -1,8 +1,9 @@
 import housingThumbnail from '../assets/images/research/housing-thumbnail.png';
 import vinesightThumbnail from '../assets/images/research/vinesight-thumbnail.png';
-import housingAppendixMap from '../assets/images/research/figures/housing-appendix-map.png';
-import housingDemographicTable from '../assets/images/research/figures/housing-demographic-table.png';
-import housingImplementationTimeline from '../assets/images/research/figures/housing-implementation-timeline.png';
+import housingAppendixA from '../assets/images/research/figures/housing-appendix-a-map.png';
+import housingAppendixBC from '../assets/images/research/figures/housing-appendix-bc-starcity.png';
+import housingAppendixC from '../assets/images/research/figures/housing-appendix-c-unitmix.png';
+import housingAppendixE from '../assets/images/research/figures/housing-appendix-e-timeline.png';
 import vinesightCoreValues from '../assets/images/research/figures/vinesight-core-values.png';
 import vinesightPipeline from '../assets/images/research/figures/vinesight-pipeline.png';
 import vinesightDashboard from '../assets/images/research/figures/vinesight-dashboard.png';
@@ -52,19 +53,24 @@ export const coursework = [
         caption: 'Final paper cover',
       },
       {
-        src: housingAppendixMap,
-        alt: 'Appendix map showing Jungnang-gu location in Seoul',
-        caption: 'Appendix A: Location and geography',
+        src: housingAppendixA,
+        alt: 'Appendix A: Location and Geography of Jungnang-gu in Seoul',
+        caption: 'Appendix A: Location and Geography',
       },
       {
-        src: housingDemographicTable,
-        alt: 'Demographic indicators and mixed-income housing unit mix tables',
-        caption: 'Demographic table and housing unit mix',
+        src: housingAppendixBC,
+        alt: 'Star City senior housing example',
+        caption: 'Senior housing reference (Star City)',
       },
       {
-        src: housingImplementationTimeline,
-        alt: 'Ten-year phased implementation schedule and evaluation framework',
-        caption: 'Implementation timeline and evaluation framework',
+        src: housingAppendixC,
+        alt: 'Appendix C: Mixed-Income Housing Unit Mix',
+        caption: 'Appendix C: Mixed-Income Housing Unit Mix',
+      },
+      {
+        src: housingAppendixE,
+        alt: 'Appendix E: Implementation Timeline',
+        caption: 'Appendix E: Implementation Timeline',
       },
     ],
     links: [],
