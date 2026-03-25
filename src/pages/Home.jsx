@@ -5,7 +5,8 @@ import { FiArrowDown } from 'react-icons/fi';
 import Graph from '../components/Graph';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
-import { activities } from '../data/activities';
+import { activities, communityEvents } from '../data/activities';
+const allActivities = [...activities, ...communityEvents];
 
 function useFadeIn(threshold = 0.12) {
   const [node, setNode] = useState(null);
@@ -409,10 +410,10 @@ function Home() {
 
   const items = researchOrder.map((id) => research.find((r) => r.id === id)).filter(Boolean);
   const leaderRoles = [
-    activities.find((a) => a.id === 'student-council'),
-    activities.find((a) => a.id === 'columbia-ai-club'),
+    allActivities.find((a) => a.id === 'student-council'),
+    allActivities.find((a) => a.id === 'columbia-ai-club'),
   ].filter(Boolean);
-  const actItems = activityOrder.map((id) => activities.find((a) => a.id === id)).filter(Boolean);
+  const actItems = activityOrder.map((id) => allActivities.find((a) => a.id === id)).filter(Boolean);
 
   const showPreview = (e, item) => {
     if (!item.thumbnail || window.innerWidth < 1024) return;

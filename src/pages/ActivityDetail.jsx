@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
-import { activities } from '../data/activities';
+import { activities, communityEvents } from '../data/activities';
+const allActivities = [...activities, ...communityEvents];
 
 const Page = styled.main`
   min-height: 100vh;
@@ -146,7 +147,7 @@ const GalleryImage = styled.img`
 
 function ActivityDetail() {
   const { id } = useParams();
-  const item = activities.find((entry) => entry.id === id);
+  const item = allActivities.find((entry) => entry.id === id);
 
   if (!item) {
     return (

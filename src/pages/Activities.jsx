@@ -5,11 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import Lightbox from '../components/Lightbox';
-import { activities } from '../data/activities';
-
-const tier1 = activities.filter((a) => a.tier === 1);
-const tier2 = activities.filter((a) => a.tier === 2);
-const tier3 = activities.filter((a) => a.tier === 3);
+import { activities, communityEvents, offTheClock } from '../data/activities';
 
 const Page = styled.main`
   min-height: 100vh;
@@ -60,14 +56,8 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: 1fr;
-  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) { grid-template-columns: 1fr; }
 `;
 
 const Section = styled.section`
@@ -100,44 +90,24 @@ const Card = styled(Link)`
   border-radius: 4px;
   background: #fdfcfa;
   transition: ${({ theme }) => theme.transitions.hover};
-
-  &:hover {
-    transform: translateY(-1px);
-    border-color: ${({ theme }) => theme.colors.subpage.accent};
-    background: rgba(27, 61, 47, 0.04);
-  }
+  &:hover { transform: translateY(-1px); border-color: ${({ theme }) => theme.colors.subpage.accent}; background: rgba(27, 61, 47, 0.04); }
 `;
 
 const Photo = styled.div`
   position: relative;
-  aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 3px;
-  background:
-    ${({ $hasImage }) =>
-      $hasImage
-        ? '#d9dfd9'
-        : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
+  background: ${({ $hasImage }) => $hasImage ? '#d9dfd9' : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
   border: 1px solid rgba(196, 149, 106, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')};
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
+  &::after { content: ''; position: absolute; inset: 0; background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')}; mix-blend-mode: multiply; pointer-events: none; }
 `;
 
 const PhotoImage = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block;
 `;
 
 const Placeholder = styled.div`
@@ -145,6 +115,7 @@ const Placeholder = styled.div`
   gap: 4px;
   text-align: center;
   justify-items: center;
+  padding: 40px 16px;
 `;
 
 const PhotoKicker = styled.span`
@@ -200,20 +171,8 @@ const Tier2Photo = styled.div`
   border-radius: 3px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
-  background:
-    ${({ $hasImage }) =>
-      $hasImage
-        ? '#d9dfd9'
-        : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')};
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
+  background: ${({ $hasImage }) => $hasImage ? '#d9dfd9' : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
+  &::after { content: ''; position: absolute; inset: 0; background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')}; mix-blend-mode: multiply; pointer-events: none; }
 `;
 
 const Tier2Image = styled.img`
@@ -262,19 +221,26 @@ const PhotoCount = styled.span`
   z-index: 1;
 `;
 
-/* ─── TIER 3: Photo-focused ─── */
+/* ─── TIER 3: Off the Clock categories ─── */
+const CategorySection = styled.div`
+  margin-top: 36px;
+`;
+
+const CategoryTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
 const Tier3Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 `;
 
 const Tier3Card = styled.article`
@@ -290,24 +256,9 @@ const Tier3Photo = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
   transition: transform 0.15s ease;
-  background:
-    ${({ $hasImage }) =>
-      $hasImage
-        ? '#d9dfd9'
-        : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')};
-    mix-blend-mode: multiply;
-    pointer-events: none;
-  }
-
-  ${({ $clickable }) =>
-    $clickable &&
-    `&:hover { transform: scale(1.03); }`};
+  background: ${({ $hasImage }) => $hasImage ? '#d9dfd9' : 'linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54))'};
+  &::after { content: ''; position: absolute; inset: 0; background: ${({ $hasImage }) => ($hasImage ? 'rgba(13, 26, 20, 0.12)' : 'transparent')}; mix-blend-mode: multiply; pointer-events: none; }
+  ${({ $clickable }) => $clickable && `&:hover { transform: scale(1.03); }`};
 `;
 
 const Tier3Image = styled.img`
@@ -341,6 +292,34 @@ const Tier3Meta = styled.span`
   font-size: 0.78rem;
 `;
 
+/* ─── NY Phil program info ─── */
+const ProgramInfo = styled.div`
+  display: grid;
+  gap: 4px;
+  margin-top: 4px;
+`;
+
+const ProgramPiece = styled.span`
+  color: ${({ theme }) => theme.colors.subpage.text};
+  font-size: 0.78rem;
+  line-height: 1.4;
+`;
+
+const ProgramArtist = styled.span`
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  font-size: 0.72rem;
+`;
+
+const ProgramLink = styled.a`
+  color: ${({ theme }) => theme.colors.subpage.copper};
+  font-size: 0.72rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  width: fit-content;
+  margin-top: 2px;
+`;
+
 function Activities() {
   const location = useLocation();
   const tier1Ref = useRef(null);
@@ -351,43 +330,22 @@ function Activities() {
   const section = new URLSearchParams(location.search).get('section');
 
   useEffect(() => {
-    if (section === 'community') {
-      tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else if (section === 'life') {
-      tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (section === 'community') tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    else if (section === 'life') tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [section]);
 
   const openLightbox = useCallback((images, index = 0) => {
-    const normalized = images.map((img) =>
-      typeof img === 'string' ? { src: img } : img
-    );
+    const normalized = images.map((img) => typeof img === 'string' ? { src: img } : img);
     setLightbox({ open: true, images: normalized, index });
   }, []);
-
-  const closeLightbox = useCallback(() => {
-    setLightbox((prev) => ({ ...prev, open: false }));
-  }, []);
-
-  const prevImage = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index - 1 + prev.images.length) % prev.images.length,
-    }));
-  }, []);
-
-  const nextImage = useCallback(() => {
-    setLightbox((prev) => ({
-      ...prev,
-      index: (prev.index + 1) % prev.images.length,
-    }));
-  }, []);
+  const closeLightbox = useCallback(() => setLightbox((prev) => ({ ...prev, open: false })), []);
+  const prevImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length })), []);
+  const nextImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index + 1) % prev.images.length })), []);
 
   const getCover = (item) => item.media?.cover || item.media?.photos?.[0]?.src || item.media?.photos?.[0];
-  const getPhotoCount = (item) => {
-    const photos = item.media?.photos || [];
-    return photos.length;
-  };
+  const getPhotoCount = (item) => (item.media?.photos || []).length;
+
+  const offTheClockCategories = Object.entries(offTheClock);
 
   return (
     <PageTransition>
@@ -399,29 +357,20 @@ function Activities() {
           </Intro>
 
           <SectionNav>
-            <SectionNavLink
-              $active={!section}
-              onClick={() => tier1Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
+            <SectionNavLink $active={!section} onClick={() => tier1Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
               Activities
             </SectionNavLink>
-            <SectionNavLink
-              $active={section === 'community'}
-              onClick={() => tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
+            <SectionNavLink $active={section === 'community'} onClick={() => tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
               Community & Events
             </SectionNavLink>
-            <SectionNavLink
-              $active={section === 'life'}
-              onClick={() => tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
+            <SectionNavLink $active={section === 'life'} onClick={() => tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
               Off the Clock
             </SectionNavLink>
           </SectionNav>
 
           {/* ─── TIER 1 ─── */}
           <Grid ref={tier1Ref}>
-            {tier1.map((item) => {
+            {activities.map((item) => {
               const cover = getCover(item);
               return (
                 <Card key={item.id} to={`/activities/${item.id}`}>
@@ -441,9 +390,7 @@ function Activities() {
                   </div>
                   <Summary>{item.summary}</Summary>
                   <TagList>
-                    {item.tags.map((tag) => (
-                      <Tag key={tag}>{tag}</Tag>
-                    ))}
+                    {item.tags.map((tag) => (<Tag key={tag}>{tag}</Tag>))}
                   </TagList>
                 </Card>
               );
@@ -453,12 +400,9 @@ function Activities() {
           {/* ─── TIER 2 ─── */}
           <Section ref={tier2Ref} id="community">
             <SectionTitle>Community & Events</SectionTitle>
-            <SectionText>
-              Event organizing, community leadership, and professional networks.
-            </SectionText>
-
+            <SectionText>Event organizing, community leadership, and professional networks.</SectionText>
             <Grid>
-              {tier2.map((item) => {
+              {communityEvents.map((item) => {
                 const cover = getCover(item);
                 const photoCount = getPhotoCount(item);
                 return (
@@ -466,21 +410,10 @@ function Activities() {
                     <Tier2Photo
                       $hasImage={!!cover}
                       $clickable={photoCount > 0}
-                      onClick={() =>
-                        photoCount > 0 &&
-                        openLightbox(
-                          item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)),
-                          0
-                        )
-                      }
+                      onClick={() => photoCount > 0 && openLightbox(item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0)}
                     >
-                      {cover ? (
-                        <Tier2Image src={cover} alt={item.title} />
-                      ) : (
-                        <Placeholder>
-                          <PhotoKicker>{item.date}</PhotoKicker>
-                          <PhotoTitle>{item.title}</PhotoTitle>
-                        </Placeholder>
+                      {cover ? (<Tier2Image src={cover} alt={item.title} />) : (
+                        <Placeholder><PhotoKicker>{item.date}</PhotoKicker><PhotoTitle>{item.title}</PhotoTitle></Placeholder>
                       )}
                       {photoCount > 1 && <PhotoCount>{photoCount} photos</PhotoCount>}
                     </Tier2Photo>
@@ -489,63 +422,67 @@ function Activities() {
                       <Tier2Meta>{item.date} · {item.location}</Tier2Meta>
                     </div>
                     {item.summary && <Tier2Summary>{item.summary}</Tier2Summary>}
-                    {item.links?.length > 0 &&
-                      item.links.map((link) => (
-                        <Tier2Link
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.label}
-                        </Tier2Link>
-                      ))}
+                    {item.links?.length > 0 && item.links.map((link) => (
+                      <Tier2Link key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</Tier2Link>
+                    ))}
                   </Tier2Card>
                 );
               })}
             </Grid>
           </Section>
 
-          {/* ─── TIER 3 ─── */}
+          {/* ─── TIER 3: OFF THE CLOCK ─── */}
           <Section ref={tier3Ref} id="life">
             <SectionTitle>Off the Clock</SectionTitle>
-            <SectionText>
-              Concerts, sports, campus moments, and other scenes from life in New York and beyond.
-            </SectionText>
+            <SectionText>Concerts, golf, travel, and other scenes from life.</SectionText>
 
-            <Tier3Grid>
-              {tier3.map((item) => {
-                const cover = getCover(item);
-                const photos = item.media?.photos || [];
-                const hasPhotos = photos.length > 0;
-                return (
-                  <Tier3Card key={item.id}>
-                    <Tier3Photo
-                      $hasImage={!!cover}
-                      $clickable={hasPhotos}
-                      onClick={() =>
-                        hasPhotos &&
-                        openLightbox(
-                          photos.map((p) => (typeof p === 'string' ? { src: p } : p)),
-                          0
-                        )
-                      }
-                    >
-                      {cover ? (
-                        <Tier3Image src={cover} alt={item.title} />
-                      ) : (
-                        <Tier3Placeholder>{item.title}</Tier3Placeholder>
-                      )}
-                      {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
-                    </Tier3Photo>
-                    <div>
-                      <Tier3Title>{item.title}</Tier3Title>
-                      <Tier3Meta>{item.date} · {item.location}</Tier3Meta>
-                    </div>
-                  </Tier3Card>
-                );
-              })}
-            </Tier3Grid>
+            {offTheClockCategories.map(([key, category]) => (
+              <CategorySection key={key}>
+                <CategoryTitle>{category.label}</CategoryTitle>
+                <Tier3Grid>
+                  {category.items.map((item) => {
+                    const cover = getCover(item);
+                    const photos = item.media?.photos || [];
+                    const hasPhotos = photos.length > 0;
+                    const isNyphil = key === 'nyphil';
+
+                    return (
+                      <Tier3Card key={item.id}>
+                        <Tier3Photo
+                          $hasImage={!!cover}
+                          $clickable={hasPhotos}
+                          onClick={() => hasPhotos && openLightbox(photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0)}
+                        >
+                          {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
+                            <Tier3Placeholder>{item.title}</Tier3Placeholder>
+                          )}
+                          {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
+                        </Tier3Photo>
+                        <div>
+                          <Tier3Title>{item.title}</Tier3Title>
+                          <Tier3Meta>{item.date} · {item.location}</Tier3Meta>
+                        </div>
+                        {isNyphil && item.program && (
+                          <ProgramInfo>
+                            {item.program.pieces.map((piece) => (
+                              <ProgramPiece key={piece}>{piece}</ProgramPiece>
+                            ))}
+                            {item.program.artists.map((artist) => (
+                              <ProgramArtist key={artist.name}>{artist.name}, {artist.role}</ProgramArtist>
+                            ))}
+                            {item.link && (
+                              <ProgramLink href={item.link} target="_blank" rel="noopener noreferrer">
+                                Program details
+                              </ProgramLink>
+                            )}
+                          </ProgramInfo>
+                        )}
+                      </Tier3Card>
+                    );
+                  })}
+                </Tier3Grid>
+              </CategorySection>
+            ))}
           </Section>
         </Container>
 
