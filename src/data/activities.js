@@ -285,13 +285,13 @@ export const offTheClock = {
         media: {
           cover: nyphil3a,
           photos: [
-            { src: nyphil3a, caption: 'Lincoln Center' },
-            { src: nyphil3b, caption: 'Revson Fountain' },
-            { src: nyphil3c, caption: 'Fountain at night' },
-            { src: nyphil3d, caption: 'Fleur Barron' },
-            { src: nyphil3e, caption: 'Gustavo Dudamel' },
-            { src: nyphil3f, caption: 'Curtain call' },
-            { src: nyphil3g, caption: 'Standing ovation' },
+            { src: nyphil3a },
+            { src: nyphil3b },
+            { src: nyphil3c },
+            { src: nyphil3d },
+            { src: nyphil3e },
+            { src: nyphil3f },
+            { src: nyphil3g },
           ],
         },
       },
@@ -315,16 +315,16 @@ export const offTheClock = {
         media: {
           cover: nyphil2a,
           photos: [
-            { src: nyphil2a, caption: 'Emanuel Ax at the piano' },
-            { src: nyphil2b, caption: 'Standing ovation' },
-            { src: nyphil2c, caption: 'Curtain call' },
+            { src: nyphil2a },
+            { src: nyphil2b },
+            { src: nyphil2c },
           ],
         },
       },
       {
         id: 'nyphil-elektra-beethoven',
         title: "Elektra Suite & Beethoven's Violin Concerto",
-        date: 'TBD',
+        date: 'Jan 29, 2026',
         location: 'David Geffen Hall, Lincoln Center',
         program: {
           pieces: [
@@ -336,13 +336,13 @@ export const offTheClock = {
             { name: 'Maria Duenas', role: 'Violin' },
           ],
         },
-        link: null,
+        link: 'https://www.nyphil.org/concerts-tickets/2526/beethovens-violin-concerto-elektra-suite/',
         media: { photos: [] },
       },
       {
         id: 'nyphil-langree-mozart',
         title: "Louis Langree and Mozart's Gran partita",
-        date: 'TBD',
+        date: 'Jan 2, 2026',
         location: 'David Geffen Hall, Lincoln Center',
         program: {
           pieces: [
@@ -353,35 +353,16 @@ export const offTheClock = {
             { name: 'Louis Langree', role: 'Conductor' },
           ],
         },
-        link: null,
+        link: 'https://www.nyphil.org/concerts-tickets/2526/louis-langree-and-mozarts-gran-partita/',
         media: {
           cover: nyphil1,
-          photos: [{ src: nyphil1, caption: 'David Geffen Hall' }],
+          photos: [{ src: nyphil1 }],
         },
-      },
-      {
-        id: 'nyphil-shaham',
-        title: 'Gil Shaham Plays Mozart',
-        date: 'Jan 2, 2026',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: [
-            'Mozart — Violin Concerto No. 2',
-            'Mozart — Adagio in E Major, K. 261',
-            'Mozart — Rondo in C Major, K. 373',
-            'Mozart — Violin Concerto No. 5',
-          ],
-          artists: [
-            { name: 'Gil Shaham', role: 'Violin' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/gil-shaham-plays-mozart/',
-        media: { photos: [] },
       },
       {
         id: 'nyphil-dudamel-yunchan',
         title: 'Gustavo Dudamel & Yunchan Lim',
-        date: 'TBD',
+        date: 'Sep 11, 2025',
         location: 'David Geffen Hall, Lincoln Center',
         program: {
           pieces: [
@@ -394,7 +375,7 @@ export const offTheClock = {
             { name: 'Yunchan Lim', role: 'Piano' },
           ],
         },
-        link: null,
+        link: 'https://www.nyphil.org/concerts-tickets/2526/gustavo-dudamel-and-yunchan-lim/',
         media: { photos: [] }, // Photos pending from Jack
       },
     ],
@@ -411,13 +392,13 @@ export const offTheClock = {
         media: {
           cover: stanfordGolf2248,
           photos: [
-            { src: stanfordGolf2248, caption: 'Clubhouse' },
-            { src: stanfordGolf2271, caption: 'Morning mist' },
-            { src: stanfordGolf2274, caption: 'Sunrise' },
-            { src: stanfordGolf2278, caption: 'Bunker at sunset' },
-            { src: stanfordGolf2282, caption: 'Under the oaks' },
-            { src: '/assets/videos/stanford-golf-1.mp4', type: 'video', caption: 'On the course' },
-            { src: '/assets/videos/stanford-golf-2.mp4', type: 'video', caption: 'Evening round' },
+            { src: stanfordGolf2248 },
+            { src: stanfordGolf2271 },
+            { src: stanfordGolf2274 },
+            { src: stanfordGolf2278 },
+            { src: stanfordGolf2282 },
+            { src: '/assets/videos/stanford-golf-1.mp4', type: 'video' },
+            { src: '/assets/videos/stanford-golf-2.mp4', type: 'video' },
           ],
         },
       },
@@ -429,9 +410,9 @@ export const offTheClock = {
         media: {
           cover: vc4433,
           photos: [
-            { src: vc4433, caption: 'Early spring' },
-            { src: vc4444, caption: 'Canada geese' },
-            { src: vc4448, caption: 'Fairway' },
+            { src: vc4433 },
+            { src: vc4444 },
+            { src: vc4448 },
           ],
         },
       },
@@ -443,10 +424,10 @@ export const offTheClock = {
         media: {
           cover: sv4473,
           photos: [
-            { src: sv4473, caption: 'Hole 10' },
-            { src: sv4513, caption: 'Hilltop' },
-            { src: sv4535, caption: 'Lake view' },
-            { src: sv4584, caption: 'Wildlife' },
+            { src: sv4473 },
+            { src: sv4513 },
+            { src: sv4535 },
+            { src: sv4584 },
           ],
         },
       },
@@ -464,12 +445,12 @@ export const offTheClock = {
         media: {
           cover: vegas1120,
           photos: [
-            { src: vegas1005, caption: 'Above the clouds' },
-            { src: vegas1120, caption: 'Convention Center at dusk' },
-            { src: vegas1138, caption: 'Dinner' },
-            { src: vegas2405, caption: 'High Roller' },
-            { src: vegas1265, caption: 'Hotel pool' },
-            { src: vegas1280, caption: 'Serve Robotics' },
+            { src: vegas1005 },
+            { src: vegas1120 },
+            { src: vegas1138 },
+            { src: vegas2405 },
+            { src: vegas1265 },
+            { src: vegas1280 },
           ],
         },
       },
@@ -481,17 +462,17 @@ export const offTheClock = {
         media: {
           cover: la1693,
           photos: [
-            { src: la1344, caption: 'Downtown LA' },
-            { src: la1620, caption: 'Hollywood Hills' },
-            { src: la1644, caption: 'Beach volleyball' },
-            { src: la1695, caption: 'Griffith Observatory' },
-            { src: la1693, caption: 'Stargazing at Griffith' },
-            { src: la1752, caption: 'City view' },
-            { src: la3881, caption: 'Sunset beach' },
-            { src: la1788, caption: 'Golden hour drive' },
-            { src: la1301, caption: 'Serve Robotics' },
-            { src: '/assets/videos/la-visit-1.mp4', type: 'video', caption: 'LA nights' },
-            { src: '/assets/videos/la-visit-2.mp4', type: 'video', caption: 'LA days' },
+            { src: la1344 },
+            { src: la1620 },
+            { src: la1644 },
+            { src: la1695 },
+            { src: la1693 },
+            { src: la1752 },
+            { src: la3881 },
+            { src: la1788 },
+            { src: la1301 },
+            { src: '/assets/videos/la-visit-1.mp4', type: 'video' },
+            { src: '/assets/videos/la-visit-2.mp4', type: 'video' },
           ],
         },
       },
@@ -503,12 +484,12 @@ export const offTheClock = {
         media: {
           cover: sf1940,
           photos: [
-            { src: sf1805, caption: 'Arrival' },
-            { src: sf1845, caption: 'City panorama' },
-            { src: sf1905, caption: 'Chinatown' },
-            { src: sf1915, caption: 'Skyline' },
-            { src: sf1940, caption: 'Golden Gate Bridge' },
-            { src: '/assets/videos/sf-golden-gate.mp4', type: 'video', caption: 'Golden Gate Bridge' },
+            { src: sf1805 },
+            { src: sf1845 },
+            { src: sf1905 },
+            { src: sf1915 },
+            { src: sf1940 },
+            { src: '/assets/videos/sf-golden-gate.mp4', type: 'video' },
           ],
         },
       },
@@ -520,10 +501,10 @@ export const offTheClock = {
         media: {
           cover: stanford2162,
           photos: [
-            { src: stanford2162, caption: 'Rodin sculptures' },
-            { src: stanford2166, caption: 'Campus light' },
-            { src: stanford2180, caption: 'Palo Alto stay' },
-            { src: stanford2221, caption: 'Hoover Tower view' },
+            { src: stanford2162 },
+            { src: stanford2166 },
+            { src: stanford2180 },
+            { src: stanford2221 },
           ],
         },
       },
@@ -534,7 +515,7 @@ export const offTheClock = {
         location: 'New York',
         media: {
           cover: intrepidSimulator,
-          photos: [{ src: intrepidSimulator, caption: 'Flight simulator' }],
+          photos: [{ src: intrepidSimulator }],
         },
       },
     ],
@@ -551,9 +532,9 @@ export const offTheClock = {
         media: {
           cover: orchestraGroup,
           photos: [
-            { src: orchestraGroup, caption: 'Full orchestra' },
-            { src: orchestraConcert, caption: 'After a concert' },
-            { src: orchestraSection, caption: 'Trumpet section' },
+            { src: orchestraGroup },
+            { src: orchestraConcert },
+            { src: orchestraSection },
           ],
         },
       },
@@ -565,9 +546,9 @@ export const offTheClock = {
         media: {
           cover: futsal,
           photos: [
-            { src: futsal, caption: 'After a game' },
-            { src: beachSunset, caption: 'Beach football' },
-            { src: beachGroup, caption: 'Team trip' },
+            { src: futsal },
+            { src: beachSunset },
+            { src: beachGroup },
           ],
         },
       },
@@ -579,7 +560,7 @@ export const offTheClock = {
         media: {
           cover: friendsDinner,
           photos: [
-            { src: friendsDinner, caption: 'Dinner with friends' },
+            { src: friendsDinner },
           ],
         },
       },

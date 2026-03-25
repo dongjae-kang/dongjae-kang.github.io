@@ -298,7 +298,7 @@ function Activities() {
   const tier1Ref = useRef(null);
   const tier2Ref = useRef(null);
   const tier3Ref = useRef(null);
-  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0 });
+  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0, programInfo: null });
 
   const section = new URLSearchParams(location.search).get('section');
 
@@ -307,9 +307,9 @@ function Activities() {
     else if (section === 'life') tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [section]);
 
-  const openLightbox = useCallback((images, index = 0) => {
+  const openLightbox = useCallback((images, index = 0, programInfo = null) => {
     const normalized = images.map((img) => typeof img === 'string' ? { src: img } : img);
-    setLightbox({ open: true, images: normalized, index });
+    setLightbox({ open: true, images: normalized, index, programInfo });
   }, []);
   const closeLightbox = useCallback(() => setLightbox((prev) => ({ ...prev, open: false })), []);
   const prevImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length })), []);
@@ -427,16 +427,13 @@ function Activities() {
                           onClick={() => {
                             if (!hasPhotos) return;
                             const isPhil = key === 'nyphil';
-                            const enriched = photos.map((p) => {
-                              const base = typeof p === 'string' ? { src: p } : { ...p };
-                              if (isPhil && item.program) {
-                                const programText = item.program.pieces.join(' / ') +
-                                  ' — ' + item.program.artists.map((a) => `${a.name} (${a.role})`).join(', ');
-                                base.caption = base.caption ? `${base.caption}\n${programText}` : programText;
-                              }
-                              return base;
-                            });
-                            openLightbox(enriched, 0);
+                            const pInfo = isPhil && item.program ? {
+                              title: item.title,
+                              date: item.date,
+                              program: item.program,
+                              link: item.link,
+                            } : null;
+                            openLightbox(photos, 0, pInfo);
                           }}
                         >
                           {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
@@ -466,6 +463,7 @@ function Activities() {
             onClose={closeLightbox}
             onPrev={lightbox.images.length > 1 ? prevImage : null}
             onNext={lightbox.images.length > 1 ? nextImage : null}
+            programInfo={lightbox.programInfo}
           />
         )}
       </Page>

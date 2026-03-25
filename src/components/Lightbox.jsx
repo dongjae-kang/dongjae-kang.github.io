@@ -12,24 +12,128 @@ const Overlay = styled.div`
   cursor: zoom-out;
 `;
 
+const ContentWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 95vw;
+  max-height: 90vh;
+  cursor: default;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+`;
+
 const ImageContainer = styled.div`
   position: relative;
-  max-width: 90vw;
-  max-height: 85vh;
-  cursor: default;
+  flex-shrink: 0;
 `;
 
 const Image = styled.img`
-  max-width: 90vw;
+  max-width: ${({ $hasInfo }) => ($hasInfo ? '65vw' : '90vw')};
   max-height: 85vh;
   object-fit: contain;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
 `;
 
 const Video = styled.video`
-  max-width: 90vw;
+  max-width: ${({ $hasInfo }) => ($hasInfo ? '65vw' : '90vw')};
   max-height: 85vh;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    max-width: 90vw;
+    max-height: 60vh;
+  }
+`;
+
+const InfoPanel = styled.div`
+  width: 260px;
+  flex-shrink: 0;
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+    max-height: 30vh;
+    padding: 16px;
+  }
+`;
+
+const InfoTitle = styled.h3`
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+`;
+
+const InfoDate = styled.span`
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+`;
+
+const InfoDivider = styled.hr`
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+`;
+
+const PieceList = styled.div`
+  display: grid;
+  gap: 8px;
+`;
+
+const Piece = styled.span`
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.82rem;
+  line-height: 1.4;
+`;
+
+const ArtistList = styled.div`
+  display: grid;
+  gap: 6px;
+`;
+
+const Artist = styled.div`
+  display: grid;
+  gap: 1px;
+`;
+
+const ArtistName = styled.span`
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+`;
+
+const ArtistRole = styled.span`
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+`;
+
+const InfoLink = styled.a`
+  color: rgba(196, 149, 106, 0.8);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+
+  &:hover {
+    color: rgba(196, 149, 106, 1);
+  }
 `;
 
 const NavButton = styled.button`
@@ -94,19 +198,7 @@ const Counter = styled.span`
   z-index: 10000;
 `;
 
-const Caption = styled.p`
-  position: fixed;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.88rem;
-  text-align: center;
-  max-width: 600px;
-  z-index: 10000;
-`;
-
-function Lightbox({ images, index, onClose, onPrev, onNext }) {
+function Lightbox({ images, index, onClose, onPrev, onNext, programInfo }) {
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === 'Escape') onClose();
@@ -127,8 +219,8 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
 
   const current = images[index];
   const src = typeof current === 'string' ? current : current?.src;
-  const caption = typeof current === 'string' ? null : current?.caption;
   const isVideo = typeof current !== 'string' && current?.type === 'video';
+  const hasInfo = !!programInfo;
 
   return (
     <Overlay onClick={onClose}>
@@ -138,13 +230,48 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
         </PrevButton>
       )}
 
-      <ImageContainer onClick={(e) => e.stopPropagation()}>
-        {isVideo ? (
-          <Video src={src} controls autoPlay muted playsInline />
-        ) : (
-          <Image src={src} alt={caption || `Image ${index + 1}`} />
+      <ContentWrap onClick={(e) => e.stopPropagation()}>
+        <ImageContainer>
+          {isVideo ? (
+            <Video src={src} controls autoPlay muted playsInline $hasInfo={hasInfo} />
+          ) : (
+            <Image src={src} alt={`Image ${index + 1}`} $hasInfo={hasInfo} />
+          )}
+        </ImageContainer>
+
+        {hasInfo && (
+          <InfoPanel>
+            {programInfo.title && <InfoTitle>{programInfo.title}</InfoTitle>}
+            {programInfo.date && <InfoDate>{programInfo.date}</InfoDate>}
+            {programInfo.program && (
+              <>
+                <InfoDivider />
+                <PieceList>
+                  {programInfo.program.pieces.map((piece) => (
+                    <Piece key={piece}>{piece}</Piece>
+                  ))}
+                </PieceList>
+                <ArtistList>
+                  {programInfo.program.artists.map((artist) => (
+                    <Artist key={artist.name}>
+                      <ArtistName>{artist.name}</ArtistName>
+                      <ArtistRole>{artist.role}</ArtistRole>
+                    </Artist>
+                  ))}
+                </ArtistList>
+              </>
+            )}
+            {programInfo.link && (
+              <>
+                <InfoDivider />
+                <InfoLink href={programInfo.link} target="_blank" rel="noopener noreferrer">
+                  Program details
+                </InfoLink>
+              </>
+            )}
+          </InfoPanel>
         )}
-      </ImageContainer>
+      </ContentWrap>
 
       {images.length > 1 && onNext && (
         <NextButton onClick={(e) => { e.stopPropagation(); onNext(); }}>
@@ -153,8 +280,6 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       )}
 
       <CloseButton onClick={onClose}>×</CloseButton>
-
-      {caption && <Caption>{caption}</Caption>}
 
       {images.length > 1 && (
         <Counter>
