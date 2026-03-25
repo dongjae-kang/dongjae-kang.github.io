@@ -142,6 +142,15 @@ const TimelineOrg = styled.p`
   margin-top: 2px;
 `;
 
+const TimelineDetail = styled.div`
+  display: grid;
+  gap: 2px;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  color: ${({ theme }) => theme.colors.subpage.muted};
+  opacity: 0.8;
+`;
+
 const TimelinePeriod = styled.span`
   font-size: 0.78rem;
   color: ${({ theme }) => theme.colors.subpage.muted};
@@ -196,10 +205,8 @@ const journey = [
   {
     category: 'Education',
     items: [
-      { role: 'MPA, Technology, Policy and Innovation', org: 'Columbia University, School of International and Public Affairs (SIPA)', period: '2025 - Present' },
-      { role: 'BS Industrial and Systems Engineering', org: 'KAIST, Major', period: '2018 - 2025' },
-      { role: 'Business and Technology Management', org: 'KAIST, Double Major', period: '2018 - 2025' },
-      { role: 'Science and Technology Policy', org: 'KAIST, Minor', period: '2018 - 2025' },
+      { role: 'Master of Public Administration', org: 'Columbia University, School of International and Public Affairs (SIPA)', detail: 'Concentration: Technology, Policy, and Innovation', period: '2025 - Present' },
+      { role: 'Bachelor of Science in Industrial and Systems Engineering', org: 'KAIST (Korea Advanced Institute of Science and Technology)', detail: 'Double Major: Business and Technology Management\nMinor: Science and Technology Policy', period: '2018 - 2025' },
     ],
   },
   {
@@ -303,6 +310,29 @@ function About() {
                 them responsibly, and put that research into practice.
               </p>
             </Bio>
+
+            <Contacts>
+              <ContactButton href="mailto:dk3500@columbia.edu">
+                <FiMail />
+                dk3500@columbia.edu
+              </ContactButton>
+              <ContactButton
+                href="https://linkedin.com/in/jackkang3780"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FiLinkedin />
+                LinkedIn
+              </ContactButton>
+              <ContactButton
+                href="https://github.com/dongjae-kang"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FiGithub />
+                GitHub
+              </ContactButton>
+            </Contacts>
           </Intro>
 
           <Divider />
@@ -317,6 +347,13 @@ function About() {
                     <TimelineInfo>
                       <TimelineRole>{item.role}</TimelineRole>
                       <TimelineOrg>{item.org}</TimelineOrg>
+                      {item.detail && (
+                        <TimelineDetail>
+                          {item.detail.split('\n').map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </TimelineDetail>
+                      )}
                     </TimelineInfo>
                     <TimelinePeriod>{item.period}</TimelinePeriod>
                   </TimelineRow>
@@ -325,30 +362,6 @@ function About() {
             </div>
           ))}
 
-          <Divider />
-
-          <Contacts>
-            <ContactButton href="mailto:dk3500@columbia.edu">
-              <FiMail />
-              dk3500@columbia.edu
-            </ContactButton>
-            <ContactButton
-              href="https://linkedin.com/in/jackkang3780"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FiLinkedin />
-              LinkedIn
-            </ContactButton>
-            <ContactButton
-              href="https://github.com/dongjae-kang"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FiGithub />
-              GitHub
-            </ContactButton>
-          </Contacts>
         </Container>
       </Page>
     </PageTransition>
