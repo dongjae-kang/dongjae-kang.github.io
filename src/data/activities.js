@@ -17,6 +17,7 @@ import upennMixerOpening from '../assets/images/activities/upenn-mixer-opening.j
 import upennMixerStage from '../assets/images/activities/upenn-mixer-stage.jpeg';
 import valedictorianGown from '../assets/images/activities/valedictorian-gown.jpeg';
 import valedictorianCeremony from '../assets/images/activities/valedictorian-ceremony.jpg';
+import valedictorianStage from '../assets/images/activities/valedictorian-stage.jpg';
 import chiWorkshopMainPage from '../assets/images/research/figures/chi-workshop-main-page.png';
 import chiWorkshopAcceptedSubmissions from '../assets/images/research/figures/chi-workshop-accepted-submissions.png';
 import naekAppointment from '../assets/images/activities/naek-appointment.jpeg';
@@ -27,6 +28,26 @@ import harvardMc1 from '../assets/images/activities/harvard-mc-1.jpeg';
 import harvardMc2 from '../assets/images/activities/harvard-mc-2.jpeg';
 import studentCouncilTownhall from '../assets/images/activities/student-council-townhall.jpeg';
 import studentCouncilMc from '../assets/images/activities/student-council-mc.jpeg';
+import studentCouncil2196 from '../assets/images/activities/student-council-2196.jpg';
+import chi2062 from '../assets/images/activities/chi-2062.jpg';
+import chi2069 from '../assets/images/activities/chi-2069.jpg';
+import chi2209 from '../assets/images/activities/chi-2209.jpg';
+import welcomeNight9784 from '../assets/images/activities/welcome-night-9784.jpg';
+import welcomeNight9609 from '../assets/images/activities/welcome-night-9609.jpg';
+import welcomeNight9781 from '../assets/images/activities/welcome-night-9781.jpg';
+import welcomeNightPoster from '../assets/images/activities/welcome-night-poster.png';
+import unga7435 from '../assets/images/activities/unga-7435.jpg';
+import unga7500 from '../assets/images/activities/unga-7500.jpg';
+import unga4859 from '../assets/images/activities/unga-4859.jpg';
+import harvardMixer8056 from '../assets/images/activities/harvard-mixer-8056.jpg';
+import harvardMixer8079 from '../assets/images/activities/harvard-mixer-8079.jpg';
+import harvardMixerGroup from '../assets/images/activities/harvard-mixer-group.jpg';
+import harvardMixerPoster from '../assets/images/activities/harvard-mixer-poster.png';
+import upennMixer0 from '../assets/images/activities/upenn-mixer-0.jpg';
+import upennMixer1 from '../assets/images/activities/upenn-mixer-1.jpg';
+import upennMixer2 from '../assets/images/activities/upenn-mixer-2.jpg';
+import upennMixer3 from '../assets/images/activities/upenn-mixer-3.jpg';
+import upennMixerPoster from '../assets/images/activities/upenn-mixer-poster.png';
 
 // ─── TIER 3: KAIST ───
 import orchestraGroup from '../assets/images/life/orchestra-group.jpeg';
@@ -36,6 +57,14 @@ import beachSunset from '../assets/images/life/beach-sunset.jpeg';
 import beachGroup from '../assets/images/life/beach-group.jpeg';
 import futsal from '../assets/images/life/futsal.jpeg';
 import friendsDinner from '../assets/images/life/friends-dinner.jpeg';
+import kaistMemories1 from '../assets/images/life/kaist-memories-1.jpg';
+import kaistMemories2 from '../assets/images/life/kaist-memories-2.jpg';
+import kaistMemories3 from '../assets/images/life/kaist-memories-3.jpg';
+import kaistMemories4 from '../assets/images/life/kaist-memories-4.jpg';
+import kaistMemories5 from '../assets/images/life/kaist-memories-5.jpg';
+import kaistMemories6 from '../assets/images/life/kaist-memories-6.jpg';
+import kaistMemories7 from '../assets/images/life/kaist-memories-7.jpg';
+import kaistMemories8 from '../assets/images/life/kaist-memories-8.jpg';
 
 // ─── TIER 3: NY PHIL ───
 import nyphil1 from '../assets/images/life/nyphil/nyphil1-0918.jpg';
@@ -49,6 +78,8 @@ import nyphil3d from '../assets/images/life/nyphil/nyphil3-4753.jpg';
 import nyphil3e from '../assets/images/life/nyphil/nyphil3-4755.jpg';
 import nyphil3f from '../assets/images/life/nyphil/nyphil3-4779.jpg';
 import nyphil3g from '../assets/images/life/nyphil/nyphil3-4783.jpg';
+import nyphilYunchan7299 from '../assets/images/life/nyphil/nyphil-yunchan-7299.jpg';
+import nyphilYunchan7305 from '../assets/images/life/nyphil/nyphil-yunchan-7305.jpg';
 
 // ─── TIER 3: GOLF ───
 import stanfordGolf2248 from '../assets/images/life/golf/stanford-golf-2248.jpg';
@@ -59,6 +90,8 @@ import stanfordGolf2282 from '../assets/images/life/golf/stanford-golf-2282.jpg'
 import vc4433 from '../assets/images/life/golf/vancortlandt-4433.jpg';
 import vc4444 from '../assets/images/life/golf/vancortlandt-4444.jpg';
 import vc4448 from '../assets/images/life/golf/vancortlandt-4448.jpg';
+import mosholu8615 from '../assets/images/life/golf/mosholu-8615.jpg';
+import mosholu8620 from '../assets/images/life/golf/mosholu-8620.jpg';
 import sv4473 from '../assets/images/life/golf/sunsetvalley-4473.jpg';
 import sv4513 from '../assets/images/life/golf/sunsetvalley-4513.jpg';
 import sv4535 from '../assets/images/life/golf/sunsetvalley-4535.jpg';
@@ -101,8 +134,8 @@ export const activities = [
     title: 'UN ECOSOC Youth Forum — SDG 9 Respondent',
     date: 'Apr 2026',
     location: 'United Nations Headquarters, New York',
-    summary: 'Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session, representing Columbia University.',
-    description: 'Selected as Respondent for the SDG 9: Industry, Innovation, and Infrastructure session. He will represent Columbia University at United Nations Headquarters in New York.',
+    summary: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber.',
+    description: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber. Delivering prepared remarks on responsible AI, digital governance, and youth participation in innovation policy, alongside speakers and respondents from the Aspen Institute, Amazon, BMW Foundation, UNCTAD, UNEP, and the Council of Europe.',
     tags: ['UN', 'Platform Governance', 'Speaking'],
     links: [],
     media: { photos: [] },
@@ -122,7 +155,7 @@ export const activities = [
       portrait: true,
       youtube: 'https://www.youtube.com/watch?v=U7m4LpyHffk',
       youtubeNote: 'Speech starts at 1:15:02',
-      photos: [valedictorianCeremony, valedictorianGown],
+      photos: [valedictorianCeremony, valedictorianGown, valedictorianStage],
     },
   },
   {
@@ -135,7 +168,7 @@ export const activities = [
     description: 'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations.',
     tags: ['UN', 'Diplomacy'],
     links: [],
-    media: { photos: [] },
+    media: { cover: unga4859, photos: [unga4859, unga7500, unga7435] },
   },
   {
     id: 'chi-2025',
@@ -151,7 +184,7 @@ export const activities = [
       { label: 'Workshop Paper', url: '/assets/papers/chi-2025-workshop-paper.pdf' },
       { label: 'Workshop Website', url: 'https://sites.google.com/view/newsfutures/home' },
     ],
-    media: { cover: chiWorkshopMainPage, photos: [chiWorkshopMainPage, chiWorkshopAcceptedSubmissions] },
+    media: { cover: chi2062, photos: [chi2062, chi2069, chi2209, chiWorkshopMainPage, chiWorkshopAcceptedSubmissions] },
   },
   {
     id: 'student-council',
@@ -166,7 +199,7 @@ export const activities = [
       { label: 'JoongAng Ilbo', url: 'https://www.joongang.co.kr/article/25215586' },
       { label: 'KAIST Herald', url: 'https://herald.kaist.ac.kr/news/articleView.html?idxno=20910' },
     ],
-    media: { cover: kaistPodium, photos: [kaistPodium, studentCouncilTownhall, studentCouncilMc] },
+    media: { cover: studentCouncil2196, photos: [studentCouncil2196, studentCouncilTownhall, kaistMemories3] },
   },
 ];
 
@@ -182,7 +215,7 @@ export const communityEvents = [
     summary: "Organized and MC'd a career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.",
     tags: ['Leadership', 'Community'],
     links: [],
-    media: { cover: kgsaCareerPoster, photos: [kgsaCareerPoster, kgsaCareerRoom] },
+    media: { cover: kgsaCareerPoster, poster: kgsaCareerPoster, photos: [kgsaCareerPoster] },
   },
   {
     id: 'ces-visit',
@@ -195,34 +228,34 @@ export const communityEvents = [
     media: { cover: ces1060, photos: [ces1060, ces1077, ces1094, ces1202, ces1709, ces1277, ces1128, ces1133] },
   },
   {
-    id: 'hyc-mixer',
-    title: 'Harvard-Yale-Columbia Mixer — MC',
-    date: 'Jan 2026',
-    location: 'New York',
-    summary: 'Main MC for a mixer bringing together roughly 200 Korean students from Harvard, Yale, and Columbia.',
-    tags: ['Leadership', 'Community'],
-    links: [],
-    media: { cover: hycMixerPresenting, photos: [hycMixerPresenting] },
-  },
-  {
     id: 'upenn-mixer',
     title: '5-School Mixer at UPenn — MC',
     date: 'Nov 15, 2025',
     location: 'Philadelphia',
-    summary: 'Main MC for a five-school mixer at UPenn attended by roughly 200 Korean students from Penn, Columbia, Johns Hopkins, Princeton, and Rutgers.',
+    summary: 'Main MC for a five-school mixer at UPenn attended by approximately 200 Korean students from University of Pennsylvania, Columbia, Johns Hopkins, Princeton, and Rutgers.',
     tags: ['Leadership', 'Community'],
     links: [],
-    media: { cover: upennMixerGroup, photos: [upennMixerGroup, upennMixerOpening, upennMixerStage] },
+    media: { cover: upennMixer0, poster: upennMixerPoster, photos: [upennMixer0, upennMixer1, upennMixer2, upennMixer3] },
   },
   {
-    id: 'harvard-mc',
-    title: 'Harvard Event — Columbia Quiz MC',
-    date: '2025',
+    id: 'hyc-mixer',
+    title: 'Harvard-Yale-Columbia Mixer — MC',
+    date: 'Oct 11, 2025',
     location: 'Harvard University',
-    summary: "MC'd a Columbia Quiz event at Harvard's Kenneth C. Griffin Graduate School.",
+    summary: 'Main MC for a mixer bringing together approximately 150 Korean students from Harvard, Yale, and Columbia.',
     tags: ['Leadership', 'Community'],
     links: [],
-    media: { cover: harvardMc1, photos: [harvardMc1, harvardMc2] },
+    media: { cover: harvardMixer8056, poster: harvardMixerPoster, photos: [harvardMixer8056, harvardMixer8079, harvardMixerGroup] },
+  },
+  {
+    id: 'kgsa-welcome-night',
+    title: 'KGSA Welcome Night — Organizer & MC',
+    date: 'Sep 13, 2025',
+    location: 'Lerner Hall, Columbia University',
+    summary: "Organized and MC'd KGSA Welcome Night for approximately 200 new students, welcoming incoming Korean graduate students to Columbia.",
+    tags: ['Leadership', 'Community'],
+    links: [],
+    media: { cover: welcomeNight9784, poster: welcomeNightPoster, photos: [welcomeNight9784, welcomeNight9609, welcomeNight9781] },
   },
   {
     id: 'columbia-ai-club',
@@ -376,7 +409,7 @@ export const offTheClock = {
           ],
         },
         link: 'https://www.nyphil.org/concerts-tickets/2526/gustavo-dudamel-and-yunchan-lim/',
-        media: { photos: [] }, // Photos pending from Jack
+        media: { cover: nyphilYunchan7299, photos: [{ src: nyphilYunchan7299 }, { src: nyphilYunchan7305 }] },
       },
     ],
   },
@@ -388,7 +421,9 @@ export const offTheClock = {
         id: 'golf-sunsetvalley',
         title: 'Sunset Valley Golf Course',
         date: 'Mar 17, 2026',
-        location: 'New York',
+        location: 'Pomona, NY',
+        mapUrl: 'https://maps.google.com/?q=Sunset+Valley+Golf+Course+Pomona+NY',
+        mapCoords: [41.1879, -74.0536],
         media: {
           cover: sv4473,
           photos: [
@@ -404,6 +439,8 @@ export const offTheClock = {
         title: 'Van Cortlandt Golf Course',
         date: 'Mar 15, 2026',
         location: 'Bronx, New York',
+        mapUrl: 'https://maps.google.com/?q=Van+Cortlandt+Park+Golf+Course+Bronx+NY',
+        mapCoords: [40.8958, -73.8986],
         media: {
           cover: vc4433,
           photos: [
@@ -418,6 +455,8 @@ export const offTheClock = {
         title: 'Stanford Golf Course',
         date: 'Jan 15, 2026',
         location: 'Stanford, CA',
+        mapUrl: 'https://maps.google.com/?q=Stanford+Golf+Course+Stanford+CA',
+        mapCoords: [37.4346, -122.1636],
         media: {
           cover: stanfordGolf2248,
           photos: [
@@ -428,6 +467,21 @@ export const offTheClock = {
             { src: stanfordGolf2282 },
             { src: '/assets/videos/stanford-golf-1.mp4', type: 'video' },
             { src: '/assets/videos/stanford-golf-2.mp4', type: 'video' },
+          ],
+        },
+      },
+      {
+        id: 'golf-mosholu',
+        title: 'Mosholu Golf Course',
+        date: 'Nov 8, 2025',
+        location: 'Bronx, New York',
+        mapUrl: 'https://maps.google.com/?q=Mosholu+Golf+Course+Bronx+NY',
+        mapCoords: [40.8819, -73.8847],
+        media: {
+          photos: [
+            { src: mosholu8615 },
+            { src: mosholu8620 },
+            { src: '/assets/videos/mosholu-golf.mp4', type: 'video' },
           ],
         },
       },
@@ -443,7 +497,6 @@ export const offTheClock = {
         date: '',
         location: 'Nevada',
         media: {
-          cover: vegas1120,
           photos: [
             { src: vegas1005 },
             { src: vegas1120 },
@@ -460,7 +513,6 @@ export const offTheClock = {
         date: '',
         location: 'California',
         media: {
-          cover: la1693,
           photos: [
             { src: la1344 },
             { src: la1620 },
@@ -482,7 +534,6 @@ export const offTheClock = {
         date: '',
         location: 'California',
         media: {
-          cover: sf1940,
           photos: [
             { src: sf1805 },
             { src: sf1845 },
@@ -499,7 +550,6 @@ export const offTheClock = {
         date: '',
         location: 'Palo Alto, California',
         media: {
-          cover: stanford2162,
           photos: [
             { src: stanford2162 },
             { src: stanford2166 },
@@ -514,7 +564,6 @@ export const offTheClock = {
         date: '',
         location: 'New York',
         media: {
-          cover: intrepidSimulator,
           photos: [{ src: intrepidSimulator }],
         },
       },
@@ -524,6 +573,22 @@ export const offTheClock = {
   kaist: {
     label: 'KAIST',
     items: [
+      {
+        id: 'kaist-memories',
+        title: 'Memories',
+        date: 'KAIST years',
+        location: 'Daejeon',
+        media: {
+          photos: [
+            { src: kaistMemories1 },
+            { src: kaistMemories2 },
+            { src: kaistMemories5 },
+            { src: kaistMemories6 },
+            { src: kaistMemories7 },
+            { src: friendsDinner },
+          ],
+        },
+      },
       {
         id: 'kaist-orchestra',
         title: 'Orchestra — 1st Trumpet',
@@ -549,18 +614,6 @@ export const offTheClock = {
             { src: futsal },
             { src: beachSunset },
             { src: beachGroup },
-          ],
-        },
-      },
-      {
-        id: 'kaist-memories',
-        title: 'Memories',
-        date: 'KAIST years',
-        location: 'Daejeon',
-        media: {
-          cover: friendsDinner,
-          photos: [
-            { src: friendsDinner },
           ],
         },
       },

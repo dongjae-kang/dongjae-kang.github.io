@@ -1,20 +1,29 @@
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import PhoneFrame from '../components/PhoneFrame';
+import Lightbox from '../components/Lightbox';
 import PdfViewer from '../components/PdfViewer';
 import { research } from '../data/research';
 import { coursework } from '../data/coursework';
+import ResearchSidebar from '../components/ResearchSidebar';
 
 const Page = styled.main`
   min-height: 100vh;
-  padding: 140px 24px 80px;
+  padding-top: 80px;
+`;
+
+const DetailLayout = styled.div`
+  display: flex;
+  min-height: calc(100vh - 80px);
 `;
 
 const Container = styled.div`
-  width: min(${({ theme }) => theme.layout.pageMax}, 100%);
-  margin: 0 auto;
+  flex: 1;
+  padding: 40px 32px 80px;
+  max-width: ${({ theme }) => theme.layout.pageMax};
   display: grid;
   gap: 28px;
 `;
@@ -147,9 +156,13 @@ const Gallery = styled.div`
 const GalleryImage = styled.img`
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
+  background: #f5f3ef;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.85; }
 `;
 
 const GalleryCard = styled.figure`
@@ -240,15 +253,28 @@ function ResearchDetail() {
   const { id } = useParams();
   const item = research.find((entry) => entry.id === id) || coursework.find((entry) => entry.id === id);
   const isCoursework = coursework.some((entry) => entry.id === id);
+  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0 });
+
+  const openLightbox = useCallback((images, index = 0) => {
+    const normalized = images.map((img) => ({ src: img.src || img }));
+    setLightbox({ open: true, images: normalized, index });
+  }, []);
+  const closeLightbox = useCallback(() => setLightbox((prev) => ({ ...prev, open: false })), []);
+  const prevImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length })), []);
+  const nextImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index + 1) % prev.images.length })), []);
+  const goToImage = useCallback((i) => setLightbox((prev) => ({ ...prev, index: i })), []);
 
   if (!item) {
     return (
       <PageTransition>
         <Page>
-          <Container>
+          <DetailLayout>
+            <ResearchSidebar />
+            <Container>
             <Back to="/research">Back to Research</Back>
             <Title>Project not found</Title>
-          </Container>
+            </Container>
+          </DetailLayout>
         </Page>
       </PageTransition>
     );
@@ -257,7 +283,9 @@ function ResearchDetail() {
   return (
     <PageTransition>
       <Page>
-        <Container>
+        <DetailLayout>
+          <ResearchSidebar />
+          <Container>
           <Back to="/research">Back to Research</Back>
 
           {/* PRISM: show live demo as hero instead of static thumbnail */}
@@ -366,7 +394,11 @@ function ResearchDetail() {
               <Gallery>
                 {item.gallery.map((image, index) => (
                   <GalleryCard key={`${item.title}-${index}`}>
-                    <GalleryImage src={image.src} alt={image.alt || `${item.title} archive ${index + 1}`} />
+                    <GalleryImage
+                      src={image.src}
+                      alt={image.alt || `${item.title} archive ${index + 1}`}
+                      onClick={() => openLightbox(item.gallery, index)}
+                    />
                     {image.caption && <GalleryCaption>{image.caption}</GalleryCaption>}
                   </GalleryCard>
                 ))}
@@ -407,7 +439,19 @@ function ResearchDetail() {
               </DetailSection>
             );
           })()}
-        </Container>
+          </Container>
+        </DetailLayout>
+
+        {lightbox.open && (
+          <Lightbox
+            images={lightbox.images}
+            index={lightbox.index}
+            onClose={closeLightbox}
+            onPrev={lightbox.images.length > 1 ? prevImage : null}
+            onNext={lightbox.images.length > 1 ? nextImage : null}
+            onGoTo={goToImage}
+          />
+        )}
       </Page>
     </PageTransition>
   );

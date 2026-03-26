@@ -6,15 +6,22 @@ import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import Lightbox from '../components/Lightbox';
 import { activities, communityEvents, offTheClock } from '../data/activities';
+import ActivitySidebar from '../components/ActivitySidebar';
 
 const Page = styled.main`
   min-height: 100vh;
-  padding: 140px 24px 80px;
+  padding-top: 80px;
 `;
 
-const Container = styled.div`
-  width: min(${({ theme }) => theme.layout.contentMax}, 100%);
-  margin: 0 auto;
+const Layout = styled.div`
+  display: flex;
+  min-height: calc(100vh - 80px);
+`;
+
+const Content = styled.div`
+  flex: 1;
+  padding: 40px 32px 80px;
+  max-width: ${({ theme }) => theme.layout.contentMax};
 `;
 
 const Title = styled.h1`
@@ -317,6 +324,7 @@ function Activities() {
   const closeLightbox = useCallback(() => setLightbox((prev) => ({ ...prev, open: false })), []);
   const prevImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length })), []);
   const nextImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index + 1) % prev.images.length })), []);
+  const goToImage = useCallback((i) => setLightbox((prev) => ({ ...prev, index: i })), []);
 
   const getCover = (item) => item.media?.cover || item.media?.photos?.[0]?.src || item.media?.photos?.[0];
   const getPhotoCount = (item) => (item.media?.photos || []).length;
@@ -326,26 +334,19 @@ function Activities() {
   return (
     <PageTransition>
       <Page>
-        <Container>
+        <Layout>
+          <ActivitySidebar onScrollTo={(id) => {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }} />
+          <Content>
           <Title>Activities</Title>
           <Intro>
             Talks, research presentations, diplomacy, student leadership, and community events.
           </Intro>
 
-          <SectionNav>
-            <SectionNavLink $active={!section} onClick={() => tier1Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-              Activities
-            </SectionNavLink>
-            <SectionNavLink $active={section === 'community'} onClick={() => tier2Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-              Community & Events
-            </SectionNavLink>
-            <SectionNavLink $active={section === 'life'} onClick={() => tier3Ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-              Off the Clock
-            </SectionNavLink>
-          </SectionNav>
-
           {/* ─── TIER 1 ─── */}
-          <Grid ref={tier1Ref}>
+          <Grid ref={tier1Ref} id="tier1">
             {activities.map((item) => {
               const cover = getCover(item);
               return (
@@ -382,11 +383,21 @@ function Activities() {
                 const cover = getCover(item);
                 const photoCount = getPhotoCount(item);
                 return (
-                  <Tier2Card key={item.id}>
+                  <Tier2Card key={item.id} id={item.id}>
                     <Tier2Photo
                       $hasImage={!!cover}
                       $clickable={photoCount > 0}
-                      onClick={() => photoCount > 0 && openLightbox(item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0)}
+                      onClick={() => {
+                        if (photoCount === 0) return;
+                        const pInfo = {
+                          title: item.title,
+                          date: item.date,
+                          location: item.location,
+                          description: item.summary,
+                          poster: item.media?.poster || null,
+                        };
+                        openLightbox(item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0, pInfo);
+                      }}
                     >
                       {cover ? (<Tier2Image src={cover} alt={item.title} />) : (
                         <Placeholder><PhotoKicker>{item.date}</PhotoKicker><PhotoTitle>{item.title}</PhotoTitle></Placeholder>
@@ -423,19 +434,29 @@ function Activities() {
                     const isNyphil = key === 'nyphil';
 
                     return (
-                      <Tier3Card key={item.id}>
+                      <Tier3Card key={item.id} id={item.id}>
                         <Tier3Photo
                           $hasImage={!!cover}
                           $clickable={hasPhotos}
                           onClick={() => {
                             if (!hasPhotos) return;
-                            const isPhil = key === 'nyphil';
-                            const pInfo = isPhil && item.program ? {
-                              title: item.title,
-                              date: item.date,
-                              program: item.program,
-                              link: item.link,
-                            } : null;
+                            let pInfo = null;
+                            if (key === 'nyphil' && item.program) {
+                              pInfo = {
+                                title: item.title,
+                                date: item.date,
+                                program: item.program,
+                                link: item.link,
+                              };
+                            } else if (key === 'golf') {
+                              pInfo = {
+                                title: item.title,
+                                date: item.date,
+                                location: item.location,
+                                mapUrl: item.mapUrl,
+                                mapCoords: item.mapCoords,
+                              };
+                            }
                             openLightbox(photos, 0, pInfo);
                           }}
                         >
@@ -457,7 +478,8 @@ function Activities() {
               </CategorySection>
             ))}
           </Section>
-        </Container>
+          </Content>
+        </Layout>
 
         {lightbox.open && (
           <Lightbox
@@ -466,6 +488,7 @@ function Activities() {
             onClose={closeLightbox}
             onPrev={lightbox.images.length > 1 ? prevImage : null}
             onNext={lightbox.images.length > 1 ? nextImage : null}
+            onGoTo={goToImage}
             programInfo={lightbox.programInfo}
           />
         )}

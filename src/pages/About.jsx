@@ -174,7 +174,7 @@ const TimelineCategory = styled.h3`
 const Contacts = styled.div`
   display: flex;
   gap: 10px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   margin-top: 8px;
   justify-content: flex-end;
 
@@ -202,22 +202,24 @@ const ContactButton = styled.a`
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  border: 1px solid rgba(27, 61, 47, 0.85);
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
   font-size: 0.82rem;
   letter-spacing: 0.04em;
-  color: #f7f7f5;
-  background: rgba(27, 61, 47, 0.85);
+  color: ${({ theme }) => theme.colors.subpage.text};
+  background: transparent;
   transition: ${({ theme }) => theme.transitions.hover};
   white-space: nowrap;
 
   svg {
     flex-shrink: 0;
     font-size: 0.95rem;
+    color: ${({ theme }) => theme.colors.subpage.copper};
   }
 
   &:hover {
-    background: rgba(27, 61, 47, 1);
+    border-color: ${({ theme }) => theme.colors.subpage.copper};
+    color: ${({ theme }) => theme.colors.subpage.copper};
   }
 `;
 
@@ -329,8 +331,6 @@ function About() {
                 moderation. He aims to study how platforms shape society and how policy can guide
                 them responsibly, and put that research into practice.
               </p>
-            </Bio>
-
             <Contacts>
               <ContactButton href="mailto:dk3500@columbia.edu">
                 <FiMail />
@@ -354,6 +354,7 @@ function About() {
                 GitHub
               </ContactButton>
             </Contacts>
+            </Bio>
           </Intro>
 
           <Divider />

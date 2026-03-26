@@ -5,15 +5,22 @@ import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
 import { coursework } from '../data/coursework';
+import ResearchSidebar from '../components/ResearchSidebar';
 
 const Page = styled.main`
   min-height: 100vh;
-  padding: 140px 24px 80px;
+  padding-top: 80px;
 `;
 
-const Container = styled.div`
-  width: min(${({ theme }) => theme.layout.contentMax}, 100%);
-  margin: 0 auto;
+const Layout = styled.div`
+  display: flex;
+  min-height: calc(100vh - 80px);
+`;
+
+const Content = styled.div`
+  flex: 1;
+  padding: 40px 32px 80px;
+  max-width: ${({ theme }) => theme.layout.contentMax};
 `;
 
 const Title = styled.h1`
@@ -329,7 +336,12 @@ function Research() {
   return (
     <PageTransition>
       <Page>
-        <Container>
+        <Layout>
+          <ResearchSidebar onScrollTo={(id) => {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }} />
+          <Content>
           <Title>Research</Title>
           <Intro>
             Core research projects in misinformation and platform governance, followed by a smaller
@@ -355,7 +367,7 @@ function Research() {
             )}
           </SectionNav>
 
-          <Grid ref={projectsRef}>
+          <Grid ref={projectsRef} id="projects">
             {research.map((item) => (
               <Card key={item.id} to={`/research/${item.id}`} style={activeTag && !matchesTag(item) ? { opacity: 0.35, pointerEvents: 'none' } : {}}>
                 <Thumbnail>
@@ -456,7 +468,8 @@ function Research() {
               ))}
             </CourseworkGrid>
           </Section>
-        </Container>
+          </Content>
+        </Layout>
       </Page>
     </PageTransition>
   );

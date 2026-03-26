@@ -1,18 +1,27 @@
+import { useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { Link, useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
+import Lightbox from '../components/Lightbox';
 import { activities, communityEvents } from '../data/activities';
+import ActivitySidebar from '../components/ActivitySidebar';
 const allActivities = [...activities, ...communityEvents];
 
 const Page = styled.main`
   min-height: 100vh;
-  padding: 140px 24px 80px;
+  padding-top: 80px;
+`;
+
+const DetailLayout = styled.div`
+  display: flex;
+  min-height: calc(100vh - 80px);
 `;
 
 const Container = styled.div`
-  width: min(${({ theme }) => theme.layout.pageMax}, 100%);
-  margin: 0 auto;
+  flex: 1;
+  padding: 40px 32px 80px;
+  max-width: ${({ theme }) => theme.layout.pageMax};
   display: grid;
   gap: 28px;
 `;
@@ -42,6 +51,7 @@ const PhotoImage = styled.img`
   height: ${({ $portrait }) => ($portrait ? 'auto' : '100%')};
   object-fit: ${({ $portrait }) => ($portrait ? 'contain' : 'cover')};
   border-radius: 3px;
+  cursor: pointer;
 `;
 
 const TitleBlock = styled.div`
@@ -145,20 +155,36 @@ const GalleryImage = styled.img`
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid rgba(61, 90, 62, 0.14);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.85; }
 `;
 
 function ActivityDetail() {
   const { id } = useParams();
   const item = allActivities.find((entry) => entry.id === id);
+  const [lightbox, setLightbox] = useState({ open: false, images: [], index: 0 });
+
+  const openLightbox = useCallback((photos, index = 0) => {
+    const normalized = photos.map((p) => (typeof p === 'string' ? { src: p } : p));
+    setLightbox({ open: true, images: normalized, index });
+  }, []);
+  const closeLightbox = useCallback(() => setLightbox((prev) => ({ ...prev, open: false })), []);
+  const prevImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index - 1 + prev.images.length) % prev.images.length })), []);
+  const nextImage = useCallback(() => setLightbox((prev) => ({ ...prev, index: (prev.index + 1) % prev.images.length })), []);
+  const goToImage = useCallback((i) => setLightbox((prev) => ({ ...prev, index: i })), []);
 
   if (!item) {
     return (
       <PageTransition>
         <Page>
-          <Container>
-            <Back to="/activities">Back to Activities</Back>
-            <Title>Activity not found</Title>
-          </Container>
+          <DetailLayout>
+            <ActivitySidebar />
+            <Container>
+              <Back to="/activities">Back to Activities</Back>
+              <Title>Activity not found</Title>
+            </Container>
+          </DetailLayout>
         </Page>
       </PageTransition>
     );
@@ -167,7 +193,9 @@ function ActivityDetail() {
   return (
     <PageTransition>
       <Page>
-        <Container>
+        <DetailLayout>
+          <ActivitySidebar />
+          <Container>
           <Back to="/activities">Back to Activities</Back>
 
           <Photo $hasImage={!!(item.media?.cover || item.media?.photos?.[0])} $portrait={!!item.media?.portrait}>
@@ -176,6 +204,7 @@ function ActivityDetail() {
                 src={item.media?.cover || item.media?.photos?.[0]}
                 alt={`${item.title} visual`}
                 $portrait={!!item.media?.portrait}
+                onClick={() => item.media?.photos?.length > 0 && openLightbox(item.media.photos, 0)}
               />
             ) : (
               <>
@@ -244,7 +273,12 @@ function ActivityDetail() {
               <SectionLabel>Gallery</SectionLabel>
               <Gallery>
                 {item.media.photos.slice(1).map((photo, index) => (
-                  <GalleryImage key={photo} src={photo} alt={`${item.title} archive ${index + 2}`} />
+                  <GalleryImage
+                    key={photo}
+                    src={photo}
+                    alt={`${item.title} archive ${index + 2}`}
+                    onClick={() => openLightbox(item.media.photos, index + 1)}
+                  />
                 ))}
               </Gallery>
             </DetailSection>
@@ -253,7 +287,19 @@ function ActivityDetail() {
           {!item.media?.photos?.length && item.id !== 'valedictorian' && (
             <ArchiveNote>Photos coming soon.</ArchiveNote>
           )}
-        </Container>
+          </Container>
+        </DetailLayout>
+
+        {lightbox.open && (
+          <Lightbox
+            images={lightbox.images}
+            index={lightbox.index}
+            onClose={closeLightbox}
+            onPrev={lightbox.images.length > 1 ? prevImage : null}
+            onNext={lightbox.images.length > 1 ? nextImage : null}
+            onGoTo={goToImage}
+          />
+        )}
       </Page>
     </PageTransition>
   );

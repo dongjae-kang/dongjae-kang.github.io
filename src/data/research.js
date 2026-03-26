@@ -6,8 +6,6 @@ import multiAgentSimMethod from '../assets/images/research/multi-agent-sim-metho
 import crisisnewsPipeline from '../assets/images/research/figures/crisisnews-pipeline.png';
 import crisisnewsYearlyDist from '../assets/images/research/figures/crisisnews-yearly-dist.png';
 import crisisnewsStakeholderMatrix from '../assets/images/research/figures/crisisnews-stakeholder-matrix.png';
-import chiWorkshopMainPage from '../assets/images/research/figures/chi-workshop-main-page.png';
-import chiWorkshopAcceptedSubmissions from '../assets/images/research/figures/chi-workshop-accepted-submissions.png';
 
 export const research = [
   {
@@ -73,16 +71,6 @@ export const research = [
         src: crisisnewsStakeholderMatrix,
         alt: 'Stakeholder relationship matrix from CrisisNews',
         caption: 'Stakeholder relationship matrix',
-      },
-      {
-        src: chiWorkshopMainPage,
-        alt: 'News Futures at CHI 2025 workshop page',
-        caption: 'Workshop page for News Futures at CHI 2025',
-      },
-      {
-        src: chiWorkshopAcceptedSubmissions,
-        alt: 'Accepted submissions page highlighting Kang on the CHI workshop website',
-        caption: 'Accepted submissions page highlighting the paper',
       },
     ],
   },
