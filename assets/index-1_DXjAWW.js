@@ -1174,6 +1174,10 @@ Minor: Science and Technology Policy`,period:`2018 - 2025`}]},{category:`Publica
   width: 100%;
   border-radius: 3px;
   object-fit: contain;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `,UD=$.div`
   width: 100%;
   height: 180px;
@@ -1184,6 +1188,10 @@ Minor: Science and Technology Policy`,period:`2018 - 2025`}]},{category:`Publica
     width: 100%;
     height: 100%;
     background: #f0ede8;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `,WD=$.a`
   color: rgba(196, 149, 106, 0.8);
