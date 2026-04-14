@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Pledged to Save Water. In the A.I. Era, It Expects Water Use to Soar. - The New York Times</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ───────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body {
+    background: #fff;
+    color: #121212;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NYT Nav ────────────────────────────────────── */
+  .nyt-nav {
+    border-bottom: 2px solid #121212;
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 100;
+  }
+  .nyt-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #333;
+  }
+  .nyt-nav-left a {
+    color: #333;
+    text-decoration: none;
+  }
+  .nyt-nav-left a:hover { text-decoration: underline; }
+  .nyt-logo {
+    font-family: 'Chomsky', 'Old English Text MT', Georgia, serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #121212;
+    text-align: center;
+    flex: 1;
+  }
+  .nyt-nav-right {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    color: #666;
+    min-width: 180px;
+    text-align: right;
+  }
+
+  /* ── Series Label ───────────────────────────────── */
+  .series-label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #666;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  /* ── Headline ───────────────────────────────────── */
+  .headline-wrap {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 12px 20px 0;
+    text-align: center;
+  }
+  .headline {
+    font-family: 'nyt-cheltenham', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #121212;
+    margin-bottom: 14px;
+  }
+  .subhead {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #333;
+    margin-bottom: 24px;
+  }
+
+  /* ── Lead Image ─────────────────────────────────── */
+  .lead-image-wrap {
+    max-width: 1080px;
+    margin: 0 auto 8px;
+    padding: 0 20px;
+  }
+  .lead-image {
+    width: 100%;
+    height: 440px;
+    background: linear-gradient(135deg, #e8edf2 0%, #c8d6e5 40%, #a4b8cc 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .lead-image::before {
+    content: '';
+    position: absolute;
+    width: 220px; height: 160px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .lead-image-label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #7a8ea0;
+    letter-spacing: 0.02em;
+  }
+  .lead-caption {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+  .lead-caption span { color: #aaa; }
+
+  /* ── Byline / Meta ──────────────────────────────── */
+  .meta-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 24px;
+  }
+  .byline {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .byline a {
+    color: #121212;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+    text-underline-offset: 2px;
+  }
+  .dateline {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+  }
+
+  /* ── Article Body ───────────────────────────────── */
+  .article-body {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+  .article-body p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    line-height: 1.72;
+    color: #121212;
+    margin-bottom: 22px;
+  }
+  .article-body p.drop-cap::first-letter {
+    font-size: 56px;
+    float: left;
+    line-height: 0.85;
+    margin-right: 6px;
+    margin-top: 6px;
+    font-weight: 700;
+  }
+
+  /* ── Chart ──────────────────────────────────────── */
+  .chart-wrap {
+    max-width: 600px;
+    margin: 32px auto 36px;
+    padding: 28px 24px 20px;
+    border-top: 2px solid #121212;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  .chart-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #121212;
+    margin-bottom: 4px;
+  }
+  .chart-subtitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+    height: 200px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #e2e2e2;
+    position: relative;
+  }
+  .chart-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .chart-bar {
+    width: 48px;
+    background: #121212;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .chart-bar.revised {
+    background: #2563eb;
+  }
+  .chart-bar-value {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #121212;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .chart-bar.revised .chart-bar-value { color: #2563eb; }
+  .chart-bar-label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .chart-legend {
+    display: flex;
+    gap: 18px;
+    margin-top: 12px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color: #666;
+  }
+  .chart-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .chart-legend-dot {
+    width: 10px; height: 10px; border-radius: 2px;
+  }
+  .chart-source {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 10px;
+  }
+
+  /* ── 2030 double-bar group ──────────────────────── */
+  .chart-bar-double {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+  }
+  .chart-bar-double .chart-bar { width: 22px; }
+
+  /* ── Trust Layer: Floating Button ───────────────── */
+  .tl-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+  .tl-fab:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(0,0,0,0.32); }
+  .tl-fab .tl-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #555;
+    transition: background 0.3s;
+  }
+  .tl-fab.active .tl-dot { background: #34d399; }
+
+  /* ── Trust Layer: Top Bar ───────────────────────── */
+  .tl-topbar {
+    position: fixed;
+    top: -48px;
+    left: 0; right: 0;
+    height: 48px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #475569;
+    transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+  .tl-topbar.visible {
+    top: 0;
+  }
+  .tl-topbar-label {
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tl-topbar-label .tl-icon {
+    width: 16px; height: 16px;
+    background: #2563eb;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tl-topbar-label .tl-icon svg { width: 10px; height: 10px; }
+  .tl-depth-btns {
+    display: flex;
+    gap: 4px;
+  }
+  .tl-depth-btn {
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tl-depth-btn:hover { border-color: #2563eb; color: #2563eb; }
+  .tl-depth-btn.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+  }
+  .tl-depth-desc {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  /* ── Highlights ─────────────────────────────────── */
+  .tl-highlight {
+    position: relative;
+    cursor: default;
+    border-radius: 3px;
+    transition: background 0.3s, box-shadow 0.3s;
+    padding: 1px 0;
+  }
+  /* Small indicator dot - only visible when layer is active */
+  .tl-highlight.visible::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #2563eb;
+    margin-left: 3px;
+    top: -4px;
+    animation: dotPulse 2s ease-in-out infinite;
+  }
+  .tl-highlight.visible.process::after { background: #a855f7; }
+  .tl-highlight.visible.context::after { background: #ea580c; }
+
+  @keyframes dotPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+  }
+
+  .tl-highlight.visible {
+    cursor: pointer;
+    border-bottom: 1.5px dotted rgba(37, 99, 235, 0.35);
+  }
+  .tl-highlight.visible.process { border-bottom-color: rgba(168, 85, 247, 0.35); }
+  .tl-highlight.visible.context { border-bottom-color: rgba(234, 88, 12, 0.35); }
+
+  .tl-highlight.visible:hover {
+    background: rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    border-bottom-color: transparent;
+  }
+  .tl-highlight.visible.process:hover { background: rgba(168, 85, 247, 0.1); box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1); }
+  .tl-highlight.visible.context:hover { background: rgba(234, 88, 12, 0.1); box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.1); }
+
+  .tl-highlight.active {
+    background: rgba(37, 99, 235, 0.15) !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15) !important;
+    border-bottom-color: transparent !important;
+  }
+  .tl-highlight.active.process { background: rgba(168, 85, 247, 0.15) !important; box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15) !important; }
+  .tl-highlight.active.context { background: rgba(234, 88, 12, 0.15) !important; box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.15) !important; }
+
+  /* Flash animation when layer changes */
+  @keyframes flashHighlight {
+    0% { background: rgba(37, 99, 235, 0); }
+    30% { background: rgba(37, 99, 235, 0.25); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15); }
+    100% { background: rgba(37, 99, 235, 0); box-shadow: none; }
+  }
+  @keyframes flashProcess {
+    0% { background: rgba(168, 85, 247, 0); }
+    30% { background: rgba(168, 85, 247, 0.25); box-shadow: 0 0 0 6px rgba(168, 85, 247, 0.15); }
+    100% { background: rgba(168, 85, 247, 0); box-shadow: none; }
+  }
+  @keyframes flashContext {
+    0% { background: rgba(234, 88, 12, 0); }
+    30% { background: rgba(234, 88, 12, 0.25); box-shadow: 0 0 0 6px rgba(234, 88, 12, 0.15); }
+    100% { background: rgba(234, 88, 12, 0); box-shadow: none; }
+  }
+  .tl-highlight.flash-source { animation: flashHighlight 1s ease-out; }
+  .tl-highlight.flash-process { animation: flashProcess 1s ease-out; }
+  .tl-highlight.flash-context { animation: flashContext 1s ease-out; }
+
+  /* Layer change toast notification */
+  .tl-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #0f172a;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  }
+  .tl-toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .tl-toast:hover { background: #1e293b; }
+  .tl-toast .toast-count {
+    background: #2563eb;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .tl-toast .toast-count:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+  }
+  .tl-toast .toast-emoji {
+    font-size: 18px;
+  }
+  .tl-toast .toast-cta {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-left: 4px;
+  }
+
+  /* ── Rich Panel Elements ────────────────────────── */
+  /* Source document card */
+  .panel-doc-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .panel-doc-card:hover { border-color: #cbd5e1; }
+  .panel-doc-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .panel-doc-icon.report { background: #dbeafe; }
+  .panel-doc-icon.internal { background: #fef3c7; }
+  .panel-doc-icon.gov { background: #d1fae5; }
+  .panel-doc-icon.interview { background: #ede9fe; }
+  .panel-doc-info { flex: 1; }
+  .panel-doc-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .panel-doc-meta {
+    font-size: 11px;
+    color: #94a3b8;
+  }
+  .panel-doc-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .panel-doc-link:hover { text-decoration: underline; }
+
+  /* Process timeline (vertical) */
+  .panel-process-tl {
+    margin: 16px 0;
+    padding-left: 20px;
+    border-left: 2px solid #e9d5ff;
+  }
+  .panel-process-step {
+    position: relative;
+    padding: 0 0 20px 16px;
+  }
+  .panel-process-step:last-child { padding-bottom: 0; }
+  .panel-process-step::before {
+    content: '';
+    position: absolute;
+    left: -25px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #a855f7;
+  }
+  .panel-process-step .step-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a855f7;
+    margin-bottom: 4px;
+  }
+  .panel-process-step .step-text {
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.6;
+  }
+
+  /* Stats row */
+  .panel-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .panel-stat {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+  .panel-stat-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .panel-stat-num.highlight { color: #2563eb; }
+  .panel-stat-num.danger { color: #ef4444; }
+  .panel-stat-label {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.3;
+  }
+
+  /* Mini comparison bar */
+  .panel-compare {
+    margin: 16px 0;
+  }
+  .panel-compare-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .panel-compare-label {
+    font-size: 11px;
+    color: #64748b;
+    width: 60px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .panel-compare-track {
+    flex: 1;
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .panel-compare-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+  }
+  .panel-compare-val {
+    font-size: 12px;
+    font-weight: 700;
+    width: 50px;
+    color: #0f172a;
+  }
+
+  /* Link card */
+  .panel-link-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin: 8px 0;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .panel-link-card:hover { border-color: #2563eb; background: #eff6ff; }
+  .panel-link-icon { font-size: 20px; }
+  .panel-link-text { flex: 1; }
+  .panel-link-title { font-size: 13px; font-weight: 600; color: #0f172a; }
+  .panel-link-url { font-size: 11px; color: #94a3b8; }
+  .panel-link-arrow { color: #cbd5e1; font-size: 16px; }
+
+  /* ── Side Panel ─────────────────────────────────── */
+  .tl-panel {
+    position: fixed;
+    top: 0; right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: #fff;
+    border-left: 1px solid #e2e8f0;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+    z-index: 9998;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', sans-serif;
+  }
+  .tl-panel.open { right: 0; }
+
+  .tl-panel-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .tl-panel-type {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .tl-panel-type.source { background: #eff6ff; color: #2563eb; }
+  .tl-panel-type.process { background: #faf5ff; color: #a855f7; }
+  .tl-panel-type.context { background: #fff7ed; color: #ea580c; }
+
+  .tl-panel-close {
+    width: 28px; height: 28px;
+    border: none;
+    background: #f1f5f9;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+  .tl-panel-close:hover { background: #e2e8f0; }
+
+  .tl-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .tl-panel-phrase {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+  }
+  .tl-panel-insight {
+    background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border: 1px solid #bfdbfe;
+  }
+  .tl-panel-insight.process { background: linear-gradient(135deg, #faf5ff 0%, #fdf4ff 100%); border-color: #e9d5ff; }
+  .tl-panel-insight.context { background: linear-gradient(135deg, #fff7ed 0%, #fffbeb 100%); border-color: #fed7aa; }
+  .tl-panel-insight-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #2563eb;
+    margin-bottom: 4px;
+  }
+  .tl-panel-insight.process .tl-panel-insight-label { color: #a855f7; }
+  .tl-panel-insight.context .tl-panel-insight-label { color: #ea580c; }
+  .tl-panel-insight-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.5;
+  }
+  .tl-panel-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+  .tl-panel-section-title:first-of-type { margin-top: 0; }
+  .tl-panel-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #334155;
+    margin-bottom: 12px;
+  }
+  .tl-panel-citation {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 3px solid #2563eb;
+  }
+  .tl-panel-citation.process { border-left-color: #a855f7; }
+  .tl-panel-citation.context { border-left-color: #ea580c; }
+  .tl-panel-citation-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin-bottom: 4px;
+  }
+  .tl-panel-citation-text {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* Timeline in panel */
+  .tl-timeline {
+    margin-top: 16px;
+  }
+  .tl-timeline-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .tl-timeline-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #ea580c;
+    margin-top: 5px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-timeline-item:not(:last-child) .tl-timeline-dot::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 4px;
+    width: 2px;
+    height: calc(100% + 12px);
+    background: #fed7aa;
+  }
+  .tl-timeline-content {
+    flex: 1;
+  }
+  .tl-timeline-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ea580c;
+    margin-bottom: 2px;
+  }
+  .tl-timeline-desc {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+  }
+
+  /* Adjust body when topbar visible */
+  body.tl-active .nyt-nav { top: 48px; }
+
+  /* Adjust body when panel open */
+  body.panel-open .article-body,
+  body.panel-open .headline-wrap,
+  body.panel-open .meta-wrap,
+  body.panel-open .lead-image-wrap,
+  body.panel-open .lead-caption,
+  body.panel-open .chart-wrap {
+    transition: margin-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ NYT NAV ═══════ -->
+<nav class="nyt-nav">
+  <div class="nyt-nav-left">
+    <a href="#">U.S.</a>
+    <a href="#">World</a>
+    <a href="#">Business</a>
+    <a href="#">Tech</a>
+    <a href="#">Science</a>
+    <a href="#">Climate</a>
+    <a href="#">Opinion</a>
+  </div>
+  <div class="nyt-logo">The New York Times</div>
+  <div class="nyt-nav-right">Wednesday, January 27, 2026</div>
+</nav>
+
+<!-- ═══════ ARTICLE ═══════ -->
+<div class="series-label">Empire of AI</div>
+
+<div class="headline-wrap">
+  <h1 class="headline">Microsoft Pledged to Save Water. In the A.I. Era, It Expects Water Use to Soar.</h1>
+  <p class="subhead">Driven by the artificial intelligence frenzy, Microsoft is internally projecting that water use at its data centers will more than double by 2030 from 2020, including in places that face shortages.</p>
+</div>
+
+<div class="lead-image-wrap">
+  <div class="lead-image">
+    <span class="lead-image-label">A Microsoft data center facility in Quincy, Wash.</span>
+  </div>
+</div>
+<div class="lead-caption">A Microsoft data center campus in Quincy, Wash. The company's network of facilities uses billions of liters of water each year for cooling. <span>Stuart Isett for The New York Times</span></div>
+
+<div class="meta-wrap">
+  <div class="byline">By <a href="#">Adam Satariano</a>, <a href="#">Paul Mozur</a> and <a href="#">Karen Weise</a></div>
+  <div class="dateline">Reporting from London, Taipei and Seattle &middot; Published Jan. 27, 2026 &middot; Updated Jan. 28, 2026</div>
+</div>
+
+<div style="max-width:600px; margin:0 auto 20px; padding:10px 20px; font-family:'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif; font-size:11px; color:#999; border:1px dashed #ddd; border-radius:4px; line-height:1.5;">
+  <strong style="color:#888;">Demo Note:</strong> Headline and subheadline are from the published article. Body text below is reconstructed from publicly reported data and facts for demonstration purposes. This is a concept prototype by Dongjae Kang, Columbia SIPA.
+</div>
+
+<div class="article-body">
+
+  <p class="drop-cap">In 2020, Brad Smith, Microsoft's president, made a sweeping promise: the company would become <span class="tl-highlight source" data-depth="1" data-id="water-positive">"water positive"</span> by the end of the decade, replenishing more water than it consumed across its global operations. The pledge was part of a broader sustainability campaign, positioning Microsoft as an environmental leader among tech giants racing to build artificial intelligence.</p>
+
+  <p>But internal documents obtained by The New York Times tell a starkly different story. Microsoft's own projections, detailed in planning materials covering roughly 100 data center complexes worldwide, show the company expects to consume <span class="tl-highlight source" data-depth="1" data-id="28-billion">28 billion liters</span> of water annually by 2030 &mdash; more than triple the 7.9 billion liters it used in 2020. The surge is driven almost entirely by the enormous computing power required to train and run A.I. systems, which generate far more heat than traditional server workloads and demand significantly more water for cooling.</p>
+
+  <p><span class="tl-highlight process" data-depth="2" data-id="times-contacted">When The Times contacted Microsoft for comment</span>, the company initially asked for additional time to respond. Weeks later, it provided a substantially revised set of projections, claiming that new cooling technologies and efficiency measures would reduce its 2030 water consumption to 18 billion liters. However, the revised figures excluded water usage from <span class="tl-highlight source" data-depth="1" data-id="50-billion">$50 billion in new data center deals</span> that the company has recently announced, meaning the actual total would likely be far higher.</p>
+
+  <p><span class="tl-highlight process" data-depth="2" data-id="priscilla-johnson">Priscilla Johnson, who served as Microsoft's water strategy director from 2017 to 2020</span>, said that environmental concerns had long taken a back seat to financial calculations. "Water was very much an afterthought," she said. "Energy was more the focus because it was more expensive. Water was too cheap to be prioritized."</p>
+
+  <p>The consequences of that calculus are now playing out across the globe. In Jakarta, one of the world's most water-stressed cities, Microsoft's internal projections called for consuming <span class="tl-highlight source" data-depth="1" data-id="jakarta">1.9 billion liters</span> annually at its planned data center facility &mdash; a figure the company later revised to 664 million liters. Jakarta, home to more than 10 million people, is sinking at one of the fastest rates of any major city, in part because of groundwater extraction. The city's water infrastructure already fails to reach millions of its residents.</p>
+
+  <p>In Phoenix, where two decades of drought have left the region's reservoirs at historically low levels, Microsoft projected consuming 3.3 billion liters per year &mdash; later revised to 2 billion. The Colorado River, which supplies much of the region's water, has been the subject of increasingly fraught negotiations between states that depend on it. Adding billions of liters of industrial consumption to an already strained system has alarmed local officials and environmental groups.</p>
+
+  <p>The scale of water use in data centers is often underappreciated. About two-thirds of the cooling water consumed by these facilities evaporates into the atmosphere and cannot be recaptured. And Microsoft's published figures, like those of most major technology companies, exclude the vast quantities of water consumed by the power plants that generate the electricity data centers require. When that indirect water use is counted, the true footprint is significantly larger.</p>
+
+  <p><span class="tl-highlight process" data-depth="2" data-id="nakagawa">"We remain committed to reducing water use and replenishing water sources in the communities where we operate,"</span> said Melanie Nakagawa, Microsoft's chief sustainability officer. She said the company was investing in advanced cooling systems and water restoration projects, though she declined to provide a specific timeline for achieving the "water positive" goal.</p>
+
+  <p>The tension between Microsoft's sustainability commitments and its A.I. ambitions reflects a broader pattern across the technology industry. Nationally, U.S. data center water consumption is projected to grow from roughly 60 billion liters in 2022 to between <span class="tl-highlight source" data-depth="1" data-id="national-projection">150 and 275 billion liters by 2028</span>, according to estimates from the U.S. Department of Energy. The range is wide because so much about the industry's expansion remains unknown.</p>
+
+  <p><span class="tl-highlight context" data-depth="3" data-id="full-context">Few disclosure rules exist for data center water consumption.</span> Unlike power plants or manufacturing facilities, technology companies in the United States face no federal requirement to report how much water their data centers use. Some states have begun to push for greater transparency, but the industry has largely been left to regulate itself. The result is a patchwork of voluntary disclosures that experts say significantly understates the true scope of the problem. As A.I. becomes embedded in daily life &mdash; from search engines to medical diagnostics to financial trading &mdash; the environmental costs of the infrastructure behind it are only beginning to come into focus.</p>
+</div>
+
+<!-- ═══════ CHART ═══════ -->
+<div class="chart-wrap">
+  <div class="chart-title">Microsoft's Annual Water Consumption</div>
+  <div class="chart-subtitle">In billions of liters per year, actual and projected</div>
+  <div class="chart-bars">
+    <div class="chart-bar-group">
+      <div class="chart-bar" style="height: 56px;">
+        <span class="chart-bar-value">7.9B</span>
+      </div>
+      <div class="chart-bar-label">2020<br>Actual</div>
+    </div>
+    <div class="chart-bar-group">
+      <div class="chart-bar" style="height: 82px;">
+        <span class="chart-bar-value">12.0B</span>
+      </div>
+      <div class="chart-bar-label">2024<br>Actual</div>
+    </div>
+    <div class="chart-bar-group">
+      <div class="chart-bar-double">
+        <div class="chart-bar" style="height: 170px;">
+          <span class="chart-bar-value">28B</span>
+        </div>
+        <div class="chart-bar revised" style="height: 110px;">
+          <span class="chart-bar-value">18B</span>
+        </div>
+      </div>
+      <div class="chart-bar-label">2030<br>Projected</div>
+    </div>
+  </div>
+  <div class="chart-legend">
+    <div class="chart-legend-item">
+      <div class="chart-legend-dot" style="background: #121212;"></div>
+      Original projection
+    </div>
+    <div class="chart-legend-item">
+      <div class="chart-legend-dot" style="background: #2563eb;"></div>
+      Revised (excludes new deals)
+    </div>
+  </div>
+  <div class="chart-source">Source: Internal Microsoft documents, The New York Times analysis</div>
+</div>
+
+<!-- ═══════ TRUST LAYER: Top Bar ═══════ -->
+<div class="tl-topbar" id="tlTopbar">
+  <div class="tl-topbar-label">
+    <span class="tl-icon">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4.5c0 3.5 2.5 6 6 7.5 3.5-1.5 6-4 6-7.5V4L8 1z" fill="#fff"/></svg>
+    </span>
+    Trust Layer Active
+  </div>
+  <span style="color:#94a3b8">Depth:</span>
+  <div class="tl-depth-btns">
+    <button class="tl-depth-btn active" data-depth="1" onclick="setDepth(1)">1</button>
+    <button class="tl-depth-btn" data-depth="2" onclick="setDepth(2)">2</button>
+    <button class="tl-depth-btn" data-depth="3" onclick="setDepth(3)">3</button>
+  </div>
+  <span class="tl-depth-desc" id="depthDesc">Sources</span>
+</div>
+
+<!-- ═══════ TRUST LAYER: Side Panel ═══════ -->
+<div class="tl-panel" id="tlPanel">
+  <div class="tl-panel-header">
+    <span class="tl-panel-type source" id="panelType">Source</span>
+    <button class="tl-panel-close" onclick="closePanel()">&times;</button>
+  </div>
+  <div class="tl-panel-body" id="panelBody">
+    <!-- Filled dynamically -->
+  </div>
+</div>
+
+<!-- ═══════ TRUST LAYER: FAB ═══════ -->
+<button class="tl-fab" id="tlFab" onclick="toggleTrustLayer()">
+  <span class="tl-dot"></span>
+  Trust Layer
+</button>
+
+<!-- ═══════ TOAST NOTIFICATION ═══════ -->
+<div class="tl-toast" id="tlToast">
+  <span class="toast-emoji"></span>
+  <span class="toast-text"></span>
+  <span class="toast-count"></span>
+</div>
+
+<script>
+// ── State ──
+let tlActive = false;
+let currentDepth = 1;
+let activeHighlight = null;
+
+const depthLabels = { 1: 'Sources', 2: 'Sources + Process', 3: 'Full Context' };
+
+// ── Panel Content Database ──
+const panelData = {
+  'water-positive': {
+    type: 'source',
+    phrase: '"Water Positive" Pledge',
+    insight: 'This pledge, made in 2020, set the expectation Microsoft would replenish more water than it consumed by 2030. Internal documents tell a different story.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon report">📊</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">Microsoft Environmental Sustainability Report 2020</div>
+          <div class="panel-doc-meta">Published January 2020 &middot; Corporate commitment</div>
+          <a class="panel-doc-link" href="#">View Microsoft's original pledge &rarr;</a>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">What was promised</div>
+      <div class="tl-panel-text">Brad Smith announced Microsoft would become "water positive" by 2030, replenishing more water than it consumed globally. This was part of a sweeping sustainability campaign alongside pledges to become carbon negative and zero waste.</div>
+      <div class="tl-panel-section-title">How it was verified</div>
+      <div class="tl-panel-text">The pledge is documented in Microsoft's public sustainability filings, SEC disclosures, and multiple contemporaneous press reports. The specific language has been reiterated in every annual sustainability report through 2025.</div>
+    `,
+    citation: 'Microsoft, "Environmental Sustainability Report," January 2020; Microsoft Corporate Blog, Jan. 16, 2020.',
+    citationType: 'source'
+  },
+  '28-billion': {
+    type: 'source',
+    phrase: '28 Billion Liters by 2030',
+    insight: 'This number was never publicly disclosed. It comes from Microsoft\'s own internal planning documents covering roughly 100 facilities, obtained by The Times.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon internal">🔒</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">Internal Microsoft Planning Documents</div>
+          <div class="panel-doc-meta">Confidential &middot; Obtained by NYT &middot; ~100 facilities across 6 continents</div>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">What the documents show</div>
+      <div class="tl-panel-text">The internal projections break water consumption down by individual facility, region, and cooling type. The aggregate figure of 28 billion liters represents a 254% increase from the 7.9 billion liters Microsoft consumed in 2020.</div>
+      <div class="tl-panel-section-title">How The Times verified</div>
+      <div class="tl-panel-text">Reporters cross-referenced the internal figures with publicly available water withdrawal permits filed with state and local agencies, and compared them against utility records in jurisdictions where such data is public. Microsoft did not dispute the authenticity of the documents.</div>
+      <div class="tl-panel-section-title">What changed after contact</div>
+      <div class="tl-panel-text">After The Times reached out, Microsoft provided revised projections of 18 billion liters, citing new cooling technology. That is still a 128% increase from 2020, and excludes $50 billion in recently signed deals.</div>
+    `,
+    citation: 'Internal Microsoft documents obtained by The New York Times.',
+    citationType: 'source'
+  },
+  '50-billion': {
+    type: 'source',
+    phrase: '$50 Billion in New Data Center Deals',
+    insight: 'When Microsoft revised its water projections downward, it quietly excluded its biggest recent investments. The revised 18 billion figure does not account for these facilities.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon internal">📑</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">Microsoft SEC Filings (2024-2025)</div>
+          <div class="panel-doc-meta">Public financial disclosures &middot; Data center investment announcements</div>
+          <a class="panel-doc-link" href="#">View SEC filings on EDGAR &rarr;</a>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">What was excluded</div>
+      <div class="tl-panel-text">Microsoft's revised projection of 18 billion liters covers "current operational facilities and committed projects." But the company has announced over $50 billion in new data center investments since 2024, including major expansions across the U.S., Europe, and Southeast Asia. Many of these facilities are expected to be operational well before 2030. Their water consumption is not reflected in the 18 billion figure.</div>
+      <div class="tl-panel-section-title">Microsoft's explanation</div>
+      <div class="tl-panel-text">When asked why these deals were excluded, the company declined to provide a specific explanation, stating only that the figures reflected current operations. The Times noted this gap prominently in the article.</div>
+    `,
+    citation: 'Internal Microsoft documents; Microsoft SEC filings (2024-2025).',
+    citationType: 'source'
+  },
+  'jakarta': {
+    type: 'source',
+    phrase: 'Jakarta: 1.9 Billion Liters',
+    insight: 'Microsoft projected quadrupling its water use in a city that is literally sinking from groundwater extraction. The revised figure dropped 65%, but the company didn\'t explain why.',
+    richHTML: `
+      <div class="tl-panel-section-title">Why Jakarta matters for this story</div>
+      <div class="tl-panel-text">Jakarta is sinking at up to 25 cm per year, partly from groundwater extraction. Over 40% of the city sits below sea level. The municipal water utility, PAM Jaya, serves only about 60% of its 10+ million residents. Millions rely on private wells that further deplete the aquifers.</div>
+      <div class="panel-compare">
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">Current</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:20%; background:#2563eb;"></div></div>
+          <div class="panel-compare-val">380M L</div>
+        </div>
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">Original</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:100%; background:#ef4444;"></div></div>
+          <div class="panel-compare-val">1.9B L</div>
+        </div>
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">Revised</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:35%; background:#f59e0b;"></div></div>
+          <div class="panel-compare-val">664M L</div>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">An unexplained revision</div>
+      <div class="tl-panel-text">Microsoft revised Jakarta's projection from 1.9 billion to 664 million liters but declined to explain what changed. No new cooling technology had been announced for the Jakarta facility specifically. Times reporters traveled to Jakarta to report on local water conditions firsthand.</div>
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon gov">🌏</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">World Bank: Jakarta Water Assessment</div>
+          <div class="panel-doc-meta">2023 &middot; Groundwater depletion &amp; subsidence analysis</div>
+          <a class="panel-doc-link" href="#">View World Bank report &rarr;</a>
+        </div>
+      </div>
+    `,
+    citation: 'Internal Microsoft documents; World Bank Jakarta water assessment (2023); PAM Jaya annual report (2024); NYT field reporting.',
+    citationType: 'source'
+  },
+  'national-projection': {
+    type: 'source',
+    phrase: '150-275 Billion Liters by 2028',
+    insight: 'The U.S. government\'s own estimates show a potential 4.5x increase in just six years. The range is wide because even the government doesn\'t fully know the industry\'s plans.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon gov">🏛️</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">U.S. Department of Energy Report</div>
+          <div class="panel-doc-meta">August 2024 &middot; 3,000+ facilities analyzed</div>
+          <a class="panel-doc-link" href="#">View DOE report &rarr;</a>
+        </div>
+      </div>
+      <div class="panel-compare">
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">2022</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:22%; background:#2563eb;"></div></div>
+          <div class="panel-compare-val">60B L</div>
+        </div>
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">2028 low</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:55%; background:#f59e0b;"></div></div>
+          <div class="panel-compare-val">150B L</div>
+        </div>
+        <div class="panel-compare-row">
+          <div class="panel-compare-label">2028 high</div>
+          <div class="panel-compare-track"><div class="panel-compare-fill" style="width:100%; background:#ef4444;"></div></div>
+          <div class="panel-compare-val">275B L</div>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">Why is the range so wide?</div>
+      <div class="tl-panel-text">The uncertainty reflects three unknowns: how fast AI adoption accelerates, whether companies adopt water-efficient cooling, and how climate change affects regional water availability. Even the U.S. government cannot fully track the industry's expansion plans because there are no federal disclosure requirements for data center water use.</div>
+    `,
+    citation: 'U.S. Department of Energy, Office of Energy Efficiency & Renewable Energy, Aug. 2024.',
+    citationType: 'source'
+  },
+  'times-contacted': {
+    type: 'process',
+    phrase: 'How Microsoft Responded',
+    insight: 'This is journalism changing reality in real-time: Microsoft only produced revised numbers because reporters asked. The act of seeking comment literally changed the story.',
+    richHTML: `
+      <div class="panel-process-tl">
+        <div class="panel-process-step">
+          <div class="step-label">Step 1: Outreach</div>
+          <div class="step-text">The Times sent a formal request for comment to Microsoft's corporate communications team, accompanied by a detailed summary of the internal documents and specific questions about water projections.</div>
+        </div>
+        <div class="panel-process-step">
+          <div class="step-label">Step 2: Delay requested</div>
+          <div class="step-text">Microsoft asked for three additional weeks to prepare a response. This is not unusual for complex investigative stories.</div>
+        </div>
+        <div class="panel-process-step">
+          <div class="step-label">Step 3: New numbers appear</div>
+          <div class="step-text">Microsoft provided an entirely new set of projections: 18 billion liters instead of 28 billion. The revised figures were 35% lower across nearly every facility. But they excluded $50B in new deals.</div>
+        </div>
+        <div class="panel-process-step">
+          <div class="step-label">Step 4: Editorial decision</div>
+          <div class="step-text">The Times published both sets of numbers, letting readers see the gap. The revision itself became a central element of the story.</div>
+        </div>
+      </div>
+      <div class="panel-stats">
+        <div class="panel-stat">
+          <div class="panel-stat-num danger">28B</div>
+          <div class="panel-stat-label">Before NYT contact</div>
+        </div>
+        <div class="panel-stat">
+          <div class="panel-stat-num highlight">18B</div>
+          <div class="panel-stat-label">After NYT contact</div>
+        </div>
+      </div>
+    `,
+    citation: 'Times reporting methodology. Microsoft\'s corporate communications provided written responses.',
+    citationType: 'process'
+  },
+  'priscilla-johnson': {
+    type: 'process',
+    phrase: 'Priscilla Johnson, Former Water Strategy Director',
+    insight: 'A former insider speaking on the record, corroborated by four anonymous sources and internal documents. This is how rigorous sourcing works.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon interview">👤</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">Priscilla Johnson</div>
+          <div class="panel-doc-meta">Director of Water Strategy, Microsoft (2017-2020) &middot; On the record</div>
+        </div>
+      </div>
+      <div class="panel-process-tl">
+        <div class="panel-process-step">
+          <div class="step-label">Her role</div>
+          <div class="step-text">Developed water efficiency plans for data centers and advised on the "water positive" commitment. Left Microsoft in 2020, before the AI-driven surge in data center construction.</div>
+        </div>
+        <div class="panel-process-step">
+          <div class="step-label">What she said</div>
+          <div class="step-text">"Water was very much an afterthought. Energy was more the focus because it was more expensive. Water was too cheap to be prioritized."</div>
+        </div>
+        <div class="panel-process-step">
+          <div class="step-label">How it was verified</div>
+          <div class="step-text">Corroborated by internal documents reviewed by The Times and four current/former Microsoft employees (anonymous, not authorized to discuss internal deliberations).</div>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">NYT sourcing standard</div>
+      <div class="tl-panel-text">The Times requires at least two independent sources for any factual claim attributed to anonymous sources. Johnson's on-the-record account plus four anonymous sources and documentary evidence exceeds this threshold.</div>
+    `,
+    citation: 'On-the-record interview with Priscilla Johnson; corroborated by internal documents and four additional sources.',
+    citationType: 'process'
+  },
+  'nakagawa': {
+    type: 'process',
+    phrase: 'Melanie Nakagawa, Official Response',
+    insight: 'The official company response, included in full. Note: Nakagawa declined a follow-up interview. Transparency means showing what the company chose to say and what it chose not to.',
+    richHTML: `
+      <div class="panel-doc-card">
+        <div class="panel-doc-icon report">💼</div>
+        <div class="panel-doc-info">
+          <div class="panel-doc-title">Melanie Nakagawa, Chief Sustainability Officer</div>
+          <div class="panel-doc-meta">Appointed 2024 &middot; Written statement via corporate comms</div>
+        </div>
+      </div>
+      <div class="tl-panel-section-title">What Microsoft said</div>
+      <div class="tl-panel-text" style="background:#f8fafc; padding:14px 18px; border-radius:8px; border-left:3px solid #a855f7; font-style:italic;">"We remain committed to reducing water use and replenishing water sources in the communities where we operate."</div>
+      <div class="tl-panel-section-title">What Microsoft didn't say</div>
+      <div class="tl-panel-text">Nakagawa declined a follow-up interview request. The company did not provide a specific timeline for achieving the "water positive" goal. It also did not explain why the revised projections excluded $50B in new deals.</div>
+      <div class="tl-panel-section-title">Reporting standard</div>
+      <div class="tl-panel-text">The Times included Nakagawa's full statement as part of its commitment to presenting the company's perspective alongside investigative findings. The written response was provided after the three-week comment period Microsoft requested.</div>
+    `,
+    citation: 'Written statement provided by Microsoft Corporate Communications.',
+    citationType: 'process'
+  },
+  'full-context': {
+    type: 'context',
+    phrase: 'Full Reporting Context',
+    insight: 'Three reporters across three continents, five months of work, satellite imagery, utility records, and on-the-record sources. This is what goes into one article.',
+    richHTML: `
+      <div class="tl-panel-section-title">The scale of this investigation</div>
+      <div class="tl-panel-text">Three reporters working across three continents (Adam Satariano in London, Paul Mozur in Taipei, Karen Weise in Seattle) spent five months on this story. They analyzed internal documents covering roughly 100 Microsoft data center facilities, cross-referenced them with public water permits and utility records, reviewed satellite imagery of construction sites, and conducted interviews with current and former employees.</div>
+    `,
+    sections: [],
+    timeline: [
+      { date: 'September 2025', desc: 'Times reporters obtain internal Microsoft water projection documents from a confidential source.' },
+      { date: 'October 2025', desc: 'Reporters begin verifying figures against public water permits, utility records, and satellite imagery of data center construction.' },
+      { date: 'November 2025', desc: 'Former and current Microsoft employees interviewed; Priscilla Johnson agrees to speak on the record.' },
+      { date: 'December 2025', desc: 'Formal comment request sent to Microsoft. Company asks for three weeks to respond.' },
+      { date: 'January 2026', desc: 'Microsoft provides revised projections and official statement. Times publishes both sets of figures.' },
+    ],
+    social: {
+      title: 'Post-Publication Response',
+      text: 'After publication, the article generated significant discussion about corporate sustainability claims and their credibility. Environmental organizations, including the World Resources Institute, cited the reporting in calls for mandatory water disclosure rules for data centers. Microsoft issued two additional statements emphasizing its investments in water restoration projects. The "Empire of AI" series prompted broader industry scrutiny, with Google, Amazon, and Meta each facing follow-up questions about their own water consumption figures. Several U.S. lawmakers referenced the article in committee hearings on data center regulation.'
+    },
+    methodology: {
+      title: 'Methodology',
+      text: 'Water consumption figures were verified through multiple methods: (1) cross-referencing internal documents with public water withdrawal permits filed with state agencies; (2) analysis of satellite imagery to confirm data center construction timelines; (3) comparison with independently estimated cooling requirements based on facility size and climate data; (4) interviews with current and former employees at Microsoft and peer companies. The Times consulted with water resource engineers at three universities to validate its analysis of evaporation rates and indirect water use.'
+    },
+    citation: '"Empire of AI" investigative series, The New York Times, January 2026. Reporting by Adam Satariano (London), Paul Mozur (Taipei), and Karen Weise (Seattle).',
+    citationType: 'context'
+  }
+};
+
+// ── Toast notifications ──
+const toastMessages = {
+  on: { emoji: '🔍', text: 'Trust Layer activated', detail: 'insights available' },
+  1: { emoji: '📄', text: 'Sources', detail: 'data sources to explore' },
+  2: { emoji: '🔬', text: 'Process unlocked', detail: 'new reporting insights' },
+  3: { emoji: '🌐', text: 'Full Context unlocked', detail: 'new deep insights' },
+};
+
+function showToast(key, count, total) {
+  const toast = document.getElementById('tlToast');
+  const msg = toastMessages[key];
+  toast.querySelector('.toast-emoji').textContent = msg.emoji;
+  toast.querySelector('.toast-text').textContent = msg.text;
+  if (total && total !== count) {
+    // Show "X new · Y total"
+    toast.querySelector('.toast-count').textContent = count + ' ' + msg.detail + ' · ' + total + ' total';
+  } else {
+    toast.querySelector('.toast-count').textContent = count + ' ' + msg.detail;
+  }
+  // Remove any old CTA
+  const oldCta = toast.querySelector('.toast-cta');
+  if (oldCta) oldCta.remove();
+  toast.classList.add('visible');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('visible'), 3500);
+}
+
+function showToastSimple(key, total) {
+  const toast = document.getElementById('tlToast');
+  const emojis = { 1: '📄', 2: '🔬', 3: '🌐' };
+  toast.querySelector('.toast-emoji').textContent = emojis[key] || '🔍';
+  toast.querySelector('.toast-text').textContent = depthLabels[key];
+  toast.querySelector('.toast-count').textContent = total + ' insights';
+  const oldCta = toast.querySelector('.toast-cta');
+  if (oldCta) oldCta.remove();
+  toast.classList.add('visible');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('visible'), 2500);
+}
+
+// Toast click: scroll to the FIRST highlight that is NEW at this depth level
+document.getElementById('tlToast').addEventListener('click', function() {
+  // Find the first highlight whose depth matches the current depth (i.e., newly added)
+  const newHighlight = document.querySelector(`.tl-highlight.visible[data-depth="${currentDepth}"]`);
+  const target = newHighlight || document.querySelector('.tl-highlight.visible');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      // Flash just this one highlight more prominently
+      target.style.transition = 'background 0.3s, box-shadow 0.3s';
+      const type = target.classList.contains('process') ? 'process' :
+                   target.classList.contains('context') ? 'context' : 'source';
+      target.classList.add('flash-' + type);
+      target.addEventListener('animationend', () => target.classList.remove('flash-' + type), { once: true });
+      openPanel(target.dataset.id);
+    }, 600);
+  }
+  this.classList.remove('visible');
+});
+
+// ── Flash all visible highlights ──
+function flashHighlights() {
+  document.querySelectorAll('.tl-highlight.visible').forEach((el, i) => {
+    setTimeout(() => {
+      const type = el.classList.contains('process') ? 'process' :
+                   el.classList.contains('context') ? 'context' : 'source';
+      el.classList.add('flash-' + type);
+      el.addEventListener('animationend', () => {
+        el.classList.remove('flash-' + type);
+      }, { once: true });
+    }, i * 120); // Stagger the flashes
+  });
+}
+
+// ── Toggle Trust Layer ──
+function toggleTrustLayer() {
+  tlActive = !tlActive;
+  const fab = document.getElementById('tlFab');
+  const topbar = document.getElementById('tlTopbar');
+
+  fab.classList.toggle('active', tlActive);
+  topbar.classList.toggle('visible', tlActive);
+  document.body.classList.toggle('tl-active', tlActive);
+
+  if (tlActive) {
+    applyDepth(currentDepth);
+    const count = document.querySelectorAll('.tl-highlight.visible').length;
+    showToast('on', count);
+    setTimeout(flashHighlights, 400);
+  } else {
+    clearHighlights();
+    closePanel();
+  }
+}
+
+// ── Set Depth ──
+function setDepth(d) {
+  const prevDepth = currentDepth;
+  currentDepth = d;
+  document.querySelectorAll('.tl-depth-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.depth) === d);
+  });
+  document.getElementById('depthDesc').textContent = depthLabels[d];
+  applyDepth(d);
+
+  // Count only NEWLY added highlights at this depth level
+  const newAtThisDepth = document.querySelectorAll(`.tl-highlight[data-depth="${d}"]`).length;
+  const totalVisible = document.querySelectorAll('.tl-highlight.visible').length;
+
+  // Always show total with layer name
+  showToastSimple(d, totalVisible);
+
+  // Flash only newly visible highlights (works for any direction)
+  if (d > prevDepth) {
+    setTimeout(() => {
+      document.querySelectorAll('.tl-highlight.visible').forEach((el, i) => {
+        if (parseInt(el.dataset.depth) > prevDepth) {
+          setTimeout(() => {
+            const type = el.classList.contains('process') ? 'process' :
+                         el.classList.contains('context') ? 'context' : 'source';
+            el.classList.add('flash-' + type);
+            el.addEventListener('animationend', () => el.classList.remove('flash-' + type), { once: true });
+          }, i * 150);
+        }
+      });
+    }, 300);
+  }
+}
+
+function applyDepth(d) {
+  document.querySelectorAll('.tl-highlight').forEach(el => {
+    const elDepth = parseInt(el.dataset.depth);
+    el.classList.toggle('visible', elDepth <= d);
+  });
+}
+
+function clearHighlights() {
+  document.querySelectorAll('.tl-highlight').forEach(el => {
+    el.classList.remove('visible', 'active');
+  });
+}
+
+// ── Panel ──
+function openPanel(id) {
+  const data = panelData[id];
+  if (!data) return;
+
+  // Update active highlight
+  document.querySelectorAll('.tl-highlight').forEach(el => el.classList.remove('active'));
+  const targetEl = document.querySelector(`.tl-highlight[data-id="${id}"]`);
+  if (targetEl) targetEl.classList.add('active');
+
+  // Update panel type badge
+  const typeEl = document.getElementById('panelType');
+  typeEl.className = 'tl-panel-type ' + data.type;
+  typeEl.textContent = data.type === 'source' ? 'Source' : data.type === 'process' ? 'Process' : 'Context';
+
+  // Build body
+  let html = `<div class="tl-panel-phrase">${data.phrase}</div>`;
+
+  // Insight card (the "gift")
+  if (data.insight) {
+    html += `<div class="tl-panel-insight ${data.type}">
+      <div class="tl-panel-insight-label">Why this matters</div>
+      <div class="tl-panel-insight-text">${data.insight}</div>
+    </div>`;
+  }
+
+  // Rich HTML (preferred) or fallback to sections
+  if (data.richHTML) {
+    html += data.richHTML;
+  } else {
+    // Regular sections
+    data.sections.forEach(s => {
+      html += `<div class="tl-panel-section-title">${s.title}</div>`;
+      html += `<div class="tl-panel-text">${s.text}</div>`;
+    });
+  }
+
+  // Timeline (context)
+  if (data.timeline) {
+    html += `<div class="tl-panel-section-title">Reporting Timeline</div>`;
+    html += `<div class="tl-timeline">`;
+    data.timeline.forEach(t => {
+      html += `<div class="tl-timeline-item">
+        <div class="tl-timeline-dot"></div>
+        <div class="tl-timeline-content">
+          <div class="tl-timeline-date">${t.date}</div>
+          <div class="tl-timeline-desc">${t.desc}</div>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Social response
+  if (data.social) {
+    html += `<div class="tl-panel-section-title">${data.social.title}</div>`;
+    html += `<div class="tl-panel-text">${data.social.text}</div>`;
+  }
+
+  // Methodology
+  if (data.methodology) {
+    html += `<div class="tl-panel-section-title">${data.methodology.title}</div>`;
+    html += `<div class="tl-panel-text">${data.methodology.text}</div>`;
+  }
+
+  // Citation
+  html += `<div class="tl-panel-citation ${data.citationType}">
+    <div class="tl-panel-citation-label">Citation</div>
+    <div class="tl-panel-citation-text">${data.citation}</div>
+  </div>`;
+
+  document.getElementById('panelBody').innerHTML = html;
+
+  // Open
+  document.getElementById('tlPanel').classList.add('open');
+  document.body.classList.add('panel-open');
+}
+
+function closePanel() {
+  document.getElementById('tlPanel').classList.remove('open');
+  document.body.classList.remove('panel-open');
+  document.querySelectorAll('.tl-highlight').forEach(el => el.classList.remove('active'));
+}
+
+// ── Click Handlers ──
+document.addEventListener('click', function(e) {
+  const hl = e.target.closest('.tl-highlight');
+  if (hl && hl.classList.contains('visible')) {
+    e.preventDefault();
+    openPanel(hl.dataset.id);
+  }
+});
+
+// Close panel on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePanel();
+});
+</script>
+
+</body>
+</html>
