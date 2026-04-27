@@ -144,6 +144,10 @@ const InfoPoster = styled.img`
   width: 100%;
   border-radius: 3px;
   object-fit: contain;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const MapContainer = styled.div`
@@ -156,6 +160,10 @@ const MapContainer = styled.div`
     width: 100%;
     height: 100%;
     background: #f0ede8;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 

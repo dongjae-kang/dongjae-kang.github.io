@@ -184,4 +184,40 @@ export const research = [
       { src: multiAgentSimMethod, alt: 'Multi-agent simulation method figure', caption: 'Method figure' },
     ],
   },
+  {
+    id: 'misinfo-interviews',
+    title: "Who Decides What's True?",
+    year: '2026',
+    summary:
+      'An interview-based study on the ethics of combating misinformation, triangulating perspectives from truth measurement, truth production, and truth\'s legal boundaries.',
+    description:
+      "This Spring 2026 study examines how organizations that combat misinformation navigate the tension between addressing false information and protecting free expression. Kang conducted semi-structured interviews with three figures spanning the information ecosystem: Steven Brill and Gordon Crovitz (Co-CEOs of NewsGuard) on truth measurement, Mike Abrams (Deputy Editor for Trust at The New York Times) on truth production, and Jennifer Jones (Staff Attorney at Columbia's Knight First Amendment Institute) on truth's legal boundaries. Transcripts were thematically coded and interpreted through the Markkula Center's Rights Lens. For the NYT conversation, Kang independently designed and built two interactive demos to ground the interview in concrete platform-journalism interfaces.",
+    courseContext: 'Ethics of Media, Technology, and Design, Prof. Laura Scherling, Columbia SIPA, Spring 2026',
+    collaborators: ['Individual project'],
+    tags: ['Misinformation', 'Platform Governance', 'Trust & Safety', 'Journalism Ethics'],
+    highlights: [
+      'Three semi-structured interviews across measurement, production, and legal boundaries',
+      'Thematic coding and rights-based framework analysis',
+      'Two interactive demos independently designed and built for the NYT interview',
+    ],
+    materials: [
+      {
+        label: 'Article Trust Layer Demo',
+        note: 'Interactive demo adding a transparency layer inside a live New York Times article page.',
+        url: '/demos/article-trust-layer.html',
+      },
+      {
+        label: 'Social Media Trust Extension Demo',
+        note: 'Interactive demo surfacing NYT trust signals beside X posts referencing Times journalism.',
+        url: '/demos/social-media-trust.html',
+      },
+    ],
+    links: [
+      { label: 'Article Trust Layer Demo', url: '/demos/article-trust-layer.html' },
+      { label: 'Social Media Trust Extension Demo', url: '/demos/social-media-trust.html' },
+    ],
+    related: ['crisisnews', 'prism', 'multi-agent-sim'],
+    thumbnail: null,
+    gallery: [],
+  },
 ];

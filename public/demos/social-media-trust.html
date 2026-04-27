@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYT Trust Extension - Social Media Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000;
+    color: #e7e9ea;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Demo banner */
+  .demo-banner {
+    background: #1d9bf0;
+    color: #fff;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+  .demo-banner span { opacity: 0.7; font-weight: 400; }
+
+  /* X/Twitter Layout */
+  .x-layout {
+    display: flex;
+    max-width: 1060px;
+    margin: 0 auto;
+    height: calc(100vh - 33px);
+  }
+
+  /* Left sidebar */
+  .x-sidebar {
+    width: 68px;
+    border-right: 1px solid #2f3336;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding-top: 16px;
+    flex-shrink: 0;
+  }
+  .x-logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #e7e9ea;
+  }
+  .x-nav-icon {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: #2f3336;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #71767b;
+    cursor: pointer;
+  }
+  .x-nav-icon:hover { background: #1d1f23; }
+
+  /* Main feed */
+  .x-main {
+    width: 600px;
+    border-right: 1px solid #2f3336;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .x-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #2f3336;
+    font-size: 20px;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+    z-index: 10;
+  }
+
+  /* Post */
+  .x-post {
+    padding: 12px 16px;
+    border-bottom: 1px solid #2f3336;
+    display: flex;
+    gap: 12px;
+    transition: opacity 0.3s, border-color 0.3s, background 0.3s;
+    cursor: default;
+    border-left: 3px solid transparent;
+  }
+  .x-post.highlighted {
+    border-left: 3px solid rgba(29,155,240,0.4);
+    cursor: pointer;
+  }
+  .x-post.highlighted:hover {
+    background: rgba(29,155,240,0.03);
+  }
+  .x-post.highlighted.active {
+    border-left: 3px solid #1d9bf0;
+    background: rgba(29,155,240,0.05);
+  }
+  .x-post.faded {
+    opacity: 0.45;
+  }
+  .x-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .x-post-body { flex: 1; min-width: 0; }
+  .x-post-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .x-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e7e9ea;
+  }
+  .x-verified {
+    width: 18px; height: 18px;
+    background: #1d9bf0;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .x-handle {
+    font-size: 15px;
+    color: #71767b;
+  }
+  .x-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #e7e9ea;
+    margin-bottom: 12px;
+    white-space: pre-wrap;
+  }
+  .x-text strong { font-weight: 700; }
+
+  /* Link card */
+  .x-link-card {
+    border: 1px solid #2f3336;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .x-link-image {
+    height: 130px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: #71767b;
+  }
+  .x-link-info {
+    padding: 12px;
+  }
+  .x-link-domain {
+    font-size: 13px;
+    color: #71767b;
+    margin-bottom: 2px;
+  }
+  .x-link-title {
+    font-size: 15px;
+    font-weight: 400;
+    color: #e7e9ea;
+    line-height: 1.3;
+  }
+
+  /* Post actions */
+  .x-actions {
+    display: flex;
+    justify-content: space-between;
+    max-width: 425px;
+    color: #71767b;
+    font-size: 13px;
+  }
+  .x-action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 50px;
+  }
+
+  /* NYT Trust Extension Panel */
+  .nyt-panel {
+    width: 380px;
+    background: #16181c;
+    border-left: 1px solid #2f3336;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  .nyt-panel-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid #2f3336;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    background: #16181c;
+  }
+  .nyt-badge {
+    width: 32px; height: 32px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.5px;
+    flex-shrink: 0;
+  }
+  .nyt-panel-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #e7e9ea;
+  }
+  .nyt-panel-sub {
+    font-size: 12px;
+    color: #71767b;
+  }
+  .nyt-toggle {
+    margin-left: auto;
+    width: 44px; height: 24px;
+    background: #1d9bf0;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .nyt-toggle::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    right: 2px;
+    transition: transform 0.3s;
+  }
+  .nyt-toggle.off {
+    background: #3e4144;
+  }
+  .nyt-toggle.off::after {
+    transform: translateX(-20px);
+  }
+
+  /* Panel scroll body */
+  .nyt-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+  .nyt-panel-body::-webkit-scrollbar { width: 6px; }
+  .nyt-panel-body::-webkit-scrollbar-track { background: transparent; }
+  .nyt-panel-body::-webkit-scrollbar-thumb { background: #2f3336; border-radius: 3px; }
+
+  /* Panel analyzing label */
+  .nyt-analyzing {
+    padding: 10px 20px;
+    font-size: 11px;
+    color: #71767b;
+    border-bottom: 1px solid #2f3336;
+    background: rgba(29,155,240,0.04);
+    flex-shrink: 0;
+  }
+  .nyt-analyzing strong { color: #a1a5ab; font-weight: 600; }
+
+  /* Match status */
+  .nyt-match {
+    margin: 16px;
+    background: #1e2028;
+    border: 1px solid #2f3336;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .nyt-match-status {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #2f3336;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #00ba7c;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .status-text { color: #00ba7c; }
+  .status-auto { color: #71767b; font-weight: 400; margin-left: auto; font-size: 11px; }
+
+  .nyt-article {
+    padding: 16px;
+  }
+  .nyt-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71767b;
+    margin-bottom: 8px;
+  }
+  .nyt-headline {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e7e9ea;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .nyt-meta {
+    font-size: 12px;
+    color: #71767b;
+    margin-bottom: 10px;
+  }
+  .nyt-excerpt {
+    font-size: 13px;
+    color: #a1a5ab;
+    line-height: 1.6;
+  }
+
+  /* Fact check section */
+  .nyt-section {
+    margin: 0 16px 16px;
+    padding: 14px 16px;
+    background: #1a1d24;
+    border-radius: 12px;
+    border: 1px solid #2f3336;
+  }
+  .nyt-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #e7e9ea;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fc-item {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid #2f3336;
+  }
+  .fc-item:first-of-type { border-top: none; }
+  .fc-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .fc-icon.ok { background: #00ba7c; color: #fff; }
+  .fc-icon.warn { background: #f59e0b; color: #fff; }
+  .fc-icon.unknown { background: #71767b; color: #fff; }
+  .fc-text {
+    font-size: 13px;
+    color: #a1a5ab;
+    line-height: 1.5;
+  }
+  .fc-text strong { color: #e7e9ea; }
+
+  /* Context box */
+  .nyt-context {
+    margin: 0 16px 16px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed #2f3336;
+  }
+  .nyt-context-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #71767b;
+    margin-bottom: 6px;
+  }
+  .nyt-context-text {
+    font-size: 13px;
+    color: #a1a5ab;
+    line-height: 1.6;
+  }
+
+  /* Reporter info */
+  .nyt-reporters {
+    margin: 0 16px 16px;
+  }
+  .nyt-reporter-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #2f3336;
+  }
+  .nyt-reporter-item:last-child { border-bottom: none; }
+  .nyt-reporter-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e7e9ea;
+  }
+  .nyt-reporter-beat {
+    font-size: 12px;
+    color: #71767b;
+  }
+
+  /* Read full article button */
+  .nyt-cta {
+    margin: 0 16px 12px;
+  }
+  .nyt-cta-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #1d9bf0;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+    font-family: inherit;
+  }
+  .nyt-cta-btn:hover { background: #1a8cd8; }
+
+  /* Article preview card */
+  .nyt-preview {
+    margin: 0 16px 16px;
+    padding: 12px;
+    background: #1e2028;
+    border: 1px solid #2f3336;
+    border-radius: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .nyt-preview-icon {
+    width: 36px; height: 36px;
+    background: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -0.3px;
+    flex-shrink: 0;
+  }
+  .nyt-preview-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e7e9ea;
+    line-height: 1.3;
+  }
+  .nyt-preview-sub {
+    font-size: 11px;
+    color: #71767b;
+    margin-top: 2px;
+  }
+
+  /* Demo note */
+  .nyt-demo-note {
+    margin: 8px 16px 16px;
+    font-size: 10px;
+    color: #555;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* Panel content transitions */
+  .panel-content {
+    animation: panelFadeIn 0.3s ease;
+  }
+  @keyframes panelFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  Concept Demo: NYT Trust Extension for Social Media <span>&middot; Dongjae Kang, Columbia SIPA</span>
+</div>
+
+<div class="x-layout">
+
+  <!-- X Sidebar -->
+  <div class="x-sidebar">
+    <div class="x-logo">&Xopf;</div>
+    <div class="x-nav-icon">&#x1F3E0;</div>
+    <div class="x-nav-icon">&#x1F50D;</div>
+    <div class="x-nav-icon">&#x1F514;</div>
+    <div class="x-nav-icon">&#x2709;</div>
+  </div>
+
+  <!-- X Main Feed -->
+  <div class="x-main">
+    <div class="x-header">For you</div>
+
+    <!-- Post 1: David Sacks -->
+    <div class="x-post highlighted active" data-panel="sacks" onclick="selectPost(this, 'sacks')">
+      <div class="x-avatar" style="background: linear-gradient(135deg, #1a1a2e, #0f3460);">DS</div>
+      <div class="x-post-body">
+        <div class="x-post-header">
+          <span class="x-name">David Sacks</span>
+          <span class="x-verified">&#10003;</span>
+          <span class="x-handle">&middot; @DavidSacks &middot; Nov 30</span>
+        </div>
+        <div class="x-text"><strong>INSIDE NYT'S HOAX FACTORY</strong>
+
+Five NYT reporters spent five months building a story about my supposed conflicts of interest as AI &amp; Crypto Czar.
+
+Through a series of "fact checks," they revealed their accusations, which I debunked one by one.
+
+The final article is a nothing burger.</div>
+        <div class="x-link-card" onclick="window.open('https://www.nytimes.com/2025/11/30/technology/david-sacks-white-house-profits.html','_blank'); event.stopPropagation();" style="cursor:pointer;">
+          <div class="x-link-image">nytimes.com</div>
+          <div class="x-link-info">
+            <div class="x-link-domain">nytimes.com</div>
+            <div class="x-link-title">Silicon Valley's Man in the White House Is Benefiting Himself and His Friends</div>
+          </div>
+        </div>
+        <div class="x-actions">
+          <span class="x-action">&#x1F4AC; 2.4K</span>
+          <span class="x-action">&#x1F504; 8.7K</span>
+          <span class="x-action">&#x2764;&#xFE0F; 42K</span>
+          <span class="x-action">&#x1F4CA; 3.2M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 2: Climate Lab / Microsoft water -->
+    <div class="x-post highlighted" data-panel="water" onclick="selectPost(this, 'water')">
+      <div class="x-avatar" style="background: linear-gradient(135deg, #0d6e3e, #2ea865);">CL</div>
+      <div class="x-post-body">
+        <div class="x-post-header">
+          <span class="x-name">Climate Lab</span>
+          <span class="x-verified">&#10003;</span>
+          <span class="x-handle">&middot; @climatelab &middot; Jan 28</span>
+        </div>
+        <div class="x-text">BREAKING: Microsoft will use 28 BILLION liters of water per year by 2030 for AI data centers. They promised to be "water positive." This is insane. &#x1F9F5;</div>
+        <div class="x-actions">
+          <span class="x-action">&#x1F4AC; 1.1K</span>
+          <span class="x-action">&#x1F504; 5.3K</span>
+          <span class="x-action">&#x2764;&#xFE0F; 19K</span>
+          <span class="x-action">&#x1F4CA; 1.4M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 3: Marc Benioff (faded) -->
+    <div class="x-post faded">
+      <div class="x-avatar" style="background: linear-gradient(135deg, #1e3a5f, #2d5a87);">MB</div>
+      <div class="x-post-body">
+        <div class="x-post-header">
+          <span class="x-name">Marc Benioff</span>
+          <span class="x-verified">&#10003;</span>
+          <span class="x-handle">&middot; @Benioff &middot; Nov 30</span>
+        </div>
+        <div class="x-text">This article reads like almost strategic sabotage, not journalism. I've known David for decades. The NYT should be ashamed.</div>
+        <div class="x-actions">
+          <span class="x-action">&#x1F4AC; 891</span>
+          <span class="x-action">&#x1F504; 3.2K</span>
+          <span class="x-action">&#x2764;&#xFE0F; 18K</span>
+          <span class="x-action">&#x1F4CA; 1.8M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 4: Tech journalist sharing article -->
+    <div class="x-post highlighted" data-panel="journalist" onclick="selectPost(this, 'journalist')">
+      <div class="x-avatar" style="background: linear-gradient(135deg, #4a5568, #718096);">KH</div>
+      <div class="x-post-body">
+        <div class="x-post-header">
+          <span class="x-name">Karen Hao</span>
+          <span class="x-verified">&#10003;</span>
+          <span class="x-handle">&middot; @_KarenHao &middot; Jan 28</span>
+        </div>
+        <div class="x-text">I worked on the data visualizations for this investigation. The gap between what Microsoft says publicly and what their internal documents show is staggering. Thread on what we found about water use in Jakarta, Phoenix, and Pune 👇</div>
+        <div class="x-link-card" onclick="window.open('https://www.nytimes.com/2026/01/27/technology/microsoft-water-ai-data-centers.html','_blank'); event.stopPropagation();" style="cursor:pointer;">
+          <div class="x-link-image" style="background: linear-gradient(135deg, #0d1b2a, #1b2838, #2a4158);">nytimes.com</div>
+          <div class="x-link-info">
+            <div class="x-link-domain">nytimes.com</div>
+            <div class="x-link-title">Microsoft Pledged to Save Water. In the A.I. Era, It Expects Water Use to Soar.</div>
+          </div>
+        </div>
+        <div class="x-actions">
+          <span class="x-action">&#x1F4AC; 892</span>
+          <span class="x-action">&#x1F504; 3.1K</span>
+          <span class="x-action">&#x2764;&#xFE0F; 8.4K</span>
+          <span class="x-action">&#x1F4CA; 2.8M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post 5: General user (faded) -->
+    <div class="x-post faded">
+      <div class="x-avatar" style="background: #2f3336;">JT</div>
+      <div class="x-post-body">
+        <div class="x-post-header">
+          <span class="x-name">Jake Thompson</span>
+          <span class="x-handle">&middot; @jakethompson &middot; Dec 1</span>
+        </div>
+        <div class="x-text">Can someone explain the David Sacks thing? Is the NYT article legit or is it actually a nothing burger like he says?</div>
+        <div class="x-actions">
+          <span class="x-action">&#x1F4AC; 234</span>
+          <span class="x-action">&#x1F504; 1.8K</span>
+          <span class="x-action">&#x2764;&#xFE0F; 9.2K</span>
+          <span class="x-action">&#x1F4CA; 890K</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NYT Trust Extension Panel -->
+  <div class="nyt-panel">
+    <div class="nyt-panel-header">
+      <div class="nyt-badge">NYT</div>
+      <div>
+        <div class="nyt-panel-title">NYT Trust Layer</div>
+        <div class="nyt-panel-sub">Context for this post</div>
+      </div>
+      <button class="nyt-toggle" id="nytToggle" onclick="toggleLayer()"></button>
+    </div>
+
+    <div class="nyt-analyzing" id="analyzingBar">
+      Analyzing: <strong id="analyzingLabel">David Sacks (@DavidSacks)</strong>
+    </div>
+
+    <div class="nyt-panel-body" id="panelBody">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Panel content for each post
+const panels = {
+  sacks: {
+    label: 'David Sacks (@DavidSacks)',
+    html: `
+      <div class="panel-content">
+        <div class="nyt-match">
+          <div class="nyt-match-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Article matched</span>
+            <span class="status-auto">Auto-detected from link</span>
+          </div>
+          <div class="nyt-article">
+            <div class="nyt-label">Referenced Article</div>
+            <div class="nyt-headline">Silicon Valley's Man in the White House Is Benefiting Himself and His Friends</div>
+            <div class="nyt-meta">By Cecilia Kang, Tripp Mickle, Ryan Mac, David Yaffe-Bellany, Theodore Schleifer &middot; Nov. 30, 2025</div>
+            <div class="nyt-excerpt">A five-month investigation examining how David Sacks retained 708 tech investments, including 449 in AI companies, while shaping federal AI and crypto policy as a special government employee.</div>
+          </div>
+        </div>
+
+        <div class="nyt-section">
+          <div class="nyt-section-title">&#x1F4CB; Checking claims in this post</div>
+
+          <div class="fc-item">
+            <div class="fc-icon ok">&#10003;</div>
+            <div class="fc-text"><strong>"Five reporters, five months"</strong><br>Confirmed. The investigation involved Cecilia Kang, Tripp Mickle, Ryan Mac, David Yaffe-Bellany, and Theodore Schleifer over approximately five months.</div>
+          </div>
+
+          <div class="fc-item">
+            <div class="fc-icon warn">!</div>
+            <div class="fc-text"><strong>"I debunked one by one"</strong><br>Context: Sacks hired Clare Locke, a defamation law firm, which sent a letter demanding the Times "abandon" the article. The Times responded it "remains confident in its reporting." 0 corrections have been issued.</div>
+          </div>
+
+          <div class="fc-item">
+            <div class="fc-icon warn">!</div>
+            <div class="fc-text"><strong>"Nothing burger"</strong><br>Context: The article documented 708 retained investments (449 in AI), two ethics waivers, and specific policy decisions benefiting personal investments. Sen. Elizabeth Warren launched a formal ethics investigation in September 2025.</div>
+          </div>
+
+          <div class="fc-item">
+            <div class="fc-icon unknown">?</div>
+            <div class="fc-text"><strong>"They shifted focus"</strong><br>Cannot be verified from public information. The Times has not commented on the specifics of its editorial process for this story.</div>
+          </div>
+        </div>
+
+        <div class="nyt-section">
+          <div class="nyt-section-title">Article integrity</div>
+          <div style="display:flex; align-items:center; gap:12px; padding:4px 0;">
+            <div style="font-size:28px; font-weight:800; color:#00ba7c; line-height:1;">0</div>
+            <div style="font-size:13px; color:#71767b; line-height:1.4;">Corrections issued since publication<br><span style="font-size:11px;">Last checked: Dec 2, 2025</span></div>
+          </div>
+        </div>
+
+        <div class="nyt-context">
+          <div class="nyt-context-label">Social response pattern</div>
+          <div class="nyt-context-text">Within hours of publication, dozens of Silicon Valley executives publicly defended Sacks. Notable supporters include Marc Benioff, Elon Musk, Marc Andreessen, Bill Ackman, and Sam Altman. Most defended Sacks' expertise and character but did not dispute the article's specific factual claims.</div>
+        </div>
+
+        <div class="nyt-cta">
+          <a href="https://www.nytimes.com/2025/11/30/technology/david-sacks-white-house-profits.html" target="_blank" class="nyt-cta-btn" style="text-decoration:none; display:inline-block; text-align:center;">Read full article &#x2192;</a>
+        </div>
+        <div class="nyt-preview" onclick="window.open('https://www.nytimes.com/2025/11/30/technology/david-sacks-white-house-profits.html','_blank')" style="cursor:pointer;">
+          <div class="nyt-preview-icon">NYT</div>
+          <div>
+            <div class="nyt-preview-title">Silicon Valley's Man in the White House Is Benefiting Himself...</div>
+            <div class="nyt-preview-sub">A five-month investigation by five reporters...</div>
+          </div>
+        </div>
+        <div class="nyt-demo-note">This is a concept prototype. Article text is reconstructed from publicly reported data for demonstration purposes.</div>
+      </div>
+    `
+  },
+
+  water: {
+    label: 'Climate Lab (@climatelab)',
+    html: `
+      <div class="panel-content">
+        <div class="nyt-match">
+          <div class="nyt-match-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Related article found</span>
+            <span class="status-auto">Keyword match: Microsoft, water, data centers</span>
+          </div>
+          <div class="nyt-article">
+            <div class="nyt-label">Referenced Article</div>
+            <div class="nyt-headline">Microsoft Pledged to Save Water. In the A.I. Era, It Expects Water Use to Soar.</div>
+            <div class="nyt-meta">By Karen Weise, Mira Rojanasakul, John Liu &middot; Jan. 27, 2026</div>
+            <div class="nyt-excerpt">Based on internal documents, Microsoft projects its global water consumption could reach 18 billion liters annually by 2030 across more than 100 data center complexes, contradicting its 2020 "water positive" pledge.</div>
+          </div>
+        </div>
+
+        <div class="nyt-section">
+          <div class="nyt-section-title">&#x1F4CB; Checking claims in this post</div>
+
+          <div class="fc-item">
+            <div class="fc-icon warn">!</div>
+            <div class="fc-text"><strong>"28 BILLION liters"</strong><br>Context: This was the original internal projection. After NYT contacted Microsoft for comment, the company revised the figure to 18 billion liters. Both figures are reported in the article. The revised figure excludes $50 billion in new deals.</div>
+          </div>
+
+          <div class="fc-item">
+            <div class="fc-icon warn">!</div>
+            <div class="fc-text"><strong>"water positive" promise</strong><br>Context: The pledge was made in 2020. Internal documents obtained by the Times show the opposite trajectory -- water consumption has increased annually since the pledge, driven by AI workloads.</div>
+          </div>
+
+          <div class="fc-item">
+            <div class="fc-icon unknown">?</div>
+            <div class="fc-text"><strong>"This is insane"</strong><br>Editorial opinion, not a factual claim. The Trust Layer does not evaluate subjective statements.</div>
+          </div>
+        </div>
+
+        <div class="nyt-context">
+          <div class="nyt-context-label">Key context</div>
+          <div class="nyt-context-text">The number in this post (28B liters) is the pre-revision figure. The article reports both the original (28B) and revised (18B) projections, noting the revised figure excludes $50B in new deals. Readers should be aware that the viral claim uses the higher, superseded number.</div>
+        </div>
+
+        <div class="nyt-cta">
+          <a href="https://www.nytimes.com/2026/01/27/technology/microsoft-water-ai-data-centers.html" target="_blank" class="nyt-cta-btn" style="text-decoration:none; display:inline-block; text-align:center;">Read full article &#x2192;</a>
+        </div>
+        <div class="nyt-preview" onclick="window.open('https://www.nytimes.com/2026/01/27/technology/microsoft-water-ai-data-centers.html','_blank')" style="cursor:pointer;">
+          <div class="nyt-preview-icon">NYT</div>
+          <div>
+            <div class="nyt-preview-title">Microsoft Pledged to Save Water. In the A.I. Era, It Expects...</div>
+            <div class="nyt-preview-sub">Based on internal documents across 100+ data centers...</div>
+          </div>
+        </div>
+        <div class="nyt-demo-note">This is a concept prototype. Article text is reconstructed from publicly reported data for demonstration purposes.</div>
+      </div>
+    `
+  },
+
+  journalist: {
+    label: 'Karen Hao (@_KarenHao)',
+    html: `
+      <div class="panel-content">
+        <div class="nyt-match">
+          <div class="nyt-match-status">
+            <span class="status-dot"></span>
+            <span class="status-text">Article matched</span>
+            <span class="status-auto">Direct link shared</span>
+          </div>
+          <div class="nyt-article">
+            <div class="nyt-label">Referenced Article</div>
+            <div class="nyt-headline">Microsoft Pledged to Save Water. In the A.I. Era, It Expects Water Use to Soar.</div>
+            <div class="nyt-meta">By Adam Satariano, Paul Mozur, Karen Weise &middot; Jan. 27, 2026</div>
+            <div class="nyt-excerpt">A five-month, three-continent investigation into Microsoft's internal water consumption projections, part of the "Empire of AI" series examining the real-world resource costs of artificial intelligence infrastructure.</div>
+          </div>
+        </div>
+
+        <div class="nyt-section">
+          <div class="nyt-section-title">&#x1F4F0; About this poster</div>
+          <div style="font-size:13px; color:#a1a5ab; line-height:1.6; padding:4px 0;">Karen Hao is a data journalist who contributed data visualizations to this investigation. She has a track record covering AI and its societal impacts. Her claim of involvement in the story is consistent with the article's credits.</div>
+        </div>
+
+        <div class="nyt-section">
+          <div class="nyt-section-title">&#x1F4CA; Key figures from the article</div>
+          <div style="font-size:13px; color:#a1a5ab; line-height:1.6; padding:4px 0;">
+            <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #2f3336;">
+              <span>2020 water use</span>
+              <strong style="color:#e7e9ea;">7.9 billion liters</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #2f3336;">
+              <span>2030 internal projection</span>
+              <strong style="color:#ef4444;">28 billion liters</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid #2f3336;">
+              <span>2030 revised (after NYT contact)</span>
+              <strong style="color:#f59e0b;">18 billion liters</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:6px 0;">
+              <span>Excluded from revised</span>
+              <strong style="color:#e7e9ea;">$50B+ in new deals</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="nyt-context">
+          <div class="nyt-context-label">&#x1F4DA; Series context</div>
+          <div class="nyt-context-text">This article is part of the <strong style="color:#e7e9ea;">"Empire of AI"</strong> series, examining the environmental and infrastructure costs of the AI boom. The series includes reporting from data center sites in Jakarta, Phoenix, and Pune.</div>
+        </div>
+
+        <div class="nyt-cta">
+          <a href="https://www.nytimes.com/2026/01/27/technology/microsoft-water-ai-data-centers.html" target="_blank" class="nyt-cta-btn" style="text-decoration:none; display:inline-block; text-align:center;">Read full article &#x2192;</a>
+        </div>
+        <div class="nyt-preview" onclick="window.open('https://www.nytimes.com/2026/01/27/technology/microsoft-water-ai-data-centers.html','_blank')" style="cursor:pointer;">
+          <div class="nyt-preview-icon">NYT</div>
+          <div>
+            <div class="nyt-preview-title">Microsoft Pledged to Save Water. In the A.I. Era, It Expects...</div>
+            <div class="nyt-preview-sub">Part of the "Empire of AI" investigative series</div>
+          </div>
+        </div>
+        <div class="nyt-demo-note">This is a concept prototype. Article references are based on publicly reported data for demonstration purposes.</div>
+      </div>
+    `
+  }
+};
+
+// Initialize
+document.getElementById('panelBody').innerHTML = panels.sacks.html;
+document.getElementById('analyzingLabel').textContent = panels.sacks.label;
+
+function selectPost(el, key) {
+  // Update active state on posts
+  document.querySelectorAll('.x-post.highlighted').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+
+  // Update panel
+  const body = document.getElementById('panelBody');
+  const bar = document.getElementById('analyzingLabel');
+
+  body.style.opacity = '0';
+  body.style.transform = 'translateY(6px)';
+
+  setTimeout(() => {
+    body.innerHTML = panels[key].html;
+    bar.textContent = panels[key].label;
+    body.scrollTop = 0;
+    body.style.opacity = '1';
+    body.style.transform = 'translateY(0)';
+  }, 150);
+}
+
+// Add transition to panel body
+const pb = document.getElementById('panelBody');
+pb.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+
+// Toggle Trust Layer on/off
+function toggleLayer() {
+  const toggle = document.getElementById('nytToggle');
+  const panelBody = document.getElementById('panelBody');
+  const analyzingBar = document.getElementById('analyzingBar');
+  const posts = document.querySelectorAll('.x-post.highlighted');
+
+  toggle.classList.toggle('off');
+  const isOff = toggle.classList.contains('off');
+
+  if (isOff) {
+    // Hide panel content + remove post highlights
+    panelBody.style.display = 'none';
+    analyzingBar.style.display = 'none';
+    posts.forEach(p => {
+      p.style.borderLeftColor = 'transparent';
+      p.style.cursor = 'default';
+    });
+  } else {
+    // Restore panel content + post highlights
+    panelBody.style.display = '';
+    analyzingBar.style.display = '';
+    posts.forEach(p => {
+      p.style.borderLeftColor = '';
+      p.style.cursor = '';
+    });
+  }
+}
+</script>
+
+</body>
+</html>
