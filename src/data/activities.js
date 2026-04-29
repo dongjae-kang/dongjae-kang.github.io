@@ -10,7 +10,13 @@ import ces1128 from '../assets/images/activities/ces-1128.jpg';
 import ces1133 from '../assets/images/activities/ces-1133.jpg';
 import hycMixerPresenting from '../assets/images/activities/hyc-mixer-presenting.jpeg';
 import kgsaCareerPoster from '../assets/images/activities/kgsa-career-poster.jpg';
-import kgsaCareerRoom from '../assets/images/activities/kgsa-career-room.jpg';
+import kgsaCareer1 from '../assets/images/activities/kgsa-career-1.jpg';
+import kgsaCareer2 from '../assets/images/activities/kgsa-career-2.jpg';
+import kgsaCareer3 from '../assets/images/activities/kgsa-career-3.jpg';
+import kgsaCareer4 from '../assets/images/activities/kgsa-career-4.jpg';
+import ecosocYouthForum1 from '../assets/images/activities/ecosoc-youth-forum-1.jpg';
+import ecosocYouthForum2 from '../assets/images/activities/ecosoc-youth-forum-2.jpg';
+import ecosocYouthForum3 from '../assets/images/activities/ecosoc-youth-forum-3.jpg';
 import kaistPodium from '../assets/images/activities/kaist-podium.jpeg';
 import upennMixerGroup from '../assets/images/activities/upenn-mixer-group.jpeg';
 import upennMixerOpening from '../assets/images/activities/upenn-mixer-opening.jpeg';
@@ -142,10 +148,13 @@ export const activities = [
     date: 'Apr 2026',
     location: 'United Nations Headquarters, New York',
     summary: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber.',
-    description: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber. Delivering prepared remarks on responsible AI, digital governance, and youth participation in innovation policy, alongside speakers and respondents from the Aspen Institute, Amazon, BMW Foundation, UNCTAD, UNEP, and the Council of Europe.',
-    tags: ['UN', 'Platform Governance', 'Speaking'],
+    description: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber. Delivered prepared remarks on responsible AI, digital governance, and youth participation in innovation policy, speaking on how innovation should strengthen, rather than erode, human agency in the design of digital systems. Spoke alongside speakers and respondents from the Aspen Institute, Amazon, BMW Foundation, UNCTAD, UNEP, and the Council of Europe.',
+    tags: ['UN', 'Platform Governance'],
     links: [],
-    media: { photos: [] },
+    media: {
+      cover: ecosocYouthForum1,
+      photos: [ecosocYouthForum1, ecosocYouthForum2, ecosocYouthForum3],
+    },
   },
   {
     id: 'valedictorian',
@@ -222,7 +231,11 @@ export const communityEvents = [
     summary: "Organized and MC'd a career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.",
     tags: ['Leadership', 'Community'],
     links: [],
-    media: { cover: kgsaCareerPoster, poster: kgsaCareerPoster, photos: [kgsaCareerPoster] },
+    media: {
+      cover: kgsaCareer1,
+      poster: kgsaCareerPoster,
+      photos: [kgsaCareer1, kgsaCareer2, kgsaCareer3, kgsaCareer4],
+    },
   },
   {
     id: 'ces-visit',
