@@ -164,6 +164,12 @@ const TagList = styled.div`
   gap: 10px;
 `;
 
+const CardHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
 /* ─── TIER 2: Medium cards ─── */
 const Tier2Card = styled.article`
   display: grid;
@@ -361,10 +367,10 @@ function Activities() {
                       </Placeholder>
                     )}
                   </Photo>
-                  <div>
+                  <CardHeader>
                     <CardTitle>{item.title}</CardTitle>
                     <DateText>{item.date}</DateText>
-                  </div>
+                  </CardHeader>
                   <Summary>{item.summary}</Summary>
                   <TagList>
                     {item.tags.map((tag) => (<Tag key={tag}>{tag}</Tag>))}

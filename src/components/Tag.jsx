@@ -27,6 +27,8 @@ const TagBase = styled.span`
   font-weight: 400;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  line-height: 1.4;
+  white-space: nowrap;
   transition: ${({ theme }) => theme.transitions.hover};
   ${({ $variant = 'light' }) => variants[$variant]};
   ${({ $clickable }) =>

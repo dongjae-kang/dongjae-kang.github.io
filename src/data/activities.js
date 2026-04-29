@@ -144,7 +144,7 @@ export const activities = [
   {
     id: 'un-youth-forum',
     tier: 1,
-    title: 'UN ECOSOC Youth Forum — SDG 9 Respondent',
+    title: 'UN Youth Forum — SDG 9 Respondent',
     date: 'Apr 2026',
     location: 'United Nations Headquarters, New York',
     summary: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber.',
