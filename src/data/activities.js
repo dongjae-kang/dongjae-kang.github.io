@@ -96,6 +96,13 @@ import sv4473 from '../assets/images/life/golf/sunsetvalley-4473.jpg';
 import sv4513 from '../assets/images/life/golf/sunsetvalley-4513.jpg';
 import sv4535 from '../assets/images/life/golf/sunsetvalley-4535.jpg';
 import sv4584 from '../assets/images/life/golf/sunsetvalley-4584.jpg';
+import lynx5394 from '../assets/images/life/golf/lynx-river-5394.jpg';
+import lynx5423 from '../assets/images/life/golf/lynx-river-5423.jpg';
+import lynx5431 from '../assets/images/life/golf/lynx-river-5431.jpg';
+import lynx5435 from '../assets/images/life/golf/lynx-river-5435.jpg';
+import overpeck5765 from '../assets/images/life/golf/overpeck-5765.jpg';
+import overpeck5781 from '../assets/images/life/golf/overpeck-5781.jpg';
+import overpeck5821 from '../assets/images/life/golf/overpeck-5821.jpg';
 
 // ─── TIER 3: VISITS ───
 import vegas1005 from '../assets/images/life/vegas/vegas-1005.jpg';
@@ -417,6 +424,40 @@ export const offTheClock = {
   golf: {
     label: 'Golf',
     items: [
+      {
+        id: 'golf-overpeck',
+        title: 'Overpeck Golf Course',
+        date: 'Apr 18, 2026',
+        location: 'Teaneck, NJ',
+        mapUrl: 'https://maps.google.com/?q=Overpeck+Golf+Course+273+E+Cedar+Ln+Teaneck+NJ',
+        mapCoords: [40.8859, -74.0050],
+        media: {
+          cover: overpeck5765,
+          photos: [
+            { src: overpeck5765 },
+            { src: overpeck5781 },
+            { src: overpeck5821 },
+            { src: '/assets/videos/overpeck-golf.mp4', type: 'video' },
+          ],
+        },
+      },
+      {
+        id: 'golf-lynx-riverbend',
+        title: 'The Lynx at River Bend Golf Club',
+        date: 'Apr 11, 2026',
+        location: 'Port Jervis, NY',
+        mapUrl: 'https://maps.google.com/?q=The+Lynx+at+River+Bend+Golf+Club+87+Neversink+Dr+Port+Jervis+NY',
+        mapCoords: [41.3782, -74.6735],
+        media: {
+          cover: lynx5394,
+          photos: [
+            { src: lynx5394 },
+            { src: lynx5423 },
+            { src: lynx5431 },
+            { src: lynx5435 },
+          ],
+        },
+      },
       {
         id: 'golf-sunsetvalley',
         title: 'Sunset Valley Golf Course',
