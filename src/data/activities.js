@@ -146,6 +146,7 @@ export const activities = [
     tier: 1,
     title: 'UN Youth Forum — SDG 9 Respondent',
     date: 'Apr 2026',
+    sortDate: '2026-04-15',
     location: 'United Nations Headquarters, New York',
     summary: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber.',
     description: 'Selected as Respondent for the plenary session "Building the future: youth at the forefront of SDG 9," co-led by UNIDO and ITU at the Trusteeship Council Chamber. Delivered prepared remarks on responsible AI, digital governance, and youth participation in innovation policy, speaking on how innovation should strengthen, rather than erode, human agency in the design of digital systems. Spoke alongside speakers and respondents from the Aspen Institute, Amazon, BMW Foundation, UNCTAD, UNEP, and the Council of Europe.',
@@ -161,6 +162,7 @@ export const activities = [
     tier: 1,
     title: 'KAIST Valedictorian',
     date: 'Feb 2026',
+    sortDate: '2026-02-20',
     location: 'Daejeon',
     summary: 'Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.',
     description: 'Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea.',
@@ -179,6 +181,7 @@ export const activities = [
     tier: 1,
     title: 'UN General Assembly High-Level Week',
     date: 'Sep 2025',
+    sortDate: '2025-09-22',
     location: 'New York',
     summary: 'Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.',
     description: 'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations.',
@@ -191,6 +194,7 @@ export const activities = [
     tier: 1,
     title: 'CHI 2025 Workshop — Yokohama',
     date: 'Apr 2025',
+    sortDate: '2025-04-26',
     location: 'Yokohama',
     summary: 'Presented CrisisNews as sole presenter at the ACM CHI 2025 News Futures Workshop in Yokohama, Japan.',
     description: 'Kang presented the CrisisNews project at the ACM CHI 2025 News Futures Workshop in Yokohama as the sole presenter. The paper focused on 19 social media crisis cases and their implications for platform design, news systems, and public communication.',
@@ -207,6 +211,7 @@ export const activities = [
     tier: 1,
     title: 'KAIST Student Council President',
     date: '2022-2023',
+    sortDate: '2023-12-31',
     location: 'KAIST',
     summary: "Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.",
     description: "As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.",
@@ -227,6 +232,7 @@ export const communityEvents = [
     id: 'kgsa-career',
     title: 'KGSA Career Event — Organizer & MC',
     date: 'Mar 28, 2026',
+    sortDate: '2026-03-28',
     location: 'Columbia University',
     summary: "Organized and MC'd a career event featuring speakers from TADA, Lawfully, DeepMind, Merrill Lynch, and the UN.",
     tags: ['Leadership', 'Community'],
@@ -241,6 +247,7 @@ export const communityEvents = [
     id: 'ces-visit',
     title: 'CES 2026',
     date: 'Jan 8-9, 2026',
+    sortDate: '2026-01-08',
     location: 'Las Vegas',
     summary: 'Attended CES 2026, exploring keynotes on AI, quantum computing, and consumer technology across Foundry and Center Stage sessions.',
     tags: ['Technology', 'Industry'],
@@ -251,6 +258,7 @@ export const communityEvents = [
     id: 'upenn-mixer',
     title: '5-School Mixer at UPenn — MC',
     date: 'Nov 15, 2025',
+    sortDate: '2025-11-15',
     location: 'Philadelphia',
     summary: 'Main MC for a five-school mixer at UPenn attended by approximately 200 Korean students from University of Pennsylvania, Columbia, Johns Hopkins, Princeton, and Rutgers.',
     tags: ['Leadership', 'Community'],
@@ -261,6 +269,7 @@ export const communityEvents = [
     id: 'hyc-mixer',
     title: 'Harvard-Yale-Columbia Mixer — MC',
     date: 'Oct 11, 2025',
+    sortDate: '2025-10-11',
     location: 'Harvard University',
     summary: 'Main MC for a mixer bringing together approximately 150 Korean students from Harvard, Yale, and Columbia.',
     tags: ['Leadership', 'Community'],
@@ -271,6 +280,7 @@ export const communityEvents = [
     id: 'kgsa-welcome-night',
     title: 'KGSA Welcome Night — Organizer & MC',
     date: 'Sep 13, 2025',
+    sortDate: '2025-09-13',
     location: 'Lerner Hall, Columbia University',
     summary: "Organized and MC'd KGSA Welcome Night for approximately 200 new students, welcoming incoming Korean graduate students to Columbia.",
     tags: ['Leadership', 'Community'],
@@ -281,6 +291,7 @@ export const communityEvents = [
     id: 'columbia-ai-club',
     title: 'Columbia AI Club at SIPA',
     date: '2025-Present',
+    sortDate: '2025-09-01',
     location: 'New York',
     summary: 'Founding board member and Vice President of Research Lab.',
     tags: ['Leadership', 'AI'],
@@ -291,6 +302,7 @@ export const communityEvents = [
     id: 'negotiation-studies',
     title: 'Korean Association of Negotiation Studies',
     date: 'Jan-Jul 2025',
+    sortDate: '2025-07-31',
     location: 'Seoul',
     summary: 'Student Staff supporting the 19th President, coordinating the Spring Academic Conference and the 30th Anniversary Event.',
     tags: ['Academia', 'Korea'],
@@ -301,6 +313,7 @@ export const communityEvents = [
     id: 'naek-yehs',
     title: 'National Academy of Engineering of Korea (NAEK)',
     date: '2024-2025',
+    sortDate: '2025-06-01',
     location: 'Seoul',
     summary: 'Appointed as Young Engineers Honor Society member by Chairman Kim Ki-nam, former Vice Chairman of Samsung Electronics.',
     tags: ['Engineering', 'Korea'],
@@ -316,361 +329,358 @@ export const communityEvents = [
 // TIER 3: OFF THE CLOCK — Categorized
 // ═══════════════════════════════════════
 
-export const offTheClock = {
-  nyphil: {
-    label: 'Philharmonic',
-    items: [
-      {
-        id: 'nyphil-dudamel-lang',
-        title: "Dudamel & David Lang's the wealth of nations",
-        date: 'Mar 21, 2026',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: ["David Lang — the wealth of nations (World Premiere, NY Phil Co-commission with Aspen Music Festival)"],
-          artists: [
-            { name: 'Gustavo Dudamel', role: 'Conductor' },
-            { name: 'Fleur Barron', role: 'Mezzo-Soprano' },
-            { name: 'Davone Tines', role: 'Bass-Baritone' },
-            { name: 'New York Philharmonic Chorus (Malcolm J. Merriweather, director)', role: 'Chorus' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/dudamel-and-david-langs-the-wealth-of-nations/',
-        media: {
-          cover: nyphil3a,
-          photos: [
-            { src: nyphil3a },
-            { src: nyphil3b },
-            { src: nyphil3c },
-            { src: nyphil3d },
-            { src: nyphil3e },
-            { src: nyphil3f },
-            { src: nyphil3g },
-          ],
-        },
-      },
-      {
-        id: 'nyphil-mirga-ax',
-        title: 'Mirga Grazinyte-Tyla & Emanuel Ax',
-        date: 'Feb 28, 2026',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: [
-            'Vaughan Williams — Fantasia on a Theme by Thomas Tallis',
-            'John Williams — Piano Concerto (New York Premiere)',
-            'M. Weinberg — Symphony No. 5',
-          ],
-          artists: [
-            { name: 'Mirga Grazinyte-Tyla', role: 'Conductor' },
-            { name: 'Emanuel Ax', role: 'Piano' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/mirga-grazinyte-tyla-and-emanuel-ax/',
-        media: {
-          cover: nyphil2a,
-          photos: [
-            { src: nyphil2a },
-            { src: nyphil2b },
-            { src: nyphil2c },
-          ],
-        },
-      },
-      {
-        id: 'nyphil-elektra-beethoven',
-        title: "Elektra Suite & Beethoven's Violin Concerto",
-        date: 'Jan 29, 2026',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: [
-            'Beethoven — Violin Concerto',
-            'R. Strauss / Arr. M. Honeck; Orch. T. Ille — Elektra Suite',
-          ],
-          artists: [
-            { name: 'Manfred Honeck', role: 'Conductor' },
-            { name: 'Maria Duenas', role: 'Violin' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/beethovens-violin-concerto-elektra-suite/',
-        media: { photos: [] },
-      },
-      {
-        id: 'nyphil-langree-mozart',
-        title: "Louis Langree and Mozart's Gran partita",
-        date: 'Jan 2, 2026',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: [
-            'R. Strauss — Serenade in E-flat major, Op. 7',
-            'Mozart — Serenade No. 10, Gran partita',
-          ],
-          artists: [
-            { name: 'Louis Langree', role: 'Conductor' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/louis-langree-and-mozarts-gran-partita/',
-        media: {
-          cover: nyphil1,
-          photos: [{ src: nyphil1 }],
-        },
-      },
-      {
-        id: 'nyphil-dudamel-yunchan',
-        title: 'Gustavo Dudamel & Yunchan Lim',
-        date: 'Sep 11, 2025',
-        location: 'David Geffen Hall, Lincoln Center',
-        program: {
-          pieces: [
-            'Leilehua Lanzilotti — of light and stone (World Premiere, NY Phil Commission)',
-            'Bartok — Piano Concerto No. 3',
-            'Ives — Symphony No. 2',
-          ],
-          artists: [
-            { name: 'Gustavo Dudamel', role: 'Conductor' },
-            { name: 'Yunchan Lim', role: 'Piano' },
-          ],
-        },
-        link: 'https://www.nyphil.org/concerts-tickets/2526/gustavo-dudamel-and-yunchan-lim/',
-        media: { cover: nyphilYunchan7299, photos: [{ src: nyphilYunchan7299 }, { src: nyphilYunchan7305 }] },
-      },
-    ],
-  },
+// ═══════════════════════════════════════
+// TIER 3: OFF THE CLOCK
+// Flat reverse-chronological list. `category` drives the lightbox variant
+// (concert → program panel, golf → course map); it is not shown in the UI.
+// Display dates use "Mon YYYY"; sortDate carries the exact day for ordering.
+// ═══════════════════════════════════════
 
-  golf: {
-    label: 'Golf',
-    items: [
-      {
-        id: 'golf-overpeck',
-        title: 'Overpeck Golf Course',
-        date: 'Apr 18, 2026',
-        location: 'Teaneck, NJ',
-        mapUrl: 'https://maps.google.com/?q=Overpeck+Golf+Course+273+E+Cedar+Ln+Teaneck+NJ',
-        mapCoords: [40.8859, -74.0050],
-        media: {
-          cover: overpeck5765,
-          photos: [
-            { src: overpeck5765 },
-            { src: overpeck5781 },
-            { src: overpeck5821 },
-            { src: '/assets/videos/overpeck-golf.mp4', type: 'video' },
-          ],
-        },
-      },
-      {
-        id: 'golf-lynx-riverbend',
-        title: 'The Lynx at River Bend Golf Club',
-        date: 'Apr 11, 2026',
-        location: 'Port Jervis, NY',
-        mapUrl: 'https://maps.google.com/?q=The+Lynx+at+River+Bend+Golf+Club+87+Neversink+Dr+Port+Jervis+NY',
-        mapCoords: [41.3782, -74.6735],
-        media: {
-          cover: lynx5394,
-          photos: [
-            { src: lynx5394 },
-            { src: lynx5423 },
-            { src: lynx5431 },
-            { src: lynx5435 },
-          ],
-        },
-      },
-      {
-        id: 'golf-sunsetvalley',
-        title: 'Sunset Valley Golf Course',
-        date: 'Mar 17, 2026',
-        location: 'Pomona, NY',
-        mapUrl: 'https://maps.google.com/?q=Sunset+Valley+Golf+Course+Pomona+NY',
-        mapCoords: [41.1879, -74.0536],
-        media: {
-          cover: sv4473,
-          photos: [
-            { src: sv4473 },
-            { src: sv4513 },
-            { src: sv4535 },
-            { src: sv4584 },
-          ],
-        },
-      },
-      {
-        id: 'golf-vancortlandt',
-        title: 'Van Cortlandt Golf Course',
-        date: 'Mar 15, 2026',
-        location: 'Bronx, New York',
-        mapUrl: 'https://maps.google.com/?q=Van+Cortlandt+Park+Golf+Course+Bronx+NY',
-        mapCoords: [40.8958, -73.8986],
-        media: {
-          cover: vc4433,
-          photos: [
-            { src: vc4433 },
-            { src: vc4444 },
-            { src: vc4448 },
-          ],
-        },
-      },
-      {
-        id: 'golf-stanford',
-        title: 'Stanford Golf Course',
-        date: 'Jan 15, 2026',
-        location: 'Stanford, CA',
-        mapUrl: 'https://maps.google.com/?q=Stanford+Golf+Course+Stanford+CA',
-        mapCoords: [37.4346, -122.1636],
-        media: {
-          cover: stanfordGolf2248,
-          photos: [
-            { src: stanfordGolf2248 },
-            { src: stanfordGolf2271 },
-            { src: stanfordGolf2274 },
-            { src: stanfordGolf2278 },
-            { src: stanfordGolf2282 },
-            { src: '/assets/videos/stanford-golf-1.mp4', type: 'video' },
-            { src: '/assets/videos/stanford-golf-2.mp4', type: 'video' },
-          ],
-        },
-      },
-      {
-        id: 'golf-mosholu',
-        title: 'Mosholu Golf Course',
-        date: 'Nov 8, 2025',
-        location: 'Bronx, New York',
-        mapUrl: 'https://maps.google.com/?q=Mosholu+Golf+Course+Bronx+NY',
-        mapCoords: [40.8819, -73.8847],
-        media: {
-          photos: [
-            { src: mosholu8615 },
-            { src: mosholu8620 },
-            { src: '/assets/videos/mosholu-golf.mp4', type: 'video' },
-          ],
-        },
-      },
-    ],
+export const offTheClockItems = [
+  {
+    id: 'golf-overpeck',
+    category: 'golf',
+    title: 'Overpeck Golf Course',
+    date: 'Apr 2026',
+    sortDate: '2026-04-18',
+    location: 'Teaneck, NJ',
+    mapUrl: 'https://maps.google.com/?q=Overpeck+Golf+Course+273+E+Cedar+Ln+Teaneck+NJ',
+    mapCoords: [40.8859, -74.0050],
+    media: {
+      cover: overpeck5765,
+      photos: [
+        { src: overpeck5765 },
+        { src: overpeck5781 },
+        { src: overpeck5821 },
+        { src: '/assets/videos/overpeck-golf.mp4', type: 'video' },
+      ],
+    },
   },
+  {
+    id: 'golf-lynx-riverbend',
+    category: 'golf',
+    title: 'The Lynx at River Bend Golf Club',
+    date: 'Apr 2026',
+    sortDate: '2026-04-11',
+    location: 'Port Jervis, NY',
+    mapUrl: 'https://maps.google.com/?q=The+Lynx+at+River+Bend+Golf+Club+87+Neversink+Dr+Port+Jervis+NY',
+    mapCoords: [41.3782, -74.6735],
+    media: {
+      cover: lynx5394,
+      photos: [
+        { src: lynx5394 },
+        { src: lynx5423 },
+        { src: lynx5431 },
+        { src: lynx5435 },
+      ],
+    },
+  },
+  {
+    id: 'nyphil-dudamel-lang',
+    category: 'concert',
+    title: "Dudamel & David Lang's the wealth of nations",
+    date: 'Mar 2026',
+    sortDate: '2026-03-21',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: ["David Lang — the wealth of nations (World Premiere, NY Phil Co-commission with Aspen Music Festival)"],
+      artists: [
+        { name: 'Gustavo Dudamel', role: 'Conductor' },
+        { name: 'Fleur Barron', role: 'Mezzo-Soprano' },
+        { name: 'Davone Tines', role: 'Bass-Baritone' },
+        { name: 'New York Philharmonic Chorus (Malcolm J. Merriweather, director)', role: 'Chorus' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2526/dudamel-and-david-langs-the-wealth-of-nations/',
+    media: {
+      cover: nyphil3a,
+      photos: [
+        { src: nyphil3a },
+        { src: nyphil3b },
+        { src: nyphil3c },
+        { src: nyphil3d },
+        { src: nyphil3e },
+        { src: nyphil3f },
+        { src: nyphil3g },
+      ],
+    },
+  },
+  {
+    id: 'golf-sunsetvalley',
+    category: 'golf',
+    title: 'Sunset Valley Golf Course',
+    date: 'Mar 2026',
+    sortDate: '2026-03-17',
+    location: 'Pomona, NY',
+    mapUrl: 'https://maps.google.com/?q=Sunset+Valley+Golf+Course+Pomona+NY',
+    mapCoords: [41.1879, -74.0536],
+    media: {
+      cover: sv4473,
+      photos: [
+        { src: sv4473 },
+        { src: sv4513 },
+        { src: sv4535 },
+        { src: sv4584 },
+      ],
+    },
+  },
+  {
+    id: 'golf-vancortlandt',
+    category: 'golf',
+    title: 'Van Cortlandt Golf Course',
+    date: 'Mar 2026',
+    sortDate: '2026-03-15',
+    location: 'Bronx, NY',
+    mapUrl: 'https://maps.google.com/?q=Van+Cortlandt+Park+Golf+Course+Bronx+NY',
+    mapCoords: [40.8958, -73.8986],
+    media: {
+      cover: vc4433,
+      photos: [
+        { src: vc4433 },
+        { src: vc4444 },
+        { src: vc4448 },
+      ],
+    },
+  },
+  {
+    id: 'nyphil-mirga-ax',
+    category: 'concert',
+    title: 'Mirga Grazinyte-Tyla & Emanuel Ax',
+    date: 'Feb 2026',
+    sortDate: '2026-02-28',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'Vaughan Williams — Fantasia on a Theme by Thomas Tallis',
+        'John Williams — Piano Concerto (New York Premiere)',
+        'M. Weinberg — Symphony No. 5',
+      ],
+      artists: [
+        { name: 'Mirga Grazinyte-Tyla', role: 'Conductor' },
+        { name: 'Emanuel Ax', role: 'Piano' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2526/mirga-grazinyte-tyla-and-emanuel-ax/',
+    media: {
+      cover: nyphil2a,
+      photos: [
+        { src: nyphil2a },
+        { src: nyphil2b },
+        { src: nyphil2c },
+      ],
+    },
+  },
+  {
+    id: 'golf-stanford',
+    category: 'golf',
+    title: 'Stanford Golf Course',
+    date: 'Jan 2026',
+    sortDate: '2026-01-15',
+    location: 'California',
+    mapUrl: 'https://maps.google.com/?q=Stanford+Golf+Course+Stanford+CA',
+    mapCoords: [37.4346, -122.1636],
+    media: {
+      cover: stanfordGolf2248,
+      photos: [
+        { src: stanfordGolf2248 },
+        { src: stanfordGolf2271 },
+        { src: stanfordGolf2274 },
+        { src: stanfordGolf2278 },
+        { src: stanfordGolf2282 },
+        { src: '/assets/videos/stanford-golf-1.mp4', type: 'video' },
+        { src: '/assets/videos/stanford-golf-2.mp4', type: 'video' },
+      ],
+    },
+  },
+  {
+    id: 'stanford-visit',
+    category: 'travel',
+    title: 'Stanford',
+    date: 'Jan 2026',
+    sortDate: '2026-01-14',
+    location: 'California',
+    media: {
+      photos: [
+        { src: stanford2162 },
+        { src: stanford2166 },
+        { src: stanford2180 },
+        { src: stanford2221 },
+      ],
+    },
+  },
+  {
+    id: 'sf-visit',
+    category: 'travel',
+    title: 'San Francisco',
+    date: 'Jan 2026',
+    sortDate: '2026-01-13',
+    location: 'California',
+    media: {
+      photos: [
+        { src: sf1805 },
+        { src: sf1845 },
+        { src: sf1905 },
+        { src: sf1915 },
+        { src: sf1940 },
+        { src: '/assets/videos/sf-golden-gate.mp4', type: 'video' },
+      ],
+    },
+  },
+  {
+    id: 'la-visit',
+    category: 'travel',
+    title: 'Los Angeles',
+    date: 'Jan 2026',
+    sortDate: '2026-01-11',
+    location: 'California',
+    media: {
+      photos: [
+        { src: la1344 },
+        { src: la1620 },
+        { src: la1644 },
+        { src: la1695 },
+        { src: la1693 },
+        { src: la1752 },
+        { src: la3881 },
+        { src: la1788 },
+        { src: la1301 },
+        { src: '/assets/videos/la-visit-1.mp4', type: 'video' },
+        { src: '/assets/videos/la-visit-2.mp4', type: 'video' },
+      ],
+    },
+  },
+  {
+    id: 'las-vegas-visit',
+    category: 'travel',
+    title: 'Las Vegas',
+    date: 'Jan 2026',
+    sortDate: '2026-01-08',
+    location: 'Nevada',
+    media: {
+      photos: [
+        { src: vegas1005 },
+        { src: vegas1120 },
+        { src: vegas1138 },
+        { src: vegas2405 },
+        { src: vegas1265 },
+        { src: vegas1280 },
+      ],
+    },
+  },
+  {
+    id: 'nyphil-langree-mozart',
+    category: 'concert',
+    title: "Louis Langree and Mozart's Gran partita",
+    date: 'Jan 2026',
+    sortDate: '2026-01-02',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'R. Strauss — Serenade in E-flat major, Op. 7',
+        'Mozart — Serenade No. 10, Gran partita',
+      ],
+      artists: [
+        { name: 'Louis Langree', role: 'Conductor' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2526/louis-langree-and-mozarts-gran-partita/',
+    media: {
+      cover: nyphil1,
+      photos: [{ src: nyphil1 }],
+    },
+  },
+  {
+    id: 'golf-mosholu',
+    category: 'golf',
+    title: 'Mosholu Golf Course',
+    date: 'Nov 2025',
+    sortDate: '2025-11-08',
+    location: 'Bronx, NY',
+    mapUrl: 'https://maps.google.com/?q=Mosholu+Golf+Course+Bronx+NY',
+    mapCoords: [40.8819, -73.8847],
+    media: {
+      photos: [
+        { src: mosholu8615 },
+        { src: mosholu8620 },
+        { src: '/assets/videos/mosholu-golf.mp4', type: 'video' },
+      ],
+    },
+  },
+  {
+    id: 'intrepid-museum',
+    category: 'museum',
+    title: 'Intrepid Museum',
+    date: 'Nov 2025',
+    sortDate: '2025-11-01',
+    location: 'New York, NY',
+    media: {
+      photos: [{ src: intrepidSimulator }],
+    },
+  },
+  {
+    id: 'nyphil-dudamel-yunchan',
+    category: 'concert',
+    title: 'Gustavo Dudamel & Yunchan Lim',
+    date: 'Sep 2025',
+    sortDate: '2025-09-11',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'Leilehua Lanzilotti — of light and stone (World Premiere, NY Phil Commission)',
+        'Bartok — Piano Concerto No. 3',
+        'Ives — Symphony No. 2',
+      ],
+      artists: [
+        { name: 'Gustavo Dudamel', role: 'Conductor' },
+        { name: 'Yunchan Lim', role: 'Piano' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2526/gustavo-dudamel-and-yunchan-lim/',
+    media: { cover: nyphilYunchan7299, photos: [{ src: nyphilYunchan7299 }, { src: nyphilYunchan7305 }] },
+  },
+];
 
-  visits: {
-    label: 'Visits',
-    items: [
-      {
-        id: 'las-vegas-visit',
-        title: 'Las Vegas',
-        date: '',
-        location: 'Nevada',
-        media: {
-          photos: [
-            { src: vegas1005 },
-            { src: vegas1120 },
-            { src: vegas1138 },
-            { src: vegas2405 },
-            { src: vegas1265 },
-            { src: vegas1280 },
-          ],
-        },
-      },
-      {
-        id: 'la-visit',
-        title: 'Los Angeles',
-        date: '',
-        location: 'California',
-        media: {
-          photos: [
-            { src: la1344 },
-            { src: la1620 },
-            { src: la1644 },
-            { src: la1695 },
-            { src: la1693 },
-            { src: la1752 },
-            { src: la3881 },
-            { src: la1788 },
-            { src: la1301 },
-            { src: '/assets/videos/la-visit-1.mp4', type: 'video' },
-            { src: '/assets/videos/la-visit-2.mp4', type: 'video' },
-          ],
-        },
-      },
-      {
-        id: 'sf-visit',
-        title: 'San Francisco',
-        date: '',
-        location: 'California',
-        media: {
-          photos: [
-            { src: sf1805 },
-            { src: sf1845 },
-            { src: sf1905 },
-            { src: sf1915 },
-            { src: sf1940 },
-            { src: '/assets/videos/sf-golden-gate.mp4', type: 'video' },
-          ],
-        },
-      },
-      {
-        id: 'stanford-visit',
-        title: 'Stanford',
-        date: '',
-        location: 'Palo Alto, California',
-        media: {
-          photos: [
-            { src: stanford2162 },
-            { src: stanford2166 },
-            { src: stanford2180 },
-            { src: stanford2221 },
-          ],
-        },
-      },
-      {
-        id: 'intrepid-museum',
-        title: 'Intrepid Museum',
-        date: '',
-        location: 'New York',
-        media: {
-          photos: [{ src: intrepidSimulator }],
-        },
-      },
-    ],
+// KAIST-era items render as their own group below the timeline.
+export const kaistYears = [
+  {
+    id: 'kaist-memories',
+    title: 'Memories',
+    location: 'Daejeon',
+    media: {
+      photos: [
+        { src: kaistMemories1 },
+        { src: kaistMemories2 },
+        { src: kaistMemories5 },
+        { src: kaistMemories6 },
+        { src: kaistMemories7 },
+        { src: friendsDinner },
+      ],
+    },
   },
-
-  kaist: {
-    label: 'KAIST',
-    items: [
-      {
-        id: 'kaist-memories',
-        title: 'Memories',
-        date: 'KAIST years',
-        location: 'Daejeon',
-        media: {
-          photos: [
-            { src: kaistMemories1 },
-            { src: kaistMemories2 },
-            { src: kaistMemories5 },
-            { src: kaistMemories6 },
-            { src: kaistMemories7 },
-            { src: friendsDinner },
-          ],
-        },
-      },
-      {
-        id: 'kaist-orchestra',
-        title: 'Orchestra — 1st Trumpet',
-        date: 'KAIST years',
-        location: 'Daejeon',
-        media: {
-          cover: orchestraGroup,
-          photos: [
-            { src: orchestraGroup },
-            { src: orchestraConcert },
-            { src: orchestraSection },
-          ],
-        },
-      },
-      {
-        id: 'kaist-soccer',
-        title: 'Varsity Soccer Club',
-        date: 'KAIST years',
-        location: 'Daejeon',
-        media: {
-          cover: futsal,
-          photos: [
-            { src: futsal },
-            { src: beachSunset },
-            { src: beachGroup },
-          ],
-        },
-      },
-    ],
+  {
+    id: 'kaist-orchestra',
+    title: 'Orchestra — 1st Trumpet',
+    location: 'Daejeon',
+    media: {
+      cover: orchestraGroup,
+      photos: [
+        { src: orchestraGroup },
+        { src: orchestraConcert },
+        { src: orchestraSection },
+      ],
+    },
   },
-};
+  {
+    id: 'kaist-soccer',
+    title: 'Varsity Soccer Club',
+    location: 'Daejeon',
+    media: {
+      cover: futsal,
+      photos: [
+        { src: futsal },
+        { src: beachSunset },
+        { src: beachGroup },
+      ],
+    },
+  },
+];

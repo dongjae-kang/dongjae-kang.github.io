@@ -100,7 +100,7 @@ const Highlights = styled.ul`
 
 const MetaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
@@ -111,6 +111,7 @@ const MetaGrid = styled.div`
 const MetaBlock = styled.div`
   display: grid;
   gap: 10px;
+  align-content: start;
   padding: 18px;
   border-radius: 4px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
@@ -124,6 +125,8 @@ const MetaText = styled.p`
 const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 10px;
 `;
 
@@ -174,6 +177,43 @@ const GalleryCard = styled.figure`
 const GalleryCaption = styled.figcaption`
   color: ${({ theme }) => theme.colors.subpage.muted};
   font-size: 0.84rem;
+`;
+
+/* Live-service embeds: the running product shown in place, not behind a link. */
+const EmbedCard = styled.div`
+  display: grid;
+  gap: 10px;
+`;
+
+const EmbedHeader = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+`;
+
+const EmbedTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.body};
+  font-size: 1rem;
+  font-weight: 500;
+`;
+
+const EmbedFrame = styled.iframe`
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  border-radius: 4px;
+  background: #fdfcfa;
+`;
+
+const SectionBody = styled.div`
+  display: grid;
+  gap: 12px;
+  max-width: ${({ theme }) => theme.layout.textMax};
+
+  p {
+    color: ${({ theme }) => theme.colors.subpage.text};
+  }
 `;
 
 const MaterialGrid = styled.div`
@@ -328,6 +368,34 @@ function ResearchDetail() {
             </DetailSection>
           )}
 
+          {item.embeds?.length > 0 && (
+            <DetailSection>
+              <SectionLabel>Live</SectionLabel>
+              {item.embeds.map((embed) => (
+                <EmbedCard key={embed.url}>
+                  <EmbedHeader>
+                    <EmbedTitle>{embed.label}</EmbedTitle>
+                    <MaterialLink href={embed.url} target="_blank" rel="noopener noreferrer">
+                      Open in new tab
+                    </MaterialLink>
+                  </EmbedHeader>
+                  <EmbedFrame src={embed.url} title={embed.label} loading="lazy" />
+                </EmbedCard>
+              ))}
+            </DetailSection>
+          )}
+
+          {item.sections?.length > 0 && item.sections.map((section) => (
+            <DetailSection key={section.heading}>
+              <SectionLabel>{section.heading}</SectionLabel>
+              <SectionBody>
+                {section.body.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </SectionBody>
+            </DetailSection>
+          ))}
+
           <MetaGrid>
             {(isCoursework || item.course || item.professor || item.semester || item.courseContext) && (
               <MetaBlock>
@@ -339,7 +407,9 @@ function ResearchDetail() {
             )}
             <MetaBlock>
               <SectionLabel>{isCoursework ? 'Project Type' : 'Collaborators'}</SectionLabel>
-              <MetaText>{item.collaborators.join(' · ')}</MetaText>
+              {item.collaborators.map((person) => (
+                <MetaText key={person}>{person}</MetaText>
+              ))}
             </MetaBlock>
             <MetaBlock>
               <SectionLabel>Tags</SectionLabel>

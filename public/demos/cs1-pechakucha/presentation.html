@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Intervening Against Misinformation — PechaKucha · Dongjae Kang</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary:  #06A77D;
+      --warning:  #E63946;
+      --text:     #1a1a1a;
+      --muted:    #666;
+      --subtle:   #9aa0a6;
+      --bg:       #FAFAFA;
+      --line:     #D0D3D7;
+    }
+
+    html, body { background: var(--bg); }
+
+    .reveal {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+    .reveal .slides section {
+      background: var(--bg);
+      padding: 70px 90px;
+      box-sizing: border-box;
+    }
+    /* Image slides: image should fill the canvas, eyebrow floats top-left */
+    .reveal .slides section.has-figure {
+      padding: 70px 60px;
+    }
+    /* Eyebrow positioned absolutely on image slides */
+    .reveal .slides section.has-figure .eyebrow {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      margin-bottom: 0;
+    }
+    /* Persistent presentation header (top-right) */
+    .presentation-header {
+      position: fixed;
+      top: 22px;
+      right: 32px;
+      font-size: 11px;
+      color: var(--subtle);
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      z-index: 100;
+      pointer-events: none;
+      font-family: 'Inter', sans-serif;
+    }
+    /* Reveal.js slide number — bottom right */
+    .reveal .slide-number {
+      position: fixed;
+      bottom: 20px;
+      right: 32px;
+      font-size: 11px;
+      color: var(--subtle);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      pointer-events: none;
+    }
+    .reveal .slide-number a { color: var(--subtle); }
+
+    /* Typography (scaled up for hero usage) */
+    .reveal h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 3.4rem;
+      line-height: 1.14;
+      color: var(--text);
+      letter-spacing: -0.022em;
+      margin-bottom: 1.0rem;
+      text-transform: none;
+    }
+    .reveal h2 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 2.6rem;
+      line-height: 1.2;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      margin-bottom: 0.9rem;
+      text-transform: none;
+    }
+    .reveal h3 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.6rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.7rem;
+      text-transform: none;
+    }
+    .reveal p, .reveal li {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .reveal em { font-style: italic; color: var(--muted); }
+    .reveal strong { font-weight: 700; color: var(--text); }
+    .reveal small {
+      font-size: 0.92rem;
+      color: var(--subtle);
+      font-weight: 400;
+    }
+
+    /* Helpers */
+    .eyebrow {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 1.4rem;
+    }
+    .lead {
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--text);
+    }
+    .accent { color: var(--primary); font-weight: 600; }
+    .alert  { color: var(--warning); font-weight: 600; }
+
+    .stack { display: flex; flex-direction: column; gap: 0.6rem; }
+    .row   { display: flex; gap: 2.0rem; align-items: flex-start; }
+    .grow  { flex: 1; }
+
+    /* Stat block */
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .stat .num {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 5.6rem;
+      line-height: 1;
+      letter-spacing: -0.025em;
+    }
+    .stat .num.alert   { color: var(--warning); }
+    .stat .num.accent  { color: var(--primary); }
+    .stat .label {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Console block (Slide 11) */
+    .console {
+      font-family: 'JetBrains Mono', monospace;
+      background: #1a1a1a;
+      color: #f0f0f0;
+      padding: 40px 52px;
+      border-radius: 14px;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    .console .meta   { color: #06d394; }
+    .console .label  { color: #ff6b8a; font-weight: 600; }
+    .console .quote  { color: #ffd166; }
+    .console .belief { color: #f0f0f0; }
+
+    /* Image slides */
+    .figure-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+    }
+    .figure-wrap img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      box-shadow: none;
+      border: none;
+      background: var(--bg);
+    }
+    /* Source line tweak (already absolute via .source on title slides) */
+    .source {
+      position: absolute;
+      bottom: 32px;
+      left: 80px;
+      right: 80px;
+      font-size: 0.8rem;
+      color: var(--subtle);
+      font-style: italic;
+    }
+
+    /* Conditions table (Slide 9) */
+    .conditions {
+      display: grid;
+      grid-template-columns: 1fr 2fr 2fr;
+      gap: 1.2rem 2.0rem;
+      font-size: 1.25rem;
+      margin-top: 1.0rem;
+    }
+    .conditions .header {
+      font-weight: 600;
+      color: var(--subtle);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .conditions .name { font-weight: 700; color: var(--text); font-size: 1.3rem; }
+    .conditions .desc { color: var(--text); }
+    .conditions .tension { color: var(--muted); font-style: italic; }
+
+    /* Two-lens deep cards (Slide 15) */
+    .lens-deep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.6rem;
+      margin-top: 1.6rem;
+    }
+    .lens-deep {
+      background: white;
+      padding: 2.2rem 2.4rem;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+    }
+    .lens-deep-name {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.018em;
+      line-height: 1.05;
+    }
+    .lens-deep-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.3rem;
+      margin-bottom: 1.4rem;
+    }
+    .lens-deep-row {
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.5;
+      padding: 0.95rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Workflow steps (Slide 7) */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.0rem;
+      margin-top: 2.4rem;
+    }
+    .step {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .step .step-num {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.10em;
+    }
+    .step .step-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-top: 0.7rem;
+      line-height: 1.3;
+    }
+    .step .step-detail {
+      font-size: 1.0rem;
+      color: var(--muted);
+      margin-top: 0.7rem;
+      line-height: 1.4;
+    }
+
+    /* Quote (Slide 17) — hero size, centered, bold for hierarchy */
+    .quote-hero {
+      font-size: 4.6rem;
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--text);
+      letter-spacing: -0.030em;
+      text-align: center;
+      max-width: none;
+    }
+    .quote-hero .accent { color: var(--primary); font-weight: 800; }
+    .attribution {
+      margin-top: 3.4rem;
+      font-size: 1.0rem;
+      color: var(--subtle);
+      font-style: italic;
+      font-weight: 400;
+      text-align: center;
+    }
+    /* Center eyebrow on hero slides */
+    .eyebrow.centered { text-align: center; margin-bottom: 2.8rem; }
+
+    /* Reveal progress bar tweaks */
+    .reveal .progress {
+      height: 3px;
+      color: var(--primary);
+      background: rgba(0,0,0,0.05);
+    }
+
+    /* Hide empty controls */
+    .reveal .controls { display: none !important; }
+
+    /* Hero closing slide — bigger boxed centered statement */
+    .closing-section {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+    }
+    .closing-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 3.0rem 3.4rem;
+      margin: 0.4rem 0 1.8rem;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    }
+    .closing-hero {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.030em;
+      color: var(--text);
+      text-align: center;
+      margin: 0;
+    }
+    .closing-coda {
+      font-size: 1.85rem;
+      font-weight: 600;
+      line-height: 1.42;
+      color: var(--text);
+      text-align: center;
+      margin: 1.6rem 0 0;
+      letter-spacing: -0.012em;
+    }
+    .closing-coda em {
+      font-style: italic;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .closing-meta {
+      text-align: center;
+    }
+    .closing-refs {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .closing-author {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 600;
+      margin-top: 0.55rem;
+      letter-spacing: -0.005em;
+    }
+    /* Title slide hero */
+    .title-hero {
+      font-size: 4.4rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.028em;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle-hero {
+      font-size: 1.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      margin-bottom: 2.6rem;
+      letter-spacing: -0.005em;
+    }
+    .lead-hero {
+      font-size: 2.1rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Reveal.js center: true sometimes leaves margin issues — neutralize */
+    .reveal .slides > section.present,
+    .reveal .slides > section.future,
+    .reveal .slides > section.past {
+      min-height: 0 !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="presentation-header">Misinformation Interventions  ·  Dongjae Kang</div>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============================================================ -->
+    <!-- SECTION A — HOOK (Slides 1-3, 60s)                            -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 1: Title -->
+    <section data-auto-animate>
+      <div class="eyebrow">Ethics of Media, Technology, and Design  ·  Final Presentation</div>
+      <h1 class="title-hero">Intervening Against<br>Misinformation<br>on Social Media</h1>
+      <p class="subtitle-hero">A Multi-Agent Simulation of Ethical Trade-Offs</p>
+      <p class="lead-hero">
+        This talk: a question, a simulation,<br>
+        and <span class="accent">three findings</span> about misinformation interventions.
+      </p>
+      <div class="source">
+        Dongjae Kang  ·  Columbia University SIPA  ·  Prof. Laura Scherling  ·  Spring 2026
+      </div>
+    </section>
+
+    <!-- Slide 2: The Question (orientation, no numbers yet) -->
+    <section>
+      <div class="eyebrow">The Question</div>
+      <h2>Misinformation is everywhere.<br>Platforms intervene. <span class="accent">Which approaches actually work?</span></h2>
+      <div style="height: 1.6rem;"></div>
+      <p class="lead" style="font-size: 1.45rem; line-height: 1.5;">
+        Labels. Nudges. Peer correction. Doing nothing.<br>
+        Most platforms use some combination. The evidence on which approach
+        actually serves users, fairly, remains contested.
+      </p>
+      <p style="margin-top: 1.5rem; color: var(--muted);">
+        I built a simulation testing four interventions against the same misinformation,
+        with the same six users. This talk reports what I found.
+      </p>
+    </section>
+
+    <!-- Slide 3: Why It Matters (trimmed, audience-friendly) -->
+    <section>
+      <div class="eyebrow">Why It Matters</div>
+      <h2>The wrong intervention isn't neutral.<br>It can deepen the very problem it aims to solve.</h2>
+      <div style="height: 1.4rem;"></div>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 1rem;">
+          Misinformation shifts <strong>public opinion</strong>, political behavior, and trust at scale.
+        </li>
+        <li style="margin-bottom: 1rem;">
+          Platforms have responded with <strong>stricter automated moderation</strong>.
+        </li>
+        <li>
+          But growing evidence shows: poorly designed interventions can
+          <span class="alert">amplify</span> belief in misinformation among the very users
+          they aim to protect.
+        </li>
+      </ul>
+      <p class="lead" style="margin-top: 1.5rem;">
+        The question is no longer <em>whether</em> to intervene, but <span class="accent">how</span>.
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION B — BACKGROUND TENSION (Slides 4-5, 40s)              -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 4: The Paradox -->
+    <section>
+      <div class="eyebrow">The Paradox</div>
+      <h2>Those who fight misinformation<br>are accused of being censors themselves.</h2>
+      <div style="height: 1.4rem;"></div>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.8rem;">
+          <strong>December 2025:</strong> CCDH CEO Imran Ahmed sanctioned by the U.S. State Department.
+        </li>
+        <li style="margin-bottom: 0.8rem;">
+          <strong>X Platform v. CCDH:</strong> lawsuit alleging the watchdog itself was suppressing speech.
+        </li>
+      </ul>
+      <p style="margin-top: 1.6rem; color: var(--muted); font-style: italic;">
+        Every intervention against misinformation reshapes what counts as legitimate speech.
+        The ethical dilemma is built into the design.
+      </p>
+    </section>
+
+    <!-- Slide 5: Top-Down vs Bottom-Up -->
+    <section>
+      <div class="eyebrow">Two Approaches in Tension</div>
+      <h2>Top-down control. Bottom-up empowerment.</h2>
+      <div style="height: 1.6rem;"></div>
+      <div class="row">
+        <div class="grow" style="background: white; padding: 1.4rem 1.6rem; border-radius: 8px; border-left: 3px solid var(--warning);">
+          <h3 style="color: var(--warning); margin-bottom: 0.4rem;">Top-Down</h3>
+          <p style="font-size: 1.0rem; margin: 0;">Labels, removal, automated detection. <em>Who decides what's true?</em></p>
+        </div>
+        <div class="grow" style="background: white; padding: 1.4rem 1.6rem; border-radius: 8px; border-left: 3px solid var(--primary);">
+          <h3 style="color: var(--primary); margin-bottom: 0.4rem;">Bottom-Up</h3>
+          <p style="font-size: 1.0rem; margin: 0;">Nudges, education, peer correction. <em>Empower critical thinking.</em></p>
+        </div>
+      </div>
+      <p style="margin-top: 1.6rem; color: var(--muted);">
+        Pennycook et al. (2021) <em>Nature</em> showed nudges reduce sharing.
+        Danry et al. (2025) showed AI labels can deceive.
+        <strong>Which approach actually serves users?</strong>
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION C — METHOD (Slides 6-9, 80s)                          -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 6: Why Simulation -->
+    <section>
+      <div class="eyebrow">Method</div>
+      <h2>I built a working simulation —<br>not a theoretical analysis.</h2>
+      <div style="height: 1.4rem;"></div>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.8rem;">
+          <span class="accent">Controlled comparison</span> — same agents, same misinformation, four different interventions.
+        </li>
+        <li style="margin-bottom: 0.8rem;">
+          <span class="accent">Reproducible</span> — rule-based agents, deterministic (random seed 42).
+        </li>
+        <li style="margin-bottom: 0.8rem;">
+          <span class="accent">Observable</span> — every belief change, every share, every reply is logged.
+        </li>
+      </ul>
+      <p style="margin-top: 1.4rem; color: var(--muted); font-style: italic;">
+        Building it forces the assumptions out into the open. The simulation is both research instrument and object of inquiry.
+      </p>
+    </section>
+
+    <!-- Slide 7: The Setup -->
+    <section>
+      <div class="eyebrow">The Setup</div>
+      <h2>4 conditions × 8 rounds × 6 personas = 192 interactions.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">STEP 1</div>
+          <div class="step-title">Create Agents</div>
+          <div class="step-detail">6 personas with distinct attribute profiles</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 2</div>
+          <div class="step-title">Introduce Misinformation</div>
+          <div class="step-detail">A false but plausible health-policy headline</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 3</div>
+          <div class="step-title">Apply Intervention</div>
+          <div class="step-detail">Control / AI Label / Nudge / Community Notes</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 4</div>
+          <div class="step-title">Run 8 Rounds</div>
+          <div class="step-detail">Update beliefs, decide actions, log everything</div>
+        </div>
+        <div class="step">
+          <div class="step-num">STEP 5</div>
+          <div class="step-title">Measure</div>
+          <div class="step-detail">Final beliefs (1–5 scale), share counts, reply patterns</div>
+        </div>
+      </div>
+      <p style="margin-top: 1.4rem; color: var(--muted); font-style: italic;">
+        Belief is tracked on a <strong style="color: var(--text);">1–5 scale</strong>:
+        1 = complete disbelief, 5 = full conviction.
+        Each round, agents update their belief and decide whether to share, reply, or ignore.
+      </p>
+    </section>
+
+    <!-- Slide 8: Why These Numbers (Image) -->
+    <section class="has-figure">
+      <div class="figure-wrap">
+        <img src="figures/slide08_rationale.png" alt="Rationale infographic: 6 personas calibrated to span attribute extremes">
+      </div>
+    </section>
+
+    <!-- Slide 9: The 4 Conditions -->
+    <section>
+      <div class="eyebrow">The Four Intervention Conditions</div>
+      <h2>Each condition embeds a different ethical bet.</h2>
+      <div class="conditions">
+        <div class="header">Condition</div>
+        <div class="header">What It Does</div>
+        <div class="header">Ethical Tension</div>
+
+        <div class="name" style="color: var(--muted);">No Intervention</div>
+        <div class="desc">Misinformation spreads freely.</div>
+        <div class="tension">Respects autonomy; exposes vulnerable users.</div>
+
+        <div class="name" style="color: var(--warning);">AI Fact-Check Label</div>
+        <div class="desc">Automated label marks the post as FALSE.</div>
+        <div class="tension">Who decides truth? Backfires with low-trust users.</div>
+
+        <div class="name" style="color: var(--primary);">Accuracy Nudge</div>
+        <div class="desc">Pre-share prompt: "How accurate is this?"</div>
+        <div class="tension">Empowers thinking without removing content.</div>
+
+        <div class="name" style="color: var(--muted);">Community Notes</div>
+        <div class="desc">Peer-written context attached to the post.</div>
+        <div class="tension">Democratic, but can be manipulated.</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION D — FINDINGS (Slides 10-14, 100s)                     -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 10: Finding 1 — The Backfire (Image) -->
+    <section class="has-figure">
+      <div class="eyebrow">Finding 1 · The Backfire</div>
+      <div class="figure-wrap">
+        <img src="figures/fig1_belief_comparison.png" alt="Bar chart: AI Fact-Check Label produced highest belief at 3.92, Accuracy Nudge lowest at 3.09">
+      </div>
+    </section>
+
+    <!-- Slide 11: Inside the Backfire -->
+    <section>
+      <div class="eyebrow">Inside the Backfire · Round 5</div>
+      <h2>For low-trust users,<br>the label itself becomes evidence.</h2>
+      <div style="height: 1.0rem;"></div>
+      <div class="console"><span class="meta">== Round 5 of 8  ·  Condition: AI Fact-Check Label ==</span>
+
+🔄 <span class="label">Derek Foster</span>  (Conspiracy Theorist · trust = 0.10)
+   <span class="belief">Belief: [█████]  5.00 / 5.00   (initial: 3.03  ↑ +1.97)</span>
+   SHARED → <span class="quote">"This is proof they're hiding the truth."</span></div>
+      <p style="margin-top: 1.0rem; color: var(--muted); font-size: 1.0rem;">
+        Reactance effect (Brehm 1966): when authority signals push back, distrustful users push harder. The label confirms their prior suspicion.
+      </p>
+    </section>
+
+    <!-- Slide 12: Finding 2 — The Process (Animation) -->
+    <section class="has-figure">
+      <div class="eyebrow">Finding 2 · The Process</div>
+      <div class="figure-wrap">
+        <img src="figures/belief_trajectory_animation.gif" alt="Animated trajectory: same starting baseline, divergent outcomes by round 8">
+      </div>
+    </section>
+
+    <!-- Slide 13: Finding 3 — Persistent Extremes (Image) -->
+    <section class="has-figure">
+      <div class="eyebrow">Finding 3 · Persistent Extremes</div>
+      <div class="figure-wrap">
+        <img src="figures/fig3_agent_heatmap.png" alt="Heatmap: Derek red across all conditions, James green across all conditions">
+      </div>
+    </section>
+
+    <!-- Slide 14: The Pattern -->
+    <section>
+      <div class="eyebrow">The Pattern</div>
+      <h2 style="font-size: 2.4rem; line-height: 1.25;">
+        Interventions that <span class="accent">empower judgment</span><br>
+        beat interventions that <span class="alert">replace it</span>.
+      </h2>
+      <div style="height: 1.6rem;"></div>
+      <div class="row">
+        <div class="grow">
+          <h3 style="color: var(--warning); font-weight: 600;">Replacement</h3>
+          <p style="font-size: 1.0rem;">"Trust us — this is FALSE." Backfires for low-trust users.</p>
+        </div>
+        <div class="grow">
+          <h3 style="color: var(--primary); font-weight: 600;">Empowerment</h3>
+          <p style="font-size: 1.0rem;">"Pause. How accurate do you think this is?" Works across user types.</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.6rem; color: var(--muted); font-style: italic;">
+        Consistent with Pennycook et al. (2021) and Costello, Pennycook, Rand (2024, <em>Science</em>).
+      </p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION E — DISCUSSION (Slides 15-17, 60s)                    -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 15: Two Most Relevant Ethical Lenses -->
+    <section>
+      <div class="eyebrow">Two Ethical Lenses That Sharpen This Finding</div>
+      <h2>Rights and Justice<br>do the real work here.</h2>
+      <div class="lens-deep-grid">
+        <div class="lens-deep">
+          <div class="lens-deep-name">Rights</div>
+          <div class="lens-deep-sub">User autonomy</div>
+          <div class="lens-deep-row">
+            <strong class="alert">AI Label</strong> · platform asserts what is true → preempts the user's judgment.
+          </div>
+          <div class="lens-deep-row">
+            <strong class="accent">Nudge</strong> · prompts the user to evaluate → preserves the right to decide.
+          </div>
+        </div>
+        <div class="lens-deep">
+          <div class="lens-deep-name">Justice</div>
+          <div class="lens-deep-sub">Equal treatment</div>
+          <div class="lens-deep-row">
+            <strong class="alert">AI Label</strong> · backfires only for low-trust users → unequal harm distribution.
+          </div>
+          <div class="lens-deep-row">
+            <strong class="accent">Nudge</strong> · same prompt for everyone → effects don't depend on identity.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 16: Policy Implication -->
+    <section>
+      <div class="eyebrow">Policy Implication</div>
+      <h2>Two design defaults<br>worth taking seriously.</h2>
+      <div style="height: 1.4rem;"></div>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 1.0rem;">
+          <strong class="accent">1. Pre-share accuracy prompts as default.</strong><br>
+          <span style="color: var(--muted);">Low cost, non-censorious, evidence-based (Pennycook 2021).</span>
+        </li>
+        <li>
+          <strong class="alert">2. Backfire impact assessments mandatory</strong> for any automated content-moderation deployment.<br>
+          <span style="color: var(--muted);">A well-intentioned label that worsens belief is not a neutral act.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Slide 17: The Principle (hero quote) -->
+    <section>
+      <div class="eyebrow centered">The Underlying Principle</div>
+      <p class="quote-hero">
+        "The most ethical intervention<br>
+        may be one that <span class="accent">strengthens people's<br>
+        capacity to think critically</span> —<br>
+        rather than one that decides<br>
+        for them what is true."
+      </p>
+      <p class="attribution">A pattern emerging from this pilot — consistent across rights and justice analyses.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION F — LIMITATIONS + FUTURE + CLOSE (Slides 18-20, 60s)  -->
+    <!-- ============================================================ -->
+
+    <!-- Slide 18: What This Pilot Cannot Claim -->
+    <section>
+      <div class="eyebrow">Honesty About Scope</div>
+      <h2>What this pilot cannot claim.</h2>
+      <div style="height: 1.0rem;"></div>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.7rem;">
+          <strong>6 agents</strong> — not a population. Pattern, not proof.
+        </li>
+        <li style="margin-bottom: 0.7rem;">
+          <strong>Rule-based behavior</strong> — no LLM-level emergent reasoning.
+        </li>
+        <li style="margin-bottom: 0.7rem;">
+          <strong>No network topology</strong> — no algorithmic amplification, no virality dynamics.
+        </li>
+        <li>
+          <strong>No emotional contagion</strong> — no temporal patterns of fatigue or attention shift.
+        </li>
+      </ul>
+      <p style="margin-top: 1.4rem; color: var(--muted); font-style: italic;">
+        A foundation. Not a finding. The real social media environment is far more complex.
+      </p>
+    </section>
+
+    <!-- Slide 19: Where This Is Heading (Image) -->
+    <section class="has-figure">
+      <div class="figure-wrap">
+        <img src="figures/slide19_future.png" alt="4-layer architecture for the final paper, with Institutional Actor layer highlighted as new">
+      </div>
+    </section>
+
+    <!-- Slide 20: Closing (hero) -->
+    <section class="closing-section">
+      <div class="eyebrow centered">Closing</div>
+      <div class="closing-box">
+        <p class="closing-hero">
+          AI fact-check labels can <span class="alert">backfire</span>.<br>
+          Accuracy nudges <span class="accent">empower judgment</span>.
+        </p>
+        <p class="closing-coda">
+          The most ethical intervention may be the one<br>
+          that <em>strengthens human thinking</em>, not replaces it.
+        </p>
+      </div>
+      <div class="closing-meta">
+        <div class="closing-refs">
+          References: Pennycook et al. 2021  ·  Costello, Pennycook, Rand 2024  ·  Danry et al. 2025  ·  Markkula Center  ·  CCDH 2025
+        </div>
+        <div class="closing-author">
+          Dongjae Kang  ·  Columbia University SIPA  ·  Prof. Laura Scherling  ·  Spring 2026
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    autoSlide: 0,                 // disabled — Jack will pace manually
+    autoSlideStoppable: true,
+    loop: false,
+    controls: false,
+    controlsTutorial: false,
+    progress: true,
+    hash: true,
+    transition: 'fade',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    center: true,                 // vertical centering of slide content
+    slideNumber: 'c/t',           // "01 / 20" style page numbers
+    width:  1280,
+    height: 720,
+    margin: 0.04,
+    minScale: 0.4,
+    maxScale: 1.6,
+    embedded: false,
+    pdfSeparateFragments: false,
+  });
+</script>
+
+</body>
+</html>

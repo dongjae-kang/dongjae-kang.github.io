@@ -391,7 +391,7 @@ const PreviewImg = styled.img`
 `;
 
 /* ─── DATA ─── */
-const researchOrder = ['crisisnews', 'prism', 'beyond-removal', 'multi-agent-sim'];
+const researchOrder = ['prism-news', 'multi-agent-sim', 'beyond-binary', 'crisisnews'];
 const activityOrder = ['chi-2025', 'un-ga-hlw', 'un-youth-forum', 'kgsa-career', 'upenn-mixer', 'hyc-mixer', 'valedictorian'];
 
 function Home() {
@@ -463,9 +463,9 @@ function Home() {
               His research examines how problematic behaviors emerge and escalate on social
               media platforms. At KAIST, he co-built CrisisNews, a dataset of 93,250 news
               articles spanning two decades of social media crises, and presented the work at
-              ACM CHI 2025 in Yokohama. At Columbia, he led the development of PRISM, a
-              platform that maps how the same news event is framed across the political
-              spectrum.
+              ACM CHI 2025 in Yokohama. At Columbia, he leads PRISM, a live daily brief
+              tracing how political stories start and travel across YouTube, published in
+              Korean and English editions.
             </SectionBody>
 
             <ListWrap>

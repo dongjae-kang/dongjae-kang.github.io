@@ -5,6 +5,7 @@ import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
 import { coursework } from '../data/coursework';
+import { sortByDateDesc } from '../data/sortByDate';
 import ResearchSidebar from '../components/ResearchSidebar';
 
 const Page = styled.main`
@@ -211,6 +212,8 @@ const Summary = styled.p`
 const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 10px;
 `;
 
@@ -333,6 +336,9 @@ function Research() {
 
   const matchesTag = (item) => !activeTag || item.tags?.includes(activeTag);
 
+  const sortedResearch = sortByDateDesc(research);
+  const sortedCoursework = sortByDateDesc(coursework);
+
   return (
     <PageTransition>
       <Page>
@@ -368,7 +374,7 @@ function Research() {
           </SectionNav>
 
           <Grid ref={projectsRef} id="projects">
-            {research.map((item) => (
+            {sortedResearch.map((item) => (
               <Card key={item.id} to={`/research/${item.id}`} style={activeTag && !matchesTag(item) ? { opacity: 0.35, pointerEvents: 'none' } : {}}>
                 <Thumbnail>
                   {item.thumbnail ? (
@@ -416,7 +422,7 @@ function Research() {
             </SectionText>
 
             <CourseworkGrid>
-              {coursework.map((item) => (
+              {sortedCoursework.map((item) => (
                 <CourseworkCard key={item.id} to={`/research/${item.id}`} style={activeTag && !matchesTag(item) ? { opacity: 0.35, pointerEvents: 'none' } : {}}>
                   <CourseworkVisual>
                     {item.thumbnail ? (

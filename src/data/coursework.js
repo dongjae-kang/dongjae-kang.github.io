@@ -1,4 +1,6 @@
 import housingThumbnail from '../assets/images/research/housing-thumbnail.png';
+import prismThumbnail from '../assets/images/research/prism-thumbnail.png';
+import communityNotesTable from '../assets/images/research/community-notes-table.png';
 import vinesightThumbnail from '../assets/images/research/vinesight-thumbnail.png';
 import housingAppendixA from '../assets/images/research/figures/housing-appendix-a-map.png';
 import housingAppendixBC from '../assets/images/research/figures/housing-appendix-bc-starcity.png';
@@ -12,10 +14,105 @@ import dcAbsenteeismPaperCover from '../assets/images/research/figures/dc-absent
 
 export const coursework = [
   {
+    id: 'community-notes-risk-assessment',
+    title: 'Community Notes Risk Assessment',
+    subtitle: 'The Boundary Conditions of Crowdsourced Correction',
+    year: 'Spring 2026',
+    sortDate: '2026-04-20',
+    course: 'Principles & Practice of Online Trust & Safety (TPINIA7008)',
+    professor: 'Timothy Bernard',
+    semester: 'Spring 2026',
+    type: 'Individual',
+    summary:
+      "A high-level risk assessment of X's Community Notes as crowdsourced correction becomes the default moderation pattern at Meta and YouTube. It maps six boundary conditions, from attachment latency to an unmodeled provenance layer, and pairs each recommendation with its trade-off.",
+    description:
+      "Written as Meta announced its move to a Community Notes model, this assessment asks under what conditions crowdsourced correction performs as intended. It maps risks through two stylized user journeys, a low-engagement scroller and a high-engagement partisan rater, and identifies six safety gaps: attachment latency, a coverage ceiling on polarizing topics, consensus instability, salience asymmetry, an unmodeled provenance layer in the correction signal, and uneven cross-context portability, illustrated with the comparatively slow development of Korean Wikipedia. Recommendations are organized around the eSafety Commissioner's Safety by Design principles, and each carries an explicit trade-off and implementation challenge. The provenance lens, asking how correction systems treat the origin of information before correction is contemplated, connects the paper to Kang's broader research line.",
+    collaborators: ['Individual project'],
+    tags: ['Trust & Safety', 'Content Moderation', 'Platform Governance'],
+    highlights: [
+      'Six boundary conditions mapped with severity and likelihood notations',
+      'Provenance treated as an unmodeled input to the correction signal',
+      'Each recommendation paired with a trade-off and implementation challenge',
+    ],
+    heroMedia: {
+      src: communityNotesTable,
+      alt: 'User journeys and risks table from the Community Notes assessment',
+      label: 'Risk Assessment',
+    },
+    materials: [
+      {
+        label: 'Risk Assessment',
+        note: 'Full assessment with user journeys, gap analysis, and recommendations.',
+        url: '/assets/papers/community-notes-risk-assessment.pdf',
+      },
+    ],
+    related: ['crisisnews', 'multi-agent-sim'],
+    pdf: '/assets/papers/community-notes-risk-assessment.pdf',
+    thumbnail: communityNotesTable,
+    gallery: [
+      {
+        src: communityNotesTable,
+        alt: 'User journeys and risks table from the Community Notes assessment',
+        caption: 'Two user journeys and the risks each one carries',
+      },
+    ],
+    links: [],
+  },
+  {
+    id: 'prism',
+    title: 'PRISM News Platform',
+    subtitle: 'A Multi-Perspective News Prototype That Became a Live Service',
+    year: 'Fall 2025',
+    sortDate: '2025-12-11',
+    course: 'Understanding Emerging Technologies (TPINIA7005)',
+    professor: 'Laura Scherling and Laurence Wilse-Samson',
+    semester: 'Fall 2025',
+    type: 'Team (4 members)',
+    summary:
+      'The original PRISM: a course prototype visualizing how a news story moves across outlets, timelines, and fact-checking references. The concept later grew into the live PRISM daily brief service.',
+    description:
+      'PRISM began as Columbia SIPA coursework. Kang led the team building the concept and implemented the working prototype independently. The platform visualizes how stories move across outlets, timelines, and fact-checking references so users can compare how the same event is framed. It was built as a response to the limits of single-source news consumption in misinformation-heavy environments. The concept was later rebuilt as a live service publishing daily briefs in Korean and English, covered separately under Projects.',
+    collaborators: ['Columbia SIPA project team (4 members)', 'Prototype implemented independently'],
+    tags: ['Misinformation', 'Platform Design', 'HCI'],
+    highlights: [
+      'Maps framing differences across multiple outlets',
+      'Combines source comparison, timeline view, and fact-check references',
+      'Working prototype implemented and deployed by Kang',
+    ],
+    heroMedia: {
+      src: prismThumbnail,
+      alt: 'PRISM prototype interface preview',
+      label: 'Prototype Preview',
+    },
+    materials: [
+      {
+        label: 'Live Demo',
+        note: 'Deployed prototype showing how the platform works end to end.',
+        url: 'https://tpi-emerging-tech.netlify.app',
+      },
+      {
+        label: 'Course Pitch Deck',
+        note: 'Coursework deliverable covering literature, product logic, and model.',
+        url: '/assets/papers/prism-pitch.pdf',
+      },
+    ],
+    related: ['prism-news', 'vinesight-policy-guide', 'crisisnews'],
+    liveDemo: 'https://tpi-emerging-tech.netlify.app',
+    thumbnail: prismThumbnail,
+    gallery: [
+      { src: prismThumbnail, alt: 'PRISM prototype interface mockup', caption: 'Prototype interface' },
+    ],
+    links: [
+      { label: 'Demo', url: 'https://tpi-emerging-tech.netlify.app' },
+      { label: 'Pitch Deck', url: '/assets/papers/prism-pitch.pdf' },
+    ],
+  },
+  {
     id: 'housing-policy-jungnang-gu',
     title: 'Revitalizing Jungnang-gu',
     subtitle: "A Demand-Driven Inclusive Housing Strategy for Seoul's Marginalized Districts",
     year: 'Fall 2025',
+    sortDate: '2025-12-12',
     course: 'Housing Policy and the City (URSP IA7262)',
     professor: 'Annika Lescott-Martinez',
     semester: 'Fall 2025',
@@ -80,6 +177,7 @@ export const coursework = [
     title: 'Reducing Chronic Absenteeism in D.C. Public Schools',
     subtitle: 'A Comprehensive Policy Proposal for Mayoral Action',
     year: 'Fall 2025',
+    sortDate: '2025-12-10',
     course: 'Urban Policy, Politics, and Public Service (URSPIA7101)',
     professor: 'Michael A. Nutter (former Mayor of Philadelphia)',
     semester: 'Fall 2025',
@@ -137,6 +235,7 @@ export const coursework = [
     title: 'VineSight Policy Guide',
     subtitle: 'Detecting Disinformation with Transparency, Integrity, and Human-Centered Safeguards',
     year: 'Fall 2025',
+    sortDate: '2025-12-08',
     course: 'Understanding Emerging Technologies (TPINIA7005)',
     professor: 'Laura Scherling and Laurence Wilse-Samson',
     semester: 'Fall 2025',

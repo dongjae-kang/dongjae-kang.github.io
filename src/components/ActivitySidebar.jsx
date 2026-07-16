@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { activities, communityEvents, offTheClock } from '../data/activities';
+import { activities, communityEvents, offTheClockItems, kaistYears } from '../data/activities';
+import { sortByDateDesc } from '../data/sortByDate';
 
 const AsideWrapper = styled.div`
   width: 220px;
@@ -101,7 +102,16 @@ function ActivitySidebar({ onScrollTo }) {
   const isDetailPage = currentPath.startsWith('/activities/');
   const currentId = isDetailPage ? currentPath.replace('/activities/', '') : null;
 
-  const offTheClockCategories = Object.entries(offTheClock);
+  // Group the flat timeline by year for the sidebar outline.
+  const offTheClockByYear = [];
+  sortByDateDesc(offTheClockItems)
+    .filter((i) => i.media?.photos?.length > 0)
+    .forEach((item) => {
+      const year = (item.sortDate || '').slice(0, 4);
+      const group = offTheClockByYear.find((g) => g.year === year);
+      if (group) group.items.push(item);
+      else offTheClockByYear.push({ year, items: [item] });
+    });
 
   const handleScroll = (sectionId) => {
     if (isDetailPage) {
@@ -161,11 +171,11 @@ function ActivitySidebar({ onScrollTo }) {
         <SideSectionTitle onClick={() => handleScroll('life')}>
           Off the Clock
         </SideSectionTitle>
-        {offTheClockCategories.map(([key, category]) => (
-          <SubGroup key={key}>
-            <SubTitle>{category.label}</SubTitle>
+        {offTheClockByYear.map((group) => (
+          <SubGroup key={group.year}>
+            <SubTitle>{group.year}</SubTitle>
             <SideItems>
-              {category.items.filter((i) => i.media?.photos?.length > 0).map((item) => (
+              {group.items.map((item) => (
                 <SideScrollItem
                   key={item.id}
                   onClick={() => handleScroll(item.id)}
@@ -176,6 +186,19 @@ function ActivitySidebar({ onScrollTo }) {
             </SideItems>
           </SubGroup>
         ))}
+        <SubGroup>
+          <SubTitle>KAIST Years</SubTitle>
+          <SideItems>
+            {kaistYears.filter((i) => i.media?.photos?.length > 0).map((item) => (
+              <SideScrollItem
+                key={item.id}
+                onClick={() => handleScroll(item.id)}
+              >
+                {item.title}
+              </SideScrollItem>
+            ))}
+          </SideItems>
+        </SubGroup>
       </SideSection>
     </Aside>
     </AsideWrapper>

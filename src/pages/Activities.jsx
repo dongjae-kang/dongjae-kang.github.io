@@ -5,7 +5,8 @@ import { useLocation } from 'react-router-dom';
 import Tag from '../components/Tag';
 import PageTransition from '../components/PageTransition';
 import Lightbox from '../components/Lightbox';
-import { activities, communityEvents, offTheClock } from '../data/activities';
+import { activities, communityEvents, offTheClockItems, kaistYears } from '../data/activities';
+import { sortByDateDesc } from '../data/sortByDate';
 import ActivitySidebar from '../components/ActivitySidebar';
 
 const Page = styled.main`
@@ -161,6 +162,8 @@ const Summary = styled.p`
 const TagList = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 10px;
 `;
 
@@ -237,18 +240,33 @@ const PhotoCount = styled.span`
   z-index: 1;
 `;
 
-/* ─── TIER 3: Off the Clock categories ─── */
-const CategorySection = styled.div`
-  margin-top: 36px;
-`;
-
-const CategoryTitle = styled.h3`
+/* ─── TIER 3: Off the Clock ─── */
+const GroupTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.6rem;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin: 48px 0 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
+`;
+
+/* Year marker flowing inside the grid; reuses the no-photo gradient language. */
+const YearTile = styled.div`
+  aspect-ratio: 1;
+  border-radius: 3px;
+  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
+  display: grid;
+  place-items: center;
+  background: linear-gradient(160deg, rgba(27, 61, 47, 0.92), rgba(45, 90, 61, 0.76) 52%, rgba(154, 184, 158, 0.54));
+
+  span {
+    font-family: ${({ theme }) => theme.fonts.heading};
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: rgba(247, 247, 245, 0.92);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
 `;
 
 const Tier3Grid = styled.div`
@@ -303,9 +321,15 @@ const Tier3Title = styled.h3`
   font-weight: 500;
 `;
 
-const Tier3Meta = styled.span`
-  color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.78rem;
+/* Date · place kicker above the title, kept visually light so rows stay aligned
+   regardless of title length. */
+const Tier3Kicker = styled.span`
+  display: block;
+  color: rgba(107, 101, 96, 0.75);
+  font-size: 0.68rem;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  margin-bottom: 2px;
 `;
 
 
@@ -335,7 +359,20 @@ function Activities() {
   const getCover = (item) => item.media?.cover || item.media?.photos?.[0]?.src || item.media?.photos?.[0];
   const getPhotoCount = (item) => (item.media?.photos || []).length;
 
-  const offTheClockCategories = Object.entries(offTheClock);
+  const sortedActivities = sortByDateDesc(activities);
+  const sortedCommunityEvents = sortByDateDesc(communityEvents);
+
+  // Flat reverse-chronological timeline with a year tile at each year boundary.
+  const offTheClockTimeline = [];
+  let lastYear = null;
+  sortByDateDesc(offTheClockItems).forEach((item) => {
+    const year = (item.sortDate || '').slice(0, 4);
+    if (year && year !== lastYear) {
+      offTheClockTimeline.push({ yearTile: year });
+      lastYear = year;
+    }
+    offTheClockTimeline.push(item);
+  });
 
   return (
     <PageTransition>
@@ -353,7 +390,7 @@ function Activities() {
 
           {/* ─── TIER 1 ─── */}
           <Grid ref={tier1Ref} id="tier1">
-            {activities.map((item) => {
+            {sortedActivities.map((item) => {
               const cover = getCover(item);
               return (
                 <Card key={item.id} to={`/activities/${item.id}`}>
@@ -385,7 +422,7 @@ function Activities() {
             <SectionTitle>Community & Events</SectionTitle>
             <SectionText>Event organizing, community leadership, and professional networks.</SectionText>
             <Grid>
-              {communityEvents.map((item) => {
+              {sortedCommunityEvents.map((item) => {
                 const cover = getCover(item);
                 const photoCount = getPhotoCount(item);
                 return (
@@ -427,62 +464,93 @@ function Activities() {
           {/* ─── TIER 3: OFF THE CLOCK ─── */}
           <Section ref={tier3Ref} id="life">
             <SectionTitle>Off the Clock</SectionTitle>
-            <SectionText>Concerts, golf, travel, and other scenes from life.</SectionText>
 
-            {offTheClockCategories.map(([key, category]) => (
-              <CategorySection key={key}>
-                <CategoryTitle>{category.label}</CategoryTitle>
-                <Tier3Grid>
-                  {category.items.map((item) => {
-                    const cover = getCover(item);
-                    const photos = item.media?.photos || [];
-                    const hasPhotos = photos.length > 0;
-                    const isNyphil = key === 'nyphil';
+            <Tier3Grid style={{ marginTop: '16px' }}>
+              {offTheClockTimeline.map((item) => {
+                if (item.yearTile) {
+                  return (
+                    <YearTile key={`year-${item.yearTile}`}>
+                      <span>{item.yearTile}</span>
+                    </YearTile>
+                  );
+                }
 
-                    return (
-                      <Tier3Card key={item.id} id={item.id}>
-                        <Tier3Photo
-                          $hasImage={!!cover}
-                          $clickable={hasPhotos}
-                          onClick={() => {
-                            if (!hasPhotos) return;
-                            let pInfo = null;
-                            if (key === 'nyphil' && item.program) {
-                              pInfo = {
-                                title: item.title,
-                                date: item.date,
-                                program: item.program,
-                                link: item.link,
-                              };
-                            } else if (key === 'golf') {
-                              pInfo = {
-                                title: item.title,
-                                date: item.date,
-                                location: item.location,
-                                mapUrl: item.mapUrl,
-                                mapCoords: item.mapCoords,
-                              };
-                            }
-                            openLightbox(photos, 0, pInfo);
-                          }}
-                        >
-                          {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
-                            <Tier3Placeholder>{item.title}</Tier3Placeholder>
-                          )}
-                          {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
-                        </Tier3Photo>
-                        <div>
-                          <Tier3Title>{item.title}</Tier3Title>
-                          <Tier3Meta>
-                            {[item.date, item.location].filter(Boolean).join(' · ')}
-                          </Tier3Meta>
-                        </div>
-                      </Tier3Card>
-                    );
-                  })}
-                </Tier3Grid>
-              </CategorySection>
-            ))}
+                const cover = getCover(item);
+                const photos = item.media?.photos || [];
+                const hasPhotos = photos.length > 0;
+
+                return (
+                  <Tier3Card key={item.id} id={item.id}>
+                    <Tier3Photo
+                      $hasImage={!!cover}
+                      $clickable={hasPhotos}
+                      onClick={() => {
+                        if (!hasPhotos) return;
+                        let pInfo = null;
+                        if (item.category === 'concert' && item.program) {
+                          pInfo = {
+                            title: item.title,
+                            date: item.date,
+                            program: item.program,
+                            link: item.link,
+                          };
+                        } else if (item.category === 'golf') {
+                          pInfo = {
+                            title: item.title,
+                            date: item.date,
+                            location: item.location,
+                            mapUrl: item.mapUrl,
+                            mapCoords: item.mapCoords,
+                          };
+                        }
+                        openLightbox(photos, 0, pInfo);
+                      }}
+                    >
+                      {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
+                        <Tier3Placeholder>{item.title}</Tier3Placeholder>
+                      )}
+                      {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
+                    </Tier3Photo>
+                    <div>
+                      <Tier3Kicker>
+                        {[item.date, item.location].filter(Boolean).join(' · ')}
+                      </Tier3Kicker>
+                      <Tier3Title>{item.title}</Tier3Title>
+                    </div>
+                  </Tier3Card>
+                );
+              })}
+            </Tier3Grid>
+
+            <GroupTitle>KAIST Years</GroupTitle>
+            <Tier3Grid>
+              {kaistYears.map((item) => {
+                const cover = getCover(item);
+                const photos = item.media?.photos || [];
+                const hasPhotos = photos.length > 0;
+
+                return (
+                  <Tier3Card key={item.id} id={item.id}>
+                    <Tier3Photo
+                      $hasImage={!!cover}
+                      $clickable={hasPhotos}
+                      onClick={() => {
+                        if (!hasPhotos) return;
+                        openLightbox(photos, 0, null);
+                      }}
+                    >
+                      {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
+                        <Tier3Placeholder>{item.title}</Tier3Placeholder>
+                      )}
+                      {photos.length > 1 && <PhotoCount>{photos.length} photos</PhotoCount>}
+                    </Tier3Photo>
+                    <div>
+                      <Tier3Title>{item.title}</Tier3Title>
+                    </div>
+                  </Tier3Card>
+                );
+              })}
+            </Tier3Grid>
           </Section>
           </Content>
         </Layout>

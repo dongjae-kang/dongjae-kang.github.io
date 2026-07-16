@@ -234,7 +234,8 @@ const journey = [
   {
     category: 'Publications',
     items: [
-      { role: 'CrisisNews: A Dataset Mapping Two Decades of News Articles on Online Problematic Behavior at Scale', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Yubin Choi, Juhoon Lee, Joseph Seering, Under Review', period: '2025' },
+      { role: 'Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs', org: 'Dongjae Kang, selected for Case Studies on Ethical Technology, Media, and Design, Vol. III (Columbia Academic Commons)', period: '2026' },
+      { role: 'CrisisNews: A Dataset Mapping Two Decades of News Articles on Online Problematic Behavior at Scale', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Yubin Choi, Juhoon Lee, Joseph Seering, arXiv preprint', period: '2025' },
       { role: 'Understanding Social Media Crisis: A Data-driven Analysis of Online Problematic Behavior', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Joseph Seering, CHI 2025 Workshop Paper', period: '2025' },
     ],
   },
@@ -258,6 +259,7 @@ const journey = [
   {
     category: 'Professional',
     items: [
+      { role: 'Intern, Statistics Division (DESA)', org: 'United Nations', detail: 'Community engagement and analytics for the Global Network of Data Officers and Statisticians', period: 'Jun 2026 - Present' },
       { role: 'Event Assistant, UN General Assembly High-Level Week', org: 'Permanent Mission of the Republic of Korea to the United Nations', period: 'Sep 2025' },
       { role: 'Member, Young Engineers Honor Society (YEHS)', org: 'National Academy of Engineering of Korea', period: '2024 - 2025' },
       { role: 'Sergeant, Technical & Administrative Specialist', org: 'Korea Army Training Center (Honorable Discharge)', period: '2021 - 2022' },
@@ -294,20 +296,25 @@ function About() {
             <Bio>
               <p>
                 Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in
-                Technology, Policy and Innovation. He majored in Industrial Engineering at KAIST,
+                Technology, Policy and Innovation, and currently an intern at the UN Statistics
+                Division (DESA), where he supports community engagement for the Global Network of
+                Data Officers and Statisticians. He majored in Industrial Engineering at KAIST,
                 with a double major in Business and a minor in Science and Technology Policy. He
                 graduated as KAIST&apos;s <Link to="/activities/valedictorian">Valedictorian</Link>,
                 delivering the commencement address at a ceremony attended by the President of
                 Korea.
               </p>
               <p>
-                At KAIST&apos;s Collaborative Social Technologies Lab (2024-2025), he co-authored a
-                study analyzing two decades of social media crisis patterns, and presented the work
-                at the <Link to="/research/crisisnews">ACM CHI 2025 Workshop</Link> in Yokohama.
-                At Columbia, he led a team building <Link to="/research/prism">PRISM</Link>, a
-                platform that visualizes how news stories spread across different sources, and is
-                currently researching content moderation remedies and AI-driven misinformation
-                dynamics.
+                At Columbia, he leads the team behind{' '}
+                <Link to="/research/prism-news">PRISM</Link>, a live daily brief tracing how
+                political stories start and travel across YouTube, published in Korean and
+                English editions. At KAIST&apos;s Collaborative Social Technologies Lab
+                (2024-2025), he co-authored a study analyzing two decades of social media crisis
+                patterns, and presented the work at the{' '}
+                <Link to="/research/crisisnews">ACM CHI 2025 Workshop</Link> in Yokohama. His
+                case study on the ethics of misinformation interventions was selected for
+                Columbia&apos;s <em>Case Studies on Ethical Technology, Media, and Design</em>,
+                Vol. III.
               </p>
               <p>
                 As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt
