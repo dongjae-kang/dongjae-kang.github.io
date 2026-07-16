@@ -1,0 +1,910 @@
+{
+  "control": {
+    "condition": "control",
+    "rounds": [
+      {
+        "round": 1,
+        "avg_belief": 2.761,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 2.959,
+          "Margaret Wilson": 2.535,
+          "Carlos Rivera": 2.809,
+          "Derek Foster": 3.366,
+          "Sarah Kim": 2.896,
+          "James Taylor": 2.002
+        }
+      },
+      {
+        "round": 2,
+        "avg_belief": 2.979,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.19,
+          "Margaret Wilson": 2.563,
+          "Carlos Rivera": 3.093,
+          "Derek Foster": 3.643,
+          "Sarah Kim": 3.174,
+          "James Taylor": 2.209
+        }
+      },
+      {
+        "round": 3,
+        "avg_belief": 3.15,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.388,
+          "Margaret Wilson": 2.687,
+          "Carlos Rivera": 3.161,
+          "Derek Foster": 3.976,
+          "Sarah Kim": 3.335,
+          "James Taylor": 2.357
+        }
+      },
+      {
+        "round": 4,
+        "avg_belief": 3.297,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.568,
+          "Margaret Wilson": 2.769,
+          "Carlos Rivera": 3.213,
+          "Derek Foster": 4.229,
+          "Sarah Kim": 3.54,
+          "James Taylor": 2.463
+        }
+      },
+      {
+        "round": 5,
+        "avg_belief": 3.418,
+        "cumulative_shares": 3,
+        "agent_beliefs": {
+          "Alex Chen": 3.635,
+          "Margaret Wilson": 2.81,
+          "Carlos Rivera": 3.347,
+          "Derek Foster": 4.493,
+          "Sarah Kim": 3.68,
+          "James Taylor": 2.543
+        }
+      },
+      {
+        "round": 6,
+        "avg_belief": 3.542,
+        "cumulative_shares": 4,
+        "agent_beliefs": {
+          "Alex Chen": 3.815,
+          "Margaret Wilson": 2.884,
+          "Carlos Rivera": 3.465,
+          "Derek Foster": 4.687,
+          "Sarah Kim": 3.753,
+          "James Taylor": 2.647
+        }
+      },
+      {
+        "round": 7,
+        "avg_belief": 3.689,
+        "cumulative_shares": 4,
+        "agent_beliefs": {
+          "Alex Chen": 3.906,
+          "Margaret Wilson": 3.06,
+          "Carlos Rivera": 3.578,
+          "Derek Foster": 4.909,
+          "Sarah Kim": 3.946,
+          "James Taylor": 2.735
+        }
+      },
+      {
+        "round": 8,
+        "avg_belief": 3.809,
+        "cumulative_shares": 4,
+        "agent_beliefs": {
+          "Alex Chen": 4.057,
+          "Margaret Wilson": 3.126,
+          "Carlos Rivera": 3.698,
+          "Derek Foster": 5.0,
+          "Sarah Kim": 4.127,
+          "James Taylor": 2.845
+        }
+      }
+    ],
+    "final_beliefs": {
+      "Alex Chen": {
+        "final_belief": 4.057,
+        "initial_belief": 2.575,
+        "change": 1.482,
+        "shares": 1,
+        "replies": 4,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.575,
+          2.959,
+          3.19,
+          3.388,
+          3.568,
+          3.635,
+          3.815,
+          3.906,
+          4.057
+        ]
+      },
+      "Margaret Wilson": {
+        "final_belief": 3.126,
+        "initial_belief": 2.275,
+        "change": 0.851,
+        "shares": 0,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.275,
+          2.535,
+          2.563,
+          2.687,
+          2.769,
+          2.81,
+          2.884,
+          3.06,
+          3.126
+        ]
+      },
+      "Carlos Rivera": {
+        "final_belief": 3.698,
+        "initial_belief": 2.5,
+        "change": 1.198,
+        "shares": 1,
+        "replies": 3,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.809,
+          3.093,
+          3.161,
+          3.213,
+          3.347,
+          3.465,
+          3.578,
+          3.698
+        ]
+      },
+      "Derek Foster": {
+        "final_belief": 5.0,
+        "initial_belief": 3.025,
+        "change": 1.975,
+        "shares": 2,
+        "replies": 2,
+        "trust_change": 0.0,
+        "belief_history": [
+          3.025,
+          3.366,
+          3.643,
+          3.976,
+          4.229,
+          4.493,
+          4.687,
+          4.909,
+          5.0
+        ]
+      },
+      "Sarah Kim": {
+        "final_belief": 4.127,
+        "initial_belief": 2.5,
+        "change": 1.627,
+        "shares": 0,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.896,
+          3.174,
+          3.335,
+          3.54,
+          3.68,
+          3.753,
+          3.946,
+          4.127
+        ]
+      },
+      "James Taylor": {
+        "final_belief": 2.845,
+        "initial_belief": 1.9,
+        "change": 0.945,
+        "shares": 0,
+        "replies": 5,
+        "trust_change": 0.0,
+        "belief_history": [
+          1.9,
+          2.002,
+          2.209,
+          2.357,
+          2.463,
+          2.543,
+          2.647,
+          2.735,
+          2.845
+        ]
+      }
+    },
+    "total_shares": 4,
+    "total_replies": 16
+  },
+  "ai_factcheck": {
+    "condition": "ai_factcheck",
+    "rounds": [
+      {
+        "round": 1,
+        "avg_belief": 2.671,
+        "cumulative_shares": 3,
+        "agent_beliefs": {
+          "Alex Chen": 2.829,
+          "Margaret Wilson": 2.349,
+          "Carlos Rivera": 2.933,
+          "Derek Foster": 3.574,
+          "Sarah Kim": 2.518,
+          "James Taylor": 1.822
+        }
+      },
+      {
+        "round": 2,
+        "avg_belief": 2.88,
+        "cumulative_shares": 6,
+        "agent_beliefs": {
+          "Alex Chen": 3.058,
+          "Margaret Wilson": 2.292,
+          "Carlos Rivera": 3.375,
+          "Derek Foster": 4.009,
+          "Sarah Kim": 2.686,
+          "James Taylor": 1.862
+        }
+      },
+      {
+        "round": 3,
+        "avg_belief": 3.172,
+        "cumulative_shares": 7,
+        "agent_beliefs": {
+          "Alex Chen": 3.396,
+          "Margaret Wilson": 2.474,
+          "Carlos Rivera": 3.712,
+          "Derek Foster": 4.524,
+          "Sarah Kim": 2.938,
+          "James Taylor": 1.987
+        }
+      },
+      {
+        "round": 4,
+        "avg_belief": 3.425,
+        "cumulative_shares": 7,
+        "agent_beliefs": {
+          "Alex Chen": 3.843,
+          "Margaret Wilson": 2.516,
+          "Carlos Rivera": 4.016,
+          "Derek Foster": 4.907,
+          "Sarah Kim": 3.202,
+          "James Taylor": 2.069
+        }
+      },
+      {
+        "round": 5,
+        "avg_belief": 3.563,
+        "cumulative_shares": 7,
+        "agent_beliefs": {
+          "Alex Chen": 4.136,
+          "Margaret Wilson": 2.583,
+          "Carlos Rivera": 4.187,
+          "Derek Foster": 5.0,
+          "Sarah Kim": 3.257,
+          "James Taylor": 2.216
+        }
+      },
+      {
+        "round": 6,
+        "avg_belief": 3.706,
+        "cumulative_shares": 9,
+        "agent_beliefs": {
+          "Alex Chen": 4.411,
+          "Margaret Wilson": 2.631,
+          "Carlos Rivera": 4.473,
+          "Derek Foster": 5.0,
+          "Sarah Kim": 3.407,
+          "James Taylor": 2.317
+        }
+      },
+      {
+        "round": 7,
+        "avg_belief": 3.809,
+        "cumulative_shares": 10,
+        "agent_beliefs": {
+          "Alex Chen": 4.646,
+          "Margaret Wilson": 2.703,
+          "Carlos Rivera": 4.702,
+          "Derek Foster": 5.0,
+          "Sarah Kim": 3.489,
+          "James Taylor": 2.312
+        }
+      },
+      {
+        "round": 8,
+        "avg_belief": 3.918,
+        "cumulative_shares": 11,
+        "agent_beliefs": {
+          "Alex Chen": 4.807,
+          "Margaret Wilson": 2.781,
+          "Carlos Rivera": 4.912,
+          "Derek Foster": 5.0,
+          "Sarah Kim": 3.643,
+          "James Taylor": 2.367
+        }
+      }
+    ],
+    "final_beliefs": {
+      "Alex Chen": {
+        "final_belief": 4.807,
+        "initial_belief": 2.575,
+        "change": 2.232,
+        "shares": 4,
+        "replies": 1,
+        "trust_change": 0.08,
+        "belief_history": [
+          2.575,
+          2.829,
+          3.058,
+          3.396,
+          3.843,
+          4.136,
+          4.411,
+          4.646,
+          4.807
+        ]
+      },
+      "Margaret Wilson": {
+        "final_belief": 2.781,
+        "initial_belief": 2.275,
+        "change": 0.506,
+        "shares": 1,
+        "replies": 2,
+        "trust_change": 0.08,
+        "belief_history": [
+          2.275,
+          2.349,
+          2.292,
+          2.474,
+          2.516,
+          2.583,
+          2.631,
+          2.703,
+          2.781
+        ]
+      },
+      "Carlos Rivera": {
+        "final_belief": 4.912,
+        "initial_belief": 2.5,
+        "change": 2.412,
+        "shares": 2,
+        "replies": 5,
+        "trust_change": 0.08,
+        "belief_history": [
+          2.5,
+          2.933,
+          3.375,
+          3.712,
+          4.016,
+          4.187,
+          4.473,
+          4.702,
+          4.912
+        ]
+      },
+      "Derek Foster": {
+        "final_belief": 5.0,
+        "initial_belief": 3.025,
+        "change": 1.975,
+        "shares": 3,
+        "replies": 4,
+        "trust_change": -0.16,
+        "belief_history": [
+          3.025,
+          3.574,
+          4.009,
+          4.524,
+          4.907,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "Sarah Kim": {
+        "final_belief": 3.643,
+        "initial_belief": 2.5,
+        "change": 1.143,
+        "shares": 1,
+        "replies": 0,
+        "trust_change": 0.08,
+        "belief_history": [
+          2.5,
+          2.518,
+          2.686,
+          2.938,
+          3.202,
+          3.257,
+          3.407,
+          3.489,
+          3.643
+        ]
+      },
+      "James Taylor": {
+        "final_belief": 2.367,
+        "initial_belief": 1.9,
+        "change": 0.467,
+        "shares": 0,
+        "replies": 4,
+        "trust_change": 0.08,
+        "belief_history": [
+          1.9,
+          1.822,
+          1.862,
+          1.987,
+          2.069,
+          2.216,
+          2.317,
+          2.312,
+          2.367
+        ]
+      }
+    },
+    "total_shares": 11,
+    "total_replies": 16
+  },
+  "accuracy_nudge": {
+    "condition": "accuracy_nudge",
+    "rounds": [
+      {
+        "round": 1,
+        "avg_belief": 2.565,
+        "cumulative_shares": 0,
+        "agent_beliefs": {
+          "Alex Chen": 2.697,
+          "Margaret Wilson": 2.275,
+          "Carlos Rivera": 2.684,
+          "Derek Foster": 3.361,
+          "Sarah Kim": 2.569,
+          "James Taylor": 1.803
+        }
+      },
+      {
+        "round": 2,
+        "avg_belief": 2.664,
+        "cumulative_shares": 1,
+        "agent_beliefs": {
+          "Alex Chen": 2.842,
+          "Margaret Wilson": 2.245,
+          "Carlos Rivera": 2.716,
+          "Derek Foster": 3.696,
+          "Sarah Kim": 2.677,
+          "James Taylor": 1.812
+        }
+      },
+      {
+        "round": 3,
+        "avg_belief": 2.738,
+        "cumulative_shares": 1,
+        "agent_beliefs": {
+          "Alex Chen": 2.921,
+          "Margaret Wilson": 2.186,
+          "Carlos Rivera": 2.837,
+          "Derek Foster": 3.939,
+          "Sarah Kim": 2.788,
+          "James Taylor": 1.756
+        }
+      },
+      {
+        "round": 4,
+        "avg_belief": 2.821,
+        "cumulative_shares": 1,
+        "agent_beliefs": {
+          "Alex Chen": 3.01,
+          "Margaret Wilson": 2.197,
+          "Carlos Rivera": 2.868,
+          "Derek Foster": 4.163,
+          "Sarah Kim": 2.886,
+          "James Taylor": 1.802
+        }
+      },
+      {
+        "round": 5,
+        "avg_belief": 2.921,
+        "cumulative_shares": 1,
+        "agent_beliefs": {
+          "Alex Chen": 3.054,
+          "Margaret Wilson": 2.173,
+          "Carlos Rivera": 2.97,
+          "Derek Foster": 4.45,
+          "Sarah Kim": 3.025,
+          "James Taylor": 1.854
+        }
+      },
+      {
+        "round": 6,
+        "avg_belief": 2.965,
+        "cumulative_shares": 1,
+        "agent_beliefs": {
+          "Alex Chen": 3.157,
+          "Margaret Wilson": 2.218,
+          "Carlos Rivera": 3.043,
+          "Derek Foster": 4.486,
+          "Sarah Kim": 3.058,
+          "James Taylor": 1.828
+        }
+      },
+      {
+        "round": 7,
+        "avg_belief": 2.984,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.186,
+          "Margaret Wilson": 2.211,
+          "Carlos Rivera": 3.058,
+          "Derek Foster": 4.596,
+          "Sarah Kim": 3.071,
+          "James Taylor": 1.784
+        }
+      },
+      {
+        "round": 8,
+        "avg_belief": 3.089,
+        "cumulative_shares": 3,
+        "agent_beliefs": {
+          "Alex Chen": 3.338,
+          "Margaret Wilson": 2.271,
+          "Carlos Rivera": 3.162,
+          "Derek Foster": 4.836,
+          "Sarah Kim": 3.134,
+          "James Taylor": 1.79
+        }
+      }
+    ],
+    "final_beliefs": {
+      "Alex Chen": {
+        "final_belief": 3.338,
+        "initial_belief": 2.575,
+        "change": 0.763,
+        "shares": 0,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.575,
+          2.697,
+          2.842,
+          2.921,
+          3.01,
+          3.054,
+          3.157,
+          3.186,
+          3.338
+        ]
+      },
+      "Margaret Wilson": {
+        "final_belief": 2.271,
+        "initial_belief": 2.275,
+        "change": -0.004,
+        "shares": 0,
+        "replies": 3,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.275,
+          2.275,
+          2.245,
+          2.186,
+          2.197,
+          2.173,
+          2.218,
+          2.211,
+          2.271
+        ]
+      },
+      "Carlos Rivera": {
+        "final_belief": 3.162,
+        "initial_belief": 2.5,
+        "change": 0.662,
+        "shares": 1,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.684,
+          2.716,
+          2.837,
+          2.868,
+          2.97,
+          3.043,
+          3.058,
+          3.162
+        ]
+      },
+      "Derek Foster": {
+        "final_belief": 4.836,
+        "initial_belief": 3.025,
+        "change": 1.811,
+        "shares": 2,
+        "replies": 3,
+        "trust_change": 0.0,
+        "belief_history": [
+          3.025,
+          3.361,
+          3.696,
+          3.939,
+          4.163,
+          4.45,
+          4.486,
+          4.596,
+          4.836
+        ]
+      },
+      "Sarah Kim": {
+        "final_belief": 3.134,
+        "initial_belief": 2.5,
+        "change": 0.634,
+        "shares": 0,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.569,
+          2.677,
+          2.788,
+          2.886,
+          3.025,
+          3.058,
+          3.071,
+          3.134
+        ]
+      },
+      "James Taylor": {
+        "final_belief": 1.79,
+        "initial_belief": 1.9,
+        "change": -0.11,
+        "shares": 0,
+        "replies": 4,
+        "trust_change": 0.0,
+        "belief_history": [
+          1.9,
+          1.803,
+          1.812,
+          1.756,
+          1.802,
+          1.854,
+          1.828,
+          1.784,
+          1.79
+        ]
+      }
+    },
+    "total_shares": 3,
+    "total_replies": 13
+  },
+  "community_notes": {
+    "condition": "community_notes",
+    "rounds": [
+      {
+        "round": 1,
+        "avg_belief": 2.642,
+        "cumulative_shares": 0,
+        "agent_beliefs": {
+          "Alex Chen": 2.861,
+          "Margaret Wilson": 2.365,
+          "Carlos Rivera": 2.722,
+          "Derek Foster": 3.331,
+          "Sarah Kim": 2.637,
+          "James Taylor": 1.937
+        }
+      },
+      {
+        "round": 2,
+        "avg_belief": 2.794,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.068,
+          "Margaret Wilson": 2.456,
+          "Carlos Rivera": 2.921,
+          "Derek Foster": 3.56,
+          "Sarah Kim": 2.756,
+          "James Taylor": 2.003
+        }
+      },
+      {
+        "round": 3,
+        "avg_belief": 2.883,
+        "cumulative_shares": 2,
+        "agent_beliefs": {
+          "Alex Chen": 3.157,
+          "Margaret Wilson": 2.438,
+          "Carlos Rivera": 3.029,
+          "Derek Foster": 3.816,
+          "Sarah Kim": 2.831,
+          "James Taylor": 2.027
+        }
+      },
+      {
+        "round": 4,
+        "avg_belief": 2.979,
+        "cumulative_shares": 3,
+        "agent_beliefs": {
+          "Alex Chen": 3.279,
+          "Margaret Wilson": 2.483,
+          "Carlos Rivera": 3.082,
+          "Derek Foster": 4.106,
+          "Sarah Kim": 2.941,
+          "James Taylor": 1.98
+        }
+      },
+      {
+        "round": 5,
+        "avg_belief": 3.071,
+        "cumulative_shares": 3,
+        "agent_beliefs": {
+          "Alex Chen": 3.433,
+          "Margaret Wilson": 2.5,
+          "Carlos Rivera": 3.175,
+          "Derek Foster": 4.255,
+          "Sarah Kim": 3.105,
+          "James Taylor": 1.956
+        }
+      },
+      {
+        "round": 6,
+        "avg_belief": 3.133,
+        "cumulative_shares": 5,
+        "agent_beliefs": {
+          "Alex Chen": 3.572,
+          "Margaret Wilson": 2.542,
+          "Carlos Rivera": 3.194,
+          "Derek Foster": 4.363,
+          "Sarah Kim": 3.186,
+          "James Taylor": 1.941
+        }
+      },
+      {
+        "round": 7,
+        "avg_belief": 3.224,
+        "cumulative_shares": 6,
+        "agent_beliefs": {
+          "Alex Chen": 3.687,
+          "Margaret Wilson": 2.575,
+          "Carlos Rivera": 3.208,
+          "Derek Foster": 4.614,
+          "Sarah Kim": 3.237,
+          "James Taylor": 2.021
+        }
+      },
+      {
+        "round": 8,
+        "avg_belief": 3.283,
+        "cumulative_shares": 6,
+        "agent_beliefs": {
+          "Alex Chen": 3.762,
+          "Margaret Wilson": 2.665,
+          "Carlos Rivera": 3.228,
+          "Derek Foster": 4.824,
+          "Sarah Kim": 3.275,
+          "James Taylor": 1.942
+        }
+      }
+    ],
+    "final_beliefs": {
+      "Alex Chen": {
+        "final_belief": 3.762,
+        "initial_belief": 2.575,
+        "change": 1.187,
+        "shares": 3,
+        "replies": 2,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.575,
+          2.861,
+          3.068,
+          3.157,
+          3.279,
+          3.433,
+          3.572,
+          3.687,
+          3.762
+        ]
+      },
+      "Margaret Wilson": {
+        "final_belief": 2.665,
+        "initial_belief": 2.275,
+        "change": 0.39,
+        "shares": 0,
+        "replies": 4,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.275,
+          2.365,
+          2.456,
+          2.438,
+          2.483,
+          2.5,
+          2.542,
+          2.575,
+          2.665
+        ]
+      },
+      "Carlos Rivera": {
+        "final_belief": 3.228,
+        "initial_belief": 2.5,
+        "change": 0.728,
+        "shares": 0,
+        "replies": 2,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.722,
+          2.921,
+          3.029,
+          3.082,
+          3.175,
+          3.194,
+          3.208,
+          3.228
+        ]
+      },
+      "Derek Foster": {
+        "final_belief": 4.824,
+        "initial_belief": 3.025,
+        "change": 1.799,
+        "shares": 3,
+        "replies": 1,
+        "trust_change": 0.0,
+        "belief_history": [
+          3.025,
+          3.331,
+          3.56,
+          3.816,
+          4.106,
+          4.255,
+          4.363,
+          4.614,
+          4.824
+        ]
+      },
+      "Sarah Kim": {
+        "final_belief": 3.275,
+        "initial_belief": 2.5,
+        "change": 0.775,
+        "shares": 0,
+        "replies": 0,
+        "trust_change": 0.0,
+        "belief_history": [
+          2.5,
+          2.637,
+          2.756,
+          2.831,
+          2.941,
+          3.105,
+          3.186,
+          3.237,
+          3.275
+        ]
+      },
+      "James Taylor": {
+        "final_belief": 1.942,
+        "initial_belief": 1.9,
+        "change": 0.042,
+        "shares": 0,
+        "replies": 4,
+        "trust_change": 0.0,
+        "belief_history": [
+          1.9,
+          1.937,
+          2.003,
+          2.027,
+          1.98,
+          1.956,
+          1.941,
+          2.021,
+          1.942
+        ]
+      }
+    },
+    "total_shares": 6,
+    "total_replies": 13
+  }
+}
