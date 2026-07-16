@@ -93,7 +93,7 @@ export const research = [
     summary:
       "A Python multi-agent simulation of ethical trade-offs in misinformation interventions, selected for Columbia's Case Studies on Ethical Technology, Media, and Design (Vol. III).",
     description:
-      'This study asks how platforms should intervene against misinformation without undermining user autonomy. A rule-based multi-agent simulation, designed and coded in Python, models six agents with distinct personas (anchored in Pew Research Center\'s 2021 Political Typology) encountering misinformation under four intervention conditions: no intervention, an AI fact-check label, an accuracy nudge, and Community Notes. Across 192 logged agent interactions, the AI fact-check label backfired, producing the highest average belief score and the most shares, while the accuracy nudge performed best without labeling or removing any content. No intervention changed who was most vulnerable or most resistant; interventions mainly moved the middle. The results are read through the Markkula Center\'s ethical lenses, and the case study is explicit about its pilot scale and limitations. The work developed in three stages across the semester: the initial case study, "Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs," was selected for Case Studies on Ethical Technology, Media, and Design, Vol. III, a class publication edited by Prof. Laura Scherling and published through Columbia Academic Commons; a Pecha Kucha-format video presentation of the simulation followed; and an extended final case study deepened the ethical framework analysis.',
+      'This study asks how platforms should intervene against misinformation without undermining user autonomy. A rule-based multi-agent simulation, designed and coded in Python, models six agents with distinct personas (anchored in Pew Research Center\'s 2021 Political Typology) encountering misinformation under four intervention conditions: no intervention, an AI fact-check label, an accuracy nudge, and Community Notes. Across 192 logged agent interactions, the AI fact-check label backfired, producing the highest average belief score and the most shares, while the accuracy nudge performed best without labeling or removing any content. No intervention changed who was most vulnerable or most resistant; interventions mainly moved the middle. The results are read through the Markkula Center\'s ethical lenses, and the case study is explicit about its pilot scale and limitations. The work developed in three stages across the semester: the initial case study, "Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs," was selected for Case Studies on Ethical Technology, Media, and Design, Vol. III, a class publication edited by Prof. Laura Scherling and published through Columbia Academic Commons; a Pecha Kucha-format video presentation of the simulation followed; and the final case study, "Beyond Single-Logic Solutions," expanded the model to nine archetypes and layered an institutional-actor architecture spanning platform, regulator, and civil society, arguing that the core ethical question is not which intervention works best but which actor, under which duties, may legitimately deploy one at all.',
     courseContext: 'Ethics of Media, Technology, and Design (TPINIA7014), Prof. Laura Scherling, Spring 2026',
     related: ['misinfo-interviews', 'crisisnews', 'beyond-binary'],
     collaborators: ['Individual project'],
@@ -115,7 +115,8 @@ export const research = [
       },
       {
         label: 'Final Case Study',
-        note: 'Extended course final that develops the published case study. PDF to be attached.',
+        note: '"Beyond Single-Logic Solutions": the extended course final with nine archetypes and an institutional-actor layer.',
+        url: '/assets/papers/ethics-final-case-study.pdf',
       },
       {
         label: 'Presentation Slides',
@@ -165,7 +166,8 @@ export const research = [
       },
       {
         label: 'Final Paper',
-        note: 'Team paper with study design, findings, and recommendations. PDF to be attached.',
+        note: 'Team paper with study design, findings, and recommendations.',
+        url: '/assets/papers/digital-provenance-final-paper.pdf',
       },
     ],
     liveDemo: '/demos/beyond-binary/index.html',
