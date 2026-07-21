@@ -297,14 +297,13 @@ function About() {
               <p>
                 Dongjae Kang is an MPA student at Columbia SIPA, concentrating in Technology
                 Policy and Innovation. He is currently an intern at the UN Statistics Division
-                (DESA), supporting the Global Network of Data Officers and Statisticians. There,
-                he has built the participation analysis for the AI webinar series, and is
-                developing a tool that traces a Statistical Commission decision back to the
-                discussion behind it. Before Columbia, he studied Industrial Engineering at KAIST,
-                with a double major in Business and a minor in Science and Technology Policy. He
-                graduated as KAIST&apos;s <Link to="/activities/valedictorian">Valedictorian</Link>,
-                delivering the commencement address at a ceremony attended by the President of
-                Korea.
+                (DESA), supporting the Global Network of Data Officers and Statisticians. He has
+                built the participation analysis for its AI webinar series, and is developing a
+                tool that traces a Statistical Commission decision back to the discussion behind
+                it. Before Columbia, he studied Industrial Engineering at KAIST, with a double
+                major in Business and a minor in Science and Technology Policy. He graduated as
+                KAIST&apos;s <Link to="/activities/valedictorian">Valedictorian</Link>, delivering
+                the commencement address at a ceremony attended by the President of Korea.
               </p>
               <p>
                 At Columbia, he leads the team behind{' '}
