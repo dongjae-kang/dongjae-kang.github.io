@@ -259,7 +259,7 @@ const journey = [
   {
     category: 'Professional',
     items: [
-      { role: 'Intern, Statistics Division (DESA)', org: 'United Nations', detail: 'Community engagement and analytics for the Global Network of Data Officers and Statisticians', period: 'Jun 2026 - Present' },
+      { role: 'Intern, Statistics Division (DESA)', org: 'United Nations', detail: 'Participation analytics for the Global Network of Data Officers and Statisticians\nDeveloping a tool that traces Statistical Commission decisions to their discussions', period: 'Jun 2026 - Present' },
       { role: 'Event Assistant, UN General Assembly High-Level Week', org: 'Permanent Mission of the Republic of Korea to the United Nations', period: 'Sep 2025' },
       { role: 'Member, Young Engineers Honor Society (YEHS)', org: 'National Academy of Engineering of Korea', period: '2024 - 2025' },
       { role: 'Sergeant, Technical & Administrative Specialist', org: 'Korea Army Training Center (Honorable Discharge)', period: '2021 - 2022' },
@@ -287,18 +287,20 @@ function About() {
           <Intro>
             <PhotoColumn>
               <Photo aria-label="Dongjae Kang profile photo">
-                <PhotoImage src={profileSquare} alt="Dongjae (Jack) Kang" />
+                <PhotoImage src={profileSquare} alt="Dongjae Kang" />
               </Photo>
               <SecondaryPhoto aria-label="Dongjae Kang full portrait">
-                <PhotoImage src={profileFull} alt="Dongjae (Jack) Kang portrait" />
+                <PhotoImage src={profileFull} alt="Dongjae Kang portrait" />
               </SecondaryPhoto>
             </PhotoColumn>
             <Bio>
               <p>
-                Dongjae (Jack) Kang is an MPA student at Columbia SIPA, concentrating in
-                Technology, Policy and Innovation, and currently an intern at the UN Statistics
-                Division (DESA), where he supports community engagement for the Global Network of
-                Data Officers and Statisticians. He majored in Industrial Engineering at KAIST,
+                Dongjae Kang is an MPA student at Columbia SIPA, concentrating in Technology
+                Policy and Innovation. He is currently an intern at the UN Statistics Division
+                (DESA), supporting the Global Network of Data Officers and Statisticians. There,
+                he has built the participation analysis for the AI webinar series, and is
+                developing a tool that traces a Statistical Commission decision back to the
+                discussion behind it. Before Columbia, he studied Industrial Engineering at KAIST,
                 with a double major in Business and a minor in Science and Technology Policy. He
                 graduated as KAIST&apos;s <Link to="/activities/valedictorian">Valedictorian</Link>,
                 delivering the commencement address at a ceremony attended by the President of
