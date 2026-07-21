@@ -301,7 +301,7 @@ function About() {
                 built the participation analysis for its AI webinar series, and is developing a
                 tool that traces a Statistical Commission decision back to the discussion behind
                 it. Before Columbia, he studied Industrial Engineering at KAIST, with a double
-                major in Business and a minor in Science and Technology Policy. He graduated as
+                major in Business and a minor in Science Technology Policy. He graduated as
                 KAIST&apos;s <Link to="/activities/valedictorian">Valedictorian</Link>, delivering
                 the commencement address at a ceremony attended by the President of Korea.
               </p>
@@ -329,10 +329,10 @@ function About() {
                 >
                   a column
                 </a>{' '}
-                in one of Korea&apos;s leading newspapers. He has served on participatory governance
-                committees in Seoul (2017-2018) and Daejeon (2023-2025), supported diplomatic
-                operations during the UN General Assembly High-Level Week in 2025, and is a
-                founding board member of the Columbia AI Club at SIPA.
+                in one of Korea&apos;s leading newspapers. He is a founding board member of the
+                Columbia AI Club at SIPA, and he supported diplomatic operations during the UN
+                General Assembly High-Level Week in 2025. He has served on participatory
+                governance committees in Daejeon (2023-2025) and Seoul (2017-2018).
               </p>
               <p>
                 His research interests include platform governance, misinformation, and content
