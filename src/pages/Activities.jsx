@@ -240,7 +240,7 @@ const PhotoCount = styled.span`
   z-index: 1;
 `;
 
-/* ─── TIER 3: Off the Clock ─── */
+/* ─── TIER 3: Miscellaneous ─── */
 const GroupTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.6rem;
@@ -463,7 +463,7 @@ function Activities() {
 
           {/* ─── TIER 3: OFF THE CLOCK ─── */}
           <Section ref={tier3Ref} id="life">
-            <SectionTitle>Off the Clock</SectionTitle>
+            <SectionTitle>Miscellaneous</SectionTitle>
 
             <Tier3Grid style={{ marginTop: '16px' }}>
               {offTheClockTimeline.map((item) => {

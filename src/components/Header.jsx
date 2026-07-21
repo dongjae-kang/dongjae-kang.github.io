@@ -229,7 +229,7 @@ const menus = [
         description: 'Event organizing, mixers, and professional networks.',
       },
       {
-        label: 'Off the Clock',
+        label: 'Miscellaneous',
         to: '/activities',
         section: 'life',
         description: 'Concerts, sports, and campus moments.',

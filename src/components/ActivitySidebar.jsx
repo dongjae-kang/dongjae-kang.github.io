@@ -169,7 +169,7 @@ function ActivitySidebar({ onScrollTo }) {
       {/* TIER 3 */}
       <SideSection>
         <SideSectionTitle onClick={() => handleScroll('life')}>
-          Off the Clock
+          Miscellaneous
         </SideSectionTitle>
         {offTheClockByYear.map((group) => (
           <SubGroup key={group.year}>
