@@ -202,7 +202,7 @@ const menus = [
         label: 'Main Research',
         to: '/research',
         section: null,
-        description: 'Core projects in misinformation, platform governance, and content moderation.',
+        description: 'Research on how people judge information and interact through platforms and AI.',
       },
       {
         label: 'Coursework & Papers',

@@ -306,10 +306,11 @@ function About() {
                 the commencement address at a ceremony attended by the President of Korea.
               </p>
               <p>
-                At Columbia, he leads the team behind{' '}
-                <Link to="/research/prism-news">PRISM</Link>, a live daily brief tracing how
-                political stories start and travel across YouTube, published in Korean and
-                English editions. At KAIST&apos;s Collaborative Social Technologies Lab
+                At Columbia&apos;s Brown Institute, he works with Eric Chen on how to measure the
+                health of a conversation. He also founded{' '}
+                <Link to="/research/prism-news">PRISM</Link>, a daily brief tracing how
+                political stories travel across YouTube, in Korean and English editions. At
+                KAIST&apos;s Collaborative Social Technologies Lab
                 (2024-2025), he co-authored a study analyzing two decades of social media crisis
                 patterns, and presented the work at the{' '}
                 <Link to="/research/crisisnews">ACM CHI 2025 Workshop</Link> in Yokohama. His
@@ -335,9 +336,10 @@ function About() {
                 governance committees in Daejeon (2023-2025) and Seoul (2017-2018).
               </p>
               <p>
-                His research interests include platform governance, misinformation, and content
-                moderation. He aims to study how platforms shape society and how policy can guide
-                them responsibly, and put that research into practice.
+                His research asks how people connect with one another and live together as
+                social beings, and how technology and AI shape the ways we think, judge, and
+                interact. He approaches these questions through computer science and HCI:
+                measuring carefully, then building and evaluating systems.
               </p>
             <Contacts>
               <ContactButton href="mailto:dk3500@columbia.edu">

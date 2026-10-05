@@ -336,7 +336,11 @@ function Research() {
 
   const matchesTag = (item) => !activeTag || item.tags?.includes(activeTag);
 
-  const sortedResearch = sortByDateDesc(research);
+  // PRISM is a project, not a study: keep it after the research entries.
+  const sortedResearch = [
+    ...sortByDateDesc(research.filter((r) => r.id !== 'prism-news')),
+    ...research.filter((r) => r.id === 'prism-news'),
+  ];
   const sortedCoursework = sortByDateDesc(coursework);
 
   return (
@@ -350,9 +354,9 @@ function Research() {
           <Content>
           <Title>Research</Title>
           <Intro>
-            Core research projects in misinformation and platform governance, followed by a smaller
-            selection of coursework projects in policy analysis, urban governance, and
-            technology policy design.
+            Research on how people judge information and interact through platforms and AI,
+            followed by a smaller selection of coursework projects in policy analysis, urban
+            governance, and technology policy design.
           </Intro>
 
           <SectionNav>

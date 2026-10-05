@@ -72,7 +72,6 @@ const COLORS = {
 const primaryFlowPairs = new Map([
   ['crisisnews|misinformation', { delay: '0s', duration: '5.3s' }],
   ['prism-news|platform-governance', { delay: '1.1s', duration: '5.8s' }],
-  ['beyond-binary|content-moderation', { delay: '2.4s', duration: '4.9s' }],
   ['multi-agent-sim|ai-policy', { delay: '0.8s', duration: '5.5s' }],
   ['student-council|participatory-governance', { delay: '1.9s', duration: '5.4s' }],
   ['chi-2025|misinformation', { delay: '2.8s', duration: '4.7s' }],

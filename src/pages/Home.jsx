@@ -391,7 +391,7 @@ const PreviewImg = styled.img`
 `;
 
 /* ─── DATA ─── */
-const researchOrder = ['prism-news', 'multi-agent-sim', 'beyond-binary', 'crisisnews'];
+const researchOrder = ['misinfo-interviews', 'multi-agent-sim', 'crisisnews', 'prism-news'];
 const activityOrder = ['chi-2025', 'un-ga-hlw', 'un-youth-forum', 'kgsa-career', 'upenn-mixer', 'hyc-mixer', 'valedictorian'];
 
 function Home() {
@@ -434,9 +434,9 @@ function Home() {
         <Hero>
           <HeroContent>
             <Graph />
-            <Name>Dongjae (Jack) Kang</Name>
+            <Name>Dongjae Kang</Name>
             <Tagline>
-              Studying misinformation, platform governance, and the systems that shape what people believe.
+              Studying how people connect with one another, and how technology and AI shape the ways we think, judge, and interact.
             </Tagline>
             <ScrollCue
               type="button"
@@ -458,14 +458,16 @@ function Home() {
               <SectionNum>01</SectionNum>
               <SectionLabel>Research</SectionLabel>
             </SectionLead>
-            <SectionTitle>How platforms shape what people see, share, and believe.</SectionTitle>
+            <SectionTitle>How people connect, and how technology shapes it.</SectionTitle>
             <SectionBody>
-              His research examines how problematic behaviors emerge and escalate on social
-              media platforms. At KAIST, he co-built CrisisNews, a dataset of 93,250 news
-              articles spanning two decades of social media crises, and presented the work at
-              ACM CHI 2025 in Yokohama. At Columbia, he leads PRISM, a live daily brief
-              tracing how political stories start and travel across YouTube, published in
-              Korean and English editions.
+              At Columbia&apos;s Brown Institute, he works with Eric Chen on how to measure the
+              health of a conversation, as people&apos;s capacity to repair it after something
+              goes wrong. At the United Nations Statistics Division, he built a system that
+              traces each decision of the UN Statistical Commission back to what member states
+              said in the meeting. At KAIST, he co-built CrisisNews, a dataset of 93,250 news
+              articles spanning two decades of social media crises, and presented it at a CHI
+              2025 workshop in Yokohama. He also founded PRISM, a daily brief tracing how
+              political stories travel across YouTube, in Korean and English editions.
             </SectionBody>
 
             <ListWrap>
@@ -536,7 +538,7 @@ function Home() {
             </SectionLead>
             <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
             <SectionBody>
-              He presented research at ACM CHI in Yokohama, supported Presidential
+              He presented research at a CHI 2025 workshop in Yokohama, supported Presidential
               Secretariat operations during the UN General Assembly High-Level Week, and was
               selected as a Respondent for the SDG 9 session at the 2026 UN ECOSOC Youth
               Forum. At Columbia, he organized career and networking events connecting 200+

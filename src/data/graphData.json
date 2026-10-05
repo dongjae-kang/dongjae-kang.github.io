@@ -31,21 +31,6 @@
       }
     },
     {
-      "id": "beyond-binary",
-      "label": "Beyond Binary",
-      "type": "research",
-      "importance": "support",
-      "url": "/research/beyond-binary",
-      "desktop": {
-        "x": 0.14,
-        "y": 0.58
-      },
-      "mobile": {
-        "x": 0.11,
-        "y": 0.56
-      }
-    },
-    {
       "id": "multi-agent-sim",
       "label": "Multi-Agent Sim",
       "type": "research",
@@ -311,14 +296,6 @@
     {
       "source": "prism-news",
       "target": "columbia-sipa"
-    },
-    {
-      "source": "beyond-binary",
-      "target": "content-moderation"
-    },
-    {
-      "source": "beyond-binary",
-      "target": "ai-policy"
     },
     {
       "source": "multi-agent-sim",
