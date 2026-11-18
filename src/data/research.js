@@ -91,9 +91,9 @@ export const research = [
     year: '2026',
     sortDate: '2026-05-12',
     summary:
-      "A Python multi-agent simulation of ethical trade-offs in misinformation interventions, selected for Columbia's Case Studies on Ethical Technology, Media, and Design (Vol. III).",
+      "A Python multi-agent simulation of ethical trade-offs in misinformation interventions, published in Columbia's Ethics in Media, Technology, and Design: Case Studies, Volume 3.",
     description:
-      'This study asks how platforms should intervene against misinformation without undermining user autonomy. A rule-based multi-agent simulation, designed and coded in Python, models six agents with distinct personas (anchored in Pew Research Center\'s 2021 Political Typology) encountering misinformation under four intervention conditions: no intervention, an AI fact-check label, an accuracy nudge, and Community Notes. Across 192 logged agent interactions, the AI fact-check label backfired, producing the highest average belief score and the most shares, while the accuracy nudge performed best without labeling or removing any content. No intervention changed who was most vulnerable or most resistant; interventions mainly moved the middle. The results are read through the Markkula Center\'s ethical lenses, and the case study is explicit about its pilot scale and limitations. The work developed in three stages across the semester: the initial case study, "Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs," was selected for Case Studies on Ethical Technology, Media, and Design, Vol. III, a class publication edited by Prof. Laura Scherling and published through Columbia Academic Commons; a Pecha Kucha-format video presentation of the simulation followed; and the final case study, "Beyond Single-Logic Solutions," expanded the model to nine archetypes and layered an institutional-actor architecture spanning platform, regulator, and civil society, arguing that the core ethical question is not which intervention works best but which actor, under which duties, may legitimately deploy one at all.',
+      'This study asks how platforms should intervene against misinformation without undermining user autonomy. A rule-based multi-agent simulation, designed and coded in Python, models six agents with distinct personas (anchored in Pew Research Center\'s 2021 Political Typology) encountering misinformation under four intervention conditions: no intervention, an AI fact-check label, an accuracy nudge, and Community Notes. Across 192 logged agent interactions, the AI fact-check label backfired, producing the highest average belief score and the most shares, while the accuracy nudge performed best without labeling or removing any content. No intervention changed who was most vulnerable or most resistant; interventions mainly moved the middle. The results are read through the Markkula Center\'s ethical lenses, and the case study is explicit about its pilot scale and limitations. The work developed in three stages across the semester: the initial case study, "Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs," appears in Ethics in Media, Technology, and Design: Case Studies, Volume 3, a class publication edited by Prof. Laura Scherling and published through Columbia Academic Commons in 2026; a Pecha Kucha-format video presentation of the simulation followed; and the final case study, "Beyond Single-Logic Solutions," expanded the model to nine archetypes and layered an institutional-actor architecture spanning platform, regulator, and civil society, arguing that the core ethical question is not which intervention works best but which actor, under which duties, may legitimately deploy one at all.',
     courseContext: 'Ethics of Media, Technology, and Design (TPINIA7014), Prof. Laura Scherling, Spring 2026',
     related: ['misinfo-interviews', 'crisisnews', 'beyond-binary'],
     collaborators: ['Individual project'],
@@ -101,7 +101,7 @@ export const research = [
     highlights: [
       'AI fact-check labels backfired, performing worse than no intervention',
       'Accuracy nudges reduced belief and sharing most, without touching content',
-      'Selected for Case Studies on Ethical Technology, Media, and Design, Vol. III',
+      'Published in Ethics in Media, Technology, and Design: Case Studies, Volume 3',
     ],
     heroMedia: {
       src: cs1Figure1,
@@ -111,7 +111,8 @@ export const research = [
     materials: [
       {
         label: 'Publication',
-        note: 'Case study selected for Vol. III via Columbia Academic Commons. Link will be added when the volume is published.',
+        note: 'Chapter in Ethics in Media, Technology, and Design: Case Studies Volume 3 (Columbia Academic Commons, 2026).',
+        url: 'https://doi.org/10.7916/wdja-8e29',
       },
       {
         label: 'Final Case Study',

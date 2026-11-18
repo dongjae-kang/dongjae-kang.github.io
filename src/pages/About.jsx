@@ -234,7 +234,7 @@ const journey = [
   {
     category: 'Publications',
     items: [
-      { role: 'Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs', org: 'Dongjae Kang, selected for Case Studies on Ethical Technology, Media, and Design, Vol. III (Columbia Academic Commons)', period: '2026' },
+      { role: 'Intervening Against Misinformation on Social Media: A Multi-Agent Simulation of Ethical Trade-Offs', org: 'Dongjae Kang, in Ethics in Media, Technology, and Design: Case Studies Volume 3 (Columbia Academic Commons)', period: '2026' },
       { role: 'CrisisNews: A Dataset Mapping Two Decades of News Articles on Online Problematic Behavior at Scale', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Yubin Choi, Juhoon Lee, Joseph Seering, arXiv preprint', period: '2025' },
       { role: 'Understanding Social Media Crisis: A Data-driven Analysis of Online Problematic Behavior', org: 'Jeanne Choi*, Dongjae Kang* (*co-first authors), Joseph Seering, CHI 2025 Workshop Paper', period: '2025' },
     ],
@@ -313,9 +313,9 @@ function About() {
                 (2024-2025), he co-authored a study analyzing two decades of social media crisis
                 patterns, and presented the work at the{' '}
                 <Link to="/research/crisisnews">ACM CHI 2025 Workshop</Link> in Yokohama. His
-                case study on the ethics of misinformation interventions was selected for
-                Columbia&apos;s <em>Case Studies on Ethical Technology, Media, and Design</em>,
-                Vol. III.
+                case study on the ethics of misinformation interventions was published in
+                Columbia&apos;s <em>Ethics in Media, Technology, and Design: Case Studies</em>,
+                Volume 3.
               </p>
               <p>
                 As President of the KAIST Undergraduate Student Council (2022-2023), he rebuilt
