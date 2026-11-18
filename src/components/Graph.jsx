@@ -3,6 +3,22 @@ import * as d3 from 'd3';
 import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import graphData from '../data/graphData.json';
+import { research } from '../data/research';
+import { activities, communityEvents } from '../data/activities';
+
+/* Hover previews reuse the images the research and activity pages already show. */
+const previewImageById = new Map([
+  ...research.map((item) => [item.id, item.thumbnail]),
+  ...[...activities, ...communityEvents].map((item) => [
+    item.id,
+    item.media?.cover || item.media?.photos?.[0],
+  ]),
+].filter(([, image]) => Boolean(image)));
+
+/* Preview toggle for the institution dots, decided before launch: ?inst=center shows them. */
+const showInstitutions =
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search).get('inst') === 'center';
 
 const pulse = keyframes`
   0%, 100% {
@@ -41,22 +57,45 @@ const StyledSvg = styled.svg`
   }
 `;
 
-const Tooltip = styled.div`
-  position: absolute;
+/* Same frame as the hover preview on the home Research list (Home.jsx FloatingPreview). */
+const Preview = styled.div`
+  position: fixed;
   top: ${({ $y }) => `${$y}px`};
   left: ${({ $x }) => `${$x}px`};
-  transform: translate(12px, -12px);
-  pointer-events: none;
-  z-index: 2;
-  padding: 8px 10px;
+  width: 280px;
+  overflow: hidden;
   border-radius: 4px;
-  background: rgba(27, 61, 47, 0.96);
-  color: #f7f7f5;
-  font-size: 0.76rem;
-  white-space: nowrap;
+  border: 1px solid rgba(27, 61, 47, 0.14);
+  background: ${({ $image }) => ($image ? '#d8ddd8' : '#f7f7f5')};
+  box-shadow: 0 12px 36px rgba(27, 61, 47, 0.14);
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
-  transition: opacity 0.16s ease;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 40;
+
+  ${({ $image }) => ($image ? 'aspect-ratio: 16 / 10;' : 'padding: 14px 16px;')}
+
+  @media (max-width: 1024px) { display: none; }
 `;
+
+const PreviewImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const PreviewNote = styled.p`
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  text-align: left;
+  color: #2b2a2a;
+`;
+
+const PREVIEW_WIDTH = 280;
+const PREVIEW_IMAGE_HEIGHT = 175;
+const PREVIEW_NOTE_HEIGHT = 110;
 
 const COLORS = {
   greenDark: '#1B3D2F',
@@ -70,45 +109,45 @@ const COLORS = {
 };
 
 const primaryFlowPairs = new Map([
-  ['crisisnews|misinformation', { delay: '0s', duration: '5.3s' }],
-  ['prism-news|platform-governance', { delay: '1.1s', duration: '5.8s' }],
-  ['multi-agent-sim|ai-policy', { delay: '0.8s', duration: '5.5s' }],
-  ['student-council|participatory-governance', { delay: '1.9s', duration: '5.4s' }],
-  ['chi-2025|misinformation', { delay: '2.8s', duration: '4.7s' }],
-  ['un-ga-hlw|platform-governance', { delay: '0.4s', duration: '5.6s' }],
-  ['un-youth-forum|ai-policy', { delay: '1.6s', duration: '5.1s' }],
+  ['healthy-conversations|understanding-each-other', { delay: '0s', duration: '5.3s' }],
+  ['prism-news|judging-what-to-believe', { delay: '1.1s', duration: '5.8s' }],
+  ['un-decision-tracing|deciding-together', { delay: '0.8s', duration: '5.5s' }],
+  ['student-council|deciding-together', { delay: '1.9s', duration: '5.4s' }],
+  ['chi-2025|judging-what-to-believe', { delay: '2.8s', duration: '4.7s' }],
+  ['upenn-mixer|how-people-connect', { delay: '0.4s', duration: '5.6s' }],
+  ['columbia-ai-club|technology-and-ai', { delay: '1.6s', duration: '5.1s' }],
 ]);
 
 const themeAuraPalette = {
-  misinformation: {
+  'how-people-connect': {
     center: 'rgba(45, 90, 61, 0.2)',
     mid: 'rgba(45, 90, 61, 0.11)',
     outer: 'rgba(45, 90, 61, 0.03)',
     desktopRadius: 70,
     mobileRadius: 54,
   },
-  'platform-governance': {
+  'understanding-each-other': {
     center: 'rgba(27, 61, 47, 0.18)',
     mid: 'rgba(27, 61, 47, 0.1)',
     outer: 'rgba(27, 61, 47, 0.03)',
     desktopRadius: 70,
     mobileRadius: 54,
   },
-  'content-moderation': {
+  'deciding-together': {
     center: 'rgba(74, 122, 94, 0.2)',
     mid: 'rgba(74, 122, 94, 0.11)',
     outer: 'rgba(74, 122, 94, 0.032)',
     desktopRadius: 72,
     mobileRadius: 56,
   },
-  'ai-policy': {
+  'judging-what-to-believe': {
     center: 'rgba(45, 90, 61, 0.17)',
     mid: 'rgba(45, 90, 61, 0.095)',
     outer: 'rgba(45, 90, 61, 0.028)',
     desktopRadius: 68,
     mobileRadius: 52,
   },
-  'participatory-governance': {
+  'technology-and-ai': {
     center: 'rgba(53, 97, 69, 0.2)',
     mid: 'rgba(53, 97, 69, 0.11)',
     outer: 'rgba(53, 97, 69, 0.032)',
@@ -182,6 +221,10 @@ function motionConfig(id) {
   };
 }
 
+function labelLines(node, maxChars) {
+  return node.lines || wrapLabel(node.label, maxChars);
+}
+
 function wrapLabel(label, maxChars) {
   const words = label.split(' ');
   const lines = [];
@@ -226,22 +269,30 @@ function labelLayout(node, isMobile) {
   }
 
   const mobileMap = {
-    misinformation: { dx: 0, dy: -24, anchor: 'middle', baseline: 'baseline' },
-    'platform-governance': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
-    'content-moderation': { dx: -20, dy: 4, anchor: 'end', baseline: 'middle' },
-    'ai-policy': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
-    'participatory-governance': { dx: -20, dy: 4, anchor: 'end', baseline: 'middle' },
+    'how-people-connect': { dx: 0, dy: -24, anchor: 'middle', baseline: 'baseline' },
+    'understanding-each-other': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
+    'deciding-together': { dx: -20, dy: 4, anchor: 'end', baseline: 'middle' },
+    'judging-what-to-believe': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
+    'technology-and-ai': { dx: 20, dy: 4, anchor: 'start', baseline: 'middle' },
   };
 
   const desktopMap = {
-    misinformation: { dx: 0, dy: -26, anchor: 'middle', baseline: 'baseline' },
-    'platform-governance': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
-    'content-moderation': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
-    'ai-policy': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
-    'participatory-governance': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
+    'how-people-connect': { dx: 0, dy: -26, anchor: 'middle', baseline: 'baseline' },
+    'understanding-each-other': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
+    'deciding-together': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
+    'judging-what-to-believe': { dx: 24, dy: 4, anchor: 'start', baseline: 'middle' },
+    'technology-and-ai': { dx: -24, dy: 4, anchor: 'end', baseline: 'middle' },
   };
 
   return (isMobile ? mobileMap : desktopMap)[node.id];
+}
+
+/* Multi-line labels beside a node are centred on it, so the first line moves up. */
+function labelLineShift(node, isMobile) {
+  const layout = labelLayout(node, isMobile);
+  const lineCount = labelLines(node, isMobile ? 16 : 18).length;
+  if (lineCount < 2 || layout.baseline !== 'middle') return 0;
+  return -((lineCount - 1) * nodeVisual(node).labelSize * 1.15) / 2;
 }
 
 function buildLayout(data, width, height, isMobile) {
@@ -250,7 +301,11 @@ function buildLayout(data, width, height, isMobile) {
   const innerWidth = width - marginX * 2;
   const innerHeight = height - marginY * 2;
 
-  const nodes = data.nodes.map((node) => {
+  const visibleNodes = data.nodes.filter(
+    (node) => showInstitutions || node.type !== 'institution'
+  );
+
+  const nodes = visibleNodes.map((node) => {
     const position = node[isMobile ? 'mobile' : 'desktop'];
     return {
       ...node,
@@ -261,10 +316,12 @@ function buildLayout(data, width, height, isMobile) {
   });
 
   const nodeMap = new Map(nodes.map((node) => [node.id, node]));
-  const edges = data.edges.map((edge) => ({
-    source: nodeMap.get(edge.source),
-    target: nodeMap.get(edge.target),
-  }));
+  const edges = data.edges
+    .filter((edge) => nodeMap.has(edge.source) && nodeMap.has(edge.target))
+    .map((edge) => ({
+      source: nodeMap.get(edge.source),
+      target: nodeMap.get(edge.target),
+    }));
 
   const adjacency = new Map(nodes.map((node) => [node.id, new Set([node.id])]));
   edges.forEach((edge) => {
@@ -310,7 +367,7 @@ function Graph() {
   const wrapRef = useRef(null);
   const navigate = useNavigate();
   const [size, setSize] = useState({ width: 0, height: 0 });
-  const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, label: '' });
+  const [preview, setPreview] = useState({ visible: false, x: 0, y: 0, image: null, note: null });
   const isMobile = size.width > 0 && size.width < 768;
 
   const data = useMemo(
@@ -489,7 +546,7 @@ function Graph() {
       .attr('text-anchor', (node) => labelLayout(node, isMobile).anchor)
       .attr('dominant-baseline', (node) => labelLayout(node, isMobile).baseline)
       .attr('x', (node) => labelLayout(node, isMobile).dx)
-      .attr('y', (node) => labelLayout(node, isMobile).dy + 0.8);
+      .attr('y', (node) => labelLayout(node, isMobile).dy + labelLineShift(node, isMobile) + 0.8);
 
     const labelGroups = nodeGroup
       .append('text')
@@ -506,12 +563,12 @@ function Graph() {
       .attr('text-anchor', (node) => labelLayout(node, isMobile).anchor)
       .attr('dominant-baseline', (node) => labelLayout(node, isMobile).baseline)
       .attr('x', (node) => labelLayout(node, isMobile).dx)
-      .attr('y', (node) => labelLayout(node, isMobile).dy);
+      .attr('y', (node) => labelLayout(node, isMobile).dy + labelLineShift(node, isMobile));
 
     function appendWrappedLines(selection) {
       selection
         .selectAll('tspan')
-        .data((node) => wrapLabel(node.label, isMobile ? 16 : 18))
+        .data((node) => labelLines(node, isMobile ? 16 : 18))
         .join('tspan')
         .attr('x', function getX() {
           return d3.select(this.parentNode).attr('x');
@@ -568,41 +625,65 @@ function Graph() {
       });
     }
 
+    const hidePreview = () => setPreview((current) => ({ ...current, visible: false }));
+
+    /* Research and activity nodes show their image; the two pieces of work without a page
+       show their one sentence; themes and institutions show nothing beyond the lit edges. */
+    function previewContent(node) {
+      if (node.type !== 'research' && node.type !== 'engagement') return null;
+      const image = previewImageById.get(node.id);
+      if (image) return { image, note: null };
+      if (node.note) return { image: null, note: node.note };
+      return null;
+    }
+
+    /* Placed toward the outer edge of the page when there is room, so the lit edges stay visible. */
+    function showPreview(event, node) {
+      const content = previewContent(node);
+      if (!content || window.innerWidth < 1024) {
+        hidePreview();
+        return;
+      }
+
+      const gap = 24;
+      const height = content.image ? PREVIEW_IMAGE_HEIGHT : PREVIEW_NOTE_HEIGHT;
+      const preferLeft = node.x < size.width / 2;
+      let x = preferLeft ? event.clientX - PREVIEW_WIDTH - gap : event.clientX + gap;
+      if (preferLeft && x < 20) x = event.clientX + gap;
+      if (!preferLeft && x + PREVIEW_WIDTH > window.innerWidth - 20) {
+        x = event.clientX - PREVIEW_WIDTH - gap;
+      }
+      const y = Math.min(window.innerHeight - height - 20, Math.max(20, event.clientY - height / 2));
+
+      setPreview({ visible: true, x, y, ...content });
+    }
+
     const drag = d3
       .drag()
       .on('start', function onStart() {
         d3.select(this).style('cursor', 'grabbing');
+        hidePreview();
       })
       .on('drag', function onDrag(event, node) {
         node.x = Math.max(24, Math.min(size.width - 24, event.x));
         node.y = Math.max(24, Math.min(size.height - 24, event.y));
         renderPositions();
-        setTooltip((current) => ({
-          ...current,
-          visible: true,
-          x: event.x,
-          y: event.y,
-          label: node.label,
-        }));
       })
       .on('end', function onEnd(event, node) {
         d3.select(this).style('cursor', node.url ? 'pointer' : 'grab');
-        setTooltip((current) => ({ ...current, visible: false }));
       });
 
     nodeSelection
       .on('mouseenter', function onEnter(event, node) {
         updateHighlight(node);
-        setTooltip({
-          visible: true,
-          x: node.x,
-          y: node.y,
-          label: node.label,
-        });
+        showPreview(event, node);
+      })
+      .on('mousemove', function onMove(event, node) {
+        showPreview(event, node);
       })
       .on('mouseleave', function onLeave() {
         updateHighlight(null);
-        setTooltip((current) => ({ ...current, visible: false }));
+        hidePreview();
       })
       .on('click', (_, node) => {
         if (node.url) navigate(node.url);
@@ -620,9 +701,16 @@ function Graph() {
       <StyledSvg ref={svgRef} viewBox={`0 0 ${size.width || 1000} ${size.height || 560}`}>
         <title>Dongjae Kang semantic map</title>
       </StyledSvg>
-      <Tooltip $visible={tooltip.visible} $x={tooltip.x} $y={tooltip.y}>
-        {tooltip.label}
-      </Tooltip>
+      <Preview
+        $visible={preview.visible}
+        $x={preview.x}
+        $y={preview.y}
+        $image={Boolean(preview.image)}
+        aria-hidden="true"
+      >
+        {preview.image && <PreviewImg src={preview.image} alt="" />}
+        {!preview.image && preview.note && <PreviewNote>{preview.note}</PreviewNote>}
+      </Preview>
     </GraphWrap>
   );
 }
