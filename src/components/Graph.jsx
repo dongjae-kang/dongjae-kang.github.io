@@ -15,11 +15,6 @@ const previewImageById = new Map([
   ]),
 ].filter(([, image]) => Boolean(image)));
 
-/* Preview toggle for the institution dots, decided before launch: ?inst=center shows them. */
-const showInstitutions =
-  typeof window !== 'undefined' &&
-  new URLSearchParams(window.location.search).get('inst') === 'center';
-
 const pulse = keyframes`
   0%, 100% {
     transform: scale(1);
@@ -301,11 +296,7 @@ function buildLayout(data, width, height, isMobile) {
   const innerWidth = width - marginX * 2;
   const innerHeight = height - marginY * 2;
 
-  const visibleNodes = data.nodes.filter(
-    (node) => showInstitutions || node.type !== 'institution'
-  );
-
-  const nodes = visibleNodes.map((node) => {
+  const nodes = data.nodes.map((node) => {
     const position = node[isMobile ? 'mobile' : 'desktop'];
     return {
       ...node,

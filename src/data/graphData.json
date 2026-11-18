@@ -6,8 +6,8 @@
       "type": "research",
       "importance": "main",
       "url": "/research/prism-news",
-      "desktop": { "x": 0.1, "y": 0.18 },
-      "mobile": { "x": 0.08, "y": 0.13 }
+      "desktop": { "x": 0.12, "y": 0.19 },
+      "mobile": { "x": 0.1, "y": 0.13 }
     },
     {
       "id": "healthy-conversations",
@@ -16,8 +16,8 @@
       "type": "research",
       "importance": "main",
       "note": "With Eric Chen of the Journalism School, on what makes a conversation healthy and how that could be measured.",
-      "desktop": { "x": 0.21, "y": 0.32 },
-      "mobile": { "x": 0.16, "y": 0.28 }
+      "desktop": { "x": 0.26, "y": 0.28 },
+      "mobile": { "x": 0.19, "y": 0.27 }
     },
     {
       "id": "un-decision-tracing",
@@ -26,8 +26,8 @@
       "type": "research",
       "importance": "main",
       "note": "At the UN Statistics Division: a system that traces each decision of the UN Statistical Commission back to what member states said in the meeting.",
-      "desktop": { "x": 0.09, "y": 0.46 },
-      "mobile": { "x": 0.08, "y": 0.4 }
+      "desktop": { "x": 0.05, "y": 0.43 },
+      "mobile": { "x": 0.05, "y": 0.42 }
     },
     {
       "id": "misinfo-interviews",
@@ -36,8 +36,8 @@
       "type": "research",
       "importance": "support",
       "url": "/research/misinfo-interviews",
-      "desktop": { "x": 0.2, "y": 0.6 },
-      "mobile": { "x": 0.16, "y": 0.6 }
+      "desktop": { "x": 0.21, "y": 0.51 },
+      "mobile": { "x": 0.13, "y": 0.6 }
     },
     {
       "id": "multi-agent-sim",
@@ -45,8 +45,8 @@
       "type": "research",
       "importance": "support",
       "url": "/research/multi-agent-sim",
-      "desktop": { "x": 0.1, "y": 0.74 },
-      "mobile": { "x": 0.08, "y": 0.73 }
+      "desktop": { "x": 0.28, "y": 0.69 },
+      "mobile": { "x": 0.2, "y": 0.72 }
     },
     {
       "id": "crisisnews",
@@ -54,8 +54,8 @@
       "type": "research",
       "importance": "main",
       "url": "/research/crisisnews",
-      "desktop": { "x": 0.21, "y": 0.88 },
-      "mobile": { "x": 0.16, "y": 0.88 }
+      "desktop": { "x": 0.14, "y": 0.87 },
+      "mobile": { "x": 0.09, "y": 0.88 }
     },
     {
       "id": "how-people-connect",
@@ -177,20 +177,6 @@
       "url": "/activities/columbia-ai-club",
       "desktop": { "x": 0.89, "y": 0.91 },
       "mobile": { "x": 0.91, "y": 0.9 }
-    },
-    {
-      "id": "kaist",
-      "label": "KAIST",
-      "type": "institution",
-      "desktop": { "x": 0.41, "y": 0.96 },
-      "mobile": { "x": 0.36, "y": 0.97 }
-    },
-    {
-      "id": "columbia",
-      "label": "Columbia",
-      "type": "institution",
-      "desktop": { "x": 0.59, "y": 0.96 },
-      "mobile": { "x": 0.62, "y": 0.97 }
     }
   ],
   "edges": [
@@ -200,7 +186,6 @@
     { "source": "technology-and-ai", "target": "understanding-each-other" },
     { "source": "technology-and-ai", "target": "deciding-together" },
     { "source": "technology-and-ai", "target": "judging-what-to-believe" },
-
     { "source": "prism-news", "target": "judging-what-to-believe" },
     { "source": "prism-news", "target": "technology-and-ai" },
     { "source": "healthy-conversations", "target": "understanding-each-other" },
@@ -212,7 +197,6 @@
     { "source": "multi-agent-sim", "target": "technology-and-ai" },
     { "source": "crisisnews", "target": "how-people-connect" },
     { "source": "crisisnews", "target": "technology-and-ai" },
-
     { "source": "chi-2025", "target": "judging-what-to-believe" },
     { "source": "chi-2025", "target": "technology-and-ai" },
     { "source": "un-ga-hlw", "target": "deciding-together" },
@@ -224,21 +208,6 @@
     { "source": "kgsa-career", "target": "how-people-connect" },
     { "source": "upenn-mixer", "target": "how-people-connect" },
     { "source": "hyc-mixer", "target": "how-people-connect" },
-    { "source": "columbia-ai-club", "target": "technology-and-ai" },
-
-    { "source": "crisisnews", "target": "kaist" },
-    { "source": "chi-2025", "target": "kaist" },
-    { "source": "student-council", "target": "kaist" },
-    { "source": "valedictorian", "target": "kaist" },
-    { "source": "prism-news", "target": "columbia" },
-    { "source": "healthy-conversations", "target": "columbia" },
-    { "source": "misinfo-interviews", "target": "columbia" },
-    { "source": "multi-agent-sim", "target": "columbia" },
-    { "source": "un-ga-hlw", "target": "columbia" },
-    { "source": "un-youth-forum", "target": "columbia" },
-    { "source": "kgsa-career", "target": "columbia" },
-    { "source": "upenn-mixer", "target": "columbia" },
-    { "source": "hyc-mixer", "target": "columbia" },
-    { "source": "columbia-ai-club", "target": "columbia" }
+    { "source": "columbia-ai-club", "target": "technology-and-ai" }
   ]
 }
