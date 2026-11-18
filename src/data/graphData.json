@@ -36,7 +36,7 @@
       "type": "research",
       "importance": "support",
       "url": "/research/misinfo-interviews",
-      "desktop": { "x": 0.21, "y": 0.51 },
+      "desktop": { "x": 0.21, "y": 0.56 },
       "mobile": { "x": 0.13, "y": 0.6 }
     },
     {
@@ -45,7 +45,7 @@
       "type": "research",
       "importance": "support",
       "url": "/research/multi-agent-sim",
-      "desktop": { "x": 0.28, "y": 0.69 },
+      "desktop": { "x": 0.28, "y": 0.64 },
       "mobile": { "x": 0.2, "y": 0.72 }
     },
     {

@@ -68,6 +68,9 @@ const Hero = styled.section`
       radial-gradient(ellipse at 30% 40%, rgba(27, 61, 47, 0.12) 0%, transparent 50%),
       radial-gradient(ellipse at 70% 35%, rgba(196, 149, 106, 0.07) 0%, transparent 45%),
       radial-gradient(ellipse at 50% 60%, rgba(74, 122, 94, 0.09) 0%, transparent 50%);
+    /* The tints do not reach zero before the box edge, so the box itself fades out. */
+    -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
     pointer-events: none;
     z-index: 0;
   }
@@ -97,6 +100,7 @@ const Name = styled.h1`
 
 const Tagline = styled.p`
   max-width: 820px;
+  margin-top: 10px;
   font-size: 1.05rem;
   line-height: 1.6;
   color: ${({ theme }) => theme.colors.subpage.muted};
