@@ -16,7 +16,7 @@
       "type": "research",
       "importance": "main",
       "note": "With Eric Chen of the Journalism School, on what makes a conversation healthy and how that could be measured.",
-      "desktop": { "x": 0.26, "y": 0.28 },
+      "desktop": { "x": 0.256, "y": 0.309 },
       "mobile": { "x": 0.19, "y": 0.27 }
     },
     {
@@ -26,7 +26,7 @@
       "type": "research",
       "importance": "main",
       "note": "At the UN Statistics Division: a system that traces each decision of the UN Statistical Commission back to what member states said in the meeting.",
-      "desktop": { "x": 0.05, "y": 0.43 },
+      "desktop": { "x": 0.071, "y": 0.675 },
       "mobile": { "x": 0.05, "y": 0.42 }
     },
     {
@@ -36,7 +36,7 @@
       "type": "research",
       "importance": "support",
       "url": "/research/misinfo-interviews",
-      "desktop": { "x": 0.21, "y": 0.56 },
+      "desktop": { "x": 0.138, "y": 0.472 },
       "mobile": { "x": 0.13, "y": 0.6 }
     },
     {
@@ -45,7 +45,7 @@
       "type": "research",
       "importance": "support",
       "url": "/research/multi-agent-sim",
-      "desktop": { "x": 0.28, "y": 0.64 },
+      "desktop": { "x": 0.268, "y": 0.685 },
       "mobile": { "x": 0.2, "y": 0.72 }
     },
     {
