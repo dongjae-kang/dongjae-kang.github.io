@@ -181,9 +181,9 @@ export const research = [
     year: '2026-Present',
     sortDate: '2026-07-16',
     summary:
-      'A live daily brief tracing how political stories start, spread, and get framed across YouTube, published in Korean and English editions.',
+      'A live daily brief tracing how political stories start, spread, and get framed across YouTube and podcasts, published in Korean and English editions.',
     description:
-      "PRISM is a live service that records how political stories travel across YouTube. Each day it reads hundreds of news and politics channels, groups the videos into issues, and publishes a card that traces each story across five sections: spread and origin, the story itself, media lenses, reactions, and repeated comment patterns. The Korean edition launched in May 2026 around the Korean local elections; an English edition covering U.S. political stories followed. Two design commitments run through the system: cards are built from claims and events rather than from politicians, and no card is published by a language model alone. Every card passes human review before it goes out, and the review process itself is documented publicly. Kang leads the team and the product; the idea grew out of a Fall 2025 course prototype at Columbia SIPA.",
+      "PRISM is a live service that records how political stories travel across YouTube and podcasts. Each day it reads hundreds of news and politics channels and podcast shows, groups the videos and episodes into issues, and publishes a card that traces each story across five sections: spread and origin, the story itself, media lenses, reactions, and repeated comment patterns. The Korean edition launched in May 2026 around the Korean local elections; an English edition covering U.S. political stories followed. Two design commitments run through the system: cards are built from claims and events rather than from politicians, and no card is published by a language model alone. Every card passes human review before it goes out, and the review process itself is documented publicly. Kang leads the team and the product; the idea grew out of a Fall 2025 course prototype at Columbia SIPA.",
     collaborators: [
       'Dongjae Kang (lead: methodology, curation, design, outreach)',
       'Jaehoon Kim (backend lead: server, ETL pipeline, infrastructure)',

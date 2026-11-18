@@ -306,10 +306,12 @@ function About() {
                 the commencement address at a ceremony attended by the President of Korea.
               </p>
               <p>
-                At Columbia&apos;s Brown Institute, he works with Eric Chen on how to measure the
-                health of a conversation. He also founded{' '}
+                At Columbia, he works with Eric Chen of the Journalism School&apos;s Media and
+                Community Lab on what makes a conversation healthy and how that could be
+                measured. He also founded{' '}
                 <Link to="/research/prism-news">PRISM</Link>, a daily brief tracing how
-                political stories travel across YouTube, in Korean and English editions. At
+                political stories travel across YouTube and podcasts, in Korean and English
+                editions. At
                 KAIST&apos;s Collaborative Social Technologies Lab
                 (2024-2025), he co-authored a study analyzing two decades of social media crisis
                 patterns, and presented the work at the{' '}

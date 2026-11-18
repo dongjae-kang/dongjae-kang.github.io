@@ -336,11 +336,7 @@ function Research() {
 
   const matchesTag = (item) => !activeTag || item.tags?.includes(activeTag);
 
-  // PRISM is a project, not a study: keep it after the research entries.
-  const sortedResearch = [
-    ...sortByDateDesc(research.filter((r) => r.id !== 'prism-news')),
-    ...research.filter((r) => r.id === 'prism-news'),
-  ];
+  const sortedResearch = sortByDateDesc(research);
   const sortedCoursework = sortByDateDesc(coursework);
 
   return (

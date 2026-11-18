@@ -192,7 +192,7 @@ const SectionTitle = styled.h2`
 `;
 
 const SectionBody = styled.p`
-  max-width: 680px;
+  max-width: 100%;
   font-size: 0.96rem;
   line-height: 1.75;
   color: ${({ theme }) => theme.colors.subpage.muted};
@@ -391,7 +391,7 @@ const PreviewImg = styled.img`
 `;
 
 /* ─── DATA ─── */
-const researchOrder = ['misinfo-interviews', 'multi-agent-sim', 'crisisnews', 'prism-news'];
+const researchOrder = ['prism-news', 'multi-agent-sim', 'misinfo-interviews', 'crisisnews'];
 const activityOrder = ['chi-2025', 'un-ga-hlw', 'un-youth-forum', 'kgsa-career', 'upenn-mixer', 'hyc-mixer', 'valedictorian'];
 
 function Home() {
@@ -460,14 +460,15 @@ function Home() {
             </SectionLead>
             <SectionTitle>How people connect, and how technology shapes it.</SectionTitle>
             <SectionBody>
-              At Columbia&apos;s Brown Institute, he works with Eric Chen on how to measure the
-              health of a conversation, as people&apos;s capacity to repair it after something
-              goes wrong. At the United Nations Statistics Division, he built a system that
-              traces each decision of the UN Statistical Commission back to what member states
-              said in the meeting. At KAIST, he co-built CrisisNews, a dataset of 93,250 news
-              articles spanning two decades of social media crises, and presented it at a CHI
-              2025 workshop in Yokohama. He also founded PRISM, a daily brief tracing how
-              political stories travel across YouTube, in Korean and English editions.
+              At Columbia, he works with Eric Chen of the Journalism School on what makes a
+              conversation healthy and how that could be measured.
+              At the United Nations Statistics Division, he built a system that traces each
+              decision of the UN Statistical Commission back to what member states said in the
+              meeting. He also founded PRISM, a
+              daily brief tracing how political stories travel across YouTube and podcasts, in
+              Korean and English editions. Earlier, at KAIST, he co-built CrisisNews, a dataset of 93,250
+              news articles spanning two decades of social media crises, and presented it at a
+              CHI 2025 workshop in Yokohama.
             </SectionBody>
 
             <ListWrap>
