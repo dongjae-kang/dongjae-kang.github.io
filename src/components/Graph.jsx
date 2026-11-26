@@ -216,7 +216,18 @@ function motionConfig(id) {
   };
 }
 
+/* Concept B (review only): the five themes are asked as questions. */
+const QUESTION_LINES = {
+  'how-people-connect': ['How do people connect?'],
+  'understanding-each-other': ['How do people', 'understand each other?'],
+  'deciding-together': ['How do people', 'decide together?'],
+  'judging-what-to-believe': ['How do people judge', 'what to believe?'],
+  'technology-and-ai': ['What do technology', 'and AI change?'],
+};
+let useQuestions = false;
+
 function labelLines(node, maxChars) {
+  if (useQuestions && QUESTION_LINES[node.id]) return QUESTION_LINES[node.id];
   return node.lines || wrapLabel(node.label, maxChars);
 }
 
@@ -353,7 +364,9 @@ function themeAura(node, isMobile) {
   };
 }
 
-function Graph() {
+function Graph({ variant = null, headingFont = null }) {
+  const isStatic = Boolean(variant);
+  useQuestions = variant === 'b';
   const svgRef = useRef(null);
   const wrapRef = useRef(null);
   const navigate = useNavigate();
@@ -420,7 +433,7 @@ function Graph() {
         .attr('x', size.width * 0.18)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', headingFont || "'Cormorant Garamond', serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .text('Research');
@@ -430,7 +443,7 @@ function Graph() {
         .attr('x', size.width * 0.84)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', headingFont || "'Cormorant Garamond', serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .attr('text-anchor', 'end')
@@ -445,7 +458,7 @@ function Graph() {
         .attr('font-size', 10)
         .attr('letter-spacing', '0.18em')
         .attr('text-anchor', 'middle')
-        .text('THEMES');
+        .text(variant === 'b' ? 'QUESTIONS' : 'THEMES');
     }
 
     const edgeLayer = root.append('g');
@@ -465,7 +478,7 @@ function Graph() {
 
     const flowSelection = flowLayer
       .selectAll('g')
-      .data(edges.filter((edge) => primaryFlowPairs.has(edgeKey(edge))))
+      .data(isStatic ? [] : edges.filter((edge) => primaryFlowPairs.has(edgeKey(edge))))
       .join('g')
       .attr('opacity', 1);
 
@@ -518,7 +531,7 @@ function Graph() {
     /* Main node circle */
     const nodeMainSelection = nodeGroup
       .append('circle')
-      .attr('class', (node) => (node.type === 'theme' ? 'node-main theme-pulse' : 'node-main'))
+      .attr('class', (node) => (node.type === 'theme' && !isStatic ? 'node-main theme-pulse' : 'node-main'))
       .style('--pulse-duration', (node) => node.motion.pulseDuration)
       .style('--pulse-delay', (node) => node.motion.pulseDelay)
       .attr('r', (node) => nodeVisual(node).radius)
@@ -685,7 +698,7 @@ function Graph() {
     updateHighlight(null);
 
     return undefined;
-  }, [data, isMobile, navigate, size.height, size.width]);
+  }, [data, isMobile, navigate, size.height, size.width, variant, headingFont, isStatic]);
 
   return (
     <GraphWrap ref={wrapRef}>

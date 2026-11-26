@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes, useTheme } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FiArrowDown } from 'react-icons/fi';
 import Graph from '../components/Graph';
+import GraphWeave from '../components/GraphWeave';
+import HeroIndex from '../components/HeroIndex';
+import { reviewGraph, reviewFont } from '../review/flags';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
 import { activities, communityEvents } from '../data/activities';
@@ -408,6 +411,8 @@ const researchOrder = ['prism-news', 'multi-agent-sim', 'misinfo-interviews', 'c
 const activityOrder = ['chi-2025', 'un-ga-hlw', 'un-youth-forum', 'kgsa-career', 'upenn-mixer', 'hyc-mixer', 'valedictorian'];
 
 function Home() {
+  const theme = useTheme();
+  const headingFont = reviewFont ? theme.fonts.heading : null;
   const storyRef = useRef(null);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [resRef, resVis] = useFadeIn();
@@ -446,11 +451,13 @@ function Home() {
         {/* ── HERO ── */}
         <Hero>
           <HeroContent>
-            <Graph />
+            {reviewGraph === 'a' && <GraphWeave headingFont={headingFont} />}
+            {(reviewGraph === 'b' || !reviewGraph) && <Graph variant={reviewGraph} headingFont={headingFont} />}
             <Name>Dongjae Kang</Name>
             <Tagline>
               Studying how people connect with one another, and how technology and AI shape the ways we think, judge, and interact.
             </Tagline>
+            {reviewGraph === 'c' && <HeroIndex />}
             <ScrollCue
               type="button"
               $stopped={hasScrolled}

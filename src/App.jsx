@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { reviewFont, loadReviewFont } from './review/flags';
 import { AnimatePresence } from 'framer-motion';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -39,8 +40,19 @@ function AppRoutes() {
 }
 
 function App() {
+  const [activeTheme, setActiveTheme] = useState(reviewFont ? null : theme);
+  useEffect(() => {
+    if (!reviewFont) return;
+    loadReviewFont()
+      .then((font) => {
+        setActiveTheme(font ? { ...theme, fonts: { ...theme.fonts, heading: font.family } } : theme);
+        if (font) document.documentElement.dataset.reviewFont = font.url;
+      })
+      .catch((error) => { console.error('review font', error); setActiveTheme(theme); });
+  }, []);
+  if (!activeTheme) return null;
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={activeTheme}>
       <GlobalStyles />
       <HashRouter>
         <AppRoutes />
