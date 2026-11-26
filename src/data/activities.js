@@ -181,8 +181,6 @@ import aroundNy1090 from '../assets/images/life/nyc/around-1090.jpg';
 import aroundNy1295 from '../assets/images/life/nyc/around-1295.jpg';
 import aroundNy1571 from '../assets/images/life/nyc/around-1571.jpg';
 import aroundNy1653 from '../assets/images/life/nyc/around-1653.jpg';
-import morningside2266 from '../assets/images/life/nyc/morningside-2266.jpg';
-import morningside2291 from '../assets/images/life/nyc/morningside-2291.jpg';
 import shore1745 from '../assets/images/life/jersey-shore/shore-1745.jpg';
 import shore1750 from '../assets/images/life/jersey-shore/shore-1750.jpg';
 import shore1759 from '../assets/images/life/jersey-shore/shore-1759.jpg';
@@ -481,18 +479,6 @@ export const communityEvents = [
 // ═══════════════════════════════════════
 
 export const offTheClockItems = [
-  {
-    id: 'morningside-fall',
-    category: 'travel',
-    title: 'Morningside Park',
-    date: 'Nov 2026',
-    sortDate: '2026-11-23',
-    location: 'New York, NY',
-    media: {
-      cover: morningside2266,
-      photos: [{ src: morningside2266 }, { src: morningside2291 }],
-    },
-  },
   {
     id: 'nyphil-huang-mendelssohn',
     category: 'concert',
