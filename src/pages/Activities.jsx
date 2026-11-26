@@ -92,6 +92,8 @@ const SectionText = styled.p`
 const Card = styled(Link)`
   display: grid;
   gap: 16px;
+  /* Cards in a row stretch to the same height; keep the content packed at the top so titles line up. */
+  align-content: start;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
@@ -176,6 +178,7 @@ const CardHeader = styled.div`
 const Tier2Card = styled.article`
   display: grid;
   gap: 14px;
+  align-content: start;
   padding: 20px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
@@ -279,6 +282,7 @@ const Tier3Grid = styled.div`
 const Tier3Card = styled.article`
   display: grid;
   gap: 8px;
+  align-content: start;
 `;
 
 const Tier3Photo = styled.div`

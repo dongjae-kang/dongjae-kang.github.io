@@ -466,15 +466,14 @@ function Home() {
             </SectionLead>
             <SectionTitle>How people connect, and how technology shapes it.</SectionTitle>
             <SectionBody>
-              At Columbia, I work with Eric Chen of the Journalism School on what makes a
-              conversation healthy and how that could be measured.
-              At the United Nations Statistics Division, I built a system that traces each
-              decision of the UN Statistical Commission back to what member states said in the
-              meeting. I also founded PRISM, a
-              daily brief tracing how political stories travel across YouTube and podcasts, in
-              Korean and English editions. Earlier, at KAIST, I co-built CrisisNews, a dataset of 93,250
-              news articles spanning two decades of social media crises, and presented it at a
-              CHI 2025 workshop in Yokohama.
+              Current research with Eric Chen of Columbia&apos;s Journalism School asks what makes a
+              conversation healthy and how that could be measured. Built a system at the United
+              Nations Statistics Division that traces each decision of the UN Statistical
+              Commission back to what member states said in the meeting. Founded PRISM, a daily
+              brief tracing how political stories travel across YouTube and podcasts, in Korean
+              and English editions. Co-built CrisisNews at KAIST: a dataset of 93,250 news
+              articles spanning two decades of social media crises, presented at a CHI 2025
+              workshop in Yokohama.
             </SectionBody>
 
             <ListWrap>
@@ -505,13 +504,12 @@ function Home() {
             </SectionLead>
             <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
             <SectionBody>
-              As President of KAIST&apos;s Undergraduate Student Council, I rebuilt the
-              organization after three years of inactivity, achieving the highest satisfaction
-              rating in council history. When Korea&apos;s government proposed a 16% R&amp;D budget
-              cut, I led a coalition of 11 university student organizations in direct
-              engagement with National Assembly members and Ministry officials. The experience
-              led to an invitation to publish a column in JoongAng Ilbo, one of Korea&apos;s
-              leading national newspapers.
+              Rebuilt KAIST&apos;s Undergraduate Student Council as its President after three years
+              of inactivity, achieving the highest satisfaction rating in council history. Led a
+              coalition of 11 university student organizations in direct engagement with National
+              Assembly members and Ministry officials when Korea&apos;s government proposed a 16%
+              R&amp;D budget cut. The experience led to an invitation to publish a column in
+              JoongAng Ilbo, one of Korea&apos;s leading national newspapers.
             </SectionBody>
 
             <ListWrap>
@@ -545,11 +543,11 @@ function Home() {
             </SectionLead>
             <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
             <SectionBody>
-              I presented research at a CHI 2025 workshop in Yokohama, supported Presidential
+              Presented research at a CHI 2025 workshop in Yokohama, supported Presidential
               Secretariat operations during the UN General Assembly High-Level Week, and was
-              selected as a Respondent for the SDG 9 session at the 2026 UN ECOSOC Youth
-              Forum. At Columbia, I organized career and networking events connecting 200+
-              students across Ivy League campuses.
+              selected as a Respondent for the SDG 9 session at the 2026 UN ECOSOC Youth Forum.
+              Organized career and networking events at Columbia connecting 200+ students across
+              Ivy League campuses.
             </SectionBody>
 
             <StripWrap>

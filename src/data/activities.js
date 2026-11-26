@@ -181,6 +181,8 @@ import aroundNy1090 from '../assets/images/life/nyc/around-1090.jpg';
 import aroundNy1295 from '../assets/images/life/nyc/around-1295.jpg';
 import aroundNy1571 from '../assets/images/life/nyc/around-1571.jpg';
 import aroundNy1653 from '../assets/images/life/nyc/around-1653.jpg';
+import morningside2266 from '../assets/images/life/nyc/morningside-2266.jpg';
+import morningside2291 from '../assets/images/life/nyc/morningside-2291.jpg';
 import shore1745 from '../assets/images/life/jersey-shore/shore-1745.jpg';
 import shore1750 from '../assets/images/life/jersey-shore/shore-1750.jpg';
 import shore1759 from '../assets/images/life/jersey-shore/shore-1759.jpg';
@@ -572,6 +574,8 @@ export const offTheClockItems = [
         { src: midtownDogJoined },
         { src: aroundNy1571 },
         { src: aroundNy1653 },
+        { src: morningside2266 },
+        { src: morningside2291 },
       ],
     },
   },

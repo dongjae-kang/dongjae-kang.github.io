@@ -135,6 +135,8 @@ const PaperSummary = styled.p`
 const Card = styled(Link)`
   display: grid;
   gap: 18px;
+  /* Cards in a row stretch to the same height; keep the content packed at the top so titles line up. */
+  align-content: start;
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
@@ -239,6 +241,7 @@ const CourseworkGrid = styled(Grid)`
 const CourseworkCard = styled(Link)`
   display: grid;
   gap: 18px;
+  align-content: start;
   padding: 24px;
   border: 1px solid ${({ theme }) => theme.colors.subpage.border};
   border-radius: 4px;
