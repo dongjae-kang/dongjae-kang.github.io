@@ -284,7 +284,7 @@ export const activities = [
     sortDate: '2026-02-20',
     location: 'Daejeon',
     summary: 'Delivered the commencement address at KAIST on behalf of the graduating class at a ceremony attended by the President of Korea.',
-    description: 'Kang graduated from KAIST as Valedictorian in February 2026. He delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea.',
+    description: 'Graduated from KAIST as Valedictorian in February 2026 and delivered the commencement address on behalf of the graduating class at a ceremony attended by the President of the Republic of Korea.',
     tags: ['Leadership', 'KAIST'],
     links: [{ label: 'Video', url: 'https://www.youtube.com/watch?v=U7m4LpyHffk' }],
     media: {
@@ -303,7 +303,7 @@ export const activities = [
     sortDate: '2025-09-22',
     location: 'New York',
     summary: 'Supported Presidential Secretariat operations as Event Assistant at the Permanent Mission of Korea to the United Nations.',
-    description: 'During the 2025 UN General Assembly High-Level Week, Kang served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations.',
+    description: 'Served as Event Assistant at the Permanent Mission of the Republic of Korea to the United Nations during the 2025 UN General Assembly High-Level Week.',
     tags: ['UN', 'Diplomacy'],
     links: [],
     media: { cover: unga4859, photos: [unga4859, unga7500, unga7435] },
@@ -316,7 +316,7 @@ export const activities = [
     sortDate: '2025-04-26',
     location: 'Yokohama',
     summary: 'Presented CrisisNews as sole presenter at the ACM CHI 2025 News Futures Workshop in Yokohama, Japan.',
-    description: 'Kang presented the CrisisNews project at the ACM CHI 2025 News Futures Workshop in Yokohama as the sole presenter. The paper focused on 19 social media crisis cases and their implications for platform design, news systems, and public communication.',
+    description: 'Presented the CrisisNews project at the ACM CHI 2025 News Futures Workshop in Yokohama as the sole presenter. The paper focused on 19 social media crisis cases and their implications for platform design, news systems, and public communication.',
     tags: ['Research', 'Speaking', 'HCI'],
     links: [
       { label: 'Related Research', url: '/research/crisisnews' },
@@ -333,7 +333,7 @@ export const activities = [
     sortDate: '2023-12-31',
     location: 'KAIST',
     summary: "Rebuilt the KAIST Undergraduate Student Council after three inactive years and led dialogue around Korea's R&D budget cut.",
-    description: "As President of the KAIST Undergraduate Student Council, Kang rebuilt an institution that had been inactive for three years. He won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. When Korea announced a 16% R&D budget cut, he coordinated dialogue among universities, National Assembly members, and government ministries. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.",
+    description: "Rebuilt the KAIST Undergraduate Student Council as its President after it had been inactive for three years. Won election with 52.06% turnout and 88.93% approval, and the administration later recorded the highest satisfaction score in council history at 3.87 out of 4.3. Coordinated dialogue among universities, National Assembly members, and government ministries when Korea announced a 16% R&D budget cut. That work led to an invitation to write a column in JoongAng Ilbo and coverage in the KAIST Herald.",
     tags: ['Leadership', 'Policy', 'KAIST'],
     links: [
       { label: 'JoongAng Ilbo', url: 'https://www.joongang.co.kr/article/25215586' },
