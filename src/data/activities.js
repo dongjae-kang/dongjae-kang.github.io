@@ -54,6 +54,18 @@ import upennMixer1 from '../assets/images/activities/upenn-mixer-1.jpg';
 import upennMixer2 from '../assets/images/activities/upenn-mixer-2.jpg';
 import upennMixer3 from '../assets/images/activities/upenn-mixer-3.jpg';
 import upennMixerPoster from '../assets/images/activities/upenn-mixer-poster.png';
+import ruleOfLaw1599 from '../assets/images/activities/rule-of-law-1599.jpg';
+import ruleOfLaw1602 from '../assets/images/activities/rule-of-law-1602.jpg';
+import ruleOfLawAgenda from '../assets/images/activities/rule-of-law-agenda.jpg';
+import hlpf9766 from '../assets/images/activities/hlpf-9766.jpg';
+import hlpf9775 from '../assets/images/activities/hlpf-9775.jpg';
+import hlpf9806 from '../assets/images/activities/hlpf-9806.jpg';
+import nytEvening1153 from '../assets/images/activities/amex-nyt-1153.jpg';
+import nytEvening1157 from '../assets/images/activities/amex-nyt-1157.jpg';
+import nytEvening1161 from '../assets/images/activities/amex-nyt-1161.jpg';
+import nytEvening1168 from '../assets/images/activities/amex-nyt-1168.jpg';
+import nytEvening1174 from '../assets/images/activities/amex-nyt-1174.jpg';
+import mayorGloria1012 from '../assets/images/activities/mayors-gloria-1012.jpg';
 
 // ─── TIER 3: KAIST ───
 import orchestraGroup from '../assets/images/life/orchestra-group.jpeg';
@@ -137,10 +149,120 @@ import stanford2180 from '../assets/images/life/stanford/stanford-2180.jpg';
 import stanford2221 from '../assets/images/life/stanford/stanford-2221.jpg';
 import intrepidSimulator from '../assets/images/life/intrepid-simulator.jpeg';
 
+// ─── TIER 3: 2026 (May-Nov) ───
+import nyphilDeneve9692 from '../assets/images/life/nyphil/nyphil-deneve-9692.jpg';
+import nyphilDeneve9705 from '../assets/images/life/nyphil/nyphil-deneve-9705.jpg';
+import nyphilDeneve9711 from '../assets/images/life/nyphil/nyphil-deneve-9711.jpg';
+import nyphilDeneve9719 from '../assets/images/life/nyphil/nyphil-deneve-9719.jpg';
+import nyphilProkofiev0972 from '../assets/images/life/nyphil/nyphil-prokofiev-0972.jpg';
+import nyphilProkofiev0978 from '../assets/images/life/nyphil/nyphil-prokofiev-0978.jpg';
+import nyphilProkofiev0981 from '../assets/images/life/nyphil/nyphil-prokofiev-0981.jpg';
+import nyphilMahler1110 from '../assets/images/life/nyphil/nyphil-mahler-1110.jpg';
+import nyphilMahler1119 from '../assets/images/life/nyphil/nyphil-mahler-1119.jpg';
+import nyphilMahler1130 from '../assets/images/life/nyphil/nyphil-mahler-1130.jpg';
+import nyphilMahler1137 from '../assets/images/life/nyphil/nyphil-mahler-1137.jpg';
+import nyphilLiszt2047 from '../assets/images/life/nyphil/nyphil-liszt-2047.jpg';
+import nyphilLiszt2058 from '../assets/images/life/nyphil/nyphil-liszt-2058.jpg';
+import nyphilLiszt2063 from '../assets/images/life/nyphil/nyphil-liszt-2063.jpg';
+import nyphilMendelssohn2294 from '../assets/images/life/nyphil/nyphil-mendelssohn-2294.jpg';
+import nyphilMendelssohn2196 from '../assets/images/life/nyphil/nyphil-mendelssohn-2196.jpg';
+import nyphilMendelssohn2202 from '../assets/images/life/nyphil/nyphil-mendelssohn-2202.jpg';
+import nyphilMendelssohn2209 from '../assets/images/life/nyphil/nyphil-mendelssohn-2209.jpg';
+import nyphilMendelssohn2223 from '../assets/images/life/nyphil/nyphil-mendelssohn-2223.jpg';
+import yankees0706 from '../assets/images/life/yankees/yankees-0706.jpg';
+import yankees0713 from '../assets/images/life/yankees/yankees-0713.jpg';
+import yankees0740 from '../assets/images/life/yankees/yankees-0740.jpg';
+import yankees0748 from '../assets/images/life/yankees/yankees-0748.jpg';
+import yankees0782 from '../assets/images/life/yankees/yankees-0782.jpg';
+import yankees0797 from '../assets/images/life/yankees/yankees-0797.jpg';
+import yankees7279 from '../assets/images/life/yankees/yankees-7279.jpg';
+import yankees0815 from '../assets/images/life/yankees/yankees-0815.jpg';
+import yankees0827 from '../assets/images/life/yankees/yankees-0827.jpg';
+import yankees0852 from '../assets/images/life/yankees/yankees-0852.jpg';
+import overpeck9613 from '../assets/images/life/golf/overpeck-9613.jpg';
+import icecream5k9968 from '../assets/images/life/nyc/icecream-5k-9968.jpg';
+import unEastLounge1510 from '../assets/images/life/nyc/un-east-lounge-1510.jpg';
+import aroundNy1090 from '../assets/images/life/nyc/around-1090.jpg';
+import aroundNy1295 from '../assets/images/life/nyc/around-1295.jpg';
+import aroundNy1571 from '../assets/images/life/nyc/around-1571.jpg';
+import aroundNy1653 from '../assets/images/life/nyc/around-1653.jpg';
+import morningside2266 from '../assets/images/life/nyc/morningside-2266.jpg';
+import morningside2291 from '../assets/images/life/nyc/morningside-2291.jpg';
+import shore1745 from '../assets/images/life/jersey-shore/shore-1745.jpg';
+import shore1750 from '../assets/images/life/jersey-shore/shore-1750.jpg';
+import shore1759 from '../assets/images/life/jersey-shore/shore-1759.jpg';
+import shore1797 from '../assets/images/life/jersey-shore/shore-1797.jpg';
+import shore1819 from '../assets/images/life/jersey-shore/shore-1819.jpg';
+import shore1873 from '../assets/images/life/jersey-shore/shore-1873.jpg';
+import shore1881 from '../assets/images/life/jersey-shore/shore-1881.jpg';
+import heraldSquare0561 from '../assets/images/life/dogs/herald-0561.jpg';
+import heraldSquareTriptych from '../assets/images/life/dogs/herald-square-triptych.jpg';
+import midtownDog1396 from '../assets/images/life/dogs/midtown-1396.jpg';
+import midtownDogDiptych from '../assets/images/life/dogs/midtown-dog-diptych.jpg';
+import milan6405 from '../assets/images/life/italy-switzerland/milan-6405.jpg';
+import milan6420 from '../assets/images/life/italy-switzerland/milan-6420.jpg';
+import milan6444 from '../assets/images/life/italy-switzerland/milan-6444.jpg';
+import milan6450 from '../assets/images/life/italy-switzerland/milan-6450.jpg';
+import milan6459 from '../assets/images/life/italy-switzerland/milan-6459.jpg';
+import milan6510 from '../assets/images/life/italy-switzerland/milan-6510.jpg';
+import milan6540 from '../assets/images/life/italy-switzerland/milan-6540.jpg';
+import milan6621 from '../assets/images/life/italy-switzerland/milan-6621.jpg';
+import milan6662 from '../assets/images/life/italy-switzerland/milan-6662.jpg';
+import zurich6669 from '../assets/images/life/italy-switzerland/zurich-6669.jpg';
+import zurich6773 from '../assets/images/life/italy-switzerland/zurich-6773.jpg';
+import zurich6830 from '../assets/images/life/italy-switzerland/zurich-6830.jpg';
+import zurich6835 from '../assets/images/life/italy-switzerland/zurich-6835.jpg';
+import zurich6867 from '../assets/images/life/italy-switzerland/zurich-6867.jpg';
+import lavaux6950 from '../assets/images/life/italy-switzerland/lavaux-6950.jpg';
+import lavey7179 from '../assets/images/life/italy-switzerland/lavey-7179.jpg';
+import amalfi7925 from '../assets/images/life/italy-switzerland/amalfi-7925.jpg';
+import amalfi8181 from '../assets/images/life/italy-switzerland/amalfi-8181.jpg';
+import amalfi8357 from '../assets/images/life/italy-switzerland/amalfi-8357.jpg';
+import amalfi8472 from '../assets/images/life/italy-switzerland/amalfi-8472.jpg';
+import amalfi8477 from '../assets/images/life/italy-switzerland/amalfi-8477.jpg';
+import amalfi8494 from '../assets/images/life/italy-switzerland/amalfi-8494.jpg';
+import amalfi8513 from '../assets/images/life/italy-switzerland/amalfi-8513.jpg';
+import rome8753 from '../assets/images/life/italy-switzerland/rome-8753.jpg';
+import rome8757 from '../assets/images/life/italy-switzerland/rome-8757.jpg';
+import rome8992 from '../assets/images/life/italy-switzerland/rome-8992.jpg';
+import rome8998 from '../assets/images/life/italy-switzerland/rome-8998.jpg';
+
 // ═══════════════════════════════════════
 // TIER 1: ACTIVITIES
 // ═══════════════════════════════════════
 export const activities = [
+  {
+    id: 'rule-of-law-in-action',
+    tier: 1,
+    title: 'Rule of Law in Action',
+    date: 'Oct 2026',
+    sortDate: '2026-10-27',
+    location: 'Scandinavia House, New York',
+    summary: 'Attended a UN event on justice and accountability in crisis settings, hosted by the Global Focal Point for the Rule of Law, the Permanent Mission of Liberia, and IDLO, as a guest of the Korean Consulate General in New York.',
+    description: 'Kang attended "Rule of Law in Action: Stories of Justice, Accountability and Partnership," hosted by the Global Focal Point for the Rule of Law (GFP), the Permanent Mission of Liberia to the United Nations, and the International Development Law Organization (IDLO). He joined as a guest of the Consulate General of the Republic of Korea in New York, at the invitation of its police attaché from the Korean National Police Agency. The program paired short films from the Democratic Republic of the Congo, South Sudan, the Central African Republic, Guatemala, and Yemen with two panel discussions on access to justice, accountability, and resilient institutions, with opening remarks from UN Assistant Secretaries-General Shoko Noda and Elizabeth Spehar and IDLO Director-General Jan Beagle.',
+    tags: ['UN', 'Rule of Law'],
+    links: [],
+    media: {
+      cover: ruleOfLaw1599,
+      photos: [ruleOfLaw1599, ruleOfLaw1602, ruleOfLawAgenda],
+    },
+  },
+  {
+    id: 'hlpf-2026',
+    tier: 1,
+    title: 'UN High-Level Political Forum 2026',
+    date: 'Jul 2026',
+    sortDate: '2026-07-16',
+    location: 'United Nations Headquarters, New York',
+    summary: 'Joined the note-taking team for the 2026 High-Level Political Forum on Sustainable Development, summarizing General Debate statements for UN DESA.',
+    description: 'At the request of the UN DESA Office of Intergovernmental Support and Coordination for Sustainable Development, Kang joined the note-taking team for the 2026 High-Level Political Forum. He covered the first half of the General Debate on July 13, summarizing statements from member states, including what they said about the agenda that should follow 2030. Later that week he attended the ECOSOC High-Level Segment session "Transformation from the ground up: Acting at local level," where Tokyo Governor Yuriko Koike was among the speakers.',
+    tags: ['UN', 'Sustainable Development'],
+    links: [],
+    media: {
+      cover: hlpf9766,
+      photos: [hlpf9766, hlpf9775, hlpf9806],
+    },
+  },
   {
     id: 'un-youth-forum',
     tier: 1,
@@ -228,6 +350,31 @@ export const activities = [
 // TIER 2: COMMUNITY & EVENTS
 // ═══════════════════════════════════════
 export const communityEvents = [
+  {
+    id: 'nyt-special-evening',
+    title: 'A Special Evening with The New York Times',
+    date: 'Sep 25, 2026',
+    sortDate: '2026-09-25',
+    location: 'The TimesCenter, New York',
+    summary: 'Attended "An Insider Look at New York City," an evening of on-stage conversations about the city presented by American Express Platinum and The New York Times.',
+    tags: ['Media', 'New York'],
+    links: [],
+    media: {
+      cover: nytEvening1161,
+      photos: [nytEvening1153, nytEvening1157, nytEvening1161, nytEvening1168, nytEvening1174],
+    },
+  },
+  {
+    id: 'mayor-gloria-sipa',
+    title: 'Housing, Homelessness, and the Role of Mayors',
+    date: 'Sep 21, 2026',
+    sortDate: '2026-09-21',
+    location: 'Columbia University',
+    summary: 'Attended a conversation between San Diego Mayor Todd Gloria and Professor William Eimicke on how cities are building more housing and helping people experiencing homelessness move toward permanent housing.',
+    tags: ['Policy', 'Cities'],
+    links: [],
+    media: { cover: mayorGloria1012, photos: [mayorGloria1012] },
+  },
   {
     id: 'kgsa-career',
     title: 'KGSA Career Event — Organizer & MC',
@@ -337,6 +484,357 @@ export const communityEvents = [
 // ═══════════════════════════════════════
 
 export const offTheClockItems = [
+  {
+    id: 'morningside-fall',
+    category: 'travel',
+    title: 'Morningside Park',
+    date: 'Nov 2026',
+    sortDate: '2026-11-23',
+    location: 'New York, NY',
+    media: {
+      cover: morningside2266,
+      photos: [{ src: morningside2266 }, { src: morningside2291 }],
+    },
+  },
+  {
+    id: 'nyphil-huang-mendelssohn',
+    category: 'concert',
+    title: 'Frank Huang Performs Mendelssohn',
+    date: 'Nov 2026',
+    sortDate: '2026-11-21',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'Korngold — Theme and Variations, Op. 42',
+        'Mendelssohn — Violin Concerto in E minor, Op. 64',
+        'Korngold — Straussiana',
+        'R. Strauss — Der Rosenkavalier Suite',
+      ],
+      artists: [
+        { name: 'Roberto González-Monjas', role: 'Conductor' },
+        { name: 'Frank Huang', role: 'Violin' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2627/gonzalez-monjas-conducts',
+    media: {
+      cover: nyphilMendelssohn2196,
+      photos: [
+        { src: nyphilMendelssohn2294 },
+        { src: nyphilMendelssohn2196 },
+        { src: nyphilMendelssohn2202 },
+        { src: nyphilMendelssohn2209 },
+        { src: nyphilMendelssohn2223 },
+      ],
+    },
+  },
+  {
+    id: 'nyphil-thibaudet-liszt',
+    category: 'concert',
+    title: 'Thibaudet Performs Liszt',
+    date: 'Nov 2026',
+    sortDate: '2026-11-07',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'Liszt — Piano Concerto No. 2',
+        'Bruckner — Symphony No. 9',
+      ],
+      artists: [
+        { name: 'Rafael Payare', role: 'Conductor' },
+        { name: 'Jean-Yves Thibaudet', role: 'Piano' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2627/thibaudet-performs-liszt',
+    media: {
+      cover: nyphilLiszt2058,
+      photos: [
+        { src: nyphilLiszt2047 },
+        { src: nyphilLiszt2058 },
+        { src: nyphilLiszt2063 },
+      ],
+    },
+  },
+  {
+    id: 'jersey-shore-sunrise',
+    category: 'travel',
+    title: 'Ocean Grove and Asbury Park',
+    date: 'Nov 2026',
+    sortDate: '2026-11-03',
+    location: 'New Jersey',
+    media: {
+      cover: shore1797,
+      photos: [
+        { src: shore1745 },
+        { src: shore1750 },
+        { src: shore1759 },
+        { src: shore1797 },
+        { src: shore1819 },
+        { src: shore1873 },
+        { src: shore1881 },
+      ],
+    },
+  },
+  {
+    id: 'around-new-york-fall',
+    category: 'travel',
+    title: 'Around New York',
+    date: 'Oct 2026',
+    sortDate: '2026-10-29',
+    location: 'New York, NY',
+    media: {
+      cover: aroundNy1090,
+      photos: [
+        { src: aroundNy1090 },
+        { src: aroundNy1295 },
+        { src: aroundNy1571 },
+        { src: aroundNy1653 },
+      ],
+    },
+  },
+  {
+    id: 'un-east-lounge',
+    category: 'travel',
+    title: 'East Lounge',
+    date: 'Oct 2026',
+    sortDate: '2026-10-22',
+    location: 'United Nations Headquarters',
+    media: { cover: unEastLounge1510, photos: [{ src: unEastLounge1510 }] },
+  },
+  {
+    id: 'midtown-dog',
+    category: 'travel',
+    title: 'Midtown',
+    date: 'Oct 2026',
+    sortDate: '2026-10-15',
+    location: 'New York, NY',
+    media: { cover: midtownDog1396, photos: [{ src: midtownDogDiptych }] },
+  },
+  {
+    id: 'nyphil-dudamel-mahler-leon',
+    category: 'concert',
+    title: 'Dudamel Conducts Mahler & Tania León',
+    date: 'Sep 2026',
+    sortDate: '2026-09-24',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'Tania León — Imágenes Mestizas (World Premiere, NY Phil Commission)',
+        'Mahler — Symphony No. 5',
+      ],
+      artists: [
+        { name: 'Gustavo Dudamel', role: 'Conductor' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2627/dudamel-conducts-mahler-and-tania-leon',
+    media: {
+      cover: nyphilMahler1110,
+      photos: [
+        { src: nyphilMahler1110 },
+        { src: nyphilMahler1119 },
+        { src: nyphilMahler1130 },
+        { src: nyphilMahler1137 },
+      ],
+    },
+  },
+  {
+    id: 'nyphil-dudamel-prokofiev-adams',
+    category: 'concert',
+    title: 'Dudamel Conducts Prokofiev, Adams & Di Castri',
+    date: 'Sep 2026',
+    sortDate: '2026-09-19',
+    location: 'David Geffen Hall',
+    program: {
+      pieces: [
+        'John Adams — On the Transmigration of Souls',
+        'Zosha Di Castri — Invisible House (World Premiere, NY Phil Co-commission with the LA Phil)',
+        'Prokofiev — Symphony No. 5',
+      ],
+      artists: [
+        { name: 'Gustavo Dudamel', role: 'Conductor' },
+        { name: 'New York Philharmonic Chorus (Malcolm J. Merriweather, director)', role: 'Chorus' },
+        { name: 'Brooklyn Youth Chorus (Dianne Berkun Menaker, director)', role: 'Chorus' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2627/dudamel-conducts-prokofiev-and-john-adams',
+    media: {
+      cover: nyphilProkofiev0981,
+      photos: [
+        { src: nyphilProkofiev0972 },
+        { src: nyphilProkofiev0978 },
+        { src: nyphilProkofiev0981 },
+      ],
+    },
+  },
+  {
+    id: 'yankees-mets-0911',
+    category: 'sports',
+    title: 'Yankees vs. Mets',
+    date: 'Sep 2026',
+    sortDate: '2026-09-11',
+    location: 'Yankee Stadium',
+    description: 'The Subway Series game on September 11, the 25th anniversary of the attacks, which the Yankees won 6-4.',
+    media: {
+      cover: yankees0782,
+      photos: [
+        { src: yankees0706 },
+        { src: yankees0713 },
+        { src: yankees0740 },
+        { src: yankees0748 },
+        { src: yankees0782 },
+        { src: yankees0797 },
+        { src: yankees7279 },
+        { src: yankees0815 },
+        { src: yankees0827 },
+        { src: yankees0852 },
+      ],
+    },
+  },
+  {
+    id: 'herald-square-dog',
+    category: 'travel',
+    title: 'Herald Square',
+    date: 'Sep 2026',
+    sortDate: '2026-09-04',
+    location: 'New York, NY',
+    media: { cover: heraldSquare0561, photos: [{ src: heraldSquareTriptych }] },
+  },
+  {
+    id: 'brooklyn-ice-cream-5k',
+    category: 'race',
+    title: 'Brooklyn Ice Cream Social 5K',
+    date: 'Jul 2026',
+    sortDate: '2026-07-25',
+    location: 'Prospect Park, Brooklyn',
+    media: { cover: icecream5k9968, photos: [{ src: icecream5k9968 }] },
+  },
+  {
+    id: 'nyphil-deneve-american-in-paris',
+    category: 'concert',
+    title: 'Stéphane Denève & An American in Paris',
+    date: 'Jul 2026',
+    sortDate: '2026-07-09',
+    location: 'Alice Tully Hall',
+    program: {
+      pieces: [
+        'Bernstein — Overture to Candide',
+        "Bizet — Selections from L'Arlésienne",
+        'Copland — Lincoln Portrait',
+        'Gershwin — An American in Paris',
+        'Ravel — Boléro',
+      ],
+      artists: [
+        { name: 'Stéphane Denève', role: 'Conductor' },
+        { name: 'F. Murray Abraham', role: 'Narrator' },
+      ],
+    },
+    link: 'https://www.nyphil.org/concerts-tickets/2526/stephane-deneve-and-an-american-in-paris',
+    media: {
+      cover: nyphilDeneve9705,
+      photos: [
+        { src: nyphilDeneve9692 },
+        { src: nyphilDeneve9705 },
+        { src: nyphilDeneve9711 },
+        { src: nyphilDeneve9719 },
+      ],
+    },
+  },
+  {
+    id: 'golf-overpeck-jul',
+    category: 'golf',
+    title: 'Overpeck Golf Course',
+    date: 'Jul 2026',
+    sortDate: '2026-07-08',
+    location: 'Teaneck, NJ',
+    description: 'A round with fellow UN interns.',
+    mapUrl: 'https://maps.google.com/?q=Overpeck+Golf+Course+273+E+Cedar+Ln+Teaneck+NJ',
+    mapCoords: [40.8859, -74.0050],
+    media: { cover: overpeck9613, photos: [{ src: overpeck9613 }] },
+  },
+  {
+    id: 'rome-visit',
+    category: 'travel',
+    title: 'Rome',
+    date: 'May 2026',
+    sortDate: '2026-05-29',
+    location: 'Italy',
+    media: {
+      cover: rome8753,
+      photos: [{ src: rome8753 }, { src: rome8757 }, { src: rome8992 }, { src: rome8998 }],
+    },
+  },
+  {
+    id: 'amalfi-coast-visit',
+    category: 'travel',
+    title: 'Sorrento and the Amalfi Coast',
+    date: 'May 2026',
+    sortDate: '2026-05-27',
+    location: 'Italy',
+    media: {
+      cover: amalfi8181,
+      photos: [
+        { src: amalfi7925 },
+        { src: amalfi8181 },
+        { src: amalfi8357 },
+        { src: amalfi8472 },
+        { src: amalfi8477 },
+        { src: amalfi8494 },
+        { src: amalfi8513 },
+        { src: '/assets/videos/sorrento-2605.mp4', type: 'video' },
+      ],
+    },
+  },
+  {
+    id: 'lavaux-lavey-visit',
+    category: 'travel',
+    title: 'Lavaux and Lavey-les-Bains',
+    date: 'May 2026',
+    sortDate: '2026-05-23',
+    location: 'Switzerland',
+    media: {
+      cover: lavaux6950,
+      photos: [{ src: lavaux6950 }, { src: lavey7179 }],
+    },
+  },
+  {
+    id: 'zurich-visit',
+    category: 'travel',
+    title: 'Zurich',
+    date: 'May 2026',
+    sortDate: '2026-05-20',
+    location: 'Switzerland',
+    media: {
+      cover: zurich6830,
+      photos: [
+        { src: zurich6669 },
+        { src: zurich6773 },
+        { src: zurich6830 },
+        { src: zurich6835 },
+        { src: zurich6867 },
+      ],
+    },
+  },
+  {
+    id: 'milan-visit',
+    category: 'travel',
+    title: 'Milan',
+    date: 'May 2026',
+    sortDate: '2026-05-19',
+    location: 'Italy',
+    media: {
+      cover: milan6510,
+      photos: [
+        { src: milan6405 },
+        { src: milan6420 },
+        { src: milan6444 },
+        { src: milan6450 },
+        { src: milan6459 },
+        { src: milan6510 },
+        { src: milan6540 },
+        { src: milan6621 },
+        { src: milan6662 },
+      ],
+    },
+  },
   {
     id: 'golf-overpeck',
     category: 'golf',

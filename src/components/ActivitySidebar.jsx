@@ -137,7 +137,7 @@ function ActivitySidebar({ onScrollTo }) {
           Activities
         </SideSectionTitle>
         <SideItems>
-          {activities.map((item) => (
+          {sortByDateDesc(activities).map((item) => (
             <SideItem
               key={item.id}
               to={`/activities/${item.id}`}
@@ -155,7 +155,7 @@ function ActivitySidebar({ onScrollTo }) {
           Community & Events
         </SideSectionTitle>
         <SideItems>
-          {communityEvents.map((item) => (
+          {sortByDateDesc(communityEvents).map((item) => (
             <SideScrollItem
               key={item.id}
               onClick={() => handleScroll(item.id)}

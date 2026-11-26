@@ -499,8 +499,16 @@ function Activities() {
                             title: item.title,
                             date: item.date,
                             location: item.location,
+                            description: item.description,
                             mapUrl: item.mapUrl,
                             mapCoords: item.mapCoords,
+                          };
+                        } else if (item.description) {
+                          pInfo = {
+                            title: item.title,
+                            date: item.date,
+                            location: item.location,
+                            description: item.description,
                           };
                         }
                         openLightbox(photos, 0, pInfo);
