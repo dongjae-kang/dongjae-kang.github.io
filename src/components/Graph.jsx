@@ -216,6 +216,22 @@ function motionConfig(id) {
   };
 }
 
+/* Slow idle drift for research and engagement nodes. Each node gets its own period and
+   phase from its id, so the graph never moves in step. Theme nodes stay put: they carry
+   the blurred aura, and they are the fixed centres the work floats around. */
+function driftConfig(node, isMobile) {
+  const hash = Math.abs(hashCode(node.id));
+  const amplitude = node.type === 'theme' ? 0 : isMobile ? 2.5 : 5;
+  return {
+    ax: amplitude * (0.6 + (hash % 5) / 10),
+    ay: amplitude * (0.6 + ((hash >> 3) % 5) / 10),
+    fx: (2 * Math.PI) / (9 + (hash % 7)),
+    fy: (2 * Math.PI) / (11 + ((hash >> 4) % 7)),
+    px: ((hash % 360) * Math.PI) / 180,
+    py: (((hash >> 2) % 360) * Math.PI) / 180,
+  };
+}
+
 function labelLines(node, maxChars) {
   return node.lines || wrapLabel(node.label, maxChars);
 }
@@ -420,7 +436,7 @@ function Graph() {
         .attr('x', size.width * 0.18)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .text('Research');
@@ -430,7 +446,7 @@ function Graph() {
         .attr('x', size.width * 0.84)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .attr('text-anchor', 'end')
@@ -649,18 +665,68 @@ function Graph() {
       setPreview({ visible: true, x, y, ...content });
     }
 
+    /* Idle drift: ~30 fps, only while the graph is on screen, off for reduced motion. */
+    nodes.forEach((node) => {
+      node.baseX = node.x;
+      node.baseY = node.y;
+      node.drift = driftConfig(node, isMobile);
+    });
+    let dragging = null;
+    let frameId = null;
+    let lastFrame = 0;
+    let lastFlowUpdate = 0;
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+    function tick(now) {
+      frameId = requestAnimationFrame(tick);
+      if (now - lastFrame < 33) return;
+      lastFrame = now;
+      const t = now / 1000;
+      nodes.forEach((node) => {
+        if (node === dragging) return;
+        const { ax, ay, fx, fy, px, py } = node.drift;
+        node.x = node.baseX + ax * Math.sin(t * fx + px);
+        node.y = node.baseY + ay * Math.sin(t * fy + py);
+      });
+      nodeSelection.attr('transform', (node) => `translate(${node.x}, ${node.y})`);
+      edgeSelection.attr('d', edgePath);
+      if (now - lastFlowUpdate > 250) {
+        lastFlowUpdate = now;
+        flowSelection.selectAll('circle').each(function updatePath(edge) {
+          d3.select(this).select('animateMotion').attr('path', edgePath(edge));
+        });
+      }
+    }
+
+    const start = () => {
+      if (!reduceMotion && frameId === null) frameId = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      frameId = null;
+    };
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    });
+    visibility.observe(svgRef.current);
+
     const drag = d3
       .drag()
-      .on('start', function onStart() {
+      .on('start', function onStart(event, node) {
+        dragging = node;
         d3.select(this).style('cursor', 'grabbing');
         hidePreview();
       })
       .on('drag', function onDrag(event, node) {
         node.x = Math.max(24, Math.min(size.width - 24, event.x));
         node.y = Math.max(24, Math.min(size.height - 24, event.y));
+        node.baseX = node.x;
+        node.baseY = node.y;
         renderPositions();
       })
       .on('end', function onEnd(event, node) {
+        dragging = null;
         d3.select(this).style('cursor', node.url ? 'pointer' : 'grab');
       });
 
@@ -684,7 +750,10 @@ function Graph() {
     renderPositions();
     updateHighlight(null);
 
-    return undefined;
+    return () => {
+      stop();
+      visibility.disconnect();
+    };
   }, [data, isMobile, navigate, size.height, size.width]);
 
   return (

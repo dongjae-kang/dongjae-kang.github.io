@@ -93,7 +93,9 @@ const HeroContent = styled.div`
 const Name = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.8rem, 5vw, 4.5rem);
-  font-weight: 600;
+  font-weight: 500;
+  /* PP Neue Montreal ships 500 and 700 only; a thin stroke gives the page title a semibold weight. */
+  -webkit-text-stroke: 0.012em currentColor;
   line-height: 0.95;
   letter-spacing: -0.02em;
   /* The graph box ends in empty space below its lowest node; the name sits up into it. */
@@ -187,7 +189,7 @@ const SectionLabel = styled.span`
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.12;
   margin-bottom: 16px;
   max-width: 620px;
@@ -466,13 +468,13 @@ function Home() {
             </SectionLead>
             <SectionTitle>How people connect, and how technology shapes it.</SectionTitle>
             <SectionBody>
-              At Columbia, he works with Eric Chen of the Journalism School on what makes a
+              At Columbia, I work with Eric Chen of the Journalism School on what makes a
               conversation healthy and how that could be measured.
-              At the United Nations Statistics Division, he built a system that traces each
+              At the United Nations Statistics Division, I built a system that traces each
               decision of the UN Statistical Commission back to what member states said in the
-              meeting. He also founded PRISM, a
+              meeting. I also founded PRISM, a
               daily brief tracing how political stories travel across YouTube and podcasts, in
-              Korean and English editions. Earlier, at KAIST, he co-built CrisisNews, a dataset of 93,250
+              Korean and English editions. Earlier, at KAIST, I co-built CrisisNews, a dataset of 93,250
               news articles spanning two decades of social media crises, and presented it at a
               CHI 2025 workshop in Yokohama.
             </SectionBody>
@@ -503,12 +505,11 @@ function Home() {
               <SectionNum>02</SectionNum>
               <SectionLabel>Leadership</SectionLabel>
             </SectionLead>
-            <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
             <SectionBody>
-              As President of KAIST&apos;s Undergraduate Student Council, he rebuilt the
+              As President of KAIST&apos;s Undergraduate Student Council, I rebuilt the
               organization after three years of inactivity, achieving the highest satisfaction
               rating in council history. When Korea&apos;s government proposed a 16% R&amp;D budget
-              cut, he led a coalition of 11 university student organizations in direct
+              cut, I led a coalition of 11 university student organizations in direct
               engagement with National Assembly members and Ministry officials. The experience
               led to an invitation to publish a column in JoongAng Ilbo, one of Korea&apos;s
               leading national newspapers.
@@ -543,12 +544,11 @@ function Home() {
               <SectionNum>03</SectionNum>
               <SectionLabel>Activities</SectionLabel>
             </SectionLead>
-            <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
             <SectionBody>
-              He presented research at a CHI 2025 workshop in Yokohama, supported Presidential
+              I presented research at a CHI 2025 workshop in Yokohama, supported Presidential
               Secretariat operations during the UN General Assembly High-Level Week, and was
               selected as a Respondent for the SDG 9 session at the 2026 UN ECOSOC Youth
-              Forum. At Columbia, he organized career and networking events connecting 200+
+              Forum. At Columbia, I organized career and networking events connecting 200+
               students across Ivy League campuses.
             </SectionBody>
 

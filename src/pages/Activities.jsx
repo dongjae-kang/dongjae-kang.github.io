@@ -28,6 +28,10 @@ const Content = styled.div`
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: ${({ theme }) => theme.fontSizes.h1};
+  font-weight: 500;
+  /* PP Neue Montreal ships 500 and 700 only; a thin stroke gives the page title a semibold weight. */
+  -webkit-text-stroke: 0.012em currentColor;
+  letter-spacing: -0.01em;
   margin-bottom: 16px;
 `;
 
@@ -78,7 +82,7 @@ const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 10px;
 `;
 

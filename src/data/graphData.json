@@ -103,7 +103,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/chi-2025",
-      "desktop": { "x": 0.75, "y": 0.18 },
+      "desktop": { "x": 0.735, "y": 0.165 },
       "mobile": { "x": 0.82, "y": 0.16 }
     },
     {
@@ -112,7 +112,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-ga-hlw",
-      "desktop": { "x": 0.89, "y": 0.27 },
+      "desktop": { "x": 0.905, "y": 0.285 },
       "mobile": { "x": 0.93, "y": 0.26 }
     },
     {
@@ -121,7 +121,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/un-youth-forum",
-      "desktop": { "x": 0.77, "y": 0.46 },
+      "desktop": { "x": 0.795, "y": 0.445 },
       "mobile": { "x": 0.84, "y": 0.44 }
     },
     {
@@ -130,7 +130,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/student-council",
-      "desktop": { "x": 0.89, "y": 0.52 },
+      "desktop": { "x": 0.872, "y": 0.52 },
       "mobile": { "x": 0.93, "y": 0.52 }
     },
     {
@@ -139,7 +139,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/valedictorian",
-      "desktop": { "x": 0.77, "y": 0.58 },
+      "desktop": { "x": 0.765, "y": 0.588 },
       "mobile": { "x": 0.84, "y": 0.61 }
     },
     {
@@ -148,7 +148,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/kgsa-career",
-      "desktop": { "x": 0.82, "y": 0.76 },
+      "desktop": { "x": 0.835, "y": 0.745 },
       "mobile": { "x": 0.88, "y": 0.79 }
     },
     {
@@ -157,7 +157,7 @@
       "type": "engagement",
       "importance": "major",
       "url": "/activities/upenn-mixer",
-      "desktop": { "x": 0.96, "y": 0.76 },
+      "desktop": { "x": 0.958, "y": 0.79 },
       "mobile": { "x": 0.96, "y": 0.78 }
     },
     {
@@ -166,7 +166,7 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/hyc-mixer",
-      "desktop": { "x": 0.69, "y": 0.86 },
+      "desktop": { "x": 0.705, "y": 0.875 },
       "mobile": { "x": 0.74, "y": 0.84 }
     },
     {
@@ -175,7 +175,7 @@
       "type": "engagement",
       "importance": "minor",
       "url": "/activities/columbia-ai-club",
-      "desktop": { "x": 0.89, "y": 0.91 },
+      "desktop": { "x": 0.915, "y": 0.925 },
       "mobile": { "x": 0.91, "y": 0.9 }
     }
   ],
