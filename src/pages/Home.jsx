@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { FiArrowDown } from 'react-icons/fi';
 import Graph from '../components/Graph';
 import PageTransition from '../components/PageTransition';
 import { research } from '../data/research';
@@ -78,6 +77,11 @@ const Hero = styled.section`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     padding: 96px 16px 36px;
   }
+
+  /* Short laptop screens (e.g. 1470x676): keep the arrow inside the first screen. */
+  @media (min-width: 769px) and (max-height: 760px) {
+    padding-top: 84px;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -96,8 +100,8 @@ const Name = styled.h1`
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  /* The graph box ends in empty space below its lowest node; the name sits up into it. */
-  margin-top: -12px;
+  /* A little air between the graph and the name (was -12px, Jack 11/26: lower the two lines). */
+  margin-top: 12px;
 `;
 
 const Tagline = styled.p`
@@ -119,19 +123,56 @@ const Tagline = styled.p`
 
 const ScrollCue = styled.button`
   display: grid;
-  gap: 6px;
   justify-items: center;
-  margin-top: 8px;
+  margin-top: 18px;
+  padding: 6px;
   color: ${({ theme }) => theme.colors.subpage.muted};
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0.72;
+  transition: opacity 0.2s ease;
+
+  &:hover { opacity: 1; }
+
+  @media (min-width: 769px) and (max-height: 760px) {
+    margin-top: 10px;
+  }
+
   svg {
-    font-size: 1rem;
+    display: block;
+    width: ${({ $variant }) => ($variant === 'circle' ? '44px' : '26px')};
+    height: ${({ $variant }) => ($variant === 'circle' ? '44px' : '38px')};
     animation: ${({ $stopped }) => ($stopped ? 'none' : css`${bounce} 2.5s ease-in-out infinite`)};
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg { animation: none; }
+  }
 `;
+
+/* An arrow drawn by its outline only: a narrow shaft and a sharp head, no fill. */
+function OutlineArrow() {
+  return (
+    <svg viewBox="0 0 26 38" fill="none" aria-hidden="true">
+      <path
+        d="M9.5 1.5 H16.5 V22.5 H24 L13 36 L2 22.5 H9.5 Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
+
+/* The same cue as a thin ring with an arrow inside (review option). */
+function RingArrow() {
+  return (
+    <svg viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <circle cx="22" cy="22" r="20.5" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M22 13 V30 M15 23.5 L22 30.5 L29 23.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+const arrowVariant = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('arrow') : null;
 
 /* ─── NARRATIVE ─── */
 const Narrative = styled.div`
@@ -454,11 +495,12 @@ function Home() {
             </Tagline>
             <ScrollCue
               type="button"
+              aria-label="Scroll to explore"
+              $variant={arrowVariant}
               $stopped={hasScrolled}
               onClick={() => storyRef.current?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <span>Scroll to explore</span>
-              <FiArrowDown />
+              {arrowVariant === 'circle' ? <RingArrow /> : <OutlineArrow />}
             </ScrollCue>
           </HeroContent>
         </Hero>
