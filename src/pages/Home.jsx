@@ -197,6 +197,13 @@ const SectionTitle = styled.h2`
   }
 `;
 
+/* Wide screens keep section titles on one line; a long title breaks here instead. */
+const TitleBreak = styled.span`
+  @media (min-width: 1024px) {
+    display: block;
+  }
+`;
+
 const SectionBody = styled.p`
   max-width: 100%;
   font-size: 0.96rem;
@@ -502,7 +509,7 @@ function Home() {
               <SectionNum>02</SectionNum>
               <SectionLabel>Leadership</SectionLabel>
             </SectionLead>
-            <SectionTitle>Research is one line of work. Institutions are another.</SectionTitle>
+            <SectionTitle>Deciding together, from the inside.</SectionTitle>
             <SectionBody>
               Rebuilt KAIST&apos;s Undergraduate Student Council as its President after three years
               of inactivity, achieving the highest satisfaction rating in council history. Led a
@@ -541,7 +548,7 @@ function Home() {
               <SectionNum>03</SectionNum>
               <SectionLabel>Activities</SectionLabel>
             </SectionLead>
-            <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
+            <SectionTitle>Understanding each other,<TitleBreak /> across campuses, countries, and institutions.</SectionTitle>
             <SectionBody>
               Presented research at a CHI 2025 workshop in Yokohama, supported Presidential
               Secretariat operations during the UN General Assembly High-Level Week, and was
