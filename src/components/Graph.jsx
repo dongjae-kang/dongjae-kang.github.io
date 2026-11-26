@@ -33,11 +33,6 @@ const GraphWrap = styled.div`
   margin: 0 auto;
   overflow: visible;
 
-  /* Short laptop screens: a little less height so the scroll arrow stays in view. */
-  @media (min-width: 769px) and (max-height: 760px) {
-    min-height: 360px;
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: min(92vw, 520px);
     height: min(45vh, 360px);
