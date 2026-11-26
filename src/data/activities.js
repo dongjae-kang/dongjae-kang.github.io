@@ -194,6 +194,7 @@ import milan6405 from '../assets/images/life/italy-switzerland/milan-6405.jpg';
 import milan6420 from '../assets/images/life/italy-switzerland/milan-6420.jpg';
 import milan6444 from '../assets/images/life/italy-switzerland/milan-6444.jpg';
 import milan6450 from '../assets/images/life/italy-switzerland/milan-6450.jpg';
+import milan6457 from '../assets/images/life/italy-switzerland/milan-6457.jpg';
 import milan6459 from '../assets/images/life/italy-switzerland/milan-6459.jpg';
 import milan6510 from '../assets/images/life/italy-switzerland/milan-6510.jpg';
 import milan6540 from '../assets/images/life/italy-switzerland/milan-6540.jpg';
@@ -816,6 +817,7 @@ export const offTheClockItems = [
         { src: milan6420 },
         { src: milan6444 },
         { src: milan6450 },
+        { src: milan6457 },
         { src: milan6459 },
         { src: milan6540 },
         { src: milan6621 },
