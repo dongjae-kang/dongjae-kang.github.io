@@ -264,7 +264,7 @@ export const activities = [
   {
     id: 'un-youth-forum',
     tier: 1,
-    title: 'UN Youth Forum — SDG 9 Respondent',
+    title: 'UN Youth Forum — SDG\u00a09 Respondent',
     date: 'Apr 2026',
     sortDate: '2026-04-15',
     location: 'United Nations Headquarters, New York',

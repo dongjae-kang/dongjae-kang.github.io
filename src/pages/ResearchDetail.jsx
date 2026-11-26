@@ -77,7 +77,7 @@ const TitleBlock = styled.div`
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-size: clamp(2.34rem, 4.5vw, 3.6rem);
   font-weight: 400;
   line-height: 1.05;
 `;
@@ -274,7 +274,7 @@ const RelatedCard = styled(Link)`
 
 const RelatedTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   font-weight: 400;
   line-height: 1.2;
 `;

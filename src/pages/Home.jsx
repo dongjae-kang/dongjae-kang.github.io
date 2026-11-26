@@ -92,7 +92,7 @@ const HeroContent = styled.div`
 
 const Name = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: clamp(2.52rem, 4.5vw, 4.05rem);
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -174,7 +174,7 @@ const SectionLead = styled.div`
 const SectionNum = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-weight: 400;
-  font-size: 1.4rem;
+  font-size: 1.26rem;
   color: rgba(27, 61, 47, 0.24);
 `;
 
@@ -187,7 +187,7 @@ const SectionLabel = styled.span`
 
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-size: clamp(1.62rem, 2.52vw, 2.25rem);
   font-weight: 400;
   line-height: 1.12;
   margin-bottom: 16px;

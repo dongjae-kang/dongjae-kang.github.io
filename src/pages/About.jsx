@@ -91,7 +91,7 @@ const Divider = styled.hr`
 /* ─── JOURNEY SECTION ─── */
 const JourneyTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.8rem;
+  font-size: 1.62rem;
   font-weight: 400;
   margin-bottom: 28px;
 `;
@@ -155,7 +155,7 @@ const TimelinePeriod = styled.span`
 
 const TimelineCategory = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.3rem;
+  font-size: 1.17rem;
   font-weight: 400;
   margin-top: 32px;
   margin-bottom: 4px;

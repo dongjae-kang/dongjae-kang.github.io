@@ -39,7 +39,7 @@ export const theme = {
   },
   fontSizes: {
     base: '16px',
-    h1: '2.5rem',
+    h1: '2.25rem',
     h2: '1.8rem',
     h3: '1.3rem',
     body: '1rem',

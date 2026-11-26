@@ -77,7 +77,7 @@ const Section = styled.section`
 
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.08;
   font-weight: 400;
   margin-bottom: 10px;
@@ -147,7 +147,7 @@ const PhotoTitle = styled.span`
 `;
 
 const CardTitle = styled.h2`
-  font-size: 1.8rem;
+  font-size: 1.62rem;
   font-family: ${({ theme }) => theme.fonts.heading};
   font-weight: 400;
   line-height: 1.08;
@@ -205,7 +205,7 @@ const Tier2Image = styled.img`
 
 const Tier2Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   line-height: 1.08;
   font-weight: 400;
 `;
@@ -246,7 +246,7 @@ const PhotoCount = styled.span`
 /* ─── TIER 3: Miscellaneous ─── */
 const GroupTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.6rem;
+  font-size: 1.44rem;
   font-weight: 400;
   margin: 48px 0 16px;
   padding-bottom: 8px;
@@ -264,7 +264,7 @@ const YearTile = styled.div`
 
   span {
     font-family: ${({ theme }) => theme.fonts.heading};
-    font-size: 2.6rem;
+    font-size: 2.34rem;
     font-weight: 400;
     color: rgba(247, 247, 245, 0.92);
     letter-spacing: 0.04em;
@@ -320,7 +320,7 @@ const Tier3Placeholder = styled.div`
 
 const Tier3Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.1rem;
+  font-size: 0.99rem;
   line-height: 1.15;
   font-weight: 400;
 `;

@@ -79,7 +79,7 @@ const Section = styled.section`
 
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.08;
   font-weight: 400;
 `;
@@ -109,7 +109,7 @@ const PaperRow = styled.a`
 
 const PaperTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 1.45rem;
+  font-size: 1.305rem;
   line-height: 1.08;
   font-weight: 400;
 `;
@@ -198,7 +198,7 @@ const CardHeader = styled.div`
 
 const CardTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.08;
   font-weight: 400;
 `;
@@ -285,7 +285,7 @@ const CourseworkTitleLink = styled(Link)`
 
 const CourseworkTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.08;
   font-weight: 400;
 `;
