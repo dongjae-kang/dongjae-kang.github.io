@@ -56,7 +56,6 @@ import upennMixer3 from '../assets/images/activities/upenn-mixer-3.jpg';
 import upennMixerPoster from '../assets/images/activities/upenn-mixer-poster.png';
 import ruleOfLaw1599 from '../assets/images/activities/rule-of-law-1599.jpg';
 import ruleOfLaw1602 from '../assets/images/activities/rule-of-law-1602.jpg';
-import ruleOfLawAgenda from '../assets/images/activities/rule-of-law-agenda.jpg';
 import hlpf9766 from '../assets/images/activities/hlpf-9766.jpg';
 import hlpf9775 from '../assets/images/activities/hlpf-9775.jpg';
 import hlpf9806 from '../assets/images/activities/hlpf-9806.jpg';
@@ -164,9 +163,7 @@ import nyphilMahler1137 from '../assets/images/life/nyphil/nyphil-mahler-1137.jp
 import nyphilLiszt2047 from '../assets/images/life/nyphil/nyphil-liszt-2047.jpg';
 import nyphilLiszt2058 from '../assets/images/life/nyphil/nyphil-liszt-2058.jpg';
 import nyphilLiszt2063 from '../assets/images/life/nyphil/nyphil-liszt-2063.jpg';
-import nyphilMendelssohn2294 from '../assets/images/life/nyphil/nyphil-mendelssohn-2294.jpg';
 import nyphilMendelssohn2196 from '../assets/images/life/nyphil/nyphil-mendelssohn-2196.jpg';
-import nyphilMendelssohn2202 from '../assets/images/life/nyphil/nyphil-mendelssohn-2202.jpg';
 import nyphilMendelssohn2209 from '../assets/images/life/nyphil/nyphil-mendelssohn-2209.jpg';
 import nyphilMendelssohn2223 from '../assets/images/life/nyphil/nyphil-mendelssohn-2223.jpg';
 import yankees0706 from '../assets/images/life/yankees/yankees-0706.jpg';
@@ -174,10 +171,8 @@ import yankees0713 from '../assets/images/life/yankees/yankees-0713.jpg';
 import yankees0740 from '../assets/images/life/yankees/yankees-0740.jpg';
 import yankees0748 from '../assets/images/life/yankees/yankees-0748.jpg';
 import yankees0782 from '../assets/images/life/yankees/yankees-0782.jpg';
-import yankees0797 from '../assets/images/life/yankees/yankees-0797.jpg';
 import yankees7279 from '../assets/images/life/yankees/yankees-7279.jpg';
 import yankees0815 from '../assets/images/life/yankees/yankees-0815.jpg';
-import yankees0827 from '../assets/images/life/yankees/yankees-0827.jpg';
 import yankees0852 from '../assets/images/life/yankees/yankees-0852.jpg';
 import overpeck9613 from '../assets/images/life/golf/overpeck-9613.jpg';
 import icecream5k9968 from '../assets/images/life/nyc/icecream-5k-9968.jpg';
@@ -195,10 +190,8 @@ import shore1797 from '../assets/images/life/jersey-shore/shore-1797.jpg';
 import shore1819 from '../assets/images/life/jersey-shore/shore-1819.jpg';
 import shore1873 from '../assets/images/life/jersey-shore/shore-1873.jpg';
 import shore1881 from '../assets/images/life/jersey-shore/shore-1881.jpg';
-import heraldSquare0561 from '../assets/images/life/dogs/herald-0561.jpg';
-import heraldSquareTriptych from '../assets/images/life/dogs/herald-square-triptych.jpg';
-import midtownDog1396 from '../assets/images/life/dogs/midtown-1396.jpg';
-import midtownDogDiptych from '../assets/images/life/dogs/midtown-dog-diptych.jpg';
+import heraldSquareJoined from '../assets/images/life/dogs/herald-square-joined.jpg';
+import midtownDogJoined from '../assets/images/life/dogs/midtown-dog-joined.jpg';
 import milan6405 from '../assets/images/life/italy-switzerland/milan-6405.jpg';
 import milan6420 from '../assets/images/life/italy-switzerland/milan-6420.jpg';
 import milan6444 from '../assets/images/life/italy-switzerland/milan-6444.jpg';
@@ -222,10 +215,14 @@ import amalfi8472 from '../assets/images/life/italy-switzerland/amalfi-8472.jpg'
 import amalfi8477 from '../assets/images/life/italy-switzerland/amalfi-8477.jpg';
 import amalfi8494 from '../assets/images/life/italy-switzerland/amalfi-8494.jpg';
 import amalfi8513 from '../assets/images/life/italy-switzerland/amalfi-8513.jpg';
-import rome8753 from '../assets/images/life/italy-switzerland/rome-8753.jpg';
 import rome8757 from '../assets/images/life/italy-switzerland/rome-8757.jpg';
 import rome8992 from '../assets/images/life/italy-switzerland/rome-8992.jpg';
-import rome8998 from '../assets/images/life/italy-switzerland/rome-8998.jpg';
+import lausanne6963 from '../assets/images/life/italy-switzerland/lausanne-6963.jpg';
+import lausanne6982 from '../assets/images/life/italy-switzerland/lausanne-6982.jpg';
+import lausanne7097 from '../assets/images/life/italy-switzerland/lausanne-7097.jpg';
+import epfl7050 from '../assets/images/life/italy-switzerland/epfl-7050.jpg';
+import epfl7059 from '../assets/images/life/italy-switzerland/epfl-7059.jpg';
+import epfl7077 from '../assets/images/life/italy-switzerland/epfl-7077.jpg';
 
 // ═══════════════════════════════════════
 // TIER 1: ACTIVITIES
@@ -239,12 +236,12 @@ export const activities = [
     sortDate: '2026-10-27',
     location: 'Scandinavia House, New York',
     summary: 'Attended a UN event on justice and accountability in crisis settings, hosted by the Global Focal Point for the Rule of Law, the Permanent Mission of Liberia, and IDLO, as a guest of the Korean Consulate General in New York.',
-    description: 'Kang attended "Rule of Law in Action: Stories of Justice, Accountability and Partnership," hosted by the Global Focal Point for the Rule of Law (GFP), the Permanent Mission of Liberia to the United Nations, and the International Development Law Organization (IDLO). He joined as a guest of the Consulate General of the Republic of Korea in New York, at the invitation of its police attaché from the Korean National Police Agency. The program paired short films from the Democratic Republic of the Congo, South Sudan, the Central African Republic, Guatemala, and Yemen with two panel discussions on access to justice, accountability, and resilient institutions, with opening remarks from UN Assistant Secretaries-General Shoko Noda and Elizabeth Spehar and IDLO Director-General Jan Beagle.',
+    description: 'Attended "Rule of Law in Action: Stories of Justice, Accountability and Partnership," hosted by the Global Focal Point for the Rule of Law (GFP), the Permanent Mission of Liberia to the United Nations, and the International Development Law Organization (IDLO). Joined as a guest of the Consulate General of the Republic of Korea in New York, at the invitation of its police attaché from the Korean National Police Agency. The program paired short films from the Democratic Republic of the Congo, South Sudan, the Central African Republic, Guatemala, and Yemen with two panel discussions on access to justice, accountability, and resilient institutions, with opening remarks from UN Assistant Secretaries-General Shoko Noda and Elizabeth Spehar and IDLO Director-General Jan Beagle.',
     tags: ['UN', 'Rule of Law'],
     links: [],
     media: {
       cover: ruleOfLaw1599,
-      photos: [ruleOfLaw1599, ruleOfLaw1602, ruleOfLawAgenda],
+      photos: [ruleOfLaw1599, ruleOfLaw1602],
     },
   },
   {
@@ -255,7 +252,7 @@ export const activities = [
     sortDate: '2026-07-16',
     location: 'United Nations Headquarters, New York',
     summary: 'Joined the note-taking team for the 2026 High-Level Political Forum on Sustainable Development, summarizing General Debate statements for UN DESA.',
-    description: 'At the request of the UN DESA Office of Intergovernmental Support and Coordination for Sustainable Development, Kang joined the note-taking team for the 2026 High-Level Political Forum. He covered the first half of the General Debate on July 13, summarizing statements from member states, including what they said about the agenda that should follow 2030. Later that week he attended the ECOSOC High-Level Segment session "Transformation from the ground up: Acting at local level," where Tokyo Governor Yuriko Koike was among the speakers.',
+    description: 'At the request of the UN DESA Office of Intergovernmental Support and Coordination for Sustainable Development, joined the note-taking team for the 2026 High-Level Political Forum. Covered the first half of the General Debate on July 13, summarizing statements from member states, including what they said about the agenda that should follow 2030.\n\nLater that week, attended the ECOSOC High-Level Segment session "Transformation from the ground up: Acting at local level," where Tokyo Governor Yuriko Koike was among the speakers.',
     tags: ['UN', 'Sustainable Development'],
     links: [],
     media: {
@@ -361,7 +358,7 @@ export const communityEvents = [
     links: [],
     media: {
       cover: nytEvening1161,
-      photos: [nytEvening1153, nytEvening1157, nytEvening1161, nytEvening1168, nytEvening1174],
+      photos: [nytEvening1161, nytEvening1153, nytEvening1157, nytEvening1168, nytEvening1174],
     },
   },
   {
@@ -519,9 +516,7 @@ export const offTheClockItems = [
     media: {
       cover: nyphilMendelssohn2196,
       photos: [
-        { src: nyphilMendelssohn2294 },
         { src: nyphilMendelssohn2196 },
-        { src: nyphilMendelssohn2202 },
         { src: nyphilMendelssohn2209 },
         { src: nyphilMendelssohn2223 },
       ],
@@ -548,9 +543,9 @@ export const offTheClockItems = [
     media: {
       cover: nyphilLiszt2058,
       photos: [
-        { src: nyphilLiszt2047 },
         { src: nyphilLiszt2058 },
         { src: nyphilLiszt2063 },
+        { src: nyphilLiszt2047 },
       ],
     },
   },
@@ -564,10 +559,10 @@ export const offTheClockItems = [
     media: {
       cover: shore1797,
       photos: [
-        { src: shore1745 },
+        { src: shore1797 },
         { src: shore1750 },
         { src: shore1759 },
-        { src: shore1797 },
+        { src: shore1745 },
         { src: shore1819 },
         { src: shore1873 },
         { src: shore1881 },
@@ -575,17 +570,19 @@ export const offTheClockItems = [
     },
   },
   {
-    id: 'around-new-york-fall',
+    id: 'new-york-fall-2026',
     category: 'travel',
-    title: 'Around New York',
-    date: 'Oct 2026',
+    title: 'New York',
+    date: 'Fall 2026',
     sortDate: '2026-10-29',
-    location: 'New York, NY',
+    location: 'Manhattan',
     media: {
       cover: aroundNy1090,
       photos: [
         { src: aroundNy1090 },
+        { src: heraldSquareJoined },
         { src: aroundNy1295 },
+        { src: midtownDogJoined },
         { src: aroundNy1571 },
         { src: aroundNy1653 },
       ],
@@ -601,18 +598,10 @@ export const offTheClockItems = [
     media: { cover: unEastLounge1510, photos: [{ src: unEastLounge1510 }] },
   },
   {
-    id: 'midtown-dog',
-    category: 'travel',
-    title: 'Midtown',
-    date: 'Oct 2026',
-    sortDate: '2026-10-15',
-    location: 'New York, NY',
-    media: { cover: midtownDog1396, photos: [{ src: midtownDogDiptych }] },
-  },
-  {
     id: 'nyphil-dudamel-mahler-leon',
     category: 'concert',
-    title: 'Dudamel Conducts Mahler & Tania León',
+    // Non-breaking space keeps "& Tania León" together so the title breaks before "&".
+    title: 'Dudamel Conducts Mahler & Tania León',
     date: 'Sep 2026',
     sortDate: '2026-09-24',
     location: 'David Geffen Hall',
@@ -659,9 +648,9 @@ export const offTheClockItems = [
     media: {
       cover: nyphilProkofiev0981,
       photos: [
+        { src: nyphilProkofiev0981 },
         { src: nyphilProkofiev0972 },
         { src: nyphilProkofiev0978 },
-        { src: nyphilProkofiev0981 },
       ],
     },
   },
@@ -676,27 +665,16 @@ export const offTheClockItems = [
     media: {
       cover: yankees0782,
       photos: [
+        { src: yankees0782 },
         { src: yankees0706 },
         { src: yankees0713 },
         { src: yankees0740 },
         { src: yankees0748 },
-        { src: yankees0782 },
-        { src: yankees0797 },
         { src: yankees7279 },
         { src: yankees0815 },
-        { src: yankees0827 },
         { src: yankees0852 },
       ],
     },
-  },
-  {
-    id: 'herald-square-dog',
-    category: 'travel',
-    title: 'Herald Square',
-    date: 'Sep 2026',
-    sortDate: '2026-09-04',
-    location: 'New York, NY',
-    media: { cover: heraldSquare0561, photos: [{ src: heraldSquareTriptych }] },
   },
   {
     id: 'brooklyn-ice-cream-5k',
@@ -731,8 +709,8 @@ export const offTheClockItems = [
     media: {
       cover: nyphilDeneve9705,
       photos: [
-        { src: nyphilDeneve9692 },
         { src: nyphilDeneve9705 },
+        { src: nyphilDeneve9692 },
         { src: nyphilDeneve9711 },
         { src: nyphilDeneve9719 },
       ],
@@ -758,8 +736,8 @@ export const offTheClockItems = [
     sortDate: '2026-05-29',
     location: 'Italy',
     media: {
-      cover: rome8753,
-      photos: [{ src: rome8753 }, { src: rome8757 }, { src: rome8992 }, { src: rome8998 }],
+      cover: rome8757,
+      photos: [{ src: rome8757 }, { src: rome8992 }],
     },
   },
   {
@@ -772,8 +750,8 @@ export const offTheClockItems = [
     media: {
       cover: amalfi8181,
       photos: [
-        { src: amalfi7925 },
         { src: amalfi8181 },
+        { src: amalfi7925 },
         { src: amalfi8357 },
         { src: amalfi8472 },
         { src: amalfi8477 },
@@ -796,6 +774,30 @@ export const offTheClockItems = [
     },
   },
   {
+    id: 'lausanne-visit',
+    category: 'travel',
+    title: 'Lausanne',
+    date: 'May 2026',
+    sortDate: '2026-05-22',
+    location: 'Switzerland',
+    media: {
+      cover: lausanne6982,
+      photos: [{ src: lausanne6982 }, { src: lausanne6963 }, { src: lausanne7097 }],
+    },
+  },
+  {
+    id: 'epfl-visit',
+    category: 'travel',
+    title: 'EPFL',
+    date: 'May 2026',
+    sortDate: '2026-05-21',
+    location: 'Switzerland',
+    media: {
+      cover: epfl7077,
+      photos: [{ src: epfl7077 }, { src: epfl7059 }, { src: epfl7050 }],
+    },
+  },
+  {
     id: 'zurich-visit',
     category: 'travel',
     title: 'Zurich',
@@ -805,9 +807,9 @@ export const offTheClockItems = [
     media: {
       cover: zurich6830,
       photos: [
+        { src: zurich6830 },
         { src: zurich6669 },
         { src: zurich6773 },
-        { src: zurich6830 },
         { src: zurich6835 },
         { src: zurich6867 },
       ],
@@ -823,12 +825,12 @@ export const offTheClockItems = [
     media: {
       cover: milan6510,
       photos: [
+        { src: milan6510 },
         { src: milan6405 },
         { src: milan6420 },
         { src: milan6444 },
         { src: milan6450 },
         { src: milan6459 },
-        { src: milan6510 },
         { src: milan6540 },
         { src: milan6621 },
         { src: milan6662 },

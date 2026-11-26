@@ -541,7 +541,7 @@ function Home() {
           <Section ref={actRef} $visible={actVis}>
             <SectionLead>
               <SectionNum>03</SectionNum>
-              <SectionLabel>From Yokohama to the General Assembly</SectionLabel>
+              <SectionLabel>Activities</SectionLabel>
             </SectionLead>
             <SectionTitle>Studying how systems work, then working inside them.</SectionTitle>
             <SectionBody>

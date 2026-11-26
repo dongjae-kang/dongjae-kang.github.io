@@ -31,7 +31,6 @@ const Title = styled.h1`
 `;
 
 const Intro = styled.p`
-  max-width: ${({ theme }) => theme.layout.textMax};
   color: ${({ theme }) => theme.colors.subpage.muted};
   margin-bottom: 32px;
   font-size: 1.04rem;
@@ -351,8 +350,9 @@ function Research() {
           <Title>Research</Title>
           <Intro>
             Research on how people judge information and interact through platforms and AI,
-            followed by a smaller selection of coursework projects in policy analysis, urban
-            governance, and technology policy design.
+            <br />
+            followed by coursework projects in policy analysis, urban governance, and technology
+            policy design.
           </Intro>
 
           <SectionNav>

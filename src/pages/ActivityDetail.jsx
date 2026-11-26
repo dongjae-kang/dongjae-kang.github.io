@@ -220,7 +220,9 @@ function ActivityDetail() {
             <DateText>{item.date}</DateText>
           </TitleBlock>
 
-          <Description>{item.description}</Description>
+          {(item.description || '').split('\n\n').map((para) => (
+            <Description key={para.slice(0, 32)}>{para}</Description>
+          ))}
 
           <TagList>
             {item.tags.map((tag) => (

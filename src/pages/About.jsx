@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FiMail, FiLinkedin, FiGithub } from 'react-icons/fi';
 import PageTransition from '../components/PageTransition';
 import profileSquare from '../assets/images/profile-square.jpg';
-import profileFull from '../assets/images/profile-full.jpg';
 
 const Page = styled.main`
   min-height: 100vh;
@@ -25,7 +24,7 @@ const Title = styled.h1`
 
 const Intro = styled.section`
   display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 220px;
   gap: 32px;
   align-items: start;
 
@@ -34,9 +33,14 @@ const Intro = styled.section`
   }
 `;
 
+/* Headshot sits to the right of the bio; on mobile it stays above the text. */
 const PhotoColumn = styled.div`
   display: grid;
   gap: 14px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    order: -1;
+  }
 `;
 
 const Photo = styled.div`
@@ -50,19 +54,6 @@ const Photo = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
     width: 160px;
     height: 160px;
-  }
-`;
-
-const SecondaryPhoto = styled.div`
-  width: 220px;
-  aspect-ratio: 4 / 5;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colors.subpage.placeholder};
-  border: 1px solid ${({ theme }) => theme.colors.subpage.border};
-  overflow: hidden;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
-    display: none;
   }
 `;
 
@@ -171,16 +162,19 @@ const TimelineCategory = styled.h3`
 `;
 
 /* ─── CONTACTS ─── */
+/* Stacked under the headshot on desktop; a single wrapping row on mobile. */
 const Contacts = styled.div`
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-  justify-content: flex-end;
+  display: grid;
+  gap: 8px;
+
+  a {
+    justify-content: flex-start;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
   }
 `;
 
@@ -285,14 +279,6 @@ function About() {
         <Container>
           <Title>About</Title>
           <Intro>
-            <PhotoColumn>
-              <Photo aria-label="Dongjae Kang profile photo">
-                <PhotoImage src={profileSquare} alt="Dongjae Kang" />
-              </Photo>
-              <SecondaryPhoto aria-label="Dongjae Kang full portrait">
-                <PhotoImage src={profileFull} alt="Dongjae Kang portrait" />
-              </SecondaryPhoto>
-            </PhotoColumn>
             <Bio>
               <p>
                 Dongjae Kang is an MPA student at Columbia SIPA, concentrating in Technology
@@ -343,30 +329,35 @@ function About() {
                 interact. He approaches these questions through computer science and HCI:
                 measuring carefully, then building and evaluating systems.
               </p>
-            <Contacts>
-              <ContactButton href="mailto:dk3500@columbia.edu">
-                <FiMail />
-                <ContactLabel>dk3500@columbia.edu</ContactLabel>
-                <ContactLabelMobile>Mail</ContactLabelMobile>
-              </ContactButton>
-              <ContactButton
-                href="https://linkedin.com/in/jackkang3780"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FiLinkedin />
-                LinkedIn
-              </ContactButton>
-              <ContactButton
-                href="https://github.com/dongjae-kang"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FiGithub />
-                GitHub
-              </ContactButton>
-            </Contacts>
             </Bio>
+            <PhotoColumn>
+              <Photo aria-label="Dongjae Kang profile photo">
+                <PhotoImage src={profileSquare} alt="Dongjae Kang" />
+              </Photo>
+              <Contacts>
+                <ContactButton
+                  href="https://github.com/dongjae-kang"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FiGithub />
+                  GitHub
+                </ContactButton>
+                <ContactButton
+                  href="https://linkedin.com/in/jackkang3780"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FiLinkedin />
+                  LinkedIn
+                </ContactButton>
+                <ContactButton href="mailto:dk3500@columbia.edu">
+                  <FiMail />
+                  <ContactLabel>dk3500@columbia.edu</ContactLabel>
+                  <ContactLabelMobile>Mail</ContactLabelMobile>
+                </ContactButton>
+              </Contacts>
+            </PhotoColumn>
           </Intro>
 
           <Divider />

@@ -32,7 +32,6 @@ const Title = styled.h1`
 `;
 
 const Intro = styled.div`
-  max-width: ${({ theme }) => theme.layout.textMax};
   color: ${({ theme }) => theme.colors.subpage.muted};
   margin-bottom: 32px;
   font-size: 1.04rem;
@@ -357,6 +356,12 @@ function Activities() {
   const goToImage = useCallback((i) => setLightbox((prev) => ({ ...prev, index: i })), []);
 
   const getCover = (item) => item.media?.cover || item.media?.photos?.[0]?.src || item.media?.photos?.[0];
+  // The lightbox always opens on the photo shown as the card's cover.
+  const coverFirst = (photos, cover) => {
+    const list = photos.map((p) => (typeof p === 'string' ? { src: p } : p));
+    const i = list.findIndex((p) => p.src === cover);
+    return i > 0 ? [list[i], ...list.slice(0, i), ...list.slice(i + 1)] : list;
+  };
   const getPhotoCount = (item) => (item.media?.photos || []).length;
 
   const sortedActivities = sortByDateDesc(activities);
@@ -439,7 +444,7 @@ function Activities() {
                           description: item.summary,
                           poster: item.media?.poster || null,
                         };
-                        openLightbox(item.media.photos.map((p) => (typeof p === 'string' ? { src: p } : p)), 0, pInfo);
+                        openLightbox(coverFirst(item.media.photos, cover), 0, pInfo);
                       }}
                     >
                       {cover ? (<Tier2Image src={cover} alt={item.title} />) : (
@@ -511,7 +516,7 @@ function Activities() {
                             description: item.description,
                           };
                         }
-                        openLightbox(photos, 0, pInfo);
+                        openLightbox(coverFirst(photos, cover), 0, pInfo);
                       }}
                     >
                       {cover ? (<Tier3Image src={cover} alt={item.title} />) : (
