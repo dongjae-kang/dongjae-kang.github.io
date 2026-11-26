@@ -548,7 +548,7 @@ function Home() {
               <SectionNum>03</SectionNum>
               <SectionLabel>Activities</SectionLabel>
             </SectionLead>
-            <SectionTitle>Understanding each other,<TitleBreak /> across campuses, countries, and institutions.</SectionTitle>
+            <SectionTitle>Understanding each other,<TitleBreak /> across communities and institutions.</SectionTitle>
             <SectionBody>
               Presented research at a CHI 2025 workshop in Yokohama, supported Presidential
               Secretariat operations during the UN General Assembly High-Level Week, and was
