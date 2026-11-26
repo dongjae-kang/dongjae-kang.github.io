@@ -27,6 +27,7 @@ const Content = styled.div`
 
 const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: 400;
   font-size: ${({ theme }) => theme.fontSizes.h1};
   margin-bottom: 16px;
 `;
@@ -78,7 +79,7 @@ const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 2rem;
   line-height: 1.08;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 10px;
 `;
 
@@ -148,7 +149,7 @@ const PhotoTitle = styled.span`
 const CardTitle = styled.h2`
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.08;
 `;
 
@@ -206,7 +207,7 @@ const Tier2Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.5rem;
   line-height: 1.08;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const Tier2Meta = styled.span`
@@ -246,7 +247,7 @@ const PhotoCount = styled.span`
 const GroupTitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 400;
   margin: 48px 0 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.subpage.border};
@@ -264,7 +265,7 @@ const YearTile = styled.div`
   span {
     font-family: ${({ theme }) => theme.fonts.heading};
     font-size: 2.6rem;
-    font-weight: 500;
+    font-weight: 400;
     color: rgba(247, 247, 245, 0.92);
     letter-spacing: 0.04em;
     line-height: 1;
@@ -321,7 +322,7 @@ const Tier3Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: 1.1rem;
   line-height: 1.15;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 /* Date · place kicker above the title, kept visually light so rows stay aligned

@@ -420,7 +420,7 @@ function Graph() {
         .attr('x', size.width * 0.18)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(43, 42, 42, 0.14)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .text('Research');
@@ -430,7 +430,7 @@ function Graph() {
         .attr('x', size.width * 0.84)
         .attr('y', size.height * 0.11)
         .attr('fill', 'rgba(196, 149, 106, 0.2)')
-        .attr('font-family', "'Cormorant Garamond', serif")
+        .attr('font-family', "'PP Neue Montreal', 'Inter', sans-serif")
         .attr('font-size', 42)
         .attr('font-weight', 400)
         .attr('text-anchor', 'end')

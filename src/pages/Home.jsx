@@ -93,7 +93,7 @@ const HeroContent = styled.div`
 const Name = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.8rem, 5vw, 4.5rem);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
   /* The graph box ends in empty space below its lowest node; the name sits up into it. */
@@ -173,6 +173,7 @@ const SectionLead = styled.div`
 
 const SectionNum = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: 400;
   font-size: 1.4rem;
   color: rgba(27, 61, 47, 0.24);
 `;
@@ -187,7 +188,7 @@ const SectionLabel = styled.span`
 const SectionTitle = styled.h2`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(1.8rem, 2.8vw, 2.5rem);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.12;
   margin-bottom: 16px;
   max-width: 620px;

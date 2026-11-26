@@ -63,7 +63,7 @@ const Title = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2.6rem, 5vw, 4rem);
   line-height: 1.05;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const DateText = styled.p`
@@ -93,6 +93,7 @@ const MediaNote = styled.span`
 
 const PlaceholderTitle = styled.span`
   font-family: ${({ theme }) => theme.fonts.heading};
+  font-weight: 400;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.05;
   max-width: 14ch;

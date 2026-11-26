@@ -34,7 +34,7 @@ export const theme = {
     },
   },
   fonts: {
-    heading: "'Cormorant Garamond', serif",
+    heading: "'PP Neue Montreal', 'Inter', sans-serif",
     body: "'PP Neue Montreal', 'Inter', sans-serif",
   },
   fontSizes: {
