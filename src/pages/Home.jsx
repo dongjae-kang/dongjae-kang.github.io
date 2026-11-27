@@ -96,8 +96,8 @@ const Name = styled.h1`
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  /* The graph box ends in empty space below its lowest node; about 8px of air above the name. */
-  margin-top: -8px;
+  /* The graph box ends in empty space below its lowest node; about 7px of air above the name. */
+  margin-top: -9px;
 `;
 
 const Tagline = styled.p`
